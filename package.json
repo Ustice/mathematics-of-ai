@@ -1,0 +1,11 @@
+{
+  "name": "mathematics-of-ai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "import-drive-pdfs": "node scripts/import-drive-pdfs.mjs"
+  },
+  "dependencies": {
+    "googleapis": "latest"
+  }
+}
