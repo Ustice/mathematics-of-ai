@@ -1,0 +1,81 @@
+course: Mathematics of AI
+repository: Ustice/mathematics-of-ai
+last_updated: 2026-07-06
+current_lesson: 26
+current_phase: Optimization and Calculus for Machine Learning
+next_lesson:
+  number: 26
+  title: Gradient Descent
+
+completed_lessons:
+  - number: 1
+    title: Vectors
+  - number: 2
+    title: Matrices as Transformations
+  - number: 3
+    title: Matrix Multiplication Concepts
+  - number: 4
+    title: Determinants
+  - number: 5
+    title: Inverse Matrices
+  - number: 6
+    title: Eigenvectors and Eigenvalues
+  - number: 7
+    title: Change of Basis
+  - number: 8
+    title: Projection
+  - number: 9
+    title: Least Squares
+  - number: 10
+    title: Singular Value Decomposition
+  - number: 11
+    title: Principal Component Analysis
+  - number: 12
+    title: Covariance
+  - number: 13
+    title: Probability as Linear Algebra
+  - number: 14
+    title: Covariance Geometry
+  - number: 15
+    title: Multivariate Gaussian
+  - number: 16
+    title: Maximum Likelihood Estimation
+  - number: 17
+    title: Loss Functions
+  - number: 18
+    title: MAP Estimation
+  - number: 19
+    title: Bayesian Estimation Introduction
+  - number: 20
+    title: Bayesian Estimation Update
+  - number: 21
+    title: Bayesian Predictive Distributions
+  - number: 22
+    title: Model Complexity
+  - number: 23
+    title: Regularization
+  - number: 24
+    title: Early Stopping
+  - number: 25
+    title: Convex Functions
+
+teaching_preferences:
+  intuition_first: true
+  formal_math_after_intuition: true
+  maintain_symbol_table: true
+  define_symbols_locally: true
+  connect_to_programming: true
+  include_group_theory_connections_when_helpful: true
+  include_category_theory_connections_when_helpful: true
+  reduce_working_memory_load: true
+
+known_learning_notes:
+  - Geometric intuition helps substantially with linear algebra.
+  - Matrix multiplication mechanics need careful, low-load presentation.
+  - Symbol tables are important because reconstructing notation while learning concepts is costly.
+  - Abstraction and invariants help reduce working-memory load.
+  - Vocabulary is often harder than the underlying concept.
+
+artifacts:
+  original_notability_pdfs: pending_upload
+  backfilled_lessons: partial_from_project_context
