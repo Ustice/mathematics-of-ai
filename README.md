@@ -11,5 +11,14 @@ This repository contains an evolving curriculum, lessons, exercises, and learnin
 - `notation.md` — Standard notation used in the lessons.
 - `lessons/` — Individual lesson notes.
 - `exercises/` — Exercise sets and solutions.
+- `artifacts/notability-pdfs/` — Exported handwritten Notability PDFs.
+- `data/drive-pdf-manifest.json` — Drive PDF import manifest.
+- `scripts/` — Course maintenance scripts.
 
 The repository is intended to be the canonical source of truth for the course.
+
+## Importing Notability PDFs
+
+See [`docs/drive-pdf-import.md`](docs/drive-pdf-import.md).
+
+The first import manifest covers Lessons 2 through 10.
