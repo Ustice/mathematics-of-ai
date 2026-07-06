@@ -1,10 +1,37 @@
 # Notability PDF Exports
 
-This directory is reserved for the PDFs exported from Notability and uploaded during lesson review.
+This directory is reserved for PDFs exported from Notability and uploaded during lesson review.
 
-Current status: the original PDF files are not available to this GitHub operation from project memory alone. The chat history contains references to files such as `Lesson 7.pdf`, `Lesson 18.pdf`, and `Note Jul 3, 2026.pdf`, but not file bytes that can be committed here.
+## Current Status
 
-When the files are available locally, add them using names like:
+The Google Drive backup folder is accessible, and PDF exports are now visible there. The first scan showed at least these files:
+
+| File | Drive status |
+| --- | --- |
+| Lesson 25.pdf | Found as `application/pdf` |
+| Lesson 24.pdf | Found as `application/pdf` |
+| Lesson 23.pdf | Found as `application/pdf` |
+| Lesson 22.pdf | Found as `application/pdf` |
+| Lesson 21.pdf | Found as `application/pdf` |
+| Lesson 20.pdf | Found as `application/pdf` |
+| Lesson 19.pdf | Found as `application/pdf` |
+| Lesson 18.pdf | Found as `application/pdf` |
+| Lesson 17 .pdf | Found as `application/pdf` |
+| Lesson 16.pdf | Found as `application/pdf` |
+| Lesson 15.pdf | Found as `application/pdf` |
+| Lesson 14 practice 2.pdf | Found as `application/pdf` |
+| Lesson 14 practice.pdf | Found as `application/pdf` |
+| Lesson 14.pdf | Found as `application/pdf` |
+| Lesson 13.pdf | Found as `application/pdf` |
+| Lessen 12.pdf | Found as `application/pdf` |
+| Lesson 11.pdf | Found as `application/pdf` |
+| Lesson 10.pdf | Found as `application/pdf` |
+
+`Lesson 25.pdf` was successfully downloaded from Drive as a raw PDF, confirming that the exported PDFs are usable.
+
+## Recommended Filenames
+
+When adding PDFs to the repository, normalize names like:
 
 ```text
 lesson-001-vectors.pdf
@@ -14,8 +41,8 @@ lesson-003-matrix-multiplication-concepts.pdf
 lesson-025-convex-functions.pdf
 ```
 
-Recommended policy for public use:
+## Public Repository Policy
 
-- Include only your own handwritten work and AI-generated/original lessons.
+- Include only original handwritten work and AI-generated/original lessons.
 - Do not include copyrighted textbook pages or course handouts.
 - Review PDFs for personal information before committing.
