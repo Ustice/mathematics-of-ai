@@ -1,0 +1,4 @@
+interface:
+  display_name: "MOA Build Widget"
+  short_description: "Build interactive math lesson widgets"
+  default_prompt: "Use $moa-build-widget to add an interactive visualization to a Mathematics of AI lesson."

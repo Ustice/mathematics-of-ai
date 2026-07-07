@@ -1,0 +1,4 @@
+interface:
+  display_name: "MOA Create Lesson"
+  short_description: "Create forward MOA lesson pages"
+  default_prompt: "Use $moa-create-lesson to create the next Mathematics of AI lesson page."
