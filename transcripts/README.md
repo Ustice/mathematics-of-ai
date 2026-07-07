@@ -2,18 +2,18 @@
 
 The exported lesson conversations live in `lessons/transcripts/`.
 
-Lessons 1-25 have exported Markdown transcripts. Lesson 26 Preparation was skipped because it mostly covers repository setup rather than course content.
+Lessons 1-25 have raw exported Markdown transcripts. They are source material for lesson reconstruction and should not be treated as polished public lessons until reviewed.
 
 See:
 
-- `lessons/index.html` for the public lesson index.
+- `lessons/index.html` for the source lesson index.
 - `data/lesson-sources.json` for the machine-readable source map.
 
 ## Policy
 
 Treat transcripts as source material, not polished lessons.
 
-A cleanup pass should preserve mathematical explanations, corrections, user questions that changed the lesson, symbol-table decisions, and links to handwritten PDFs. It should remove irrelevant setup chatter and mark reconstructed sections clearly.
+A cleanup pass should preserve mathematical explanations, corrections, user questions that changed the lesson, symbol-table decisions, and links to handwritten PDFs under `artifacts/notability-pdfs/`. It should remove irrelevant setup chatter, private-ish source context, and any non-course setup notes before publishing a polished lesson.
 
 ## Paths
 
