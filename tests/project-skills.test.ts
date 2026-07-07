@@ -89,4 +89,45 @@ describe('project skills', () => {
 
     expect(missingAutonomyInstructions).toEqual([]);
   });
+
+  test('skills point continuity work at canonical course references', () => {
+    const createLessonSkill = readFileSync(skillPath('moa-create-lesson', 'SKILL.md'), 'utf8');
+    const createExercisesSkill = readFileSync(skillPath('moa-create-exercises', 'SKILL.md'), 'utf8');
+    const continuitySkill = readFileSync(skillPath('moa-maintain-continuity', 'SKILL.md'), 'utf8');
+    const combinedSkillText = [createLessonSkill, createExercisesSkill, continuitySkill].join('\n');
+    const canonicalReferenceIssues = [
+      combinedSkillText.includes('reference/notation.md')
+        ? null
+        : 'skills should read or update reference/notation.md',
+      combinedSkillText.includes('reference/glossary.md')
+        ? null
+        : 'skills should read or update reference/glossary.md',
+      continuitySkill.includes('learning-journal/journal-template.md')
+        ? null
+        : 'continuity skill should route new journal entries through the learning-journal template',
+      /\bAdd durable notation to `notation\.md`/.test(continuitySkill)
+        ? 'continuity skill should not update legacy notation.md as the primary notation file'
+        : null,
+      /\bAdd durable vocabulary to `glossary\.md`/.test(continuitySkill)
+        ? 'continuity skill should not update legacy glossary.md as the primary glossary file'
+        : null,
+    ].filter((issue): issue is string => issue !== null);
+
+    expect(canonicalReferenceIssues).toEqual([]);
+  });
+
+  test('project docs and templates describe implementation work as TypeScript-first', () => {
+    const docsToCheck = [
+      'README.md',
+      'implementation/README.md',
+      'implementation/project-plan.md',
+      'exercises/exercise-template.md',
+      'lessons/lesson-template.md',
+    ];
+    const wordingIssues = docsToCheck
+      .filter((relativePath) => readText(relativePath).includes('TypeScript / JavaScript'))
+      .map((relativePath) => `${relativePath}: should prefer TypeScript-only wording`);
+
+    expect(wordingIssues).toEqual([]);
+  });
 });

@@ -12,7 +12,7 @@ Use implementation to make the mathematics concrete. The point is to expose the 
 
 ## Initial Language Preference
 
-- TypeScript / JavaScript.
+- TypeScript.
 - No ML framework at first.
 - Plain implementations that expose the math.
 - Later comparisons with PyTorch, JAX, or similar libraries if they clarify the same ideas.

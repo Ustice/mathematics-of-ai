@@ -45,7 +45,7 @@ The program is organized around these tracks:
 - **Curriculum:** roadmap, milestones, reading list, and progress tracking.
 - **Lessons:** polished lesson notes, with raw transcripts preserved as source material.
 - **Exercises:** mathematical and implementation exercises.
-- **Implementation:** first-principles TypeScript / JavaScript projects, initially without ML frameworks.
+- **Implementation:** first-principles TypeScript projects, initially without ML frameworks.
 - **Paper Reading:** structured notes for classic and modern ML papers.
 - **Reference:** notation, glossary, symbol tables, mental models, and concept dependencies.
 - **Learning Journal:** reflections on what clicked, what was confusing, and what the curriculum should reinforce.
@@ -97,15 +97,15 @@ Handwritten Notability PDFs for Lessons 2-25 live under [artifacts/notability-pd
 
 The next course topic recorded in [course-state.yaml](course-state.yaml) is Gradient Descent.
 
-## Importing Notability PDFs
+## Historical Notability PDF Import
 
 See [`docs/drive-pdf-import.md`](docs/drive-pdf-import.md).
 
-The committed Notability PDFs cover Lessons 2 through 25.
+The committed Notability PDFs cover Lessons 2 through 25. The Google Drive importer was a one-time bootstrap path for getting source artifacts into the repo, not an ongoing synchronization workflow.
 
 ## Development Commands
 
-Use Bun for JavaScript tooling:
+Use Bun for TypeScript tooling:
 
 ```bash
 bun install

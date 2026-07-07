@@ -189,22 +189,24 @@ describe('first-use readiness', () => {
     expect(notabilityLinks).toEqual([]);
   });
 
-  test('package script and import workflow consistently use Bun', () => {
+  test('package scripts use Bun and Drive import remains archival', () => {
     const packageJson = readJson<{ scripts?: Record<string, string> }>('package.json');
-    const workflow = readText('.github/workflows/import-drive-pdfs.yml');
     const importScript = packageJson.scripts?.['import-drive-pdfs'];
+    const importWorkflowPath = path.join(repoRoot, '.github/workflows/import-drive-pdfs.yml');
+    const importDocs = readText('docs/drive-pdf-import.md');
 
     const consistencyIssues = [
       importScript === 'bun scripts/import-drive-pdfs.ts'
         ? null
         : `package script import-drive-pdfs should run Bun directly; got ${importScript ?? 'missing'}`,
-      workflow.includes('oven-sh/setup-bun') ? null : 'workflow should install Bun with oven-sh/setup-bun',
-      /\brun:\s*bun install\b/.test(workflow) ? null : 'workflow install step should run bun install',
-      /\brun:\s*bun run import-drive-pdfs\b/.test(workflow)
+      existsSync(importWorkflowPath)
+        ? 'Drive PDF import should not be exposed as an active GitHub workflow'
+        : null,
+      importDocs.includes('one-time bootstrap') || importDocs.includes('historical importer')
         ? null
-        : 'workflow import step should run bun run import-drive-pdfs',
-      /\bsetup-node\b|\bnpm\b|\bnode-version\b/.test(workflow)
-        ? 'workflow still references Node/npm setup'
+        : 'Drive PDF import docs should describe the importer as historical/bootstrap-only',
+      /\bnpm\b|\bnode-version\b/.test(JSON.stringify(packageJson.scripts ?? {}))
+        ? 'package scripts still reference npm or Node setup'
         : null,
     ].filter((issue): issue is string => issue !== null);
 

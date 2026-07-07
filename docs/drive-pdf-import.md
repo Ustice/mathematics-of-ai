@@ -1,6 +1,8 @@
 # Drive PDF Import
 
-This repository can import Notability PDF exports from Google Drive into `artifacts/notability-pdfs/`.
+This historical importer was used to bring Notability PDF exports from Google Drive into `artifacts/notability-pdfs/`.
+
+The committed PDFs in `artifacts/notability-pdfs/` are now the source artifacts for the course. Do not treat Google Drive as an ongoing synchronization source unless the course process explicitly changes.
 
 ## Source
 
@@ -20,7 +22,9 @@ The value should be the full service account JSON.
 
 Share the Google Drive folder with the service account email address as a viewer.
 
-## Manual Import
+## Manual Recovery Import
+
+The script is retained for provenance and manual recovery. It is not part of the normal lesson workflow.
 
 ```bash
 bun install
@@ -32,18 +36,9 @@ Optional overrides:
 - `PDF_MANIFEST` — path to an alternate Drive PDF manifest.
 - `PDF_OUTPUT_DIR` — output directory for imported PDFs.
 
-## GitHub Action
-
-Run the `Import Drive PDFs` workflow manually from the Actions tab. It will:
-
-1. Read `data/drive-pdf-manifest.json`.
-2. Download each listed PDF from Drive.
-3. Store it under `artifacts/notability-pdfs/` using normalized filenames.
-4. Commit imported PDFs back to the branch.
-
 ## Current Lesson Scope
 
-The Drive manifest currently stores file IDs for Lessons 2 through 10.
+The Drive manifest stores the file IDs that were needed for the original bootstrap import, currently Lessons 2 through 10.
 The repository already contains normalized Notability PDF artifacts for Lessons 2 through 25.
 Markdown lesson transcripts for Lessons 1-25 are stored separately under `lessons/transcripts/`.
 

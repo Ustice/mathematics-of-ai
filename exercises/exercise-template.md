@@ -25,7 +25,7 @@ Problem statement.
 
 ## Implementation Problems
 
-Implementation-focused prompts, preferably in TypeScript / JavaScript first.
+Implementation-focused prompts, preferably in TypeScript first.
 
 ## Reflection
 

@@ -22,8 +22,9 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - `README.md`
    - `course-state.yaml`
    - `curriculum.md`
+   - `curriculum/roadmap.md`
    - `data/lesson-sources.json`
-   - `notation.md`, `glossary.md`, and `learning-journal.md` when the lesson introduces notation or vocabulary.
+   - `reference/notation.md`, `reference/glossary.md`, and existing learning notes when the lesson introduces notation, vocabulary, or durable learning observations.
 
 3. Use the forward lesson shape.
    - If the dynamic lesson platform exists, create or edit `content/lessons/lesson-NNN-slug.mdx`.

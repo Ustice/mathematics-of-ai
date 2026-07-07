@@ -44,7 +44,7 @@ Link to the matching exercise set or list short conceptual exercises.
 
 ## Implementation Exercise
 
-Describe the first-principles TypeScript / JavaScript implementation task connected to the lesson.
+Describe the first-principles TypeScript implementation task connected to the lesson.
 
 ## Reflection Questions
 

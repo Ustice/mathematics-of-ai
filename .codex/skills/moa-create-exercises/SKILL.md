@@ -14,7 +14,7 @@ Keep Notability as the main surface for derivations, diagrams, and reflective pr
 
 1. Anchor on the lesson goal.
    - Read the lesson page or raw transcript.
-   - Read `notation.md`, `glossary.md`, and `learning-journal.md` when exercises depend on notation, vocabulary, or known friction points.
+   - Read `reference/notation.md`, `reference/glossary.md`, and existing learning notes when exercises depend on notation, vocabulary, or known friction points.
    - Identify which concepts need intuition, mechanics, derivation, and transfer practice.
 
 2. Create the exercise ladder.

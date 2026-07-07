@@ -15,17 +15,20 @@ Preserve the teaching preferences that make the course work: intuition first, lo
 1. Read current state.
    - `course-state.yaml`
    - `curriculum.md`
-   - `notation.md`
-   - `glossary.md`
-   - `learning-journal.md`
+   - `curriculum/roadmap.md`
+   - `reference/notation.md`
+   - `reference/glossary.md`
+   - `learning-journal/README.md`
+   - Existing preserved learning notes in `learning-journal.md` and `journal/learning-journal.md`.
    - The lesson page or transcript just completed.
    - If the lesson is clearly complete, finish all routine continuity updates in the same pass instead of waiting for a separate request.
 
 2. Update the minimum necessary files.
    - Advance `course-state.yaml` only when a real lesson is complete.
-   - Add durable notation to `notation.md`.
-   - Add durable vocabulary to `glossary.md`.
-   - Add durable learning observations to `learning-journal.md`.
+   - Add durable notation to `reference/notation.md`.
+   - Add durable vocabulary to `reference/glossary.md`.
+   - Add durable learning observations as a new entry under `learning-journal/`, using `learning-journal/journal-template.md` when a lesson-specific record is useful.
+   - Update `learning-journal.md` or `journal/learning-journal.md` only when a new observation changes the course-level learning model.
    - Adjust `curriculum.md` only when the roadmap changes.
 
 3. Keep updates durable.
@@ -47,4 +50,4 @@ Read `references/continuity-checklist.md` when deciding what to update after a l
 - Do not create a fake lesson number for setup or import work.
 - Do not rewrite prior learning notes unless they are wrong or superseded.
 - Do not mark a lesson complete until transcript/source artifacts and course state agree.
-- Do not leave course-state, notation, glossary, or learning-journal updates undone when they are clearly implied by the completed lesson.
+- Do not leave course-state, reference notation, reference glossary, or learning-journal updates undone when they are clearly implied by the completed lesson.
