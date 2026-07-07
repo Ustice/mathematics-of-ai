@@ -5,183 +5,203 @@
       "title": "Vectors",
       "chat": "Syllabus / first lesson setup",
       "transcript": "lessons/transcripts/lesson-01-vectors.md",
-      "status": "exported"
+      "status": "raw_export"
     },
     {
       "lesson": 2,
       "title": "Matrices as Linear Transformations",
       "chat": "Lesson 2",
       "transcript": "lessons/transcripts/lesson-02-matrices-as-linear-transformations.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-002-matrices-as-linear-transformations.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 3,
       "title": "Matrix Multiplication and Composition",
       "chat": "Lesson 3 Matrix Multiplication Concepts",
       "transcript": "lessons/transcripts/lesson-03-matrix-multiplication-and-composition.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-003-matrix-multiplication-and-composition.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 4,
       "title": "Determinants",
       "chat": "Lesson 4 Determinant",
       "transcript": "lessons/transcripts/lesson-04-determinant.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-004-determinant.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 5,
       "title": "Inverse Matrices",
       "chat": "Lesson 5 Inverse Matrices",
       "transcript": "lessons/transcripts/lesson-05-inverse-matrices.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-005-inverse-matrices.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 6,
       "title": "Eigenvectors and Eigenvalues",
       "chat": "Lesson 6 Eigenvectors and Eigenvalues",
       "transcript": "lessons/transcripts/lesson-06-eigenvectors-and-eigenvalues.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-006-eigenvectors-and-eigenvalues.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 7,
       "title": "Change of Basis",
       "chat": "Lesson 7 Change of Basis",
       "transcript": "lessons/transcripts/lesson-07-change-of-basis.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-007-change-of-basis.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 8,
       "title": "Projection",
       "chat": "Lesson 8 Projection",
       "transcript": "lessons/transcripts/lesson-08-projection.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-008-projection.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 9,
       "title": "Least Squares",
       "chat": "Lesson 9 Least Squares",
       "transcript": "lessons/transcripts/lesson-09-least-squares.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-009-least-squares.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 10,
       "title": "Singular Value Decomposition",
       "chat": "Lesson 10 Singular Value Decomposition",
       "transcript": "lessons/transcripts/lesson-10-singular-value-decomposition.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-010-singular-value-decomposition.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 11,
       "title": "Principal Component Analysis",
       "chat": "Lesson 11 Principal Component Analysis",
       "transcript": "lessons/transcripts/lesson-11-principal-component-analysis.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-011-principal-component-analysis.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 12,
       "title": "Covariance",
       "chat": "Lesson 12 Covariance",
       "transcript": "lessons/transcripts/lesson-12-covariance.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-012-covariance.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 13,
       "title": "Probability as Linear Algebra",
       "chat": "Lesson 13 Probability as Linear Algebra",
       "transcript": "lessons/transcripts/lesson-13-probability-as-linear-algebra.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-013-probability-as-linear-algebra.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 14,
       "title": "Covariance Geometry",
       "chat": "Lesson 14 Covariance Geometry",
       "transcript": "lessons/transcripts/lesson-14-covariance-geometry.md",
-      "status": "exported"
+      "notability_pdfs": [
+        "artifacts/notability-pdfs/lesson-014-covariance-geometry.pdf",
+        "artifacts/notability-pdfs/lesson-014-covariance-geometry-practice-1.pdf",
+        "artifacts/notability-pdfs/lesson-014-covariance-geometry-practice-2.pdf"
+      ],
+      "status": "raw_export"
     },
     {
       "lesson": 15,
       "title": "Multivariate Gaussian",
       "chat": "Lesson 15 Multivariate Gaussian",
       "transcript": "lessons/transcripts/lesson-15-multivariate-gaussian.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-015-multivariate-gaussian.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 16,
       "title": "Maximum Likelihood Estimation",
       "chat": "Lesson 16 MLE Intro",
       "transcript": "lessons/transcripts/lesson-16-mle-intro.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-016-maximum-likelihood-estimation.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 17,
       "title": "Loss Functions",
       "chat": "Lesson 17 Loss Functions",
       "transcript": "lessons/transcripts/lesson-17-loss-functions.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-017-loss-functions.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 18,
       "title": "MAP Estimation",
       "chat": "Lesson 18 MAP Estimation",
       "transcript": "lessons/transcripts/lesson-18-map-estimation.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-018-map-estimation.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 19,
       "title": "Bayesian Estimation Introduction",
       "chat": "Lesson 19 Bayesian Estimation Intro",
       "transcript": "lessons/transcripts/lesson-19-bayesian-estimation-intro.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-019-bayesian-estimation-intro.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 20,
       "title": "Bayesian Estimation Update",
       "chat": "Lesson 20 Bayesian Estimation Update",
       "transcript": "lessons/transcripts/lesson-20-bayesian-estimation-update.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-020-bayesian-estimation-update.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 21,
       "title": "Bayesian Predictive Distributions",
       "chat": "Lesson 21 Bayesian Predictive Distributions",
       "transcript": "lessons/transcripts/lesson-21-bayesian-predictive-distributions.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-021-bayesian-predictive-distributions.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 22,
       "title": "Model Complexity",
       "chat": "Lesson 22 Model Complexity",
       "transcript": "lessons/transcripts/lesson-22-model-complexity.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-022-model-complexity.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 23,
       "title": "Regularization",
       "chat": "Lesson 23 Regularization",
       "transcript": "lessons/transcripts/lesson-23-regularization.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-023-regularization.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 24,
       "title": "Early Stopping",
       "chat": "Lesson 24 Early Stopping",
       "transcript": "lessons/transcripts/lesson-24-early-stopping.md",
-      "status": "exported"
+      "notability_pdf": "artifacts/notability-pdfs/lesson-024-early-stopping.pdf",
+      "status": "raw_export"
     },
     {
       "lesson": 25,
       "title": "Dropout",
       "chat": "Lesson 25 Dropout",
       "transcript": "lessons/transcripts/lesson-25-dropout.md",
-      "status": "exported"
-    },
-    {
-      "lesson": 26,
-      "title": "Gradient Descent",
-      "chat": "Lesson 26 Preparation",
-      "transcript": null,
-      "status": "skipped",
-      "note": "Lesson 26 Preparation mostly covers project setup and was intentionally not exported as lesson content."
+      "notability_pdf": "artifacts/notability-pdfs/lesson-025-dropout.pdf",
+      "status": "raw_export"
     }
   ]
 }

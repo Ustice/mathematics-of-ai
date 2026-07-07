@@ -1,0 +1,4 @@
+interface:
+  display_name: "MOA Create Exercises"
+  short_description: "Design Notability-first exercises"
+  default_prompt: "Use $moa-create-exercises to create exercises and Notability prompts for the current lesson."

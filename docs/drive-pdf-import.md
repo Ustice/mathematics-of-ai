@@ -27,6 +27,11 @@ bun install
 GOOGLE_SERVICE_ACCOUNT_JSON='...' bun run import-drive-pdfs
 ```
 
+Optional overrides:
+
+- `PDF_MANIFEST` — path to an alternate Drive PDF manifest.
+- `PDF_OUTPUT_DIR` — output directory for imported PDFs.
+
 ## GitHub Action
 
 Run the `Import Drive PDFs` workflow manually from the Actions tab. It will:
@@ -38,8 +43,17 @@ Run the `Import Drive PDFs` workflow manually from the Actions tab. It will:
 
 ## Current Lesson Scope
 
-The first manifest imports lessons 2 through 10.
+The Drive manifest currently stores file IDs for Lessons 2 through 10.
+The repository already contains normalized Notability PDF artifacts for Lessons 2 through 25.
 Markdown lesson transcripts for Lessons 1-25 are stored separately under `lessons/transcripts/`.
+
+Before importing, run:
+
+```bash
+bun test
+```
+
+The readiness tests verify local links, manifest output paths, transcript source entries, and Bun workflow consistency.
 
 ## Public Safety Checklist
 

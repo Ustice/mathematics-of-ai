@@ -348,7 +348,7 @@ Take your time. As before, I'll grade each answer, point out any misconceptions,
 
 **You:**
 
-https://notability.com/app/note/9fa18800-a387-47c8-bd8f-86b8a7809e59
+[redacted Notability share URL]
 
 Does that work?
 

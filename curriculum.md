@@ -35,11 +35,14 @@ This is the working roadmap for learning the mathematics needed to read modern m
 23. Regularization
 24. Early Stopping
 25. Dropout
-26. Gradient Descent
-27. Stochastic Gradient Descent
-28. Momentum
-29. Adaptive Optimizers
-30. Learning Rate Schedules
+
+Upcoming optimization topics:
+
+- Gradient Descent
+- Stochastic Gradient Descent
+- Momentum
+- Adaptive Optimizers
+- Learning Rate Schedules
 
 ## Later Phases
 
@@ -47,4 +50,4 @@ Planned later phases include neural networks, backpropagation, information theor
 
 ## Public Repo Policy
 
-This repository should contain original course material, exercises, notation, diagrams, and public-safe learning reflections. Avoid committing private personal details, credentials, copyrighted textbook excerpts, or raw source material that is not ours to publish.
+This repository should contain original course material, exercises, notation, diagrams, and public-safe learning reflections. Raw exported transcripts are source material until reviewed and should be polished before being treated as public lessons. Avoid committing private personal details, credentials, copyrighted textbook excerpts, or raw source material that is not ours to publish.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MOA Maintain Continuity"
+  short_description: "Advance course state after lessons"
+  default_prompt: "Use $moa-maintain-continuity to update course continuity after a Mathematics of AI lesson."

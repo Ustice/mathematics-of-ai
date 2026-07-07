@@ -1,36 +1,35 @@
 # Exercise Index
 
-This index reflects the exercise PDFs committed under `exercises/`.
+This index reflects the handwritten Notability PDFs committed under `artifacts/notability-pdfs/`.
 
 | Lesson | Title | Exercise artifact |
 | --- | --- | --- |
 | 1 | Vectors | No PDF committed |
-| 2 | Matrices as Linear Transformations | [`Lesson 2 exercise.pdf`](Lesson%202%20exercise.pdf) |
-| 3 | Matrix Multiplication and Composition | [`Lesson 3.pdf`](Lesson%203.pdf) |
-| 4 | Determinant | [`Lesson 4.pdf`](Lesson%204.pdf) |
-| 5 | Inverse Matrices | [`Lesson 5.pdf`](Lesson%205.pdf) |
-| 6 | Eigenvectors and Eigenvalues | [`Lesson 6.pdf`](Lesson%206.pdf) |
-| 7 | Change of Basis | [`Lesson 7.pdf`](Lesson%207.pdf) |
-| 8 | Projection | [`Lesson 8.pdf`](Lesson%208.pdf) |
-| 9 | Least Squares | [`Lesson 9.pdf`](Lesson%209.pdf) |
-| 10 | Singular Value Decomposition | [`Lesson 10.pdf`](Lesson%2010.pdf) |
-| 11 | Principal Component Analysis | [`Lesson 11.pdf`](Lesson%2011.pdf) |
-| 12 | Covariance | [`Lessen 12.pdf`](Lessen%2012.pdf) |
-| 13 | Probability as Linear Algebra | [`Lesson 13.pdf`](Lesson%2013.pdf) |
-| 14 | Covariance Geometry | [`Lesson 14.pdf`](Lesson%2014.pdf), [`Lesson 14 practice.pdf`](Lesson%2014%20practice.pdf), [`Lesson 14 practice 2.pdf`](Lesson%2014%20practice%202.pdf) |
-| 15 | Multivariate Gaussian | [`Lesson 15.pdf`](Lesson%2015.pdf) |
-| 16 | Maximum Likelihood Estimation | [`Lesson 16.pdf`](Lesson%2016.pdf) |
-| 17 | Loss Functions | [`Lesson 17 .pdf`](Lesson%2017%20.pdf) |
-| 18 | MAP Estimation | [`Lesson 18.pdf`](Lesson%2018.pdf) |
-| 19 | Bayesian Estimation Intro | [`Lesson 19.pdf`](Lesson%2019.pdf) |
-| 20 | Bayesian Estimation Update | [`Lesson 20.pdf`](Lesson%2020.pdf) |
-| 21 | Bayesian Predictive Distributions | [`Lesson 21.pdf`](Lesson%2021.pdf) |
-| 22 | Model Complexity | [`Lesson 22.pdf`](Lesson%2022.pdf) |
-| 23 | Regularization | [`Lesson 23.pdf`](Lesson%2023.pdf) |
-| 24 | Early Stopping | [`Lesson 24.pdf`](Lesson%2024.pdf) |
-| 25 | Dropout | [`Lesson 25.pdf`](Lesson%2025.pdf) |
-| 26 | Gradient Descent | No PDF committed |
+| 2 | Matrices as Linear Transformations | [`lesson-002-matrices-as-linear-transformations.pdf`](../artifacts/notability-pdfs/lesson-002-matrices-as-linear-transformations.pdf) |
+| 3 | Matrix Multiplication and Composition | [`lesson-003-matrix-multiplication-and-composition.pdf`](../artifacts/notability-pdfs/lesson-003-matrix-multiplication-and-composition.pdf) |
+| 4 | Determinant | [`lesson-004-determinant.pdf`](../artifacts/notability-pdfs/lesson-004-determinant.pdf) |
+| 5 | Inverse Matrices | [`lesson-005-inverse-matrices.pdf`](../artifacts/notability-pdfs/lesson-005-inverse-matrices.pdf) |
+| 6 | Eigenvectors and Eigenvalues | [`lesson-006-eigenvectors-and-eigenvalues.pdf`](../artifacts/notability-pdfs/lesson-006-eigenvectors-and-eigenvalues.pdf) |
+| 7 | Change of Basis | [`lesson-007-change-of-basis.pdf`](../artifacts/notability-pdfs/lesson-007-change-of-basis.pdf) |
+| 8 | Projection | [`lesson-008-projection.pdf`](../artifacts/notability-pdfs/lesson-008-projection.pdf) |
+| 9 | Least Squares | [`lesson-009-least-squares.pdf`](../artifacts/notability-pdfs/lesson-009-least-squares.pdf) |
+| 10 | Singular Value Decomposition | [`lesson-010-singular-value-decomposition.pdf`](../artifacts/notability-pdfs/lesson-010-singular-value-decomposition.pdf) |
+| 11 | Principal Component Analysis | [`lesson-011-principal-component-analysis.pdf`](../artifacts/notability-pdfs/lesson-011-principal-component-analysis.pdf) |
+| 12 | Covariance | [`lesson-012-covariance.pdf`](../artifacts/notability-pdfs/lesson-012-covariance.pdf) |
+| 13 | Probability as Linear Algebra | [`lesson-013-probability-as-linear-algebra.pdf`](../artifacts/notability-pdfs/lesson-013-probability-as-linear-algebra.pdf) |
+| 14 | Covariance Geometry | [`lesson-014-covariance-geometry.pdf`](../artifacts/notability-pdfs/lesson-014-covariance-geometry.pdf), [`lesson-014-covariance-geometry-practice-1.pdf`](../artifacts/notability-pdfs/lesson-014-covariance-geometry-practice-1.pdf), [`lesson-014-covariance-geometry-practice-2.pdf`](../artifacts/notability-pdfs/lesson-014-covariance-geometry-practice-2.pdf) |
+| 15 | Multivariate Gaussian | [`lesson-015-multivariate-gaussian.pdf`](../artifacts/notability-pdfs/lesson-015-multivariate-gaussian.pdf) |
+| 16 | Maximum Likelihood Estimation | [`lesson-016-maximum-likelihood-estimation.pdf`](../artifacts/notability-pdfs/lesson-016-maximum-likelihood-estimation.pdf) |
+| 17 | Loss Functions | [`lesson-017-loss-functions.pdf`](../artifacts/notability-pdfs/lesson-017-loss-functions.pdf) |
+| 18 | MAP Estimation | [`lesson-018-map-estimation.pdf`](../artifacts/notability-pdfs/lesson-018-map-estimation.pdf) |
+| 19 | Bayesian Estimation Intro | [`lesson-019-bayesian-estimation-intro.pdf`](../artifacts/notability-pdfs/lesson-019-bayesian-estimation-intro.pdf) |
+| 20 | Bayesian Estimation Update | [`lesson-020-bayesian-estimation-update.pdf`](../artifacts/notability-pdfs/lesson-020-bayesian-estimation-update.pdf) |
+| 21 | Bayesian Predictive Distributions | [`lesson-021-bayesian-predictive-distributions.pdf`](../artifacts/notability-pdfs/lesson-021-bayesian-predictive-distributions.pdf) |
+| 22 | Model Complexity | [`lesson-022-model-complexity.pdf`](../artifacts/notability-pdfs/lesson-022-model-complexity.pdf) |
+| 23 | Regularization | [`lesson-023-regularization.pdf`](../artifacts/notability-pdfs/lesson-023-regularization.pdf) |
+| 24 | Early Stopping | [`lesson-024-early-stopping.pdf`](../artifacts/notability-pdfs/lesson-024-early-stopping.pdf) |
+| 25 | Dropout | [`lesson-025-dropout.pdf`](../artifacts/notability-pdfs/lesson-025-dropout.pdf) |
 
 ## Notes
 
-Some committed filenames preserve their original Notability export names, including typos and spacing. A later cleanup pass can rename these files and update links in one commit.
+The PDFs are source artifacts for review. Future polished exercises can live under `exercises/` while these Notability exports remain in `artifacts/notability-pdfs/`.

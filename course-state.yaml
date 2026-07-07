@@ -1,11 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-06
-current_lesson: 26
+last_updated: 2026-07-07
 current_phase: Optimization and Calculus for Machine Learning
-next_lesson:
-  number: 26
-  title: Gradient Descent
+next_topic: Gradient Descent
 
 completed_lessons:
   - number: 1
@@ -77,9 +74,6 @@ known_learning_notes:
   - Vocabulary is often harder than the underlying concept.
 
 artifacts:
-  original_notability_pdfs: manifest_available_for_lessons_2_to_10
-  exported_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
-  skipped_exports:
-    - lesson: 26
-      title: Lesson 26 Preparation
-      reason: Project setup context rather than lesson material
+  notability_pdfs: lessons_2_to_25_available_under_artifacts_notability_pdfs
+  raw_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
+  transcript_policy: source_material_until_reviewed

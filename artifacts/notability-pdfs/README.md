@@ -1,33 +1,37 @@
 # Notability PDF Exports
 
-This directory is reserved for PDFs exported from Notability and uploaded during lesson review.
+This directory contains PDFs exported from Notability for Lessons 2-25.
 
 ## Current Status
 
-The Google Drive backup folder is accessible, and PDF exports are now visible there. The first scan showed at least these files:
+The committed PDFs have normalized repository filenames. These are source artifacts for review and lesson reconstruction, not final polished exercise pages.
 
-| File | Drive status |
+| Lesson | File |
 | --- | --- |
-| Lesson 25.pdf | Found as `application/pdf` |
-| Lesson 24.pdf | Found as `application/pdf` |
-| Lesson 23.pdf | Found as `application/pdf` |
-| Lesson 22.pdf | Found as `application/pdf` |
-| Lesson 21.pdf | Found as `application/pdf` |
-| Lesson 20.pdf | Found as `application/pdf` |
-| Lesson 19.pdf | Found as `application/pdf` |
-| Lesson 18.pdf | Found as `application/pdf` |
-| Lesson 17 .pdf | Found as `application/pdf` |
-| Lesson 16.pdf | Found as `application/pdf` |
-| Lesson 15.pdf | Found as `application/pdf` |
-| Lesson 14 practice 2.pdf | Found as `application/pdf` |
-| Lesson 14 practice.pdf | Found as `application/pdf` |
-| Lesson 14.pdf | Found as `application/pdf` |
-| Lesson 13.pdf | Found as `application/pdf` |
-| Lessen 12.pdf | Found as `application/pdf` |
-| Lesson 11.pdf | Found as `application/pdf` |
-| Lesson 10.pdf | Found as `application/pdf` |
-
-`Lesson 25.pdf` was successfully downloaded from Drive as a raw PDF, confirming that the exported PDFs are usable.
+| 2 | `lesson-002-matrices-as-linear-transformations.pdf` |
+| 3 | `lesson-003-matrix-multiplication-and-composition.pdf` |
+| 4 | `lesson-004-determinant.pdf` |
+| 5 | `lesson-005-inverse-matrices.pdf` |
+| 6 | `lesson-006-eigenvectors-and-eigenvalues.pdf` |
+| 7 | `lesson-007-change-of-basis.pdf` |
+| 8 | `lesson-008-projection.pdf` |
+| 9 | `lesson-009-least-squares.pdf` |
+| 10 | `lesson-010-singular-value-decomposition.pdf` |
+| 11 | `lesson-011-principal-component-analysis.pdf` |
+| 12 | `lesson-012-covariance.pdf` |
+| 13 | `lesson-013-probability-as-linear-algebra.pdf` |
+| 14 | `lesson-014-covariance-geometry.pdf`, `lesson-014-covariance-geometry-practice-1.pdf`, `lesson-014-covariance-geometry-practice-2.pdf` |
+| 15 | `lesson-015-multivariate-gaussian.pdf` |
+| 16 | `lesson-016-maximum-likelihood-estimation.pdf` |
+| 17 | `lesson-017-loss-functions.pdf` |
+| 18 | `lesson-018-map-estimation.pdf` |
+| 19 | `lesson-019-bayesian-estimation-intro.pdf` |
+| 20 | `lesson-020-bayesian-estimation-update.pdf` |
+| 21 | `lesson-021-bayesian-predictive-distributions.pdf` |
+| 22 | `lesson-022-model-complexity.pdf` |
+| 23 | `lesson-023-regularization.pdf` |
+| 24 | `lesson-024-early-stopping.pdf` |
+| 25 | `lesson-025-dropout.pdf` |
 
 ## Recommended Filenames
 
@@ -35,8 +39,8 @@ When adding PDFs to the repository, normalize names like:
 
 ```text
 lesson-001-vectors.pdf
-lesson-002-matrices-as-transformations.pdf
-lesson-003-matrix-multiplication-concepts.pdf
+lesson-002-matrices-as-linear-transformations.pdf
+lesson-003-matrix-multiplication-and-composition.pdf
 ...
 lesson-025-dropout.pdf
 ```
