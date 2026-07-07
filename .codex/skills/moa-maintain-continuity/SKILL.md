@@ -19,6 +19,7 @@ Preserve the teaching preferences that make the course work: intuition first, lo
    - `glossary.md`
    - `learning-journal.md`
    - The lesson page or transcript just completed.
+   - If the lesson is clearly complete, finish all routine continuity updates in the same pass instead of waiting for a separate request.
 
 2. Update the minimum necessary files.
    - Advance `course-state.yaml` only when a real lesson is complete.
@@ -35,6 +36,7 @@ Preserve the teaching preferences that make the course work: intuition first, lo
 4. Validate.
    - Run `bun run validate`.
    - Run `bun run build` if TypeScript or generated content changed.
+   - If validation exposes missing lesson metadata or artifact links, fix those ordinary completion gaps before handing the task back.
 
 ## References
 
@@ -45,3 +47,4 @@ Read `references/continuity-checklist.md` when deciding what to update after a l
 - Do not create a fake lesson number for setup or import work.
 - Do not rewrite prior learning notes unless they are wrong or superseded.
 - Do not mark a lesson complete until transcript/source artifacts and course state agree.
+- Do not leave course-state, notation, glossary, or learning-journal updates undone when they are clearly implied by the completed lesson.

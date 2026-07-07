@@ -70,4 +70,23 @@ describe('project skills', () => {
 
     expect(missingReferences).toEqual([]);
   });
+
+  test('lesson workflow encourages finishing coherent lesson work', () => {
+    const agentsText = readText('AGENTS.md');
+    const createLessonSkill = readFileSync(skillPath('moa-create-lesson', 'SKILL.md'), 'utf8');
+    const continuitySkill = readFileSync(skillPath('moa-maintain-continuity', 'SKILL.md'), 'utf8');
+    const missingAutonomyInstructions = [
+      agentsText.includes('finish the lesson to a coherent stopping point')
+        ? null
+        : 'AGENTS.md should tell agents to finish coherent lesson work',
+      createLessonSkill.includes('finish the lesson to a coherent draft')
+        ? null
+        : 'moa-create-lesson should prefer completing the actual draft',
+      continuitySkill.includes('finish all routine continuity updates')
+        ? null
+        : 'moa-maintain-continuity should complete routine continuity updates',
+    ].filter((issue): issue is string => issue !== null);
+
+    expect(missingAutonomyInstructions).toEqual([]);
+  });
 });

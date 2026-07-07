@@ -16,6 +16,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - Default to the next new lesson or the named forward lesson.
    - Backfill an older lesson only when explicitly requested or needed as a prerequisite link.
    - Keep Notability PDFs as source artifacts, not final polished lesson pages.
+   - If the lesson topic, audience, and source context are clear, finish the lesson to a coherent draft or review-ready stopping point instead of waiting for another prompt.
 
 2. Read project state.
    - `README.md`
@@ -45,6 +46,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - Run `bun run build`.
    - Run `bun run validate`.
    - If a page or widget was added, run any app-specific tests and inspect the rendered page.
+   - When the lesson naturally implies exercise or continuity updates, either complete those updates with the relevant project skill guidance or leave an explicit reason why they were deferred.
 
 ## References
 
@@ -56,3 +58,4 @@ Read `references/lesson-schema.md` when adding frontmatter, `data/lesson-sources
 - Do not publish raw transcripts as polished lessons.
 - Redact private app links and private-ish chatter from polished pages.
 - Keep the lesson page useful without the widget; widgets enhance, they do not carry the explanation.
+- Do not stop at an outline when enough information exists to create the actual lesson artifact.
