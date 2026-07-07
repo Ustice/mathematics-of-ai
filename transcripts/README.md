@@ -1,12 +1,16 @@
 # Lesson Transcripts
 
-This directory is for cleaned lesson conversation transcripts and reconstructed lesson dialogue.
+This directory records the transcript policy and the earlier reconstruction plan.
+The exported lesson conversations now live in `lessons/transcripts/`.
 
 ## Status
 
-I do not currently have direct file-level access to raw ChatGPT project conversation transcripts. The material here should therefore be built from:
+Lessons 1-25 have exported Markdown transcripts in `lessons/transcripts/`.
+Lesson 26 Preparation was intentionally skipped because it mostly covers repository setup rather than course content.
 
-1. exported ChatGPT lesson conversations, when available,
+Future transcript work should be built from:
+
+1. exported ChatGPT lesson conversations,
 2. visible project conversation context,
 3. uploaded Notability exercise PDFs,
 4. generated lesson notes already committed to the repository.
@@ -26,16 +30,16 @@ Recommended edits:
 
 ## File Naming
 
-Use one transcript file per lesson:
+Use one transcript file per lesson in `lessons/transcripts/`:
 
 ```text
-transcripts/lesson-001.md
-transcripts/lesson-002.md
+lessons/transcripts/lesson-01-vectors.md
+lessons/transcripts/lesson-02-matrices-as-linear-transformations.md
 ...
-transcripts/lesson-026.md
+lessons/transcripts/lesson-25-dropout.md
 ```
 
-Each file should start with YAML front matter:
+If a cleaned public edition is created later, each file should start with YAML front matter:
 
 ```yaml
 title: Lesson 10 — Singular Value Decomposition

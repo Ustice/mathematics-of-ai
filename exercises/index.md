@@ -28,8 +28,8 @@ This index records the exercise themes from completed lessons. Full exercise sta
 | 22. Model Complexity | Overfitting, underfitting, parameter count, train/test behavior. |
 | 23. Regularization | Penalty effects and generalization. |
 | 24. Early Stopping | Validation curves and stopping criteria. |
-| 25. Convex Functions | Shape intuition, local vs global minima, Jensen-style intuition. |
-| 26. Gradient Descent | Gradient direction, learning rate, and parameter updates. |
+| 25. Dropout | Randomly disabling units, inverted dropout scaling, and regularization comparisons. |
+| 26. Gradient Descent | Planned next lesson: gradient direction, learning rate, and parameter updates. |
 
 ## Reconstruction Policy
 

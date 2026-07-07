@@ -1,30 +1,187 @@
 {
   "lessons": [
-    { "lesson": 1, "title": "Vectors", "chat": "Syllabus / first lesson setup", "transcript": "transcripts/lesson-001.md", "status": "pending" },
-    { "lesson": 2, "title": "Matrices as Transformations", "chat": "Lesson 2", "transcript": "transcripts/lesson-002.md", "status": "pending" },
-    { "lesson": 3, "title": "Matrix Multiplication Concepts", "chat": "Lesson 3 Matrix Multiplication Concepts", "transcript": "transcripts/lesson-003.md", "status": "pending" },
-    { "lesson": 4, "title": "Determinants", "chat": "Lesson 4 Determinant", "transcript": "transcripts/lesson-004.md", "status": "pending" },
-    { "lesson": 5, "title": "Inverse Matrices", "chat": "Lesson 5 Inverse Matrices", "transcript": "transcripts/lesson-005.md", "status": "pending" },
-    { "lesson": 6, "title": "Eigenvectors and Eigenvalues", "chat": "Lesson 6 Eigenvectors and Eigenvalues", "transcript": "transcripts/lesson-006.md", "status": "pending" },
-    { "lesson": 7, "title": "Change of Basis", "chat": "Lesson 7 Change of Basis", "transcript": "transcripts/lesson-007.md", "status": "pending" },
-    { "lesson": 8, "title": "Projection", "chat": "Lesson 8 Projection", "transcript": "transcripts/lesson-008.md", "status": "pending" },
-    { "lesson": 9, "title": "Least Squares", "chat": "Lesson 9 Least Squares", "transcript": "transcripts/lesson-009.md", "status": "pending" },
-    { "lesson": 10, "title": "Singular Value Decomposition", "chat": "Lesson 10 Singular Value Decomposition", "transcript": "transcripts/lesson-010.md", "status": "pending" },
-    { "lesson": 11, "title": "Principal Component Analysis", "chat": "Lesson 11 Principal Component Analysis", "transcript": "transcripts/lesson-011.md", "status": "pending" },
-    { "lesson": 12, "title": "Covariance", "chat": "Lesson 12 Covariance", "transcript": "transcripts/lesson-012.md", "status": "pending" },
-    { "lesson": 13, "title": "Probability as Linear Algebra", "chat": "Lesson 13 Probability as Linear Algebra", "transcript": "transcripts/lesson-013.md", "status": "pending" },
-    { "lesson": 14, "title": "Covariance Geometry", "chat": "Lesson 14 Covariance Geometry", "transcript": "transcripts/lesson-014.md", "status": "pending" },
-    { "lesson": 15, "title": "Multivariate Gaussian", "chat": "Lesson 15 Multivariate Gaussian", "transcript": "transcripts/lesson-015.md", "status": "pending" },
-    { "lesson": 16, "title": "Maximum Likelihood Estimation", "chat": "Lesson 16 MLE Intro", "transcript": "transcripts/lesson-016.md", "status": "pending" },
-    { "lesson": 17, "title": "Loss Functions", "chat": "Lesson 17 Loss Functions", "transcript": "transcripts/lesson-017.md", "status": "pending" },
-    { "lesson": 18, "title": "MAP Estimation", "chat": "Lesson 18 MAP Estimation", "transcript": "transcripts/lesson-018.md", "status": "pending" },
-    { "lesson": 19, "title": "Bayesian Estimation Introduction", "chat": "Lesson 19 Bayesian Estimation Intro", "transcript": "transcripts/lesson-019.md", "status": "pending" },
-    { "lesson": 20, "title": "Bayesian Estimation Update", "chat": "Lesson 20 Bayesian Estimation Update", "transcript": "transcripts/lesson-020.md", "status": "pending" },
-    { "lesson": 21, "title": "Bayesian Predictive Distributions", "chat": "Lesson 21 Bayesian Predictive Distributions", "transcript": "transcripts/lesson-021.md", "status": "pending" },
-    { "lesson": 22, "title": "Model Complexity", "chat": "Lesson 22 Model Complexity", "transcript": "transcripts/lesson-022.md", "status": "pending" },
-    { "lesson": 23, "title": "Regularization", "chat": "Lesson 23 Regularization", "transcript": "transcripts/lesson-023.md", "status": "pending" },
-    { "lesson": 24, "title": "Early Stopping", "chat": "Lesson 24 Early Stopping", "transcript": "transcripts/lesson-024.md", "status": "pending" },
-    { "lesson": 25, "title": "Convex Functions", "chat": "Lesson 25 Dropout / Convex Functions mismatch to resolve", "transcript": "transcripts/lesson-025.md", "status": "needs-review" },
-    { "lesson": 26, "title": "Gradient Descent", "chat": "Lesson 26 Preparation", "transcript": "transcripts/lesson-026.md", "status": "pending" }
+    {
+      "lesson": 1,
+      "title": "Vectors",
+      "chat": "Syllabus / first lesson setup",
+      "transcript": "lessons/transcripts/lesson-01-vectors.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 2,
+      "title": "Matrices as Linear Transformations",
+      "chat": "Lesson 2",
+      "transcript": "lessons/transcripts/lesson-02-matrices-as-linear-transformations.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 3,
+      "title": "Matrix Multiplication and Composition",
+      "chat": "Lesson 3 Matrix Multiplication Concepts",
+      "transcript": "lessons/transcripts/lesson-03-matrix-multiplication-and-composition.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 4,
+      "title": "Determinants",
+      "chat": "Lesson 4 Determinant",
+      "transcript": "lessons/transcripts/lesson-04-determinant.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 5,
+      "title": "Inverse Matrices",
+      "chat": "Lesson 5 Inverse Matrices",
+      "transcript": "lessons/transcripts/lesson-05-inverse-matrices.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 6,
+      "title": "Eigenvectors and Eigenvalues",
+      "chat": "Lesson 6 Eigenvectors and Eigenvalues",
+      "transcript": "lessons/transcripts/lesson-06-eigenvectors-and-eigenvalues.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 7,
+      "title": "Change of Basis",
+      "chat": "Lesson 7 Change of Basis",
+      "transcript": "lessons/transcripts/lesson-07-change-of-basis.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 8,
+      "title": "Projection",
+      "chat": "Lesson 8 Projection",
+      "transcript": "lessons/transcripts/lesson-08-projection.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 9,
+      "title": "Least Squares",
+      "chat": "Lesson 9 Least Squares",
+      "transcript": "lessons/transcripts/lesson-09-least-squares.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 10,
+      "title": "Singular Value Decomposition",
+      "chat": "Lesson 10 Singular Value Decomposition",
+      "transcript": "lessons/transcripts/lesson-10-singular-value-decomposition.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 11,
+      "title": "Principal Component Analysis",
+      "chat": "Lesson 11 Principal Component Analysis",
+      "transcript": "lessons/transcripts/lesson-11-principal-component-analysis.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 12,
+      "title": "Covariance",
+      "chat": "Lesson 12 Covariance",
+      "transcript": "lessons/transcripts/lesson-12-covariance.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 13,
+      "title": "Probability as Linear Algebra",
+      "chat": "Lesson 13 Probability as Linear Algebra",
+      "transcript": "lessons/transcripts/lesson-13-probability-as-linear-algebra.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 14,
+      "title": "Covariance Geometry",
+      "chat": "Lesson 14 Covariance Geometry",
+      "transcript": "lessons/transcripts/lesson-14-covariance-geometry.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 15,
+      "title": "Multivariate Gaussian",
+      "chat": "Lesson 15 Multivariate Gaussian",
+      "transcript": "lessons/transcripts/lesson-15-multivariate-gaussian.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 16,
+      "title": "Maximum Likelihood Estimation",
+      "chat": "Lesson 16 MLE Intro",
+      "transcript": "lessons/transcripts/lesson-16-mle-intro.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 17,
+      "title": "Loss Functions",
+      "chat": "Lesson 17 Loss Functions",
+      "transcript": "lessons/transcripts/lesson-17-loss-functions.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 18,
+      "title": "MAP Estimation",
+      "chat": "Lesson 18 MAP Estimation",
+      "transcript": "lessons/transcripts/lesson-18-map-estimation.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 19,
+      "title": "Bayesian Estimation Introduction",
+      "chat": "Lesson 19 Bayesian Estimation Intro",
+      "transcript": "lessons/transcripts/lesson-19-bayesian-estimation-intro.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 20,
+      "title": "Bayesian Estimation Update",
+      "chat": "Lesson 20 Bayesian Estimation Update",
+      "transcript": "lessons/transcripts/lesson-20-bayesian-estimation-update.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 21,
+      "title": "Bayesian Predictive Distributions",
+      "chat": "Lesson 21 Bayesian Predictive Distributions",
+      "transcript": "lessons/transcripts/lesson-21-bayesian-predictive-distributions.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 22,
+      "title": "Model Complexity",
+      "chat": "Lesson 22 Model Complexity",
+      "transcript": "lessons/transcripts/lesson-22-model-complexity.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 23,
+      "title": "Regularization",
+      "chat": "Lesson 23 Regularization",
+      "transcript": "lessons/transcripts/lesson-23-regularization.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 24,
+      "title": "Early Stopping",
+      "chat": "Lesson 24 Early Stopping",
+      "transcript": "lessons/transcripts/lesson-24-early-stopping.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 25,
+      "title": "Dropout",
+      "chat": "Lesson 25 Dropout",
+      "transcript": "lessons/transcripts/lesson-25-dropout.md",
+      "status": "exported"
+    },
+    {
+      "lesson": 26,
+      "title": "Gradient Descent",
+      "chat": "Lesson 26 Preparation",
+      "transcript": null,
+      "status": "skipped",
+      "note": "Lesson 26 Preparation mostly covers project setup and was intentionally not exported as lesson content."
+    }
   ]
 }

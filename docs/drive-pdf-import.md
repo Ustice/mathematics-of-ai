@@ -39,6 +39,7 @@ Run the `Import Drive PDFs` workflow manually from the Actions tab. It will:
 ## Current Lesson Scope
 
 The first manifest imports lessons 2 through 10.
+Markdown lesson transcripts for Lessons 1-25 are stored separately under `lessons/transcripts/`.
 
 ## Public Safety Checklist
 

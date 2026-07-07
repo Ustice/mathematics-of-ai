@@ -57,7 +57,7 @@ completed_lessons:
   - number: 24
     title: Early Stopping
   - number: 25
-    title: Convex Functions
+    title: Dropout
 
 teaching_preferences:
   intuition_first: true
@@ -77,5 +77,9 @@ known_learning_notes:
   - Vocabulary is often harder than the underlying concept.
 
 artifacts:
-  original_notability_pdfs: pending_upload
-  backfilled_lessons: partial_from_project_context
+  original_notability_pdfs: manifest_available_for_lessons_2_to_10
+  exported_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
+  skipped_exports:
+    - lesson: 26
+      title: Lesson 26 Preparation
+      reason: Project setup context rather than lesson material

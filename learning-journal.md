@@ -21,6 +21,7 @@ This journal records durable learning observations, not private personal details
 - Likelihood as a score rather than a probability distribution over parameters.
 - Log likelihood as a useful rescaling.
 - MAP as likelihood plus prior pressure.
+- Dropout as changing the per-batch computation graph while leaving the architecture fixed.
 
 ## Concepts To Reinforce
 
@@ -28,6 +29,7 @@ This journal records durable learning observations, not private personal details
 - Eigenvalue/eigenvector computation steps.
 - Multi-step derivations where many symbols are introduced at once.
 - Dense probability notation.
+- Optimization vocabulary as the course moves from regularization into gradient-based training.
 
 ## Teaching Adjustments
 

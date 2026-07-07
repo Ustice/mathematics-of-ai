@@ -38,7 +38,7 @@ lesson-001-vectors.pdf
 lesson-002-matrices-as-transformations.pdf
 lesson-003-matrix-multiplication-concepts.pdf
 ...
-lesson-025-convex-functions.pdf
+lesson-025-dropout.pdf
 ```
 
 ## Public Repository Policy
