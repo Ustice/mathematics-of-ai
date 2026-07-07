@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "import-drive-pdfs": "node scripts/import-drive-pdfs.mjs"
+    "import-drive-pdfs": "bun scripts/import-drive-pdfs.mjs"
   },
   "dependencies": {
-    "googleapis": "latest"
+    "googleapis": "173.0.0"
   }
 }

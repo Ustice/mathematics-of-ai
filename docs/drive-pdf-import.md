@@ -23,8 +23,8 @@ Share the Google Drive folder with the service account email address as a viewer
 ## Manual Import
 
 ```bash
-npm install
-GOOGLE_SERVICE_ACCOUNT_JSON='...' npm run import-drive-pdfs
+bun install
+GOOGLE_SERVICE_ACCOUNT_JSON='...' bun run import-drive-pdfs
 ```
 
 ## GitHub Action
