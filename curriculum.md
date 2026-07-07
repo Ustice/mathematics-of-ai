@@ -1,6 +1,15 @@
 # Curriculum
 
-This is the working roadmap for learning the mathematics needed to read modern machine learning and AI research.
+This top-level file is retained as a stable entry point for older links. The canonical roadmap now lives in [curriculum/roadmap.md](curriculum/roadmap.md).
+
+## Current Curriculum Documents
+
+- [Roadmap](curriculum/roadmap.md)
+- [Progress tracker](curriculum/progress-tracker.md)
+- [Reading list](curriculum/reading-list.md)
+- [Milestones](curriculum/milestones.md)
+
+## Course Principles
 
 The course is built around a few principles:
 
