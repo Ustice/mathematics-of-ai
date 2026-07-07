@@ -1,36 +1,36 @@
 # Exercise Index
 
-This index records the exercise themes from completed lessons. Full exercise statements and solutions should be reconstructed from lesson chats and Notability PDFs where available.
+This index reflects the exercise PDFs committed under `exercises/`.
 
-| Lesson | Exercise focus |
-| --- | --- |
-| 1. Vectors | Dot products, orthogonality, scalar multiples, subspaces. |
-| 2. Matrices as Transformations | Reading matrix columns as transformed basis vectors. |
-| 3. Matrix Multiplication Concepts | Composition order and geometric meaning. |
-| 4. Determinants | Area scaling, orientation, invertibility. |
-| 5. Inverse Matrices | Solving transformations backward. |
-| 6. Eigenvectors and Eigenvalues | Recognizing invariant directions and scale factors. |
-| 7. Change of Basis | Translating coordinates between bases. |
-| 8. Projection | Projecting vectors onto lines/subspaces and interpreting residuals. |
-| 9. Least Squares | Fitting line/model parameters by minimizing squared error. |
-| 10. Singular Value Decomposition | Understanding rotations/reflections and scaling axes. |
-| 11. Principal Component Analysis | Identifying principal directions and variance. |
-| 12. Covariance | Computing and interpreting paired variation. |
-| 13. Probability as Linear Algebra | Expectations, distributions, notation, and random variables. |
-| 14. Covariance Geometry | Eigenvectors/eigenvalues of covariance matrices and whitening. |
-| 15. Multivariate Gaussian | Mean vectors, covariance matrices, and density intuition. |
-| 16. Maximum Likelihood Estimation | Likelihood scaling, log likelihood, and maximizing parameters. |
-| 17. Loss Functions | Connecting Gaussian error assumptions to squared error. |
-| 18. MAP Estimation | Priors as penalties; L1/L2 interpretation. |
-| 19. Bayesian Estimation Introduction | Prior/likelihood/posterior vocabulary and belief updates. |
-| 20. Bayesian Estimation Update | Sequential updating and evidence strength. |
-| 21. Bayesian Predictive Distributions | Prediction under parameter uncertainty. |
-| 22. Model Complexity | Overfitting, underfitting, parameter count, train/test behavior. |
-| 23. Regularization | Penalty effects and generalization. |
-| 24. Early Stopping | Validation curves and stopping criteria. |
-| 25. Dropout | Randomly disabling units, inverted dropout scaling, and regularization comparisons. |
-| 26. Gradient Descent | Planned next lesson: gradient direction, learning rate, and parameter updates. |
+| Lesson | Title | Exercise artifact |
+| --- | --- | --- |
+| 1 | Vectors | No PDF committed |
+| 2 | Matrices as Linear Transformations | [`Lesson 2 exercise.pdf`](Lesson%202%20exercise.pdf) |
+| 3 | Matrix Multiplication and Composition | [`Lesson 3.pdf`](Lesson%203.pdf) |
+| 4 | Determinant | [`Lesson 4.pdf`](Lesson%204.pdf) |
+| 5 | Inverse Matrices | [`Lesson 5.pdf`](Lesson%205.pdf) |
+| 6 | Eigenvectors and Eigenvalues | [`Lesson 6.pdf`](Lesson%206.pdf) |
+| 7 | Change of Basis | [`Lesson 7.pdf`](Lesson%207.pdf) |
+| 8 | Projection | [`Lesson 8.pdf`](Lesson%208.pdf) |
+| 9 | Least Squares | [`Lesson 9.pdf`](Lesson%209.pdf) |
+| 10 | Singular Value Decomposition | [`Lesson 10.pdf`](Lesson%2010.pdf) |
+| 11 | Principal Component Analysis | [`Lesson 11.pdf`](Lesson%2011.pdf) |
+| 12 | Covariance | [`Lessen 12.pdf`](Lessen%2012.pdf) |
+| 13 | Probability as Linear Algebra | [`Lesson 13.pdf`](Lesson%2013.pdf) |
+| 14 | Covariance Geometry | [`Lesson 14.pdf`](Lesson%2014.pdf), [`Lesson 14 practice.pdf`](Lesson%2014%20practice.pdf), [`Lesson 14 practice 2.pdf`](Lesson%2014%20practice%202.pdf) |
+| 15 | Multivariate Gaussian | [`Lesson 15.pdf`](Lesson%2015.pdf) |
+| 16 | Maximum Likelihood Estimation | [`Lesson 16.pdf`](Lesson%2016.pdf) |
+| 17 | Loss Functions | [`Lesson 17 .pdf`](Lesson%2017%20.pdf) |
+| 18 | MAP Estimation | [`Lesson 18.pdf`](Lesson%2018.pdf) |
+| 19 | Bayesian Estimation Intro | [`Lesson 19.pdf`](Lesson%2019.pdf) |
+| 20 | Bayesian Estimation Update | [`Lesson 20.pdf`](Lesson%2020.pdf) |
+| 21 | Bayesian Predictive Distributions | [`Lesson 21.pdf`](Lesson%2021.pdf) |
+| 22 | Model Complexity | [`Lesson 22.pdf`](Lesson%2022.pdf) |
+| 23 | Regularization | [`Lesson 23.pdf`](Lesson%2023.pdf) |
+| 24 | Early Stopping | [`Lesson 24.pdf`](Lesson%2024.pdf) |
+| 25 | Dropout | [`Lesson 25.pdf`](Lesson%2025.pdf) |
+| 26 | Gradient Descent | No PDF committed |
 
-## Reconstruction Policy
+## Notes
 
-When exact exercise text is available, prefer exact reconstruction. When it is not available, mark generated exercises as reconstructed rather than original.
+Some committed filenames preserve their original Notability export names, including typos and spacing. A later cleanup pass can rename these files and update links in one commit.
