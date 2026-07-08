@@ -202,6 +202,15 @@
       "transcript": "lessons/transcripts/lesson-25-dropout.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-025-dropout.pdf",
       "status": "raw_export"
+    },
+    {
+      "lesson": 26,
+      "title": "Gradient Descent",
+      "chat": "Lesson 26 draft",
+      "transcript": null,
+      "notability_pdf": "artifacts/notability-pdfs/lesson-026-gradient-descent.pdf",
+      "dynamic_page": "src/content/lessons/lesson-026-gradient-descent.mdx",
+      "status": "draft"
     }
   ]
 }

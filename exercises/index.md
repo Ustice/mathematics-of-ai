@@ -29,6 +29,13 @@ This index reflects the handwritten Notability PDFs committed under `artifacts/n
 | 23 | Regularization | [`lesson-023-regularization.pdf`](../artifacts/notability-pdfs/lesson-023-regularization.pdf) |
 | 24 | Early Stopping | [`lesson-024-early-stopping.pdf`](../artifacts/notability-pdfs/lesson-024-early-stopping.pdf) |
 | 25 | Dropout | [`lesson-025-dropout.pdf`](../artifacts/notability-pdfs/lesson-025-dropout.pdf) |
+| 26 | Gradient Descent | [`lesson-026-gradient-descent.pdf`](../artifacts/notability-pdfs/lesson-026-gradient-descent.pdf) |
+
+## Draft Exercise Sets
+
+| Lesson | Title | Exercise set | Source artifact |
+| --- | --- | --- | --- |
+| 26 | Gradient Descent | [`lesson-026-gradient-descent.md`](lesson-026-gradient-descent.md) | [`lesson-026-gradient-descent.pdf`](../artifacts/notability-pdfs/lesson-026-gradient-descent.pdf) |
 
 ## Notes
 

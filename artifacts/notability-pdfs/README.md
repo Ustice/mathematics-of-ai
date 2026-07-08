@@ -1,6 +1,6 @@
 # Notability PDF Exports
 
-This directory contains PDFs exported from Notability for Lessons 2-25.
+This directory contains PDFs exported from Notability for Lessons 2-26.
 
 ## Current Status
 
@@ -32,6 +32,7 @@ The committed PDFs have normalized repository filenames. These are source artifa
 | 23 | `lesson-023-regularization.pdf` |
 | 24 | `lesson-024-early-stopping.pdf` |
 | 25 | `lesson-025-dropout.pdf` |
+| 26 | `lesson-026-gradient-descent.pdf` |
 
 ## Recommended Filenames
 
@@ -42,7 +43,7 @@ lesson-001-vectors.pdf
 lesson-002-matrices-as-linear-transformations.pdf
 lesson-003-matrix-multiplication-and-composition.pdf
 ...
-lesson-025-dropout.pdf
+lesson-026-gradient-descent.pdf
 ```
 
 ## Public Repository Policy
