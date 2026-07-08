@@ -25,7 +25,7 @@ This is the canonical external symbol table for recurring notation. Its job is t
 | \(\nabla L(\theta)\) | Gradient of the loss | Optimization | Lesson 26 | Direction of steepest local increase with respect to parameters. |
 | \(\eta\) | Learning rate | Optimization | Lesson 26 | Positive scalar controlling gradient descent step size. |
 | \(\Delta \theta\) | Parameter update | Optimization | Lesson 26 | Change added to the current parameters during one step. |
-| \(\ell(\theta)\) | Log-likelihood | MLE, loss functions | Lesson 17 | Turns products into sums and improves numerical handling. |
+| \(\ell(\theta)\) | Log-likelihood | MLE, loss functions | Lesson 16 | Turns products into sums and improves numerical handling. |
 | \(\lambda\) | Eigenvalue | Linear algebra, regularization strength | Lesson 6 | Context distinguishes spectral value from penalty weight. |
 | \(v\) | Eigenvector | Linear algebra | Lesson 6 | Usually nonzero and paired with an eigenvalue. |
 | \(Q\) | Orthogonal or basis matrix | Change of basis, projection, PCA | Lesson 7 | Columns often form an orthonormal basis; \(Q^{-1} = Q^T\). |
