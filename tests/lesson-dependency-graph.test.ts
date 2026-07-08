@@ -28,7 +28,7 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
       { lesson: 25, title: 'Dropout' },
     ],
     slug: 'lesson-026-gradient-descent',
-    status: 'draft',
+    status: 'published',
     title: 'Gradient Descent',
   },
   {
@@ -62,7 +62,7 @@ describe('lesson dependency graph', () => {
       { lesson: 23, status: 'raw_export', title: 'Regularization' },
       { lesson: 24, status: 'raw_export', title: 'Early Stopping' },
       { lesson: 25, status: 'raw_export', title: 'Dropout' },
-      { lesson: 26, status: 'draft', title: 'Gradient Descent' },
+      { lesson: 26, status: 'published', title: 'Gradient Descent' },
       { lesson: 27, status: 'draft', title: 'Stochastic Gradient Descent' },
       { lesson: 28, status: 'draft', title: 'Momentum' },
     ];
@@ -75,7 +75,7 @@ describe('lesson dependency graph', () => {
       from: 26,
       mdxExists: true,
       sourceExists: true,
-      sourceStatus: 'draft',
+      sourceStatus: 'published',
       sourceTitle: 'Gradient Descent',
       title: 'Gradient Descent',
       to: 27,

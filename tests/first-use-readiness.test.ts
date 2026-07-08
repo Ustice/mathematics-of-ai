@@ -3,14 +3,6 @@ import { existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
-type DriveManifest = {
-  files: Array<{
-    lesson: number;
-    output?: string;
-    skip?: boolean;
-  }>;
-};
-
 type LessonSources = {
   lessons: Array<{
     lesson: number;
@@ -30,7 +22,6 @@ type LinkReference = {
 };
 
 const repoRoot = path.resolve(import.meta.dir, '..');
-const notabilityOutputDir = 'artifacts/notability-pdfs';
 
 const readText = (relativePath: string) =>
   readFileSync(path.join(repoRoot, relativePath), 'utf8');
@@ -101,16 +92,10 @@ const localLinksInFile = (file: string) => {
     .filter((link): link is LinkReference => link !== null);
 };
 
-const lessonFileName = (item: DriveManifest['files'][number]) =>
-  item.output ?? `lesson-${String(item.lesson).padStart(3, '0')}.pdf`;
-
-const lessonNumberFromArtifact = (artifactPath: string) =>
-  Number(path.basename(artifactPath).match(/^lesson-(\d{3})-/)?.[1]);
-
 describe('first-use readiness', () => {
   test('local Markdown and HTML links resolve to files in the repo', () => {
     const contentFiles = gitFiles(['*.md', '*.html']).filter(
-      (file) => !file.startsWith('node_modules/'),
+      (file) => !file.startsWith('node_modules/') && existsSync(path.join(repoRoot, file)),
     );
 
     const missingLinks = contentFiles
@@ -119,38 +104,6 @@ describe('first-use readiness', () => {
       .map(({ file, target, resolved }) => `${file} -> ${target} (${resolved})`);
 
     expect(missingLinks).toEqual([]);
-  });
-
-  test('Drive manifest output paths match staged or committed Notability artifacts', () => {
-    const manifest = readJson<DriveManifest>('data/drive-pdf-manifest.json');
-    const indexedArtifacts = new Set(gitFiles([`${notabilityOutputDir}/*.pdf`]));
-    const artifactLessons = new Map(
-      Array.from(indexedArtifacts)
-        .map((artifactPath) => [lessonNumberFromArtifact(artifactPath), artifactPath] as const)
-        .filter(([lesson]) => Number.isFinite(lesson)),
-    );
-
-    const mismatches = manifest.files
-      .filter((item) => !item.skip)
-      .map((item) => {
-        const expected = path.posix.join(notabilityOutputDir, lessonFileName(item));
-        const stagedOrCommittedForLesson = artifactLessons.get(item.lesson);
-
-        return {
-          lesson: item.lesson,
-          expected,
-          stagedOrCommittedForLesson,
-          exists: indexedArtifacts.has(expected),
-        };
-      })
-      .filter(({ exists, stagedOrCommittedForLesson }) => !exists || !stagedOrCommittedForLesson)
-      .map(({ lesson, expected, stagedOrCommittedForLesson }) =>
-        `lesson ${lesson}: manifest expects ${expected}; indexed artifact is ${
-          stagedOrCommittedForLesson ?? 'missing'
-        }`,
-      );
-
-    expect(mismatches).toEqual([]);
   });
 
   test('lesson source entries are concrete and generated index omits skipped/null lessons', () => {
@@ -202,22 +155,10 @@ describe('first-use readiness', () => {
     expect(notabilityLinks).toEqual([]);
   });
 
-  test('package scripts use Bun and Drive import remains archival', () => {
+  test('package scripts use Bun', () => {
     const packageJson = readJson<{ scripts?: Record<string, string> }>('package.json');
-    const importScript = packageJson.scripts?.['import-drive-pdfs'];
-    const importWorkflowPath = path.join(repoRoot, '.github/workflows/import-drive-pdfs.yml');
-    const importDocs = readText('docs/drive-pdf-import.md');
 
     const consistencyIssues = [
-      importScript === 'bun scripts/import-drive-pdfs.ts'
-        ? null
-        : `package script import-drive-pdfs should run Bun directly; got ${importScript ?? 'missing'}`,
-      existsSync(importWorkflowPath)
-        ? 'Drive PDF import should not be exposed as an active GitHub workflow'
-        : null,
-      importDocs.includes('one-time bootstrap') || importDocs.includes('historical importer')
-        ? null
-        : 'Drive PDF import docs should describe the importer as historical/bootstrap-only',
       /\bnpm\b|\bnode-version\b/.test(JSON.stringify(packageJson.scripts ?? {}))
         ? 'package scripts still reference npm or Node setup'
         : null,

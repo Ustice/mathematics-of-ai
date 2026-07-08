@@ -7,14 +7,10 @@
     "create-reconstruction-issues": "bun scripts/create-reconstruction-issues.ts",
     "create-transcript-issues": "bun scripts/create-transcript-issues.ts",
     "dev": "astro dev",
-    "import-drive-pdfs": "bun scripts/import-drive-pdfs.ts",
     "preview": "astro preview",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "validate": "bun test"
-  },
-  "dependencies": {
-    "googleapis": "173.0.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "^7.0.2",

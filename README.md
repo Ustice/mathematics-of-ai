@@ -110,7 +110,6 @@ Preserved historical and source material:
 - [exercises/index.md](exercises/index.md) — Exercise index and future polished exercise sets.
 - [transcripts/README.md](transcripts/README.md) — Transcript review policy and historical planning notes.
 - [artifacts/notability-pdfs](artifacts/notability-pdfs/) — Exported handwritten Notability PDFs for Lessons 2-26.
-- [data/drive-pdf-manifest.json](data/drive-pdf-manifest.json) — Drive PDF import manifest.
 - [data/lesson-sources.json](data/lesson-sources.json) — Lesson transcript/source index.
 - [journal/learning-journal.md](journal/learning-journal.md) — Existing structured learning notes.
 - [learning-journal.md](learning-journal.md) — Earlier flat learning journal preserved for continuity.
@@ -140,12 +139,6 @@ Forward polished lessons live under [src/content/lessons](src/content/lessons/).
 
 Handwritten Notability PDFs for Lessons 2-26 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/). The PDFs are source artifacts, not proof that a polished lesson is complete.
 
-## Historical Notability PDF Import
-
-See [`docs/drive-pdf-import.md`](docs/drive-pdf-import.md).
-
-The committed Notability PDFs cover Lessons 2 through 26. The Google Drive importer was a one-time bootstrap path for getting source artifacts into the repo, not an ongoing synchronization workflow.
-
 ## Development Commands
 
 Use Bun for TypeScript tooling:
@@ -156,5 +149,4 @@ bun run dev
 bun run build
 bun run typecheck
 bun test
-bun run import-drive-pdfs
 ```

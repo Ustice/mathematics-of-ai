@@ -206,11 +206,11 @@
     {
       "lesson": 26,
       "title": "Gradient Descent",
-      "chat": "Lesson 26 draft",
+      "chat": "Lesson 26",
       "transcript": null,
       "notability_pdf": "artifacts/notability-pdfs/lesson-026-gradient-descent.pdf",
       "dynamic_page": "src/content/lessons/lesson-026-gradient-descent.mdx",
-      "status": "draft"
+      "status": "published"
     },
     {
       "lesson": 27,

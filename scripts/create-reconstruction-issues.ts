@@ -1,29 +1,32 @@
 import fs from 'node:fs/promises';
 
-type ManifestFile = {
+type LessonSource = {
   lesson: number;
-  output?: string;
-  skip?: boolean;
+  notability_pdf?: string;
+  notability_pdfs?: string[];
+  title: string;
 };
 
-type Manifest = {
-  files: ManifestFile[];
+type LessonSources = {
+  lessons: LessonSource[];
 };
 
-const manifestPath = process.env.PDF_MANIFEST ?? 'data/drive-pdf-manifest.json';
+const sourceMapPath = process.env.LESSON_SOURCES ?? 'data/lesson-sources.json';
 
-function lessonFileName(item: ManifestFile): string {
-  return item.output ?? `lesson-${String(item.lesson).padStart(3, '0')}.pdf`;
-}
+const artifactPaths = (source: LessonSource) =>
+  [source.notability_pdf, ...(source.notability_pdfs ?? [])].filter(
+    (artifactPath): artifactPath is string => Boolean(artifactPath),
+  );
 
 async function main(): Promise<void> {
-  const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8')) as Manifest;
-  const output = manifest.files
-    .filter((item) => !item.skip)
-    .map((item) => {
-      const outputPath = `artifacts/notability-pdfs/${lessonFileName(item)}`;
-      return `- [ ] Lesson ${item.lesson}: reconstruct HTML lesson from ${outputPath}`;
-    })
+  const sourceMap = JSON.parse(await fs.readFile(sourceMapPath, 'utf8')) as LessonSources;
+  const output = sourceMap.lessons
+    .flatMap((source) =>
+      artifactPaths(source).map(
+        (artifactPath) =>
+          `- [ ] Lesson ${source.lesson}: reconstruct HTML lesson from ${artifactPath}`,
+      ),
+    )
     .join('\n');
 
   console.log(output);

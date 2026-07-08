@@ -172,7 +172,7 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [ ] Lesson 23: Regularization - raw transcript available.
 - [ ] Lesson 24: Early Stopping - raw transcript available.
 - [ ] Lesson 25: Dropout - raw transcript available.
-- [x] Lesson 26: Gradient Descent - draft lesson available.
+- [x] Lesson 26: Gradient Descent - published lesson available.
 - [x] Lesson 27: Stochastic Gradient Descent - draft lesson available.
 - [x] Lesson 28: Momentum - draft lesson available.
 

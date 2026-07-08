@@ -22,7 +22,7 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-25 are complete as raw exported lesson transcripts. Lessons 26-28 are draft MDX lessons in `src/content/lessons/`.
+Lessons 1-25 are complete as raw exported lesson transcripts. Lesson 26 is published as an MDX lesson in `src/content/lessons/`, and Lessons 27-28 are draft MDX lessons.
 
 The next major topic is **Adam**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, and Momentum.
 
