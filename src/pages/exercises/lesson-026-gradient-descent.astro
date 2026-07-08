@@ -2,6 +2,9 @@
 import ExerciseContent from '../../../exercises/lesson-026-gradient-descent.md';
 import 'katex/dist/katex.min.css';
 import '../../styles/lesson.css';
+
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const lessonPath = `${basePath}lessons/lesson-026-gradient-descent/`;
 ---
 
 <!doctype html>
@@ -13,7 +16,7 @@ import '../../styles/lesson.css';
   </head>
   <body>
     <header class="lesson-header">
-      <a class="back-link" href="/lessons/lesson-026-gradient-descent/">Lesson 26</a>
+      <a class="back-link" href={lessonPath}>Lesson 26</a>
       <p class="eyebrow">Exercise Set</p>
       <h1>Gradient Descent</h1>
       <p class="dek">Practice the movement rule, learning-rate effects, and objective-versus-optimizer distinction.</p>

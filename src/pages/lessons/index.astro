@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import '../../styles/lesson.css';
 
 const lessons = (await getCollection('lessons')).sort((left, right) => left.data.lesson - right.data.lesson);
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${basePath}${path.replace(/^\/+/, '')}`;
 ---
 
 <!doctype html>
@@ -26,7 +28,7 @@ const lessons = (await getCollection('lessons')).sort((left, right) => left.data
               <div>
                 <p class="lesson-number">{`Lesson ${lesson.data.lesson}`}</p>
                 <h2>
-                  <a href={`/lessons/${lesson.data.slug}/`}>{lesson.data.title}</a>
+                  <a href={withBase(`/lessons/${lesson.data.slug}/`)}>{lesson.data.title}</a>
                 </h2>
                 <p>{lesson.data.description}</p>
               </div>

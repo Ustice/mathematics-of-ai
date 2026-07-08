@@ -4,6 +4,10 @@ This repository tracks a self-directed program for learning the mathematics need
 
 The working name is **Mathematics for Machine Intelligence** / **Mathematics of AI**. It is a living learning program, not a finished textbook. Lessons, exercises, implementation notes, paper readings, and reference material should evolve as the learner's understanding deepens.
 
+## Public Site
+
+The course site is published at <https://ustice.github.io/mathematics-of-ai/>.
+
 ## Purpose
 
 The course is designed for a senior backend software engineer who already has exposure to calculus, differential equations, statistics, applied engineering math, group theory, category theory, and some linear algebra. The goal is not to relearn mathematics from scratch.
