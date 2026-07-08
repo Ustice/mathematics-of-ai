@@ -1,0 +1,232 @@
+---
+description: "Dropout as training-time random neuron removal that discourages co-adaptation and improves generalization."
+lesson: 25
+objectives:
+  - Explain dropout as sampling many different subnetworks during training.
+  - Describe why dropout reduces co-adaptation and overfitting.
+  - Explain why dropout is used during training but not at inference time.
+  - Compute the activation rescaling used in inverted dropout.
+  - Connect dropout to other regularization tools such as L2 and early stopping.
+phase: "Statistical Modeling and Generalization"
+prerequisites:
+  - lesson: 22
+    title: "Model Complexity"
+  - lesson: 23
+    title: "Regularization"
+  - lesson: 24
+    title: "Early Stopping"
+slug: "lesson-025-dropout"
+status: "draft"
+symbols:
+  - symbol: "p"
+    meaning: "Keep probability: the chance a neuron remains active during training."
+  - symbol: "1 - p"
+    meaning: "Dropout rate: the chance a neuron is removed on a training step."
+  - symbol: "a"
+    meaning: "A neuron activation before dropout is applied."
+  - symbol: "m"
+    meaning: "A random mask variable that is 1 when a neuron is kept and 0 when it is dropped."
+  - symbol: "a/p"
+    meaning: "Inverted-dropout rescaling applied to surviving activations during training."
+title: "Dropout"
+widgets: []
+---
+
+## Goal
+
+Understand dropout as a training-time regularization technique that makes neural representations less brittle by randomly removing neurons and forcing the network to rely on distributed, redundant features.
+
+## Motivation
+
+Lessons 23 and 24 controlled overfitting through the objective function and the stopping rule. Dropout approaches the same problem from a different angle:
+
+> What if the network could not rely on the exact same internal pathway every training step?
+
+That question leads to a surprisingly powerful idea. Make training noisier on purpose so the learned representation becomes more robust.
+
+## Prerequisites
+
+- Lesson 22: Model Complexity.
+- Lesson 23: Regularization.
+- Lesson 24: Early Stopping.
+- A rough picture of hidden layers and activations in a neural network.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| `p` | keep probability | Probability that a neuron survives dropout on a training step. |
+| `1 - p` | dropout rate | Probability that a neuron is removed. |
+| `a` | activation | A neuron's output before dropout is applied. |
+| `m` | dropout mask | Random variable that is `1` when the neuron is kept and `0` when it is dropped. |
+| `a / p` | inverted-dropout scaling | Rescaled activation for surviving neurons during training. |
+
+## Core Ideas
+
+### The Problem Is Co-Adaptation
+
+Without dropout, one neuron can become too dependent on another:
+
+- neuron A always detects a feature
+- neuron B assumes A will always be there
+- downstream neurons build on that assumption
+
+This creates **co-adaptation**. The representation becomes fragile because several parts of the network depend on the same narrow pathway.
+
+### Dropout Randomly Removes Neurons During Training
+
+On each training step, every neuron is typically sampled independently:
+
+- keep with probability `p`
+- drop with probability `1 - p`
+
+If a neuron is dropped, its output is treated as zero for that batch.
+
+The next batch samples a different pattern. So the effective computation graph changes from batch to batch even though the architecture stays the same.
+
+### Dropout Is Like Training Many Overlapping Subnetworks
+
+A helpful interpretation is:
+
+> Each mini-batch trains one randomly sampled subnetwork from a huge family of possible subnetworks.
+
+Those subnetworks share weights, so dropout is much cheaper than training separate models from scratch. But the regularization effect resembles model averaging or an ensemble.
+
+### Why It Helps Generalization
+
+If a useful feature can disappear at any step, the rest of the network must learn backup routes.
+
+Over time this encourages:
+
+- redundancy
+- distributed representations
+- less reliance on any single hidden unit
+
+So dropout does not merely make the network noisier. It pressures the network to learn features that survive missing pieces.
+
+### Why We Turn It Off At Inference Time
+
+At inference time we want the strongest, most stable prediction we can get. So we use the full network and stop dropping neurons.
+
+But that creates a scaling issue. During training, a neuron only survives some fraction of the time. If we suddenly activate everything at full strength during inference, the activation statistics shift.
+
+The common fix is **inverted dropout**:
+
+- during training, if a neuron survives, scale its activation by `1 / p`
+- during inference, apply no dropout and no extra scaling
+
+This keeps the expected activation level roughly consistent between training and inference.
+
+### Choosing The Dropout Rate Is A Tradeoff
+
+Too little dropout:
+
+- training is easy
+- regularization is weak
+
+Too much dropout:
+
+- training becomes much harder
+- optimization can become unstable
+- the network may fail to learn useful features
+
+So dropout rate is a tunable hyperparameter, just like learning rate or regularization strength.
+
+### Dropout Versus Other Regularizers
+
+It helps to separate the levels at which these techniques act:
+
+- L2 regularization constrains the **weights**
+- early stopping constrains the **optimization path**
+- dropout constrains the **information flow during training**
+
+All three target overfitting, but they act on different parts of the learning process.
+
+## Worked Example
+
+### Example 1: How Many Neurons Stay Active?
+
+Suppose a hidden layer has 100 neurons and we apply 20% dropout.
+
+That means:
+
+- dropout rate = `0.2`
+- keep probability = `0.8`
+
+So on a typical training step, about 80 neurons will remain active. Not exactly 80 every time, because the neurons are usually sampled independently, but roughly 80 on average.
+
+### Example 2: Inverted Dropout Scaling
+
+Suppose keep probability is
+
+$$
+p = 0.5
+$$
+
+and a neuron produces activation
+
+$$
+a = 8.
+$$
+
+If that neuron survives this training step, inverted dropout scales it to
+
+$$
+\frac{8}{0.5} = 16.
+$$
+
+If the neuron is dropped, the activation becomes `0`.
+
+This keeps the expected activation unchanged:
+
+$$
+0.5 \cdot 16 + 0.5 \cdot 0 = 8.
+$$
+
+That is the whole reason the rescaling exists.
+
+## Why This Shows Up In ML
+
+Dropout became popular because it gives a practical way to discourage overfitting in large neural networks without rewriting the whole learning objective.
+
+Its deeper lesson is even more durable:
+
+> Robust representations are usually distributed representations.
+
+Even when a specific architecture uses little dropout or none at all, that design pressure still matters. Modern systems often borrow the same instinct through augmentation, stochastic depth, noise injection, or other structured perturbations.
+
+## Exercises
+
+1. Why can dropout reduce overfitting even though the architecture itself does not change?
+2. Why do we disable dropout during inference?
+3. If dropout rate increases from 20% to 80%, what tradeoff do you expect in optimization and generalization?
+4. What kind of pressure does dropout place on the rest of the network when an important neuron disappears during one batch?
+5. Compare L2 regularization, early stopping, and dropout. What does each one constrain?
+
+## Implementation Exercise
+
+Write a TypeScript function that applies inverted dropout to an array of activations.
+
+Use a shape like:
+
+```ts
+type DropoutResult = {
+  activations: number[];
+  mask: number[];
+};
+```
+
+The function should:
+
+- sample a `0/1` mask from the keep probability
+- zero out dropped activations
+- divide surviving activations by `p`
+
+Then run the helper many times on the same input vector and check that the average output stays close to the original activations.
+
+## Reflection Questions
+
+- Why is "make training harder" sometimes exactly the right thing to do?
+- Which interpretation feels more natural to you: dropout as random neuron deletion, or dropout as training many overlapping subnetworks?
+- How is dropout similar to posterior model averaging, and how is it different?
+- Why does distributed representation usually improve robustness?

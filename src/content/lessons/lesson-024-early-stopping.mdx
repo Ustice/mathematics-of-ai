@@ -1,0 +1,219 @@
+---
+description: "Early stopping as choosing the checkpoint with the best validation performance instead of the final training checkpoint."
+lesson: 24
+objectives:
+  - Explain why training, validation, and test sets serve different roles.
+  - Read training and validation curves to spot the onset of overfitting.
+  - Describe early stopping as a regularization technique.
+  - Explain why patience is useful when validation metrics are noisy.
+  - Distinguish learned parameters from selected hyperparameters.
+phase: "Statistical Modeling and Generalization"
+prerequisites:
+  - lesson: 22
+    title: "Model Complexity"
+  - lesson: 23
+    title: "Regularization"
+slug: "lesson-024-early-stopping"
+status: "draft"
+symbols:
+  - symbol: "e"
+    meaning: "Training epoch index."
+  - symbol: "L_train(e)"
+    meaning: "Training loss measured after epoch e."
+  - symbol: "L_val(e)"
+    meaning: "Validation loss measured after epoch e."
+  - symbol: "e_best"
+    meaning: "Epoch with the best validation performance."
+  - symbol: "p"
+    meaning: "Patience: how many non-improving epochs we tolerate before stopping."
+title: "Early Stopping"
+widgets: []
+---
+
+## Goal
+
+Understand early stopping as a practical rule for keeping the checkpoint that generalizes best, rather than assuming the model from the last training epoch is automatically the best model.
+
+## Motivation
+
+Regularization changes the objective. Early stopping changes the training procedure.
+
+The question here is:
+
+> If training keeps reducing the training loss, why would we ever stop before the end?
+
+The answer is that the model can keep getting better at memorizing the training set while getting worse on unseen data. Validation metrics help us see that moment.
+
+## Prerequisites
+
+- Lesson 22: Model Complexity.
+- Lesson 23: Regularization.
+- Basic familiarity with training loops and the idea of repeated epochs over a dataset.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| `e` | epoch | One pass through the training data. |
+| `L_train(e)` | training loss | Loss measured on the training set after epoch `e`. |
+| `L_val(e)` | validation loss | Loss measured on a held-out validation set after epoch `e`. |
+| `e_best` | best epoch | The epoch whose validation performance is best so far. |
+| `p` | patience | The number of non-improving epochs we allow before stopping. |
+
+## Core Ideas
+
+### We Usually Need Three Data Splits
+
+The standard separation is:
+
+- training set: used to learn parameters
+- validation set: used to make design decisions
+- test set: used once for the final unbiased report
+
+That distinction matters because evaluation can leak into training. If you keep peeking at the test set and adjusting decisions, it stops being a real test set.
+
+### Training Curves And Validation Curves Behave Differently
+
+Training loss often keeps decreasing for a long time. Validation loss behaves differently.
+
+At first:
+
+- training loss goes down
+- validation loss also goes down
+
+Later, once the model starts memorizing:
+
+- training loss still goes down
+- validation loss flattens or rises
+
+That rise is one of the clearest signs of overfitting during optimization.
+
+### Early Stopping Chooses The Best Validation Checkpoint
+
+The rule is simple:
+
+> Keep track of the checkpoint with the best validation score, and stop training once improvement has meaningfully stopped.
+
+The deployed model is not necessarily the final one. It is the one stored at `e_best`.
+
+This is a deep habit shift for beginners. "Trained longer" is not automatically "better."
+
+### Why Early Stopping Regularizes
+
+Large models often learn broad patterns first and noisy idiosyncrasies later.
+
+Early stopping works because it interrupts the training process before memorization becomes dominant.
+
+So even though the architecture does not change, the **effective learned function** stays simpler than the function you might get after excessive training.
+
+That is why early stopping is legitimately a regularizer.
+
+### Patience Prevents Overreacting To Noise
+
+Validation metrics are noisy. A single bad epoch does not necessarily mean generalization has started collapsing.
+
+That is why many training loops use patience:
+
+> Stop only after the validation metric has failed to improve for several consecutive epochs.
+
+Patience smooths out random bumps and makes the stopping rule less jumpy.
+
+### Parameters Versus Hyperparameters
+
+Early stopping also clarifies an important distinction.
+
+Weights are learned automatically from the training data. The stopping rule is chosen by the practitioner.
+
+That makes the stopping policy a **hyperparameter** choice, not an ordinary parameter value.
+
+The same is true for:
+
+- learning rate
+- regularization strength
+- dropout rate
+- model architecture
+
+## Worked Example
+
+### Example 1: Picking The Best Epoch
+
+Suppose the losses evolve like this:
+
+| Epoch | Train loss | Validation loss |
+| --- | --- | --- |
+| 1 | 0.92 | 0.95 |
+| 2 | 0.71 | 0.74 |
+| 3 | 0.55 | 0.58 |
+| 4 | 0.43 | 0.47 |
+| 5 | 0.34 | 0.45 |
+| 6 | 0.26 | 0.46 |
+| 7 | 0.19 | 0.50 |
+
+The lowest validation loss occurs at epoch 5, so epoch 5 is the checkpoint to keep.
+
+Epoch 7 fits the training set better, but it generalizes worse.
+
+### Example 2: Why Patience Helps
+
+Suppose validation losses look like:
+
+```text
+0.42
+0.41
+0.40
+0.401
+0.399
+0.402
+```
+
+If you stop immediately after `0.401`, you stop too soon. The next epoch actually improves to `0.399`.
+
+That is exactly what patience protects against.
+
+## Why This Shows Up In ML
+
+Early stopping matters because training is expensive and generalization is the goal.
+
+In practical ML systems, it helps you:
+
+- avoid wasting compute once validation performance has peaked
+- keep the best checkpoint instead of the last checkpoint
+- treat validation metrics as part of model selection
+- separate parameter learning from outer-loop training decisions
+
+It is also one of the most accessible regularizers because it does not require changing the loss function at all.
+
+## Exercises
+
+1. Why is it a mistake to evaluate the test set after every epoch and use that to choose when to stop?
+2. If training loss keeps decreasing but validation loss starts increasing, what is the model probably learning?
+3. Suppose validation loss is lowest at epoch 18 but training ends at epoch 40. Which checkpoint should you deploy, and why?
+4. Why can a model trained for less time outperform the same architecture trained for longer?
+5. Why is patience usually better than stopping after the first validation setback?
+
+## Implementation Exercise
+
+Write a TypeScript helper that scans a sequence of validation losses and returns:
+
+- the best epoch index
+- the best validation score
+- the epoch where patience would trigger stopping
+
+Use a shape like:
+
+```ts
+type EarlyStoppingResult = {
+  bestEpoch: number;
+  bestValue: number;
+  stopEpoch: number;
+};
+```
+
+Then feed it a few synthetic validation curves and check that it chooses the checkpoint you would choose by inspection.
+
+## Reflection Questions
+
+- Why does the validation set behave more like a trusted editor than a final public review?
+- Which feels more intuitive to you: early stopping as a compute-saving trick or as a regularizer?
+- What is the difference between a weight learned by gradient updates and a stopping rule chosen from validation behavior?
+- How would you explain to someone why "more training" is not always "more learning"?
