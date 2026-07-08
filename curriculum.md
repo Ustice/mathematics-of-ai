@@ -22,9 +22,9 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-25 are complete as raw exported lesson transcripts. Lesson 26 is published as an MDX lesson in `src/content/lessons/`, and Lessons 27-28 are draft MDX lessons.
+Lessons 1-25 are complete as raw exported lesson transcripts. Lesson 26 is published as an MDX lesson in `src/content/lessons/`, and Lessons 27-29 are draft MDX lessons.
 
-The next major topic is **Adam**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, and Momentum.
+The next major topic is **Learning Rate Schedules**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, Momentum, and Adam.
 
 Status labels below describe historical curriculum coverage. They do not mark polished lesson artifacts complete; use `curriculum/progress-tracker.md` and `data/lesson-sources.json` for that.
 
@@ -207,7 +207,7 @@ This phase explains why fitting the training data is not enough and introduces t
 
 ## Phase IV — Optimization
 
-**Status:** In progress through Lesson 28
+**Status:** In progress through Lesson 29
 
 This phase turns loss functions into training procedures. The emphasis is on understanding optimization geometrically and computationally.
 
@@ -230,11 +230,11 @@ This phase turns loss functions into training procedures. The emphasis is on und
     - Escaping shallow ravines
     - Geometric intuition
 
-29. **Adaptive Optimizers**
+29. **Adam**
     - Per-parameter learning rates
-    - RMSProp
     - Adam
     - First and second moment estimates
+    - Bias correction
 
 30. **Learning Rate Schedules**
     - Decay schedules

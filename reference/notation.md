@@ -49,6 +49,15 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(\nabla L(\theta)\) | gradient of the loss | Direction of steepest increase of the loss with respect to parameters |
 | \(\eta\) | learning rate | Step size used by an optimizer |
 | \(\Delta \theta\) | parameter update | Change applied to parameters during one optimization step |
+| \(g_t\) | gradient estimate at step t | Mini-batch gradient used by stochastic optimizers |
+| \(m_t\) | Adam first moment estimate | Running average of recent gradients |
+| \(v_t\) | optimizer state at step t | Momentum velocity in Lesson 28; Adam second moment estimate in Lesson 29 |
+| \(\beta\) | exponential memory coefficient | Retention factor for momentum-style optimizer state |
+| \(\beta_1\) | Adam first-moment decay | Retention factor for Adam's running gradient average |
+| \(\beta_2\) | Adam second-moment decay | Retention factor for Adam's running squared-gradient average |
+| \(\hat{m}_t\) | bias-corrected first moment | Adam first moment after zero-initialization correction |
+| \(\hat{v}_t\) | bias-corrected second moment | Adam second moment after zero-initialization correction |
+| \(\epsilon\) | numerical stability constant | Small positive value added to Adam's denominator |
 | \(\lambda\) | regularization strength | Penalty weight in a regularized objective |
 | \(L_{\text{train}}(e)\) | training loss at epoch e | Loss measured on the training set during early stopping |
 | \(L_{\text{val}}(e)\) | validation loss at epoch e | Loss measured on held-out validation data |

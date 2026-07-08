@@ -53,6 +53,18 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
     status: 'draft',
     title: 'Momentum',
   },
+  {
+    lesson: 29,
+    phase: 'Optimization and Calculus for Machine Learning',
+    prerequisites: [
+      { lesson: 26, title: 'Gradient Descent' },
+      { lesson: 27, title: 'Stochastic Gradient Descent' },
+      { lesson: 28, title: 'Momentum' },
+    ],
+    slug: 'lesson-029-adam',
+    status: 'draft',
+    title: 'Adam',
+  },
 ];
 
 describe('lesson dependency graph', () => {
@@ -65,6 +77,7 @@ describe('lesson dependency graph', () => {
       { lesson: 26, status: 'published', title: 'Gradient Descent' },
       { lesson: 27, status: 'draft', title: 'Stochastic Gradient Descent' },
       { lesson: 28, status: 'draft', title: 'Momentum' },
+      { lesson: 29, status: 'draft', title: 'Adam' },
     ];
 
     const graph = buildLessonDependencyGraph(currentOptimizationLessons, sourceLessons);

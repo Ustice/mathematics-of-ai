@@ -93,3 +93,15 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 **Loss landscape:** The geometric view of a loss function as assigning height or badness to each parameter choice.
 
 **Convergence:** The process by which an iterative optimizer settles according to some criterion, such as small updates, small gradients, or stable loss.
+
+**Momentum:** An optimization method that keeps a running velocity from recent gradients to smooth noisy updates and preserve persistent downhill directions.
+
+**Adaptive optimizer:** An optimizer that changes effective step sizes separately for different parameters using information from gradient history.
+
+**Adam:** An adaptive optimizer that combines a momentum-like first moment estimate with a squared-gradient second moment estimate.
+
+**First moment estimate:** In Adam, the running average of recent gradients, used as direction memory.
+
+**Second moment estimate:** In Adam, the running average of recent squared gradients, used as per-parameter scale memory.
+
+**Bias correction:** Adam's adjustment for the early shrinkage caused by initializing optimizer moment estimates at zero.

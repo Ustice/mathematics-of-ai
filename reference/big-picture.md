@@ -72,4 +72,4 @@ The goal of this curriculum is to make those compressions readable. When a paper
 
 ## Current Position
 
-Lessons 1-25 built the conceptual substrate for optimization and deep learning. Lessons 26-28 now begin the optimization bridge with Gradient Descent, Stochastic Gradient Descent, and Momentum; the next topic is Adam.
+Lessons 1-25 built the conceptual substrate for optimization and deep learning. Lessons 26-29 now build the optimization bridge with Gradient Descent, Stochastic Gradient Descent, Momentum, and Adam; the next topic is Learning Rate Schedules.

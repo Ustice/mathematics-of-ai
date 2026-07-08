@@ -63,7 +63,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] Gradient descent.
 - [x] SGD.
 - [x] Momentum.
-- [ ] Adam.
+- [x] Adam.
 - [x] Regularization.
 
 ### Information Theory
