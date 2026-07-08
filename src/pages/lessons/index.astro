@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import '../../styles/lesson.css';
+
+const lessons = (await getCollection('lessons')).sort((left, right) => left.data.lesson - right.data.lesson);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mathematics of AI Lessons</title>
+  </head>
+  <body>
+    <main class="index-page">
+      <header class="index-header">
+        <p class="eyebrow">Mathematics of AI</p>
+        <h1>Lessons</h1>
+        <p class="dek">Forward MDX lessons rendered to static HTML.</p>
+      </header>
+      <section class="lesson-list" aria-label="Lessons">
+        {
+          lessons.map((lesson) => (
+            <article class="lesson-row">
+              <div>
+                <p class="lesson-number">{`Lesson ${lesson.data.lesson}`}</p>
+                <h2>
+                  <a href={`/lessons/${lesson.data.slug}/`}>{lesson.data.title}</a>
+                </h2>
+                <p>{lesson.data.description}</p>
+              </div>
+              <span class="status-pill">{lesson.data.status}</span>
+            </article>
+          ))
+        }
+      </section>
+    </main>
+  </body>
+</html>

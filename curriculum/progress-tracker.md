@@ -160,6 +160,6 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [ ] Lesson 23: Regularization - raw transcript available.
 - [ ] Lesson 24: Early Stopping - raw transcript available.
 - [ ] Lesson 25: Dropout - raw transcript available.
-- [ ] Lesson 26: Gradient Descent - planned next topic.
+- [ ] Lesson 26: Gradient Descent - draft lesson available.
 
 Exercise PDFs are indexed in [../exercises/index.md](../exercises/index.md).

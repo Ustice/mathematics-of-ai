@@ -1,0 +1,205 @@
+---
+import { gradientDescentPath, pathSummary } from '../lib/gradient-descent';
+
+const initialLearningRate = 0.1;
+const initialSteps = 12;
+const initialPath = gradientDescentPath({
+  initialPoint: { b: 0, w: 0 },
+  learningRate: initialLearningRate,
+  steps: initialSteps,
+});
+const initialFinalLoss = initialPath.at(-1)?.loss ?? 0;
+const initialSummary = pathSummary(initialPath);
+---
+
+<section
+  class="lesson-widget gradient-widget"
+  data-gradient-widget
+  data-initial-learning-rate={initialLearningRate}
+  data-initial-steps={initialSteps}
+>
+  <div class="widget-copy">
+    <p class="widget-kicker">Interactive check</p>
+    <h3>Learning Rate Changes The Path</h3>
+    <p>
+      Move the learning rate. The minimum stays at <span class="math-text">(w, b) = (2, -1)</span>, but the optimizer path can become slow,
+      smooth, oscillatory, or unstable.
+    </p>
+  </div>
+  <div class="widget-grid">
+    <div class="widget-controls" aria-label="Gradient descent controls">
+      <label class="range-control">
+        <span>Learning rate</span>
+        <strong data-learning-rate-value>{initialLearningRate.toFixed(2)}</strong>
+        <input
+          data-learning-rate
+          type="range"
+          min="0.02"
+          max="0.34"
+          step="0.01"
+          value={initialLearningRate}
+        />
+      </label>
+      <div class="segmented-control" aria-label="Learning rate presets">
+        <button type="button" data-rate-preset="0.05">Low</button>
+        <button type="button" data-rate-preset="0.10">Medium</button>
+        <button type="button" data-rate-preset="0.26">High</button>
+      </div>
+      <label class="range-control">
+        <span>Steps</span>
+        <strong data-step-value>{initialSteps}</strong>
+        <input data-step-count type="range" min="1" max="24" step="1" value={initialSteps} />
+      </label>
+      <dl class="widget-readout">
+        <div>
+          <dt>Status</dt>
+          <dd data-path-summary>{initialSummary}</dd>
+        </div>
+        <div>
+          <dt>Final loss</dt>
+          <dd data-final-loss>{initialFinalLoss.toFixed(4)}</dd>
+        </div>
+      </dl>
+      <button class="reset-button" type="button" data-reset-widget>Reset</button>
+    </div>
+    <div class="widget-visual">
+      <svg data-gradient-svg viewBox="0 0 520 360" role="img" aria-labelledby="gradient-widget-title">
+        <title id="gradient-widget-title">Gradient descent path under the selected learning rate.</title>
+        <rect class="widget-plot-bg" x="1" y="1" width="518" height="358" rx="8" />
+        <g data-contours></g>
+        <path class="widget-path" data-path-line d="" />
+        <g data-points></g>
+        <g class="widget-axis">
+          <path d="M60 310H480" />
+          <path d="M60 310V34" />
+          <text x="474" y="334">w</text>
+          <text x="32" y="42">b</text>
+        </g>
+        <circle class="target-point" data-target-point r="6" />
+        <text class="target-label" data-target-label>minimum</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gradientDescentPath, pathSummary, targetPoint } from '../lib/gradient-descent';
+
+  type SvgPoint = {
+    x: number;
+    y: number;
+  };
+
+  const plot = {
+    height: 276,
+    maxB: 1.3,
+    maxW: 4,
+    minB: -3.2,
+    minW: -1,
+    width: 420,
+    x: 60,
+    y: 34,
+  };
+
+  const toSvgPoint = ({ b, w }: { b: number; w: number }): SvgPoint => ({
+    x: plot.x + ((w - plot.minW) / (plot.maxW - plot.minW)) * plot.width,
+    y: plot.y + ((plot.maxB - b) / (plot.maxB - plot.minB)) * plot.height,
+  });
+
+  const pathToD = (points: SvgPoint[]) =>
+    points
+      .map(({ x, y }, index) => `${index === 0 ? 'M' : 'L'}${x.toFixed(2)} ${y.toFixed(2)}`)
+      .join(' ');
+
+  const contourEllipse = (radius: number) => {
+    const center = toSvgPoint(targetPoint);
+    const rx = (Math.sqrt(radius) / (plot.maxW - plot.minW)) * plot.width;
+    const ry = (Math.sqrt(radius / 4) / (plot.maxB - plot.minB)) * plot.height;
+
+    return { center, rx, ry };
+  };
+
+  const renderWidget = (root: HTMLElement) => {
+    const learningRateInput = root.querySelector<HTMLInputElement>('[data-learning-rate]');
+    const stepInput = root.querySelector<HTMLInputElement>('[data-step-count]');
+    const learningRateValue = root.querySelector<HTMLElement>('[data-learning-rate-value]');
+    const stepValue = root.querySelector<HTMLElement>('[data-step-value]');
+    const finalLoss = root.querySelector<HTMLElement>('[data-final-loss]');
+    const pathLabel = root.querySelector<HTMLElement>('[data-path-summary]');
+    const pathLine = root.querySelector<SVGPathElement>('[data-path-line]');
+    const pointsLayer = root.querySelector<SVGGElement>('[data-points]');
+    const contoursLayer = root.querySelector<SVGGElement>('[data-contours]');
+    const targetCircle = root.querySelector<SVGCircleElement>('[data-target-point]');
+    const targetLabel = root.querySelector<SVGTextElement>('[data-target-label]');
+
+    if (
+      !learningRateInput ||
+      !stepInput ||
+      !learningRateValue ||
+      !stepValue ||
+      !finalLoss ||
+      !pathLabel ||
+      !pathLine ||
+      !pointsLayer ||
+      !contoursLayer ||
+      !targetCircle ||
+      !targetLabel
+    ) {
+      return;
+    }
+
+    const targetSvgPoint = toSvgPoint(targetPoint);
+    targetCircle.setAttribute('cx', String(targetSvgPoint.x));
+    targetCircle.setAttribute('cy', String(targetSvgPoint.y));
+    targetLabel.setAttribute('x', String(targetSvgPoint.x + 10));
+    targetLabel.setAttribute('y', String(targetSvgPoint.y - 10));
+
+    contoursLayer.innerHTML = [0.25, 1, 2.5, 5, 9]
+      .map((radius) => {
+        const { center, rx, ry } = contourEllipse(radius);
+
+        return `<ellipse class="widget-contour" cx="${center.x}" cy="${center.y}" rx="${rx}" ry="${ry}" />`;
+      })
+      .join('');
+
+    const update = () => {
+      const learningRate = Number(learningRateInput.value);
+      const steps = Number(stepInput.value);
+      const path = gradientDescentPath({
+        initialPoint: { b: 0, w: 0 },
+        learningRate,
+        steps,
+      });
+      const svgPoints = path.map(toSvgPoint);
+      const lastStep = path.at(-1);
+
+      learningRateValue.textContent = learningRate.toFixed(2);
+      stepValue.textContent = String(steps);
+      finalLoss.textContent = (lastStep?.loss ?? 0).toFixed(4);
+      pathLabel.textContent = pathSummary(path);
+      pathLine.setAttribute('d', pathToD(svgPoints));
+      pointsLayer.innerHTML = svgPoints
+        .map(
+          ({ x, y }, index) =>
+            `<circle class="widget-step-point${index === 0 ? ' is-start' : ''}${index === svgPoints.length - 1 ? ' is-final' : ''}" cx="${x}" cy="${y}" r="${index === 0 ? 6 : 4}" />`,
+        )
+        .join('');
+    };
+
+    root.querySelector<HTMLButtonElement>('[data-reset-widget]')?.addEventListener('click', () => {
+      learningRateInput.value = root.dataset.initialLearningRate ?? '0.1';
+      stepInput.value = root.dataset.initialSteps ?? '12';
+      update();
+    });
+    Array.from(root.querySelectorAll<HTMLButtonElement>('[data-rate-preset]')).map((button) =>
+      button.addEventListener('click', () => {
+        learningRateInput.value = button.dataset.ratePreset ?? learningRateInput.value;
+        update();
+      }),
+    );
+    [learningRateInput, stepInput].map((input) => input.addEventListener('input', update));
+    update();
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-gradient-widget]').forEach(renderWidget);
+</script>

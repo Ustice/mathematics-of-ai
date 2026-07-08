@@ -1,0 +1,24 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import LessonLayout from '../../layouts/LessonLayout.astro';
+
+type Props = {
+  lesson: CollectionEntry<'lessons'>;
+};
+
+export const getStaticPaths = async () => {
+  const lessons = await getCollection('lessons');
+
+  return lessons.map((lesson) => ({
+    params: { slug: lesson.data.slug },
+    props: { lesson },
+  }));
+};
+
+const { lesson } = Astro.props;
+const { Content, headings } = await render(lesson);
+---
+
+<LessonLayout headings={headings} lesson={lesson.data}>
+  <Content />
+</LessonLayout>

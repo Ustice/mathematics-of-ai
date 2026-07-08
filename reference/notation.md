@@ -28,9 +28,11 @@ This reference starts the canonical notation guide for the course. Lessons shoul
 | Symbol | Name | Meaning |
 |---|---|---|
 | \(\theta\) | parameters | Values adjusted by learning or inference |
+| \(\theta_t\) | parameters at step t | Current parameter value during an iterative optimizer |
 | \(L(\theta)\) | loss function | A function measuring model error or objective badness |
 | \(\nabla L(\theta)\) | gradient of the loss | Direction of steepest increase of the loss with respect to parameters |
 | \(\eta\) | learning rate | Step size used by an optimizer |
+| \(\Delta \theta\) | parameter update | Change applied to parameters during one optimization step |
 
 ## Information Theory
 

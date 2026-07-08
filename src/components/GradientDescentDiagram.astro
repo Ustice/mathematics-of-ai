@@ -1,0 +1,56 @@
+<figure class="lesson-figure" aria-labelledby="gradient-descent-diagram-title">
+  <svg viewBox="0 0 760 360" role="img">
+    <title id="gradient-descent-diagram-title">Gradient descent follows local downhill steps toward lower loss.</title>
+    <desc>
+      A loss curve with gradient descent steps moving toward a minimum, and a contour map showing a path through parameter space.
+    </desc>
+    <rect class="diagram-surface" x="1" y="1" width="758" height="358" rx="8" />
+    <g transform="translate(44 42)">
+      <text class="diagram-title" x="0" y="0">One-dimensional loss</text>
+      <path class="axis" d="M0 230H300" />
+      <path class="axis" d="M20 242V20" />
+      <text class="axis-label" x="278" y="256">theta</text>
+      <text class="axis-label" x="0" y="22">loss</text>
+      <path class="loss-curve" d="M22 42 C78 250 232 250 288 42" />
+      <line class="minimum-line" x1="155" y1="84" x2="155" y2="232" />
+      <text class="axis-label" x="132" y="254">minimum</text>
+      <circle class="step-point start" cx="62" cy="150" r="6" />
+      <circle class="step-point" cx="94" cy="203" r="6" />
+      <circle class="step-point" cx="123" cy="224" r="6" />
+      <circle class="step-point" cx="145" cy="229" r="6" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M69 158 C78 178 82 190 89 198" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M101 207 C110 217 116 221 122 223" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M130 225 C137 228 141 229 144 229" />
+      <text class="diagram-note" x="52" y="124">steps shrink as slope shrinks</text>
+    </g>
+    <g transform="translate(420 42)">
+      <text class="diagram-title" x="0" y="0">Two-parameter path</text>
+      <ellipse class="contour contour-outer" cx="150" cy="136" rx="132" ry="88" />
+      <ellipse class="contour" cx="150" cy="136" rx="96" ry="62" />
+      <ellipse class="contour" cx="150" cy="136" rx="60" ry="38" />
+      <ellipse class="contour contour-inner" cx="150" cy="136" rx="26" ry="16" />
+      <text class="axis-label" x="283" y="237">w</text>
+      <text class="axis-label" x="0" y="32">b</text>
+      <path class="axis" d="M0 230H300" />
+      <path class="axis" d="M20 242V20" />
+      <circle class="step-point start" cx="55" cy="54" r="6" />
+      <circle class="step-point" cx="96" cy="100" r="6" />
+      <circle class="step-point" cx="126" cy="122" r="6" />
+      <circle class="step-point" cx="144" cy="132" r="6" />
+      <circle class="step-point final" cx="153" cy="136" r="6" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M62 61 L88 92" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M103 104 L119 118" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M132 125 L140 130" />
+      <path class="step-arrow" marker-end="url(#arrowhead)" d="M148 133 L151 135" />
+      <text class="diagram-note" x="66" y="263">path depends on geometry</text>
+    </g>
+    <defs>
+      <marker id="arrowhead" markerHeight="8" markerWidth="8" orient="auto" refX="6" refY="3">
+        <path class="arrowhead" d="M0 0 L6 3 L0 6 Z" />
+      </marker>
+    </defs>
+  </svg>
+  <figcaption>
+    Gradient descent uses only local slope information. The loss defines the surface; the optimizer defines the path.
+  </figcaption>
+</figure>

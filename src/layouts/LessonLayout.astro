@@ -1,0 +1,111 @@
+---
+import 'katex/dist/katex.min.css';
+import '../styles/lesson.css';
+
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+type LessonMeta = {
+  description: string;
+  lesson: number;
+  objectives: string[];
+  phase: string;
+  prerequisites: Array<{
+    lesson: number;
+    title: string;
+  }>;
+  status: string;
+  symbols: Array<{
+    meaning: string;
+    symbol: string;
+  }>;
+  title: string;
+};
+
+type Props = {
+  headings: Heading[];
+  lesson: LessonMeta;
+};
+
+const { headings, lesson } = Astro.props;
+const tocItems = headings.filter(({ depth }) => depth === 2 || depth === 3);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={lesson.description} />
+    <title>{`Lesson ${lesson.lesson}: ${lesson.title} | Mathematics of AI`}</title>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <a class="back-link" href="/lessons/">Lessons</a>
+      <p class="eyebrow">{lesson.phase}</p>
+      <h1>{lesson.title}</h1>
+      <p class="dek">{lesson.description}</p>
+      <dl class="lesson-meta">
+        <div>
+          <dt>Lesson</dt>
+          <dd>{lesson.lesson}</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>{lesson.status}</dd>
+        </div>
+      </dl>
+    </header>
+    <main class="lesson-shell">
+      <aside class="lesson-panel" aria-label="Lesson objectives and prerequisites">
+        <section>
+          <h2>Objectives</h2>
+          <ul>
+            {lesson.objectives.map((objective) => <li>{objective}</li>)}
+          </ul>
+        </section>
+        <section>
+          <h2>Prerequisites</h2>
+          <ul>
+            {lesson.prerequisites.map((item) => <li>{`Lesson ${item.lesson}: ${item.title}`}</li>)}
+          </ul>
+        </section>
+      </aside>
+      <article class="lesson-content">
+        <slot />
+      </article>
+      <aside class="lesson-panel lesson-panel-right" aria-label="Lesson table of contents and symbols">
+        <section>
+          <h2>Contents</h2>
+          <nav class="toc" aria-label="Lesson contents">
+            <ol>
+              {
+                tocItems.map((heading) => (
+                  <li class={`toc-depth-${heading.depth}`}>
+                    <a href={`#${heading.slug}`}>{heading.text}</a>
+                  </li>
+                ))
+              }
+            </ol>
+          </nav>
+        </section>
+        <section>
+          <h2>Symbols</h2>
+          <dl class="symbol-list">
+            {
+              lesson.symbols.map((entry) => (
+                <div>
+                  <dt>{entry.symbol}</dt>
+                  <dd>{entry.meaning}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+      </aside>
+    </main>
+  </body>
+</html>

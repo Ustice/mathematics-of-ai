@@ -16,11 +16,15 @@ This is an external symbol table for recurring notation. Its job is to reduce wo
 | \(\sigma^2\) | Variance | Statistics, Gaussian models | Lesson 12 | Average squared deviation from the mean. |
 | \(\Sigma\) | Covariance matrix | Multivariate statistics | Lesson 12 | Encodes variance by direction and covariance between dimensions. |
 | \(\theta\) | Model parameters | Inference and optimization | Lesson 16 | Unknown quantity being estimated or optimized. |
+| \(\theta_t\) | Parameters at step t | Optimization | Lesson 26 | Current parameter vector during an iterative optimizer. |
 | \(D\) | Observed data | Probability and inference | Lesson 16 | Fixed evidence once observed. |
 | \(P(D \mid \theta)\) | Likelihood | MLE, MAP, Bayesian inference | Lesson 16 | Data score as a function of parameters. |
 | \(P(\theta)\) | Prior | Bayesian inference, MAP | Lesson 18 | Belief or parameter preference before current data. |
 | \(P(\theta \mid D)\) | Posterior | Bayesian inference | Lesson 18 | Updated belief after conditioning on data. |
-| \(L(\theta)\) | Likelihood function | MLE | Lesson 16 | Some lessons may reserve \(L\) for loss; define locally. |
+| \(L(\theta)\) | Likelihood or loss/objective function | MLE and optimization | Lesson 16 | Overloaded: MLE lessons may use it for likelihood; optimization lessons often use it for loss. Define locally. |
+| \(\nabla L(\theta)\) | Gradient of the loss | Optimization | Lesson 26 | Direction of steepest local increase with respect to parameters. |
+| \(\eta\) | Learning rate | Optimization | Lesson 26 | Positive scalar controlling gradient descent step size. |
+| \(\Delta \theta\) | Parameter update | Optimization | Lesson 26 | Change added to the current parameters during one step. |
 | \(\ell(\theta)\) | Log-likelihood | MLE, loss functions | Lesson 17 | Turns products into sums and improves numerical handling. |
 | \(\lambda\) | Eigenvalue | Linear algebra, regularization strength | Lesson 6 | Context distinguishes spectral value from penalty weight. |
 | \(v\) | Eigenvector | Linear algebra | Lesson 6 | Usually nonzero and paired with an eigenvalue. |

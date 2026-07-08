@@ -109,6 +109,8 @@ Use Bun for TypeScript tooling:
 
 ```bash
 bun install
+bun run dev
+bun run build
 bun run typecheck
 bun test
 bun run import-drive-pdfs
