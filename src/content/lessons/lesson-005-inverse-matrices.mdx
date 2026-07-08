@@ -1,0 +1,222 @@
+---
+description: "Inverse matrices as the transformations that undo other transformations."
+lesson: 5
+objectives:
+  - Define an inverse matrix as the transformation that undoes another transformation.
+  - Recognize when a matrix cannot have an inverse.
+  - Use the determinant to connect invertibility with information loss.
+  - Solve small linear systems by reasoning about the inverse.
+  - Connect inverse matrices to the kinds of problems that appear in ML and numerical computing.
+phase: "Linear Algebra for Machine Learning"
+prerequisites:
+  - lesson: 4
+    title: "Determinants"
+slug: "lesson-005-inverse-matrices"
+status: "reviewed"
+symbols:
+  - symbol: "A^{-1}"
+    meaning: "The inverse of matrix A, if it exists."
+  - symbol: "I"
+    meaning: "The identity matrix."
+  - symbol: "A x = b"
+    meaning: "A linear system that may be solved using an inverse when one exists."
+  - symbol: "x"
+    meaning: "An unknown vector to solve for."
+  - symbol: "b"
+    meaning: "A known output vector."
+title: "Inverse Matrices"
+widgets: []
+---
+
+## Goal
+
+Understand inverse matrices as undoing maps. If a matrix sends a vector somewhere, the inverse sends it back.
+
+## Motivation
+
+The idea of "undo" appears everywhere in math and programming.
+
+- Undo a rotation by rotating back.
+
+- Undo a scale by dividing by the scale factor.
+
+- Undo a transformation by applying its inverse.
+
+Inverse matrices are the linear algebra version of that idea.
+
+## Prerequisites
+
+- Lesson 4: Determinants.
+
+- Comfort with matrix-vector multiplication.
+
+## Notation / Symbol Table
+
+| Symbol | Meaning |
+| --- | --- |
+| `A^{-1}` | The inverse of matrix `A`, if it exists. |
+| `I` | The identity matrix. |
+| `A x = b` | A linear system that may be solved using an inverse when one exists. |
+| `x` | An unknown vector to solve for. |
+| `b` | A known output vector. |
+
+## Core Ideas
+
+### The inverse undoes the transformation
+
+The inverse matrix `A^{-1}` is defined by:
+
+$$
+A^{-1}(A x) = x.
+$$
+
+Equivalently:
+
+$$
+A^{-1}A = I.
+$$
+
+That is the entire definition in one line.
+
+### The identity matrix does nothing
+
+The identity matrix is the linear algebra version of `1`.
+
+It leaves every vector unchanged:
+
+$$
+Ix = x.
+$$
+
+So if a matrix and its inverse are multiplied together, the result must be the identity.
+
+### Not every matrix has an inverse
+
+If a transformation collapses space, information is lost.
+
+Once two different inputs end up at the same output, no inverse can separate them again.
+
+That is why singular matrices, the ones with `det(A) = 0`, do not have inverses.
+
+### Solving a system is really an undoing problem
+
+If:
+
+$$
+A x = b,
+$$
+
+and `A^{-1}` exists, then:
+
+$$
+x = A^{-1} b.
+$$
+
+This is one reason inverse matrices matter so much.
+
+In practice, numerical software often solves the system without explicitly forming the inverse, because that is usually faster and more stable.
+
+## Worked Example
+
+Let:
+
+$$
+A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}.
+$$
+
+This matrix doubles every vector.
+
+To undo that, the inverse must halve every vector:
+
+$$
+A^{-1} = \begin{bmatrix} \tfrac{1}{2} & 0 \\ 0 & \tfrac{1}{2} \end{bmatrix}.
+$$
+
+Check the result:
+
+$$
+A^{-1}A =
+\begin{bmatrix} \tfrac{1}{2} & 0 \\ 0 & \tfrac{1}{2} \end{bmatrix}
+\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}
+=
+\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+= I.
+$$
+
+Now consider:
+
+$$
+B = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}.
+$$
+
+This matrix collapses the plane onto a line, so `det(B) = 0`.
+
+That means there is no inverse.
+
+The geometric reason is simple:
+
+> once the transformation has destroyed a dimension, there is no unique way to recover it.
+
+## Why This Shows Up In ML
+
+Inverse matrices appear in many places around machine learning and numerical computing:
+
+- solving linear systems;
+
+- least-squares methods;
+
+- covariance calculations;
+
+- whitening;
+
+- Gaussian models;
+
+- and Kalman-style estimation problems.
+
+The important practical lesson is that "having an inverse" is not the same as "always computing it directly."
+
+## Exercises
+
+1. What is `I` applied to the vector `(7, -2)`?
+
+2. Find the inverse of
+
+$$
+\begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}.
+$$
+
+3. Decide whether
+
+$$
+\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}
+$$
+
+has an inverse, and explain why.
+
+4. If `A` rotates vectors by `90^\circ` counterclockwise, what should `A^{-1}` do?
+
+5. Explain why determinant zero guarantees that no inverse exists.
+
+## Implementation Exercise
+
+Write a TypeScript helper that computes the inverse of a `2 x 2` matrix when it exists:
+
+```ts
+type Matrix2x2 = [[number, number], [number, number]];
+type Vector2 = [number, number];
+
+export function inverse2x2(matrix: Matrix2x2): Matrix2x2 | null
+```
+
+Then verify that `multiply2x2(matrix, inverse)` gives the identity matrix for a few invertible examples, and returns `null` for a collapsed matrix.
+
+## Reflection Questions
+
+- What geometric event makes a matrix non-invertible?
+
+- Why is the determinant the first quick test for invertibility?
+
+- How is solving `A x = b` related to undoing a transformation?
+
+- Why do numerical libraries often avoid forming the inverse explicitly?
+

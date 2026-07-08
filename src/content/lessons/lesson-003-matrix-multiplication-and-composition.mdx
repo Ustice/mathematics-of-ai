@@ -1,0 +1,238 @@
+---
+description: "Matrix multiplication as composition of linear transformations."
+lesson: 3
+objectives:
+  - Explain `BA` as "apply `A` first, then `B`."
+  - Compute the columns of a matrix product by tracking basis vectors.
+  - Recognize matrix multiplication as function composition.
+  - Explain why order matters and why matrices usually do not commute.
+  - Connect composition to stacked layers in machine learning models.
+phase: "Linear Algebra for Machine Learning"
+prerequisites:
+  - lesson: 2
+    title: "Matrices as Linear Transformations"
+slug: "lesson-003-matrix-multiplication-and-composition"
+status: "reviewed"
+symbols:
+  - symbol: "A"
+    meaning: "The first linear transformation in a composition."
+  - symbol: "B"
+    meaning: "The second linear transformation in a composition."
+  - symbol: "BA"
+    meaning: "The composed transformation: apply A first, then B."
+  - symbol: "e_1, e_2"
+    meaning: "Standard basis vectors."
+  - symbol: "x"
+    meaning: "An input vector."
+title: "Matrix Multiplication and Composition"
+widgets: []
+---
+
+## Goal
+
+Understand matrix multiplication as composition of transformations. The product `BA` is not a recipe to memorize. It is the combined action you get by first applying `A` and then applying `B`.
+
+## Motivation
+
+Machine learning models are usually built from layers.
+
+Each layer transforms a vector.
+
+The next layer transforms the output of the previous one.
+
+So a stack of layers is really a composition of transformations, and matrix multiplication is the algebra that records that composition.
+
+## Prerequisites
+
+- Lesson 2: Matrices as Linear Transformations.
+
+- Comfort with basis vectors and matrix-vector multiplication.
+
+## Notation / Symbol Table
+
+| Symbol | Meaning |
+| --- | --- |
+| `A` | The first linear transformation in a composition. |
+| `B` | The second linear transformation in a composition. |
+| `BA` | The composed transformation: apply `A` first, then `B`. |
+| `e_1, e_2` | Standard basis vectors. |
+| `x` | An input vector. |
+
+## Core Ideas
+
+### Matrix multiplication is composition
+
+If `A` and `B` are linear transformations, then:
+
+$$
+BA(x) = B(A(x)).
+$$
+
+That means the order is read right-to-left:
+
+- first `A`;
+
+- then `B`.
+
+This is exactly like function composition.
+
+### The order matters
+
+In general,
+
+$$
+BA \ne AB.
+$$
+
+That is because doing one transformation before another can change the result dramatically.
+
+Stretch-then-rotate is usually not the same as rotate-then-stretch.
+
+### Columns of the product come from transformed basis vectors
+
+To understand the product `BA`, look at what it does to the basis vectors.
+
+If the columns of `A` are `A e_1` and `A e_2`, then the columns of `BA` are:
+
+$$
+B(Ae_1) \quad \text{and} \quad B(Ae_2).
+$$
+
+So matrix multiplication is a bookkeeping device for the transformed basis.
+
+### Composition is the real story
+
+The row-by-column formula is useful, but it is not the meaning.
+
+The meaning is:
+
+> first transform the space with one map, then transform the result with another.
+
+That is the geometric story behind the arithmetic.
+
+## Worked Example
+
+Let:
+
+$$
+A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}
+$$
+
+so `A` stretches the `x`-axis, and let:
+
+$$
+B = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}
+$$
+
+so `B` rotates by `90^\circ` counterclockwise.
+
+Take:
+
+$$
+v = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.
+$$
+
+First apply `A`:
+
+$$
+Av = \begin{bmatrix} 2 \\ 2 \end{bmatrix}.
+$$
+
+Then apply `B`:
+
+$$
+BAv = \begin{bmatrix} -2 \\ 2 \end{bmatrix}.
+$$
+
+Now compute the product directly by tracking basis vectors.
+
+The columns of `A` are:
+
+$$
+A e_1 = \begin{bmatrix} 2 \\ 0 \end{bmatrix},
+\qquad
+A e_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
+$$
+
+Apply `B` to each column:
+
+$$
+B\begin{bmatrix} 2 \\ 0 \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ 2 \end{bmatrix},
+\qquad
+B\begin{bmatrix} 0 \\ 1 \end{bmatrix}
+=
+\begin{bmatrix} -1 \\ 0 \end{bmatrix}.
+$$
+
+So:
+
+$$
+BA = \begin{bmatrix} 0 & -1 \\ 2 & 0 \end{bmatrix}.
+$$
+
+If you reverse the order, you get a different matrix:
+
+$$
+AB = \begin{bmatrix} 0 & -2 \\ 1 & 0 \end{bmatrix}.
+$$
+
+That difference is the whole reason composition matters.
+
+## Why This Shows Up In ML
+
+Neural networks are stacks of transformations.
+
+A layer takes an input vector, transforms it, and passes the result onward.
+
+When you chain layers together, you are composing maps.
+
+Matrix multiplication is the algebra that records that composition efficiently, which is why it appears everywhere from simple linear models to deep networks.
+
+## Exercises
+
+1. Explain in your own words why `BA` means "apply `A` first, then `B`."
+
+2. Let
+
+$$
+A = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix},
+\qquad
+B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}.
+$$
+
+Find the columns of `BA` without using row-by-row multiplication.
+
+3. Explain why knowing where a linear transformation sends the basis vectors is enough to know what it does to every vector.
+
+4. Decide whether `AB` equals `BA` for the matrices in Exercise 2.
+
+5. Describe a machine learning layer stack as a composition of transformations.
+
+## Implementation Exercise
+
+Write a TypeScript helper that composes two `2 x 2` matrices:
+
+```ts
+type Matrix2x2 = [[number, number], [number, number]];
+
+export function multiply2x2(left: Matrix2x2, right: Matrix2x2): Matrix2x2
+```
+
+Then test it by comparing:
+
+- `multiply2x2(B, A)` with applying `A` and then `B` to a vector;
+
+- `multiply2x2(A, B)` with applying `B` and then `A`.
+
+## Reflection Questions
+
+- Why does the order of matrix multiplication matter?
+
+- What is the geometric meaning of a matrix product?
+
+- How can you tell from a product whether a transformation is likely to preserve shape?
+
+- Why does composition feel so natural in programming?
+
