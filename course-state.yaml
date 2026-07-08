@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-07
+last_updated: 2026-07-08
 current_phase: Optimization and Calculus for Machine Learning
-next_topic: Gradient Descent
+next_topic: Adam
 
 completed_lessons:
   - number: 1
@@ -55,6 +55,12 @@ completed_lessons:
     title: Early Stopping
   - number: 25
     title: Dropout
+  - number: 26
+    title: Gradient Descent
+  - number: 27
+    title: Stochastic Gradient Descent
+  - number: 28
+    title: Momentum
 
 teaching_preferences:
   intuition_first: true
