@@ -32,6 +32,8 @@ type Props = {
 
 const { headings, lesson } = Astro.props;
 const tocItems = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const lessonsPath = `${basePath}lessons/`;
 ---
 
 <!doctype html>
@@ -44,7 +46,7 @@ const tocItems = headings.filter(({ depth }) => depth === 2 || depth === 3);
   </head>
   <body>
     <header class="lesson-header">
-      <a class="back-link" href="/lessons/">Lessons</a>
+      <a class="back-link" href={lessonsPath}>Lessons</a>
       <p class="eyebrow">{lesson.phase}</p>
       <h1>{lesson.title}</h1>
       <p class="dek">{lesson.description}</p>

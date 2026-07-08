@@ -5,6 +5,7 @@ import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 
 export default defineConfig({
+  base: '/mathematics-of-ai',
   integrations: [mdx()],
   markdown: {
     processor: unified({
@@ -15,4 +16,5 @@ export default defineConfig({
       theme: 'github-light',
     },
   },
+  site: 'https://ustice.github.io',
 });
