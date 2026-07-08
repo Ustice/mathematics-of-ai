@@ -1,0 +1,286 @@
+---
+description: "The multivariate Gaussian as geometry plus probability: covariance creates ellipsoids, the precision matrix weights distance, and whitening turns the distribution spherical."
+lesson: 15
+objectives:
+  - Derive intuition for the multivariate Gaussian from covariance geometry.
+  - Interpret Mahalanobis distance and explain why the precision matrix uses the inverse covariance.
+  - Relate covariance eigenvectors and eigenvalues to the axes of the Gaussian ellipsoid.
+  - Explain the roles of the determinant and whitening in the Gaussian density.
+phase: "Probability and Statistics for Machine Learning"
+prerequisites:
+  - lesson: 12
+    title: "Covariance"
+  - lesson: 14
+    title: "Covariance Geometry"
+slug: "lesson-015-multivariate-gaussian"
+status: "reviewed"
+symbols:
+  - symbol: "x"
+    meaning: "A point where the density is evaluated."
+  - symbol: "μ"
+    meaning: "Mean vector of the Gaussian."
+  - symbol: "Σ"
+    meaning: "Covariance matrix of the Gaussian."
+  - symbol: "Σ^{-1}"
+    meaning: "Precision matrix, the inverse covariance."
+  - symbol: "d_M^2"
+    meaning: "Squared Mahalanobis distance from x to the mean."
+  - symbol: "|Σ|"
+    meaning: "Determinant of the covariance matrix."
+  - symbol: "λ_i"
+    meaning: "Eigenvalue giving variance along principal axis i."
+  - symbol: "z"
+    meaning: "Whitened coordinate vector."
+title: "Multivariate Gaussian"
+widgets: []
+---
+
+## Goal
+
+Understand the multivariate Gaussian as a geometric probability distribution: covariance determines the ellipsoidal shape, the precision matrix determines how distance is measured, and whitening reveals that the distribution is just a spherical Gaussian viewed in transformed coordinates.
+
+## Motivation
+
+Many machine learning models assume that some source of noise, uncertainty, or latent variation is Gaussian.
+
+That can feel like a memorized convention until you see the geometry. Once covariance defines an ellipsoid, the multivariate Gaussian becomes the natural probability density built from that geometry.
+
+## Prerequisites
+
+- Lesson 12: Covariance.
+- Lesson 14: Covariance Geometry.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| $x$ | evaluation point | Point in $\mathbb{R}^n$ where the density is evaluated. |
+| $\mu$ | mean vector | Center of the Gaussian. |
+| $\Sigma$ | covariance matrix | Describes spread and orientation. |
+| $\Sigma^{-1}$ | precision matrix | Weights distance by confidence instead of uncertainty. |
+| $d_M^2$ | squared Mahalanobis distance | Distance from $x$ to $\mu$ in covariance-scaled geometry. |
+| $|\Sigma|$ | determinant of covariance | Volume-scaling term used in normalization. |
+| $\lambda_i$ | principal variance | Variance along principal direction $i$. |
+| $z$ | whitened coordinate | Coordinate after removing covariance structure. |
+
+The squared Mahalanobis distance is
+
+$$
+d_M^2 = (x - \mu)^T \Sigma^{-1} (x - \mu).
+$$
+
+## Core Ideas
+
+### Covariance turns circles into ellipses
+
+In ordinary Euclidean geometry, points at fixed squared distance from the origin satisfy
+
+$$
+x^T x = r^2.
+$$
+
+That gives a circle in two dimensions or a sphere in higher dimensions.
+
+When covariance enters, the relevant quadratic form becomes
+
+$$
+(x - \mu)^T \Sigma^{-1} (x - \mu).
+$$
+
+Level sets of this expression are ellipses or ellipsoids. The covariance matrix stretches and rotates the geometry.
+
+### Why the inverse covariance appears
+
+Large variance means motion in that direction is unsurprising. Small variance means motion in that direction is surprising.
+
+So the distance metric should:
+
+- penalize high-variance directions less;
+- penalize low-variance directions more.
+
+That is exactly what the inverse covariance does. If one direction has variance $100$, the corresponding precision is $1/100$, which makes movement in that direction contribute less to the distance.
+
+### Mahalanobis distance is Euclidean distance in whitened space
+
+Whitening uses
+
+$$
+z = \Sigma^{-1/2}(x - \mu).
+$$
+
+Then
+
+$$
+z^T z = (x - \mu)^T \Sigma^{-1} (x - \mu).
+$$
+
+So the Mahalanobis distance is not a brand-new species of distance. It is ordinary Euclidean distance after the right change of coordinates.
+
+### The Gaussian density is the right exponential of distance
+
+The one-dimensional Gaussian uses squared distance divided by variance:
+
+$$
+p(x) =
+\frac{1}{\sqrt{2\pi \sigma^2}}
+\exp\left(
+-\frac{(x - \mu)^2}{2\sigma^2}
+\right).
+$$
+
+The multivariate version replaces ordinary squared distance with squared Mahalanobis distance:
+
+$$
+p(x) =
+\frac{1}{(2\pi)^{n/2} |\Sigma|^{1/2}}
+\exp\left(
+-\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu)
+\right).
+$$
+
+Nothing mystical happened. We took the one-dimensional idea and upgraded the geometry.
+
+### The determinant normalizes by volume
+
+The determinant $|\Sigma|$ measures how covariance stretches volume.
+
+If covariance spreads the distribution out across a larger ellipsoid, the peak density must be lower so the total probability still integrates to $1$.
+
+So the determinant is doing the same kind of job it always does in linear algebra: measuring how a transformation scales volume.
+
+### Eigenvectors and eigenvalues explain the shape
+
+If
+
+$$
+\Sigma = V \Lambda V^T,
+$$
+
+then the eigenvectors give the principal axes of the Gaussian ellipsoid. The eigenvalues give the variances along those axes.
+
+The semi-axis lengths are proportional to
+
+$$
+\sqrt{\lambda_i}.
+$$
+
+So large eigenvalues correspond to broad directions of uncertainty, while small eigenvalues correspond to narrow directions of confidence.
+
+## Worked Example
+
+Let
+
+$$
+\mu =
+\begin{bmatrix}
+0 \\
+0
+\end{bmatrix},
+\qquad
+\Sigma =
+\begin{bmatrix}
+9 & 0 \\
+0 & 4
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+3 \\
+2
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\Sigma^{-1} =
+\begin{bmatrix}
+\frac{1}{9} & 0 \\
+0 & \frac{1}{4}
+\end{bmatrix}.
+$$
+
+Now compute the squared Mahalanobis distance:
+
+$$
+d_M^2 =
+x^T \Sigma^{-1} x
+=
+\begin{bmatrix}
+3 & 2
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{9} & 0 \\
+0 & \frac{1}{4}
+\end{bmatrix}
+\begin{bmatrix}
+3 \\
+2
+\end{bmatrix}
+=
+1 + 1 = 2.
+$$
+
+Interpretation:
+
+- moving $3$ units in the first coordinate is exactly one standard deviation because $\sqrt{9} = 3$;
+- moving $2$ units in the second coordinate is exactly one standard deviation because $\sqrt{4} = 2$.
+
+So this point sits one standard deviation away along each principal axis.
+
+## Why This Shows Up In ML
+
+Gaussians show up all over machine learning because they are mathematically tractable and geometrically expressive.
+
+Examples include:
+
+- Gaussian noise models for regression;
+- Gaussian priors in Bayesian methods;
+- Kalman filters and state-space models;
+- anomaly detection with Mahalanobis distance;
+- latent-variable models such as variational autoencoders.
+
+The broader lesson is that linear algebra is now describing uncertainty rather than only transformations.
+
+## Exercises
+
+1. For
+
+$$
+\Sigma =
+\begin{bmatrix}
+16 & 0 \\
+0 & 1
+\end{bmatrix},
+$$
+
+sketch the covariance ellipse and label its semi-axis lengths.
+
+2. If an eigenvalue of $\Sigma$ becomes extremely small, what happens to:
+
+- the corresponding axis of the ellipsoid;
+- the corresponding precision;
+- the Mahalanobis penalty for moving in that direction?
+
+3. Explain in words why the Gaussian formula uses $\Sigma^{-1}$ in the exponent and $|\Sigma|$ in the normalization constant.
+
+4. Why does whitening turn a multivariate Gaussian into a spherical one?
+
+## Implementation Exercise
+
+Write a TypeScript function that evaluates the log density of a two-dimensional Gaussian.
+
+Start with a diagonal covariance matrix so the inverse and determinant are easy to compute by hand. Then extend the function so it accepts:
+
+- a mean vector;
+- a covariance matrix;
+- a point $x$.
+
+Keep the implementation explicit about each mathematical piece: centered vector, precision-weighted quadratic form, and determinant-based normalization.
+
+## Reflection Questions
+
+- What feels more intuitive now: the formula for the Gaussian or the ellipse picture behind it?
+- Why is the precision matrix a better name than "inverse covariance" once the geometry is clear?
+- How does whitening simplify both the distance and the distribution?
+- When you see a covariance matrix now, do you automatically picture an ellipsoid?
