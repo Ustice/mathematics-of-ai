@@ -20,7 +20,8 @@ The goal is to build enough mathematical fluency to:
 
 Use this repo as the course workspace:
 
-- Start with the [curriculum roadmap](curriculum/roadmap.md).
+- Start with [course-state.yaml](course-state.yaml) to recover the current lesson state.
+- Read the [curriculum roadmap](curriculum/roadmap.md) for the long-term sequence.
 - Track module and milestone status in the [progress tracker](curriculum/progress-tracker.md).
 - Draft polished lessons from the [lesson template](lessons/lesson-template.md).
 - Keep exercise sets in [exercises](exercises/).
@@ -38,6 +39,12 @@ Lessons should pair:
 - Implementation.
 - Why the idea shows up in ML.
 
+## Starting a New Lesson Session
+
+When starting a fresh ChatGPT session, use the prompt in [docs/new-lesson-bootstrap.md](docs/new-lesson-bootstrap.md).
+
+The important rule is: do **not** ask for a lesson PDF to decide what comes next. Generate the next lesson from `course-state.yaml`, the curriculum, and the latest polished lesson under `src/content/lessons/`. Ask for a PDF only when reviewing handwritten exercises.
+
 ## Major Tracks
 
 The program is organized around these tracks:
@@ -54,6 +61,7 @@ The program is organized around these tracks:
 
 Current canonical course documents:
 
+- [course-state.yaml](course-state.yaml) — Compact machine-readable checkpoint for recovering course state.
 - [curriculum/README.md](curriculum/README.md) — Curriculum directory guide.
 - [curriculum/roadmap.md](curriculum/roadmap.md) — Long-term course roadmap.
 - [curriculum/progress-tracker.md](curriculum/progress-tracker.md) — Milestone and module tracker.
@@ -61,6 +69,7 @@ Current canonical course documents:
 - [curriculum/milestones.md](curriculum/milestones.md) — Evidence criteria for milestones.
 - [lessons/README.md](lessons/README.md) — Lesson workspace guide.
 - [lessons/lesson-template.md](lessons/lesson-template.md) — Standard polished lesson template.
+- [src/content/lessons](src/content/lessons/) — Forward polished lesson pages.
 - [exercises/README.md](exercises/README.md) — Exercise workspace guide.
 - [exercises/exercise-template.md](exercises/exercise-template.md) — Standard exercise set template.
 - [implementation/README.md](implementation/README.md) — Implementation workspace guide.
@@ -76,7 +85,6 @@ Current canonical course documents:
 Preserved historical and source material:
 
 - [curriculum.md](curriculum.md) — Top-level curriculum entry point retained for continuity.
-- [course-state.yaml](course-state.yaml) — Compact machine-readable checkpoint from prior lesson work.
 - [lessons/transcripts](lessons/transcripts/) — Raw exported ChatGPT lesson transcripts for Lessons 1-25.
 - [exercises/index.md](exercises/index.md) — Exercise index and future polished exercise sets.
 - [transcripts/README.md](transcripts/README.md) — Transcript review policy and historical planning notes.
@@ -91,11 +99,11 @@ Preserved historical and source material:
 
 ## Current Course State
 
-Lessons 1-25 have raw exported Markdown transcripts under [lessons/transcripts](lessons/transcripts/). Treat those transcripts as source material until each lesson is reviewed and polished for public use.
+The canonical state is [course-state.yaml](course-state.yaml). As of the latest update, Lessons 1-28 are complete and the next topic is Adam.
 
-Handwritten Notability PDFs for Lessons 2-25 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/). Lesson 26 Preparation was intentionally skipped because it is mostly project setup context rather than lesson material.
+Forward polished lessons live under [src/content/lessons](src/content/lessons/). Raw exported Markdown transcripts for Lessons 1-25 live under [lessons/transcripts](lessons/transcripts/) and should be treated as source material until reviewed.
 
-The next course topic recorded in [course-state.yaml](course-state.yaml) is Gradient Descent.
+Handwritten Notability PDFs for Lessons 2-25 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/).
 
 ## Historical Notability PDF Import
 
