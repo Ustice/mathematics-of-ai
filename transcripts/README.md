@@ -26,10 +26,10 @@ lessons/transcripts/lesson-02-matrices-as-linear-transformations.md
 lessons/transcripts/lesson-25-dropout.md
 ```
 
-Future polished HTML lessons:
+Forward MDX lesson pages:
 
 ```text
-lessons/lesson-001/index.html
-lessons/lesson-002/index.html
+src/content/lessons/lesson-001-topic.mdx
+src/content/lessons/lesson-002-topic.mdx
 ...
 ```

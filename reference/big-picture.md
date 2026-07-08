@@ -4,19 +4,39 @@
 
 ```text
 Linear Algebra
-↓
-Probability
-↓
-Statistics
-↓
-Optimization
-↓
-Machine Learning
-↓
-Deep Learning
-↓
-Modern AI
+-> Statistical Modeling
+-> Optimization
+-> Neural Networks
+-> Information Theory
+-> Transformers
+-> Paper Reading
 ```
+
+The older topic labels of probability, statistics, machine learning, deep learning, and modern AI still describe subject matter. The capability arc is more operational: it names what the learner should become able to do.
+
+## Topic Flow
+
+```text
+Linear Algebra
+-> Probability
+-> Statistics
+-> Optimization
+-> Machine Learning
+-> Deep Learning
+-> Modern AI
+```
+
+## Capability Milestones
+
+| Capability | What it should unlock |
+| --- | --- |
+| Linear Algebra | Geometric reasoning about data, transformations, PCA, covariance, and representations. |
+| Statistical Modeling | Likelihood, MAP, Bayesian updates, predictive distributions, and regularized objectives. |
+| Optimization | Training loops, gradient descent, SGD, momentum, adaptive optimizers, and stopping rules. |
+| Neural Networks | First-principles networks, forward passes, losses, gradients, and generalization controls. |
+| Information Theory | Entropy, cross entropy, KL divergence, mutual information, and objective interpretation. |
+| Transformers | Attention, multi-head attention, tensor shapes, and minimal transformer blocks. |
+| Paper Reading | Reading assumptions, reproducing core arguments, implementing small versions, and critiquing claims. |
 
 The first 25 lessons build the bridge from geometric structure to statistical learning.
 
@@ -52,4 +72,4 @@ The goal of this curriculum is to make those compressions readable. When a paper
 
 ## Current Position
 
-Lessons 1-25 have built the conceptual substrate for optimization and deep learning. The course is ready to connect objectives to algorithms: gradient descent, stochastic gradient descent, momentum, adaptive optimizers, and learning-rate schedules.
+Lessons 1-25 built the conceptual substrate for optimization and deep learning. Lessons 26-28 now begin the optimization bridge with Gradient Descent, Stochastic Gradient Descent, and Momentum; the next topic is Adam.

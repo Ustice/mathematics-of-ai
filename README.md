@@ -20,6 +20,7 @@ The goal is to build enough mathematical fluency to:
 
 Use this repo as the course workspace:
 
+- Start future AI sessions with [START_HERE.md](START_HERE.md).
 - Start with [course-state.yaml](course-state.yaml) to recover the current lesson state.
 - Read the [curriculum roadmap](curriculum/roadmap.md) for the long-term sequence.
 - Track module and milestone status in the [progress tracker](curriculum/progress-tracker.md).
@@ -38,6 +39,20 @@ Lessons should pair:
 - Exercises.
 - Implementation.
 - Why the idea shows up in ML.
+
+## Capability Ladder
+
+The lesson sequence remains the source of topic order. The capability ladder names what the sequence is trying to make usable:
+
+| Capability | Evidence of durable progress |
+| --- | --- |
+| Linear Algebra | Explain and implement PCA from first principles. |
+| Statistical Modeling | Connect likelihood, MAP, predictive distributions, and regularized objectives. |
+| Optimization | Explain gradient descent, SGD, momentum, optimizer behavior, and training loops. |
+| Neural Networks | Build and train a small neural network from scratch. |
+| Information Theory | Use entropy, cross entropy, KL divergence, and mutual information in objectives. |
+| Transformers | Implement attention and a minimal transformer block. |
+| Paper Reading | Reproduce a classic transformer result, then critique a recent paper independently. |
 
 ## Starting a New Lesson Session
 
@@ -77,8 +92,10 @@ Current canonical course documents:
 - [papers/README.md](papers/README.md) — Paper-reading workspace guide.
 - [papers/paper-reading-template.md](papers/paper-reading-template.md) — Structured paper reading template.
 - [reference/README.md](reference/README.md) — Reference directory guide.
-- [reference/notation.md](reference/notation.md) — Starter notation reference.
-- [reference/glossary.md](reference/glossary.md) — Starter glossary.
+- [reference/notation.md](reference/notation.md) — Canonical compact notation guide.
+- [reference/glossary.md](reference/glossary.md) — Canonical short glossary.
+- [reference/symbol-table.md](reference/symbol-table.md) — Canonical recurring-symbol registry.
+- [reference/mathematical-vocabulary.md](reference/mathematical-vocabulary.md) — Expanded concept-card reference.
 - [learning-journal/README.md](learning-journal/README.md) — Learning journal guide.
 - [learning-journal/journal-template.md](learning-journal/journal-template.md) — Journal entry template.
 
@@ -88,14 +105,28 @@ Preserved historical and source material:
 - [lessons/transcripts](lessons/transcripts/) — Raw exported ChatGPT lesson transcripts for Lessons 1-25.
 - [exercises/index.md](exercises/index.md) — Exercise index and future polished exercise sets.
 - [transcripts/README.md](transcripts/README.md) — Transcript review policy and historical planning notes.
-- [artifacts/notability-pdfs](artifacts/notability-pdfs/) — Exported handwritten Notability PDFs for Lessons 2-25.
+- [artifacts/notability-pdfs](artifacts/notability-pdfs/) — Exported handwritten Notability PDFs for Lessons 2-26.
 - [data/drive-pdf-manifest.json](data/drive-pdf-manifest.json) — Drive PDF import manifest.
 - [data/lesson-sources.json](data/lesson-sources.json) — Lesson transcript/source index.
 - [journal/learning-journal.md](journal/learning-journal.md) — Existing structured learning notes.
 - [learning-journal.md](learning-journal.md) — Earlier flat learning journal preserved for continuity.
-- [notation.md](notation.md) — Earlier top-level notation guide.
-- [glossary.md](glossary.md) — Earlier top-level glossary.
+- [notation.md](notation.md) — Historical top-level notation guide retained for continuity; current notation authority lives in `reference/`.
+- [glossary.md](glossary.md) — Historical top-level glossary retained for continuity; current vocabulary authority lives in `reference/`.
 - [scripts](scripts/) — Course maintenance scripts.
+
+## Sources of Truth
+
+| Area | Current source of truth |
+| --- | --- |
+| Current course state | [course-state.yaml](course-state.yaml) for the compact machine-readable checkpoint. |
+| Lesson sequence | [curriculum/roadmap.md](curriculum/roadmap.md) and [curriculum/progress-tracker.md](curriculum/progress-tracker.md), with per-lesson artifact status in [data/lesson-sources.json](data/lesson-sources.json). |
+| Lesson dependencies | Generated as an MDX prerequisite graph by [src/pages/data/lesson-dependency-graph.json.ts](src/pages/data/lesson-dependency-graph.json.ts), enriched with source-map existence from [data/lesson-sources.json](data/lesson-sources.json); human notes live in [reference/lesson-dependencies.md](reference/lesson-dependencies.md). |
+| Polished lessons | MDX files under [src/content/lessons](src/content/lessons/) rendered by [src/pages/lessons](src/pages/lessons/). |
+| Raw transcripts | [lessons/transcripts](lessons/transcripts/) for Lessons 1-25. Treat as source material until reviewed. |
+| Notability PDFs | [artifacts/notability-pdfs](artifacts/notability-pdfs/) for Lessons 2-26. Treat as handwritten source artifacts, especially for exercise review. |
+| Notation | Local lesson symbol tables first; recurring notation in [reference/symbol-table.md](reference/symbol-table.md) and [reference/notation.md](reference/notation.md). |
+| Glossary and reference | Short definitions in [reference/glossary.md](reference/glossary.md); expanded concept cards in [reference/mathematical-vocabulary.md](reference/mathematical-vocabulary.md). |
+| Learning observations | New durable entries under [learning-journal](learning-journal/); older preserved notes in [learning-journal.md](learning-journal.md) and [journal/learning-journal.md](journal/learning-journal.md). |
 
 ## Current Course State
 
@@ -103,13 +134,13 @@ The canonical state is [course-state.yaml](course-state.yaml). As of the latest 
 
 Forward polished lessons live under [src/content/lessons](src/content/lessons/). Raw exported Markdown transcripts for Lessons 1-25 live under [lessons/transcripts](lessons/transcripts/) and should be treated as source material until reviewed.
 
-Handwritten Notability PDFs for Lessons 2-25 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/).
+Handwritten Notability PDFs for Lessons 2-26 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/). The PDFs are source artifacts, not proof that a polished lesson is complete.
 
 ## Historical Notability PDF Import
 
 See [`docs/drive-pdf-import.md`](docs/drive-pdf-import.md).
 
-The committed Notability PDFs cover Lessons 2 through 25. The Google Drive importer was a one-time bootstrap path for getting source artifacts into the repo, not an ongoing synchronization workflow.
+The committed Notability PDFs cover Lessons 2 through 26. The Google Drive importer was a one-time bootstrap path for getting source artifacts into the repo, not an ongoing synchronization workflow.
 
 ## Development Commands
 

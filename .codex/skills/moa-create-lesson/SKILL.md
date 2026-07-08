@@ -19,15 +19,18 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - If the lesson topic, audience, and source context are clear, finish the lesson to a coherent draft or review-ready stopping point instead of waiting for another prompt.
 
 2. Read project state.
+   - `START_HERE.md`
    - `README.md`
    - `course-state.yaml`
+   - `docs/new-lesson-bootstrap.md`
    - `curriculum.md`
    - `curriculum/roadmap.md`
    - `data/lesson-sources.json`
    - `reference/notation.md`, `reference/glossary.md`, and existing learning notes when the lesson introduces notation, vocabulary, or durable learning observations.
 
 3. Use the forward lesson shape.
-   - If the dynamic lesson platform exists, create or edit `content/lessons/lesson-NNN-slug.mdx`.
+   - If `data/lesson-sources.json` already has a `dynamic_page` for the active or requested lesson, continue that page instead of asking for a PDF or transcript.
+   - If the dynamic lesson platform exists, create or edit `src/content/lessons/lesson-NNN-slug.mdx`.
    - If the platform does not exist and the task requires a dynamic page, scaffold the smallest Astro/MDX vertical slice first.
    - Keep lesson metadata close to the page and mirror it in `data/lesson-sources.json` only for cross-repo indexing.
 
@@ -41,6 +44,8 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
 5. Wire artifacts.
    - Link Notability PDFs under `artifacts/notability-pdfs/lesson-NNN-slug.pdf`.
    - Use `notability_pdf` for one artifact and `notability_pdfs` for several in `data/lesson-sources.json`.
+   - Use `transcript: null` when no raw transcript exists yet.
+   - Use `dynamic_page: src/content/lessons/lesson-NNN-slug.mdx` for the forward MDX page.
    - Use `status: draft`, `raw_export`, `reviewed`, or `published` consistently.
 
 6. Validate.
@@ -57,6 +62,7 @@ Read `references/lesson-schema.md` when adding frontmatter, `data/lesson-sources
 
 - Do not spend effort polishing the whole historical archive unless the user asks.
 - Do not publish raw transcripts as polished lessons.
+- Do not ask Jason for a PDF to start or continue a lesson; use local PDFs only for exercise review, handwritten-work review, or source verification after checking the repo.
 - Redact private app links and private-ish chatter from polished pages.
 - Keep the lesson page useful without the widget; widgets enhance, they do not carry the explanation.
 - Do not stop at an outline when enough information exists to create the actual lesson artifact.

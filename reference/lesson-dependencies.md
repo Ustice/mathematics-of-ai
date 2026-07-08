@@ -2,6 +2,8 @@
 
 This map uses the available transcript titles and the high-level course progression. TODO: refine each entry as transcripts are converted into edited canonical lesson notes.
 
+For machine-readable dependency data, generate from MDX frontmatter instead of duplicating prerequisites here. The site endpoint at `src/pages/data/lesson-dependency-graph.json.ts` reads `prerequisites` from `src/content/lessons/*.mdx` and enriches edges with source-map existence from `data/lesson-sources.json`.
+
 ## Lesson 1 — Vectors
 
 Requires: Coordinate intuition and basic arithmetic.
@@ -201,3 +203,27 @@ Requires: Model complexity, regularization, training versus inference distinctio
 Introduces: Dropout, random activation masking, ensemble intuition, reducing co-adaptation.
 
 Used later in: Deep learning generalization, neural network training practice.
+
+## Lesson 26 — Gradient Descent
+
+Requires: Loss functions, regularization, early stopping, dropout, vectors, dot products, and parameter-vector intuition.
+
+Introduces: Gradient descent, local loss landscapes, uphill gradients, downhill updates, learning rate, convergence intuition, and conditioning.
+
+Used later in: SGD, momentum, adaptive optimizers, neural network training, backpropagation, and paper implementations.
+
+## Lesson 27 — Stochastic Gradient Descent
+
+Requires: Loss functions and gradient descent.
+
+Introduces: Full-batch gradients, stochastic gradients, mini-batches, unbiased gradient estimates, batch size tradeoffs, and epochs.
+
+Used later in: Momentum, Adam, neural network training loops, and large-scale optimization.
+
+## Lesson 28 — Momentum
+
+Requires: Gradient descent and stochastic gradient descent.
+
+Introduces: Velocity, momentum coefficient, persistent downhill directions, reduced oscillation, and the distinction between learning rate and momentum.
+
+Used later in: Adam, adaptive optimizers, and optimizer diagnostics.

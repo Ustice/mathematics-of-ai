@@ -4,6 +4,18 @@ This tracker records progress through the polished learning program. Existing tr
 
 ## Milestones
 
+Milestones are evidence gates, not lesson-order instructions. A milestone should be marked complete only when the repo contains enough lesson, exercise, implementation, or paper-reading artifacts to support it.
+
+| Capability | Evidence gate |
+| --- | --- |
+| Linear Algebra | PCA from first principles. |
+| Statistical Modeling | Likelihood, MAP, predictive distributions, and regularized objectives. |
+| Optimization | Gradient descent, SGD, momentum, optimizer behavior, and training loops. |
+| Neural Networks | Small neural network from scratch. |
+| Information Theory | Entropy, cross entropy, KL divergence, and mutual information in objectives. |
+| Transformers | Attention and a minimal transformer block. |
+| Paper Reading | Classic transformer reproduction, followed by an independent recent-paper critique. |
+
 - [ ] M1: Implement PCA and logistic regression.
 - [ ] M2: Build a small neural network from scratch.
 - [ ] M3: Implement reverse-mode automatic differentiation.

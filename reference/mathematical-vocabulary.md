@@ -1,6 +1,6 @@
 # Mathematical Vocabulary
 
-This glossary is a compact reference, not a textbook. Each entry should stay short enough to resolve meaning during a lesson.
+These expanded concept cards preserve definitions, dependencies, intuition, and later uses. Promote durable short definitions to [glossary.md](glossary.md).
 
 ## Vector
 

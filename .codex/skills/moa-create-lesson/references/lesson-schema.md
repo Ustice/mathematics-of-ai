@@ -7,16 +7,14 @@ Use these fields for new dynamic lesson pages and source-map entries.
 ```yaml
 lesson: 26
 title: Gradient Descent
-slug: gradient-descent
+slug: lesson-026-gradient-descent
+description: Gradient descent as a local movement rule for minimizing loss functions.
 phase: Optimization and Calculus for Machine Learning
 status: draft
-source_transcript: lessons/transcripts/lesson-026-gradient-descent.md
-notability_pdfs:
-  - artifacts/notability-pdfs/lesson-026-gradient-descent.pdf
 objectives:
   - Explain the local slope intuition behind gradient descent.
 symbols:
-  - symbol: "\\eta"
+  - symbol: "η"
     meaning: Learning rate
 prerequisites:
   - lesson: 17
@@ -25,13 +23,15 @@ widgets:
   - gradient-descent-path
 ```
 
+Do not put transcript or PDF paths in page frontmatter. Keep those in `data/lesson-sources.json`.
+
 ## Source Map Fields
 
 - `lesson`: numeric lesson identifier when the lesson is real and exported.
 - `title`: display title.
 - `chat`: source conversation label, if any.
-- `transcript`: raw transcript path, or omit until the transcript exists.
-- `dynamic_page`: polished page path when available.
+- `transcript`: raw transcript path, or `null` when no transcript exists.
+- `dynamic_page`: forward MDX page path when available.
 - `notability_pdf`: single PDF artifact path.
 - `notability_pdfs`: several PDF artifact paths.
 - `status`: `draft`, `raw_export`, `reviewed`, or `published`.
