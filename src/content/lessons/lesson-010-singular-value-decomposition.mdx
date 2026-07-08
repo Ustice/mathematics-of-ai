@@ -44,7 +44,7 @@ Understand the singular value decomposition as a universal description of what a
 
 > rotate or reflect, stretch independently along orthogonal axes, then rotate or reflect again.
 
-By the end of the lesson, you should be able to read \(A = UΣV^T\) as geometry rather than as a memorized factorization.
+By the end of the lesson, you should be able to read $A = UΣV^T$ as geometry rather than as a memorized factorization.
 
 ## Motivation
 
@@ -68,13 +68,13 @@ That is why SVD is one of the most useful theorems in applied linear algebra. It
 
 | Symbol | Plain-English name | Meaning |
 | --- | --- | --- |
-| \(A\) | matrix | The linear map being decomposed. |
-| \(U\) | left orthogonal factor | The output-side orthogonal matrix. |
-| \(Σ\) | diagonal singular-value matrix | The matrix of nonnegative stretch factors. |
-| \(V^T\) | right orthogonal factor | The input-side orthogonal matrix transpose. |
-| \(σ_i\) | singular value | The i-th nonnegative scale factor. |
-| \(u_i\) | left singular vector | A column of \(U\). |
-| \(v_i\) | right singular vector | A column of \(V\). |
+| $A$ | matrix | The linear map being decomposed. |
+| $U$ | left orthogonal factor | The output-side orthogonal matrix. |
+| $Σ$ | diagonal singular-value matrix | The matrix of nonnegative stretch factors. |
+| $V^T$ | right orthogonal factor | The input-side orthogonal matrix transpose. |
+| $σ_i$ | singular value | The i-th nonnegative scale factor. |
+| $u_i$ | left singular vector | A column of $U$. |
+| $v_i$ | right singular vector | A column of $V$. |
 
 ## Core Ideas
 
@@ -94,9 +94,9 @@ It is a geometric description of the transformation.
 
 Think of the action on a vector in three steps:
 
-1. \(V^T\) changes coordinates into the matrix's preferred input basis.
-2. \(Σ\) stretches each coordinate independently.
-3. \(U\) rotates or reflects the result into the output orientation.
+1. $V^T$ changes coordinates into the matrix's preferred input basis.
+2. $Σ$ stretches each coordinate independently.
+3. $U$ rotates or reflects the result into the output orientation.
 
 That is the rotate-stretch-rotate picture.
 
@@ -104,7 +104,7 @@ The preferred basis is determined by the matrix itself, not chosen arbitrarily.
 
 ### Why the middle matrix is diagonal
 
-The singular values live on the diagonal of \(Σ\).
+The singular values live on the diagonal of $Σ$.
 
 Because the matrix is diagonal in that middle basis, there is no mixing between coordinates there.
 
@@ -114,9 +114,9 @@ That is exactly the simplification we wanted.
 
 ### Where the basis comes from
 
-The columns of \(V\) are the eigenvectors of \(A^TA\).
+The columns of $V$ are the eigenvectors of $A^TA$.
 
-The columns of \(U\) are the eigenvectors of \(AA^T\).
+The columns of $U$ are the eigenvectors of $AA^T$.
 
 Those matrices are symmetric, so their eigenvectors can be chosen orthonormal.
 
@@ -124,11 +124,11 @@ That orthogonality is what makes the decomposition clean.
 
 ### Why the squares matter
 
-In PCA and related "variance explained" calculations, the important quantity is not \(σ_i\) but \(σ_i^2\).
+In PCA and related "variance explained" calculations, the important quantity is not $σ_i$ but $σ_i^2$.
 
 Stretch by 10 does not mean "10 times more energy." It means "100 times more squared energy."
 
-So if the singular values are \(100\), \(20\), and \(1\), the relative contributions are proportional to
+So if the singular values are $100$, $20$, and $1$, the relative contributions are proportional to
 
 $$
 100^2,\quad 20^2,\quad 1^2.
@@ -200,7 +200,7 @@ That means the transformation loses a dimension and cannot be inverted.
 
 ### Energy share example
 
-Suppose the singular values are \(100\), \(20\), and \(1\).
+Suppose the singular values are $100$, $20$, and $1$.
 
 The squared values are
 
@@ -214,7 +214,7 @@ $$
 10401.
 $$
 
-So the first component accounts for about \(96.1\%\) of the energy.
+So the first component accounts for about $96.1\%$ of the energy.
 
 That is why a rank-1 approximation can be so effective when one singular value dominates.
 
@@ -238,23 +238,23 @@ That makes SVD the practical engine behind many PCA implementations.
 
 ## Common Confusions
 
-- \(V^T\) does not rotate into the original basis. It rotates into the matrix's preferred input basis.
-- Singular values are not eigenvalues, though they are related through \(A^TA\) and \(AA^T\).
-- The values that matter for variance are \(σ_i^2\), not \(σ_i\).
-- \(U\) and \(V\) can include reflections, not only rotations.
+- $V^T$ does not rotate into the original basis. It rotates into the matrix's preferred input basis.
+- Singular values are not eigenvalues, though they are related through $A^TA$ and $AA^T$.
+- The values that matter for variance are $σ_i^2$, not $σ_i$.
+- $U$ and $V$ can include reflections, not only rotations.
 - Every real matrix has an SVD, even if it is not square.
 
 ## Exercises
 
 1. Describe the three stages of the SVD in plain English.
 
-2. If \(Σ = \operatorname{diag}(5, 2)\), what happens to a vector on each principal axis?
+2. If $Σ = \operatorname{diag}(5, 2)$, what happens to a vector on each principal axis?
 
 3. What does a singular value of zero mean geometrically?
 
-4. Why are the eigenvectors of \(A^TA\) orthogonal?
+4. Why are the eigenvectors of $A^TA$ orthogonal?
 
-5. If the singular values are \(100\), \(20\), and \(1\), what fraction of the energy does the first component capture?
+5. If the singular values are $100$, $20$, and $1$, what fraction of the energy does the first component capture?
 
 ## Implementation Exercise
 
@@ -278,7 +278,7 @@ That exercise reinforces the main SVD lesson: the squares are what matter for ex
 
 ## Reflection Questions
 
-- What basis is \(V^T\) choosing, and why does the matrix prefer it?
+- What basis is $V^T$ choosing, and why does the matrix prefer it?
 - Why does the middle factor have to be diagonal?
 - What does a zero singular value do to the dimension of the output?
 - Why do the squares matter when talking about explained variance?

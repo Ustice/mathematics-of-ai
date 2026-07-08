@@ -40,9 +40,9 @@ widgets: []
 
 ## Goal
 
-Understand the special directions in which a linear map acts like scalar multiplication, and learn how to recognize them from the equation \(Av = λv\).
+Understand the special directions in which a linear map acts like scalar multiplication, and learn how to recognize them from the equation $Av = λv$.
 
-By the end of the lesson, you should be able to say, in plain language, what an eigenvector is, what an eigenvalue is, and why the determinant condition \(det(A - λI) = 0\) appears.
+By the end of the lesson, you should be able to say, in plain language, what an eigenvector is, what an eigenvalue is, and why the determinant condition $det(A - λI) = 0$ appears.
 
 ## Motivation
 
@@ -69,12 +69,12 @@ The idea matters because repeated application of a matrix becomes easy along tho
 
 | Symbol | Plain-English name | Meaning |
 | --- | --- | --- |
-| \(A\) | matrix | A square matrix or linear transformation acting on vectors. |
-| \(v\) | vector | A candidate eigenvector; it must be nonzero. |
-| \(\lambda\) | eigenvalue | The scalar factor by which \(A\) stretches or flips \(v\). |
-| \(I\) | identity matrix | The matrix that leaves vectors unchanged. |
-| \(Av = λv\) | eigenvector equation | The defining relationship for an eigenpair. |
-| \(\det(A - λI)\) | characteristic determinant | The polynomial condition used to find eigenvalues. |
+| $A$ | matrix | A square matrix or linear transformation acting on vectors. |
+| $v$ | vector | A candidate eigenvector; it must be nonzero. |
+| $\lambda$ | eigenvalue | The scalar factor by which $A$ stretches or flips $v$. |
+| $I$ | identity matrix | The matrix that leaves vectors unchanged. |
+| $Av = λv$ | eigenvector equation | The defining relationship for an eigenpair. |
+| $\det(A - λI)$ | characteristic determinant | The polynomial condition used to find eigenvalues. |
 
 ## Core Ideas
 
@@ -82,13 +82,13 @@ The idea matters because repeated application of a matrix becomes easy along tho
 
 If a matrix sends a vector back onto the same line, that vector is special.
 
-Formally, a nonzero vector \(v\) is an eigenvector of \(A\) if
+Formally, a nonzero vector $v$ is an eigenvector of $A$ if
 
 $$
 Av = λv
 $$
 
-for some scalar \(λ\).
+for some scalar $λ$.
 
 Read this as:
 
@@ -112,7 +112,7 @@ Eigenvectors are one of the cleanest examples of that pattern.
 
 ### Repeated application becomes easy
 
-If \(Av = λv\), then applying \(A\) again gives
+If $Av = λv$, then applying $A$ again gives
 
 $$
 A(Av) = A(λv) = λAv = λ^2v.
@@ -142,13 +142,13 @@ $$
 Av - λv = 0.
 $$
 
-Factor out \(v\) by writing \(λv\) as \(λIv\):
+Factor out $v$ by writing $λv$ as $λIv$:
 
 $$
 (A - λI)v = 0.
 $$
 
-A nonzero solution exists only when \(A - λI\) is singular. Therefore:
+A nonzero solution exists only when $A - λI$ is singular. Therefore:
 
 $$
 det(A - λI) = 0.
@@ -160,9 +160,9 @@ That is the characteristic equation.
 
 The determinant detects when a square matrix fails to be invertible.
 
-If \(A - λI\) has a nonzero vector in its kernel, then it cannot be invertible, so its determinant must be zero.
+If $A - λI$ has a nonzero vector in its kernel, then it cannot be invertible, so its determinant must be zero.
 
-This is the algebraic bridge from the eigenvector equation to a polynomial equation in \(λ\).
+This is the algebraic bridge from the eigenvector equation to a polynomial equation in $λ$.
 
 ## Worked Example
 
@@ -176,7 +176,7 @@ A =
 \end{bmatrix}.
 $$
 
-We look for \(λ\) such that
+We look for $λ$ such that
 
 $$
 det(A - λI) = 0.
@@ -212,9 +212,9 @@ $$
 λ^2 - 7λ + 10 = (λ - 5)(λ - 2).
 $$
 
-So the eigenvalues are \(5\) and \(2\).
+So the eigenvalues are $5$ and $2$.
 
-Now find an eigenvector for \(λ = 5\):
+Now find an eigenvector for $λ = 5$:
 
 $$
 (A - 5I)v = 0
@@ -234,7 +234,7 @@ y
 = 0.
 $$
 
-The first row says \(-x + y = 0\), so \(x = y\).
+The first row says $-x + y = 0$, so $x = y$.
 
 One eigenvector is
 
@@ -267,9 +267,9 @@ A
 \end{bmatrix}.
 $$
 
-The same direction comes out, scaled by \(5\).
+The same direction comes out, scaled by $5$.
 
-For \(λ = 2\), the equation becomes \(2x + y = 0\), so one eigenvector is
+For $λ = 2$, the equation becomes $2x + y = 0$, so one eigenvector is
 
 $$
 \begin{bmatrix}
@@ -306,8 +306,8 @@ The lesson to keep is simple:
 - An eigenvector is not any vector. It must be nonzero.
 - An eigenvalue can be negative, zero, or positive.
 - Not every matrix has a full set of real eigenvectors.
-- The equation \(Av = λv\) describes a direction, not a point.
-- Repeated application uses powers of \(λ\), not repeated matrix multiplication in the same complicated way.
+- The equation $Av = λv$ describes a direction, not a point.
+- Repeated application uses powers of $λ$, not repeated matrix multiplication in the same complicated way.
 
 ## Exercises
 
@@ -327,11 +327,11 @@ Work through these without rushing.
 
 2. Give one eigenvector for each eigenvalue above.
 
-3. If \(Av = 7v\), what is \(A^5v\)?
+3. If $Av = 7v$, what is $A^5v$?
 
-4. Explain why \(det(A - λI) = 0\) must hold if \(λ\) is an eigenvalue.
+4. Explain why $det(A - λI) = 0$ must hold if $λ$ is an eigenvalue.
 
-5. Suppose a covariance matrix has eigenvalues \(100\), \(12\), \(3\), and \(0.4\). What does that suggest about the data, and what would PCA do with it?
+5. Suppose a covariance matrix has eigenvalues $100$, $12$, $3$, and $0.4$. What does that suggest about the data, and what would PCA do with it?
 
 ## Implementation Exercise
 
@@ -352,16 +352,16 @@ type EigencheckResult = {
 
 The helper should:
 
-- compute \(Av\),
-- estimate the scalar \(λ\) from a nonzero component of \(v\),
-- verify whether \(Av\) is close to \(λv\),
+- compute $Av$,
+- estimate the scalar $λ$ from a nonzero component of $v$,
+- verify whether $Av$ is close to $λv$,
 - return the residual so the caller can inspect the mismatch.
 
 That keeps the exercise close to the lesson: test the defining equation directly.
 
 ## Reflection Questions
 
-- What changed in your mind when you first saw \(Av = λv\)?
+- What changed in your mind when you first saw $Av = λv$?
 - Why is repeated application of a matrix easier along an eigenvector?
 - Which step in the derivation made the determinant appear naturally?
 - Where do eigenvectors act as a coordinate system for a problem?

@@ -67,18 +67,18 @@ Projection is the clean answer.
 
 | Symbol | Plain-English name | Meaning |
 | --- | --- | --- |
-| \(u\) | direction vector | The vector whose span we project onto. |
-| \(v\) | target vector | The vector being projected. |
-| \(\operatorname{proj}_u(v)\) | projection | The closest point to \(v\) on the line through \(u\). |
-| \(e\) | residual | The difference \(v - \operatorname{proj}_u(v)\). |
-| \(A\) | matrix | A matrix whose columns span a subspace. |
-| \(\mathrm{col}(A)\) | column space | The subspace reached by all vectors of the form \(Ax\). |
+| $u$ | direction vector | The vector whose span we project onto. |
+| $v$ | target vector | The vector being projected. |
+| $\operatorname{proj}_u(v)$ | projection | The closest point to $v$ on the line through $u$. |
+| $e$ | residual | The difference $v - \operatorname{proj}_u(v)$. |
+| $A$ | matrix | A matrix whose columns span a subspace. |
+| $\mathrm{col}(A)$ | column space | The subspace reached by all vectors of the form $Ax$. |
 
 ## Core Ideas
 
 ### Projection onto a line
 
-If \(u\) is a direction vector, then the projection of \(v\) onto the line spanned by \(u\) is
+If $u$ is a direction vector, then the projection of $v$ onto the line spanned by $u$ is
 
 $$
 \operatorname{proj}_u(v) = \frac{v \cdot u}{u \cdot u}u.
@@ -86,8 +86,8 @@ $$
 
 This formula says:
 
-1. Measure how much of \(v\) points along \(u\).
-2. Scale \(u\) by that amount.
+1. Measure how much of $v$ points along $u$.
+2. Scale $u$ by that amount.
 3. Use that scaled vector as the closest point on the line.
 
 ### Why the residual is orthogonal
@@ -106,19 +106,19 @@ So the residual is perpendicular to the line or subspace you projected onto.
 
 ### Projection onto a subspace
 
-For a subspace spanned by several columns of a matrix \(A\), the same idea holds.
+For a subspace spanned by several columns of a matrix $A$, the same idea holds.
 
-We want the point in \(\mathrm{col}(A)\) closest to \(b\).
+We want the point in $\mathrm{col}(A)$ closest to $b$.
 
-That closest point is the projection of \(b\) onto \(\mathrm{col}(A)\).
+That closest point is the projection of $b$ onto $\mathrm{col}(A)$.
 
-The residual must be orthogonal to every column of \(A\).
+The residual must be orthogonal to every column of $A$.
 
 That geometric condition becomes the algebraic condition used in least squares.
 
 ### The preview of the matrix formula
 
-If the columns of \(A\) are independent, the projection onto the column space can be written as
+If the columns of $A$ are independent, the projection onto the column space can be written as
 
 $$
 P = A(A^TA)^{-1}A^T.
@@ -234,15 +234,15 @@ Projection is the mathematical word for "closest match in a subspace."
    \end{bmatrix}.
    $$
 
-   Compute \(\operatorname{proj}_u(v)\).
+   Compute $\operatorname{proj}_u(v)$.
 
-2. Using your answer from Exercise 1, compute the residual \(e\) and verify that \(e \cdot u = 0\).
+2. Using your answer from Exercise 1, compute the residual $e$ and verify that $e \cdot u = 0$.
 
 3. Explain, in your own words, why the shortest path from a point to a plane must meet the plane at a right angle.
 
 4. Why is minimizing squared error a better goal than demanding zero error when the data is noisy?
 
-5. If \(u = \begin{bmatrix}3 \\ 4\end{bmatrix}\), what is \(\operatorname{proj}_u(u)\)?
+5. If $u = \begin{bmatrix}3 \\ 4\end{bmatrix}$, what is $\operatorname{proj}_u(u)$?
 
 ## Implementation Exercise
 

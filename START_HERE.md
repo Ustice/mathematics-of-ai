@@ -23,7 +23,7 @@ Read these before asking Jason for source material:
 - `data/lesson-sources.json` is the machine-readable map for transcripts, local Notability PDFs, draft lesson pages, and lesson status.
 - `src/content/lessons/` is the forward path for polished or draft MDX lessons.
 - `src/pages/data/lesson-dependency-graph.json.ts` generates the MDX prerequisite graph from frontmatter and enriches it with source-map existence.
-- `lessons/transcripts/` preserves raw transcript source material for Lessons 1-25.
+- `lessons/transcripts/` preserves raw transcript source material for Lessons 1-25; corresponding MDX pages live under `src/content/lessons/`.
 - `artifacts/notability-pdfs/` preserves local handwritten PDF source artifacts for Lessons 2-26.
 - `reference/` is the current authority for notation, glossary, symbol tables, vocabulary, dependency notes, and teaching references.
 

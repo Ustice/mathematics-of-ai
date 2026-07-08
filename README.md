@@ -125,7 +125,7 @@ Preserved historical and source material:
 | Lesson sequence | [curriculum/roadmap.md](curriculum/roadmap.md) and [curriculum/progress-tracker.md](curriculum/progress-tracker.md), with per-lesson artifact status in [data/lesson-sources.json](data/lesson-sources.json). |
 | Lesson dependencies | Generated as an MDX prerequisite graph by [src/pages/data/lesson-dependency-graph.json.ts](src/pages/data/lesson-dependency-graph.json.ts), enriched with source-map existence from [data/lesson-sources.json](data/lesson-sources.json); human notes live in [reference/lesson-dependencies.md](reference/lesson-dependencies.md). |
 | Polished lessons | MDX files under [src/content/lessons](src/content/lessons/) rendered by [src/pages/lessons](src/pages/lessons/). |
-| Raw transcripts | [lessons/transcripts](lessons/transcripts/) for Lessons 1-25. Treat as source material until reviewed. |
+| Raw transcripts | [lessons/transcripts](lessons/transcripts/) for Lessons 1-25. Preserve as source artifacts for audit and future revision. |
 | Notability PDFs | [artifacts/notability-pdfs](artifacts/notability-pdfs/) for Lessons 2-26. Treat as handwritten source artifacts, especially for exercise review. |
 | Notation | Local lesson symbol tables first; recurring notation in [reference/symbol-table.md](reference/symbol-table.md) and [reference/notation.md](reference/notation.md). |
 | Glossary and reference | Short definitions in [reference/glossary.md](reference/glossary.md); expanded concept cards in [reference/mathematical-vocabulary.md](reference/mathematical-vocabulary.md). |
@@ -135,7 +135,7 @@ Preserved historical and source material:
 
 The canonical state is [course-state.yaml](course-state.yaml). As of the latest update, Lessons 1-28 are complete and the next topic is Adam.
 
-Forward polished lessons live under [src/content/lessons](src/content/lessons/). Raw exported Markdown transcripts for Lessons 1-25 live under [lessons/transcripts](lessons/transcripts/) and should be treated as source material until reviewed.
+Forward polished and draft lessons live under [src/content/lessons](src/content/lessons/). Lessons 1-25 now have MDX lesson pages generated from the raw exported Markdown transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved as source artifacts.
 
 Handwritten Notability PDFs for Lessons 2-26 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/). The PDFs are source artifacts, not proof that a polished lesson is complete.
 

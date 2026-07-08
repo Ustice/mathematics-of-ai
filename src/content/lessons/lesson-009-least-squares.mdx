@@ -68,13 +68,13 @@ That is the backbone of linear regression and a large number of related fitting 
 
 | Symbol | Plain-English name | Meaning |
 | --- | --- | --- |
-| \(A\) | design matrix | The matrix that turns parameters into predictions. |
-| \(x\) | parameter vector | The coefficients we want to fit. |
-| \(b\) | observation vector | The data we are trying to match. |
-| \(\hat{x}\) | least-squares solution | The best-fit parameter vector. |
-| \(e\) | residual | The difference \(b - A\hat{x}\). |
-| \(A^TA\) | normal-equation matrix | The square matrix that appears after projecting. |
-| \(A^Tb\) | projected right-hand side | The data vector expressed in the normal equations. |
+| $A$ | design matrix | The matrix that turns parameters into predictions. |
+| $x$ | parameter vector | The coefficients we want to fit. |
+| $b$ | observation vector | The data we are trying to match. |
+| $\hat{x}$ | least-squares solution | The best-fit parameter vector. |
+| $e$ | residual | The difference $b - A\hat{x}$. |
+| $A^TA$ | normal-equation matrix | The square matrix that appears after projecting. |
+| $A^Tb$ | projected right-hand side | The data vector expressed in the normal equations. |
 
 ## Core Ideas
 
@@ -88,11 +88,11 @@ For noisy data, exact agreement is usually the wrong target.
 
 ### Least squares as a projection problem
 
-The vector \(Ax\) always lives in the column space of \(A\).
+The vector $Ax$ always lives in the column space of $A$.
 
-If \(b\) is not in that space, there is no exact solution to \(Ax = b\).
+If $b$ is not in that space, there is no exact solution to $Ax = b$.
 
-So we ask for the point in \(\mathrm{col}(A)\) closest to \(b\).
+So we ask for the point in $\mathrm{col}(A)$ closest to $b$.
 
 That is a projection problem.
 
@@ -102,7 +102,7 @@ $$
 e = b - A\hat{x}
 $$
 
-must be orthogonal to every column of \(A\).
+must be orthogonal to every column of $A$.
 
 ### The normal equations
 
@@ -120,7 +120,7 @@ $$
 
 Those are the normal equations.
 
-If the columns of \(A\) are linearly independent, then \(A^TA\) is invertible and we can solve
+If the columns of $A$ are linearly independent, then $A^TA$ is invertible and we can solve
 
 $$
 \hat{x} = (A^TA)^{-1}A^Tb.
@@ -223,18 +223,18 @@ That is what a good least-squares fit looks like.
 
 Least squares is the ancestor of linear regression.
 
-If each row of \(A\) describes an example and each entry of \(b\) is a target value, then \(\hat{x}\) is the parameter vector that best predicts the targets in the least-squares sense.
+If each row of $A$ describes an example and each entry of $b$ is a target value, then $\hat{x}$ is the parameter vector that best predicts the targets in the least-squares sense.
 
 That matrix form shows up constantly in machine learning papers.
 
-Whenever you see \(X^TX\), a projection problem is usually hiding underneath.
+Whenever you see $X^TX$, a projection problem is usually hiding underneath.
 
 ## Common Confusions
 
 - Least squares does not mean "make every error zero." It means "minimize the sum of squared errors."
 - The residual is orthogonal to the column space, not necessarily to the raw data points.
 - Overdetermined does not mean impossible; it means exact consistency is unlikely.
-- \(A^TA\) is square, but that does not automatically make it well-conditioned.
+- $A^TA$ is square, but that does not automatically make it well-conditioned.
 - The solution is geometric before it is algebraic.
 
 ## Exercises
@@ -243,15 +243,15 @@ Whenever you see \(X^TX\), a projection problem is usually hiding underneath.
 
 2. In one sentence, what geometric operation is least squares performing?
 
-3. If \(\hat{x}\) is the best approximation, what must be true about the residual \(e = b - A\hat{x}\)?
+3. If $\hat{x}$ is the best approximation, what must be true about the residual $e = b - A\hat{x}$?
 
-4. If \(A\) is \(10 \times 3\), what are the dimensions of \(A^T\), \(A^TA\), and \(A^Tb\)?
+4. If $A$ is $10 \times 3$, what are the dimensions of $A^T$, $A^TA$, and $A^Tb$?
 
-5. Starting from \(A^T(b - Ax) = 0\), derive the normal equations.
+5. Starting from $A^T(b - Ax) = 0$, derive the normal equations.
 
 ## Implementation Exercise
 
-Write a TypeScript helper that fits a line \(y = ax + b\) to a set of 2D points using the normal equations.
+Write a TypeScript helper that fits a line $y = ax + b$ to a set of 2D points using the normal equations.
 
 A simple API could look like this:
 
@@ -268,7 +268,7 @@ function fitLineLeastSquares(points: Point[]): LineFit;
 
 The implementation should:
 
-- accumulate the sums needed for \(A^TA\) and \(A^Tb\),
+- accumulate the sums needed for $A^TA$ and $A^Tb$,
 - solve the resulting 2x2 system,
 - return the slope and intercept.
 

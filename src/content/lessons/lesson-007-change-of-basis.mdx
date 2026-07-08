@@ -67,12 +67,12 @@ That is why basis changes matter in machine learning. PCA is one of the clearest
 
 | Symbol | Plain-English name | Meaning |
 | --- | --- | --- |
-| \(e_1, e_2\) | standard basis vectors | The usual coordinate axes in \(\mathbb{R}^2\). |
-| \(u_1, u_2\) | alternate basis vectors | A different set of coordinate directions for the same space. |
-| \(Q\) | orthogonal matrix | A matrix whose columns are orthonormal basis vectors. |
-| \(Q^T\) | transpose of Q | For orthogonal \(Q\), the inverse transformation. |
-| \(u \cdot v\) | dot product | A test for orthogonality. |
-| \(I\) | identity matrix | The matrix that leaves vectors unchanged. |
+| $e_1, e_2$ | standard basis vectors | The usual coordinate axes in $\mathbb{R}^2$. |
+| $u_1, u_2$ | alternate basis vectors | A different set of coordinate directions for the same space. |
+| $Q$ | orthogonal matrix | A matrix whose columns are orthonormal basis vectors. |
+| $Q^T$ | transpose of Q | For orthogonal $Q$, the inverse transformation. |
+| $u \cdot v$ | dot product | A test for orthogonality. |
+| $I$ | identity matrix | The matrix that leaves vectors unchanged. |
 
 ## Core Ideas
 
@@ -114,7 +114,7 @@ e_2 =
 \end{bmatrix}.
 $$
 
-Any vector in \(\mathbb{R}^2\) can be written as a linear combination of those two directions.
+Any vector in $\mathbb{R}^2$ can be written as a linear combination of those two directions.
 
 But we could choose a different pair, such as
 
@@ -154,7 +154,7 @@ Orthonormal bases are even better because the algebra becomes especially clean.
 
 ### Orthogonal matrices
 
-If the columns of a matrix \(Q\) form an orthonormal basis, then
+If the columns of a matrix $Q$ form an orthonormal basis, then
 
 $$
 Q^TQ = I.
@@ -172,13 +172,13 @@ Instead of solving for an inverse with general linear algebra, we can just trans
 
 ### Change of basis formula
 
-If the columns of \(Q\) are the new basis vectors, then the coordinates of a vector \(x\) in that basis are
+If the columns of $Q$ are the new basis vectors, then the coordinates of a vector $x$ in that basis are
 
 $$
 Q^Tx
 $$
 
-when \(Q\) is orthogonal.
+when $Q$ is orthogonal.
 
 If the basis is not orthonormal, you still change coordinates, but you need the full inverse instead of the transpose.
 
@@ -190,7 +190,7 @@ Eigenvectors of a covariance matrix are perpendicular.
 
 After normalization, they become an orthonormal basis.
 
-If you place them into a matrix \(Q\), then \(Q^Tx\) expresses each data point in a new coordinate system where the directions are uncoupled and ordered by variance.
+If you place them into a matrix $Q$, then $Q^Tx$ expresses each data point in a new coordinate system where the directions are uncoupled and ordered by variance.
 
 That is the coordinate system PCA wants.
 
@@ -206,7 +206,7 @@ Q = \frac{1}{\sqrt{2}}
 \end{bmatrix}.
 $$
 
-The columns of \(Q\) are orthonormal, so \(Q^{-1} = Q^T\).
+The columns of $Q$ are orthonormal, so $Q^{-1} = Q^T$.
 
 Take
 
@@ -254,7 +254,7 @@ Nothing moved in space.
 
 Only the description changed.
 
-If we want to recover the original coordinates, we multiply by \(Q\):
+If we want to recover the original coordinates, we multiply by $Q$:
 
 $$
 Q(Q^Tx) = x.
@@ -331,7 +331,7 @@ That is one reason they are so useful in PCA, whitening, numerical linear algebr
    \end{bmatrix}
    $$
 
-   satisfies \(Q^TQ = I\).
+   satisfies $Q^TQ = I$.
 
 5. Suppose your data point is
 
@@ -343,7 +343,7 @@ That is one reason they are so useful in PCA, whitening, numerical linear algebr
    \end{bmatrix}.
    $$
 
-   Compute \(Q^Tx\) using the same matrix \(Q\) above, and interpret the resulting coordinates.
+   Compute $Q^Tx$ using the same matrix $Q$ above, and interpret the resulting coordinates.
 
 ## Implementation Exercise
 
@@ -361,8 +361,8 @@ function transpose(matrix: Matrix2x2): Matrix2x2;
 
 Then use those helpers to implement:
 
-- `toBasis(Q, x)` returning \(Q^Tx\),
-- `fromBasis(Q, coords)` returning \(Q \cdot coords\).
+- `toBasis(Q, x)` returning $Q^Tx$,
+- `fromBasis(Q, coords)` returning $Q \cdot coords$.
 
 The goal is to make the coordinate change explicit instead of magical.
 
@@ -370,7 +370,7 @@ The goal is to make the coordinate change explicit instead of magical.
 
 - What changed when you noticed that coordinates are not the vector itself?
 - Why does an orthonormal basis make coordinate conversion simpler?
-- What is the practical advantage of \(Q^{-1} = Q^T\)?
+- What is the practical advantage of $Q^{-1} = Q^T$?
 - Where in ML would you rather change coordinates than change the data?
 - Which part of the basis-change story still feels easy to forget?
 
