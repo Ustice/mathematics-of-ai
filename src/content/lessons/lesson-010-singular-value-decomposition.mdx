@@ -1,0 +1,291 @@
+---
+description: "Singular value decomposition as the rotate-stretch-rotate factorization of any matrix."
+lesson: 10
+objectives:
+  - Explain the geometric meaning of A = UΣV^T.
+  - Interpret V^T as a change into the matrix's preferred input basis.
+  - Interpret Σ as independent stretching along orthogonal axes.
+  - Interpret U as the final output reorientation.
+  - Use squared singular values to reason about energy and PCA.
+phase: "Linear Algebra for Machine Learning"
+prerequisites:
+  - lesson: 6
+    title: "Eigenvectors and Eigenvalues"
+  - lesson: 7
+    title: "Change of Basis"
+  - lesson: 8
+    title: "Projection"
+  - lesson: 9
+    title: "Least Squares"
+slug: "lesson-010-singular-value-decomposition"
+status: "reviewed"
+symbols:
+  - symbol: "A"
+    meaning: "The matrix being decomposed."
+  - symbol: "U"
+    meaning: "The output-side orthogonal factor in the SVD."
+  - symbol: "Σ"
+    meaning: "The diagonal matrix of singular values."
+  - symbol: "V^T"
+    meaning: "The input-side orthogonal factor in the SVD."
+  - symbol: "σ_i"
+    meaning: "The i-th singular value, a nonnegative scaling factor."
+  - symbol: "u_i"
+    meaning: "A left singular vector, a column of U."
+  - symbol: "v_i"
+    meaning: "A right singular vector, a column of V."
+title: "Singular Value Decomposition"
+widgets: []
+---
+
+## Goal
+
+Understand the singular value decomposition as a universal description of what a matrix does to space:
+
+> rotate or reflect, stretch independently along orthogonal axes, then rotate or reflect again.
+
+By the end of the lesson, you should be able to read \(A = UΣV^T\) as geometry rather than as a memorized factorization.
+
+## Motivation
+
+Eigenvectors work beautifully for some matrices, but not for all matrices.
+
+SVD is the stronger statement.
+
+Every real matrix has an SVD, even if it is rectangular, singular, or awkward.
+
+That is why SVD is one of the most useful theorems in applied linear algebra. It gives a common geometric language for compression, approximation, and dimensionality reduction.
+
+## Prerequisites
+
+- Lesson 6: Eigenvectors and Eigenvalues.
+- Lesson 7: Change of Basis.
+- Lesson 8: Projection.
+- Lesson 9: Least Squares.
+- The idea of orthogonal matrices and diagonal scaling.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| \(A\) | matrix | The linear map being decomposed. |
+| \(U\) | left orthogonal factor | The output-side orthogonal matrix. |
+| \(Σ\) | diagonal singular-value matrix | The matrix of nonnegative stretch factors. |
+| \(V^T\) | right orthogonal factor | The input-side orthogonal matrix transpose. |
+| \(σ_i\) | singular value | The i-th nonnegative scale factor. |
+| \(u_i\) | left singular vector | A column of \(U\). |
+| \(v_i\) | right singular vector | A column of \(V\). |
+
+## Core Ideas
+
+### The factorization
+
+The singular value decomposition writes a matrix as
+
+$$
+A = UΣV^T.
+$$
+
+This is not just a bookkeeping trick.
+
+It is a geometric description of the transformation.
+
+### The three stages
+
+Think of the action on a vector in three steps:
+
+1. \(V^T\) changes coordinates into the matrix's preferred input basis.
+2. \(Σ\) stretches each coordinate independently.
+3. \(U\) rotates or reflects the result into the output orientation.
+
+That is the rotate-stretch-rotate picture.
+
+The preferred basis is determined by the matrix itself, not chosen arbitrarily.
+
+### Why the middle matrix is diagonal
+
+The singular values live on the diagonal of \(Σ\).
+
+Because the matrix is diagonal in that middle basis, there is no mixing between coordinates there.
+
+Each axis is scaled independently.
+
+That is exactly the simplification we wanted.
+
+### Where the basis comes from
+
+The columns of \(V\) are the eigenvectors of \(A^TA\).
+
+The columns of \(U\) are the eigenvectors of \(AA^T\).
+
+Those matrices are symmetric, so their eigenvectors can be chosen orthonormal.
+
+That orthogonality is what makes the decomposition clean.
+
+### Why the squares matter
+
+In PCA and related "variance explained" calculations, the important quantity is not \(σ_i\) but \(σ_i^2\).
+
+Stretch by 10 does not mean "10 times more energy." It means "100 times more squared energy."
+
+So if the singular values are \(100\), \(20\), and \(1\), the relative contributions are proportional to
+
+$$
+100^2,\quad 20^2,\quad 1^2.
+$$
+
+That is the correction that makes PCA and SVD line up with variance.
+
+## Worked Example
+
+Start with the simple diagonal matrix
+
+$$
+A =
+\begin{bmatrix}
+5 & 0 \\
+0 & 2
+\end{bmatrix}.
+$$
+
+In this case, the SVD is especially simple:
+
+$$
+U = I,\qquad Σ =
+\begin{bmatrix}
+5 & 0 \\
+0 & 2
+\end{bmatrix},\qquad V^T = I.
+$$
+
+The matrix just stretches the first axis by 5 and the second axis by 2.
+
+If
+
+$$
+x =
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix},
+$$
+
+then
+
+$$
+Ax =
+\begin{bmatrix}
+5 \\
+2
+\end{bmatrix}.
+$$
+
+That example is simple, but it shows the meaning of the diagonal middle factor.
+
+Now compare that with a rank-deficient case.
+
+If
+
+$$
+Σ =
+\begin{bmatrix}
+5 & 0 \\
+0 & 0
+\end{bmatrix},
+$$
+
+then one direction is completely collapsed.
+
+That means the transformation loses a dimension and cannot be inverted.
+
+### Energy share example
+
+Suppose the singular values are \(100\), \(20\), and \(1\).
+
+The squared values are
+
+$$
+10000,\quad 400,\quad 1.
+$$
+
+Total energy:
+
+$$
+10401.
+$$
+
+So the first component accounts for about \(96.1\%\) of the energy.
+
+That is why a rank-1 approximation can be so effective when one singular value dominates.
+
+## Why This Shows Up In ML
+
+SVD shows up in:
+
+- PCA,
+- dimensionality reduction,
+- low-rank approximation,
+- recommendation systems,
+- image compression,
+- numerical linear algebra,
+- least-squares analysis.
+
+PCA is especially close to SVD.
+
+The singular vectors give the principal directions, and the squared singular values tell you how much variance each direction captures.
+
+That makes SVD the practical engine behind many PCA implementations.
+
+## Common Confusions
+
+- \(V^T\) does not rotate into the original basis. It rotates into the matrix's preferred input basis.
+- Singular values are not eigenvalues, though they are related through \(A^TA\) and \(AA^T\).
+- The values that matter for variance are \(σ_i^2\), not \(σ_i\).
+- \(U\) and \(V\) can include reflections, not only rotations.
+- Every real matrix has an SVD, even if it is not square.
+
+## Exercises
+
+1. Describe the three stages of the SVD in plain English.
+
+2. If \(Σ = \operatorname{diag}(5, 2)\), what happens to a vector on each principal axis?
+
+3. What does a singular value of zero mean geometrically?
+
+4. Why are the eigenvectors of \(A^TA\) orthogonal?
+
+5. If the singular values are \(100\), \(20\), and \(1\), what fraction of the energy does the first component capture?
+
+## Implementation Exercise
+
+Write a TypeScript helper that computes how much variance or energy each singular value contributes.
+
+A useful shape is:
+
+```ts
+function singularValueEnergyFractions(singularValues: number[]): number[];
+function cumulativeEnergy(singularValues: number[], k: number): number;
+```
+
+The implementation should:
+
+- square each singular value,
+- sum the squares,
+- return each component's share of the total,
+- optionally compute the retained energy for a rank-k approximation.
+
+That exercise reinforces the main SVD lesson: the squares are what matter for explained energy.
+
+## Reflection Questions
+
+- What basis is \(V^T\) choosing, and why does the matrix prefer it?
+- Why does the middle factor have to be diagonal?
+- What does a zero singular value do to the dimension of the output?
+- Why do the squares matter when talking about explained variance?
+- Where in ML does SVD feel like the hidden engine behind another idea?
+
+## Next Lesson
+
+Next: **Principal Component Analysis**.
+
+The bridge is immediate: PCA uses the same geometry as SVD to find the directions of largest variance in data.
