@@ -36,6 +36,7 @@ This index reflects the handwritten Notability PDFs committed under `artifacts/n
 | Lesson | Title | Exercise set | Source artifact |
 | --- | --- | --- | --- |
 | 26 | Gradient Descent | [`lesson-026-gradient-descent.md`](lesson-026-gradient-descent.md) | [`lesson-026-gradient-descent.pdf`](../artifacts/notability-pdfs/lesson-026-gradient-descent.pdf) |
+| 28 | Momentum | [`lesson-028-momentum.md`](lesson-028-momentum.md) | Uploaded Notability PDF reviewed 2026-07-08 |
 
 ## Notes
 
