@@ -1,0 +1,268 @@
+---
+description: "Matrices as linear transformations that reshape vector space."
+lesson: 2
+objectives:
+  - Explain a matrix as a function that transforms vectors.
+  - Predict how common matrices stretch, rotate, reflect, or shear space.
+  - Read a matrix's columns as the images of basis vectors.
+  - Compute matrix-vector products in both row and column form.
+  - Connect `Wx + b` to the basic structure of neural network layers.
+phase: "Linear Algebra for Machine Learning"
+prerequisites:
+  - lesson: 1
+    title: "Vectors"
+slug: "lesson-002-matrices-as-linear-transformations"
+status: "reviewed"
+symbols:
+  - symbol: "A"
+    meaning: "A matrix or linear transformation."
+  - symbol: "x"
+    meaning: "An input vector."
+  - symbol: "W"
+    meaning: "A learned weight matrix in machine learning."
+  - symbol: "b"
+    meaning: "A bias vector added after the matrix transform."
+  - symbol: "I"
+    meaning: "The identity matrix, which leaves vectors unchanged."
+  - symbol: "e_1, e_2"
+    meaning: "Standard basis vectors."
+title: "Matrices as Linear Transformations"
+widgets: []
+---
+
+## Goal
+
+Understand matrices as transformations of space, not as tables of numbers. A matrix takes one vector and produces another, and the geometry of that map is the real object of interest.
+
+## Motivation
+
+In machine learning, a model rarely works with raw vectors forever.
+
+It turns one representation into another.
+
+That may mean:
+
+- stretching some directions more than others;
+
+- rotating coordinates;
+
+- reflecting a space;
+
+- shearing it;
+
+- or combining several of those actions at once.
+
+A matrix is the compact way to describe that behavior.
+
+## Prerequisites
+
+- Lesson 1: Vectors.
+
+- Comfort with coordinates and vector addition.
+
+## Notation / Symbol Table
+
+| Symbol | Meaning |
+| --- | --- |
+| `A` | A matrix or linear transformation. |
+| `x` | An input vector. |
+| `W` | A learned weight matrix in machine learning. |
+| `b` | A bias vector added after the matrix transform. |
+| `I` | The identity matrix, which leaves vectors unchanged. |
+| `e_1, e_2` | Standard basis vectors. |
+
+## Core Ideas
+
+### A matrix is a function
+
+The cleanest way to think about a matrix is as a map:
+
+$$
+A : \mathbb{R}^n \to \mathbb{R}^m.
+$$
+
+It takes a vector in one space and returns a vector in another.
+
+That is why matrices feel so natural in programming: they are functions with a fixed structure.
+
+### The whole space moves together
+
+When a matrix acts on the plane, it does not move each point independently.
+
+It changes the coordinate grid itself.
+
+That is why the same matrix can feel like a stretch, a rotation, a reflection, or a shear.
+
+### Columns tell you where the basis vectors go
+
+The columns of a matrix are the images of the standard basis vectors.
+
+If:
+
+$$
+A = \begin{bmatrix} a & c \\ b & d \end{bmatrix},
+$$
+
+then:
+
+$$
+A e_1 = \begin{bmatrix} a \\ b \end{bmatrix}, \qquad A e_2 = \begin{bmatrix} c \\ d \end{bmatrix}.
+$$
+
+That means a matrix is really a compact record of what it does to the basis.
+
+### Matrix-vector multiplication combines the columns
+
+If:
+
+$$
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix},
+$$
+
+then:
+
+$$
+Ax = x_1 A e_1 + x_2 A e_2.
+$$
+
+This is the column view of matrix multiplication, and it is often the most useful one for reasoning.
+
+### The identity matrix does nothing
+
+The identity matrix satisfies:
+
+$$
+Ix = x.
+$$
+
+It is the linear algebra version of multiplying by `1`.
+
+### Why ML cares
+
+Nearly every neural network layer uses a matrix multiply:
+
+$$
+Wx + b.
+$$
+
+The matrix `W` reshapes the input, and the bias `b` shifts the result.
+
+That is the basic pattern of many models.
+
+## Worked Example
+
+Let:
+
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix},
+\qquad
+x = \begin{bmatrix} 4 \\ 2 \end{bmatrix}.
+$$
+
+Using row-by-row multiplication:
+
+$$
+Ax =
+\begin{bmatrix}
+2(4) + 1(2) \\
+1(4) + 3(2)
+\end{bmatrix}
+=
+\begin{bmatrix}
+10 \\
+10
+\end{bmatrix}.
+$$
+
+Using columns:
+
+$$
+A e_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix},
+\qquad
+A e_2 = \begin{bmatrix} 1 \\ 3 \end{bmatrix}.
+$$
+
+So:
+
+$$
+Ax = 4 \begin{bmatrix} 2 \\ 1 \end{bmatrix} + 2 \begin{bmatrix} 1 \\ 3 \end{bmatrix}
+=
+\begin{bmatrix} 10 \\ 10 \end{bmatrix}.
+$$
+
+Both views are the same idea. The column view is usually the one that makes the geometry click first.
+
+## Why This Shows Up In ML
+
+Matrix layers are everywhere in machine learning because they are good at one thing:
+
+> taking a vector and changing its representation in a controlled way.
+
+Examples include:
+
+- feature extraction;
+
+- hidden layers in neural networks;
+
+- learned embeddings;
+
+- coordinate changes;
+
+- and simple geometric transforms in vision models.
+
+## Exercises
+
+1. Compute:
+
+$$
+\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}
+\begin{bmatrix} 2 \\ 1 \end{bmatrix}.
+$$
+
+2. Express `(5, 7)` as a linear combination of the columns of
+
+$$
+\begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}.
+$$
+
+3. Describe geometrically what
+
+$$
+\begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}
+$$
+
+does to a vector.
+
+4. Describe geometrically what
+
+$$
+\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+$$
+
+does to a vector.
+
+5. Explain why it is enough to know what a linear transformation does to the basis vectors.
+
+## Implementation Exercise
+
+Write a TypeScript helper that applies a `2 x 2` matrix to a `2`-vector:
+
+```ts
+type Matrix2x2 = [[number, number], [number, number]];
+type Vector2 = [number, number];
+
+export function applyMatrix2x2(matrix: Matrix2x2, vector: Vector2): Vector2
+```
+
+Add a few small tests for scaling, reflection, and rotation.
+
+## Reflection Questions
+
+- Why is it useful to treat a matrix as a function?
+
+- What does each column of a matrix represent?
+
+- When does the row view help more than the column view?
+
+- Why is `Wx + b` such a common pattern?
+

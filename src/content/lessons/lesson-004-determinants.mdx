@@ -1,0 +1,245 @@
+---
+description: "Determinants as area and volume scaling factors that also detect collapse."
+lesson: 4
+objectives:
+  - Interpret the determinant as the scaling factor for area or volume.
+  - Recognize that a zero determinant means a collapse to lower dimension.
+  - Use the sign of the determinant to detect orientation flips.
+  - Connect determinant intuition to invertibility and Jacobians.
+  - Read simple 2x2 determinants without treating the formula as the main idea.
+phase: "Linear Algebra for Machine Learning"
+prerequisites:
+  - lesson: 3
+    title: "Matrix Multiplication and Composition"
+slug: "lesson-004-determinants"
+status: "reviewed"
+symbols:
+  - symbol: "det(A)"
+    meaning: "The determinant of matrix A."
+  - symbol: "A"
+    meaning: "A linear transformation whose area or volume scaling we are measuring."
+  - symbol: "I"
+    meaning: "The identity matrix."
+  - symbol: "orientation"
+    meaning: "The handedness of a transformation; whether it preserves or flips order."
+title: "Determinants"
+widgets: []
+---
+
+## Goal
+
+Understand the determinant as a geometric summary of a matrix. It measures how much a transformation scales area or volume, and it tells us when a transformation collapses information.
+
+## Motivation
+
+Once you know that a matrix is a transformation, a natural next question appears:
+
+> How much does that transformation stretch or shrink space?
+
+The determinant answers that question.
+
+It also tells us something even more important:
+
+> Did the transformation destroy information?
+
+## Prerequisites
+
+- Lesson 3: Matrix Multiplication and Composition.
+
+- Comfort with 2D geometry and the idea of area.
+
+## Notation / Symbol Table
+
+| Symbol | Meaning |
+| --- | --- |
+| `det(A)` | The determinant of matrix `A`. |
+| `A` | A linear transformation whose area or volume scaling we are measuring. |
+| `I` | The identity matrix. |
+| `orientation` | The handedness of a transformation; whether it preserves or flips order. |
+
+## Core Ideas
+
+### The determinant measures scale
+
+For a linear transformation in 2D, the determinant tells us how the area changes.
+
+- `det(A) = 1` means area is preserved.
+
+- `det(A) = 2` means area doubles.
+
+- `det(A) = 0.5` means area halves.
+
+- `det(A) = 0` means the figure collapses into a lower-dimensional shape.
+
+The same idea extends to volume in 3D and to higher-dimensional spaces.
+
+### A diagonal matrix makes the scaling obvious
+
+If:
+
+$$
+A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix},
+$$
+
+then the unit square becomes a rectangle with area `2 \cdot 3 = 6`.
+
+So:
+
+$$
+\det(A) = 6.
+$$
+
+### A shear can preserve area
+
+If:
+
+$$
+A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix},
+$$
+
+the square becomes a parallelogram, but its area stays the same.
+
+So:
+
+$$
+\det(A) = 1.
+$$
+
+### Zero determinant means collapse
+
+If the columns of a matrix are dependent, the transformation flattens the plane into a line or a point.
+
+Once that happens, the lost dimension cannot be recovered.
+
+That is why `det(A) = 0` is the warning sign for non-invertibility.
+
+### The sign tells you about orientation
+
+Positive determinant:
+
+- preserves orientation.
+
+Negative determinant:
+
+- flips orientation.
+
+A reflection has negative determinant because it reverses handedness.
+
+### The 2x2 formula is the algebraic summary
+
+For:
+
+$$
+A = \begin{bmatrix} a & b \\ c & d \end{bmatrix},
+$$
+
+the determinant is:
+
+$$
+\det(A) = ad - bc.
+$$
+
+The formula is useful, but the geometric meaning comes first.
+
+## Worked Example
+
+Consider:
+
+$$
+A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}.
+$$
+
+Using the 2x2 formula:
+
+$$
+\det(A) = 1\cdot 4 - 2\cdot 2 = 0.
+$$
+
+Geometrically, the second column is twice the first column, so the transformation sends the plane onto a line.
+
+That means:
+
+- area becomes zero;
+
+- information is lost;
+
+- the matrix cannot be inverted.
+
+Now compare with:
+
+$$
+B = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}.
+$$
+
+This is a shear. It changes shape, but not area, so `det(B) = 1`.
+
+That contrast is the main lesson: determinant is a geometric summary, not just a formula.
+
+## Why This Shows Up In ML
+
+Determinants appear in a lot of places where geometry and probability overlap:
+
+- determining whether a matrix is invertible;
+
+- change of variables in calculus;
+
+- Jacobians in probabilistic modeling;
+
+- covariance geometry;
+
+- and the structure of transformations used in optimization and density estimation.
+
+If a model maps many points to the same output, the determinant story helps explain why that matters.
+
+## Exercises
+
+1. Find the determinant of
+
+$$
+\begin{bmatrix} 5 & 0 \\ 0 & 2 \end{bmatrix}.
+$$
+
+2. Decide whether
+
+$$
+\begin{bmatrix} 1 & 3 \\ 0 & -2 \end{bmatrix}
+$$
+
+preserves or flips orientation.
+
+3. If a transformation doubles every length in every direction in 3D, what is its determinant?
+
+4. Explain why
+
+$$
+\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}
+$$
+
+cannot be invertible.
+
+5. Explain the determinant as a local area or volume scaling factor in your own words.
+
+## Implementation Exercise
+
+Write a small TypeScript helper that computes the determinant of a `2 x 2` matrix and uses it to test invertibility:
+
+```ts
+type Matrix2x2 = [[number, number], [number, number]];
+
+export function determinant2x2(matrix: Matrix2x2): number
+
+export function isInvertible2x2(matrix: Matrix2x2): boolean
+```
+
+Add tests for a diagonal matrix, a shear, and a collapsed matrix.
+
+## Reflection Questions
+
+- Why is zero determinant such a strong warning sign?
+
+- What does a negative determinant tell you that a positive one does not?
+
+- Why is the geometric meaning more memorable than the formula alone?
+
+- Where in machine learning does "how much does this transformation scale space?" show up again?
+

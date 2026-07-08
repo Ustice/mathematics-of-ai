@@ -1,0 +1,238 @@
+---
+description: "Vectors as the basic geometric data type used throughout machine learning."
+lesson: 1
+objectives:
+  - Explain vectors as points, directions, and bundles of features.
+  - Compute Euclidean distance and dot product in small examples.
+  - Use cosine similarity to compare direction instead of magnitude.
+  - Recognize linear combinations as the building block of vector spaces and neural layers.
+  - Connect vector geometry to embeddings, inputs, and similarity search in ML.
+phase: "Linear Algebra for Machine Learning"
+prerequisites: []
+slug: "lesson-001-vectors"
+status: "reviewed"
+symbols:
+  - symbol: "x"
+    meaning: "A vector, often a data point or feature vector."
+  - symbol: "y"
+    meaning: "A second vector used for comparison."
+  - symbol: "\\mathbb{R}^n"
+    meaning: "The set of all real vectors with n coordinates."
+  - symbol: "\\|x\\|"
+    meaning: "The Euclidean norm, or length, of x."
+  - symbol: "x \\cdot y"
+    meaning: "The dot product of x and y."
+  - symbol: "\\cos\\theta"
+    meaning: "The cosine of the angle between two nonzero vectors."
+  - symbol: "a_i"
+    meaning: "A scalar coefficient in a linear combination."
+title: "Vectors"
+widgets: []
+---
+
+## Goal
+
+Understand vectors as the basic language of machine learning: a vector can be a point, a direction, or a bundle of features, and the geometry of those vectors is what many ML methods actually use.
+
+## Motivation
+
+Machine learning often starts by turning something messy into numbers.
+
+An image becomes a long vector of pixel values.
+
+A sentence becomes an embedding vector.
+
+A user, a customer, a sensor reading, or a game state can all be represented the same way.
+
+Once that happens, the main questions are geometric:
+
+- How far apart are two vectors?
+
+- Do they point in the same direction?
+
+- Can one vector be built from others?
+
+That is the mental shift this lesson is meant to make.
+
+## Prerequisites
+
+- Comfortable with coordinates and algebra.
+
+- Enough linear algebra to read vectors written as ordered lists.
+
+## Notation / Symbol Table
+
+| Symbol | Meaning |
+| --- | --- |
+| `x` | A vector, often a data point or feature vector. |
+| `y` | A second vector used for comparison. |
+| `\mathbb{R}^n` | The set of all real vectors with `n` coordinates. |
+| `\|x\|` | The Euclidean norm, or length, of `x`. |
+| `x \cdot y` | The dot product of `x` and `y`. |
+| `\cos\theta` | The cosine of the angle between two nonzero vectors. |
+| `a_i` | A scalar coefficient in a linear combination. |
+
+## Core Ideas
+
+### Vectors are data with geometry attached
+
+A vector is more than a list of numbers.
+
+It is a point in space, a direction from the origin, and a shape for representing structured data.
+
+That gives us a powerful habit:
+
+> Treat meaning as secondary and geometry as primary.
+
+### Distance compares position
+
+The Euclidean distance between vectors `x` and `y` is:
+
+$$
+d(x,y) = \|x-y\|.
+$$
+
+The norm is:
+
+$$
+\|x\| = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}.
+$$
+
+Distance tells us how far apart two points are in space.
+
+### Dot product compares alignment
+
+The dot product is:
+
+$$
+x \cdot y = \sum_i x_i y_i.
+$$
+
+Geometrically,
+
+$$
+x \cdot y = \|x\| \|y\| \cos\theta.
+$$
+
+So the dot product is about alignment, not just arithmetic.
+
+If two vectors point in the same direction, their dot product is large and positive.
+
+If they point in opposite directions, it is negative.
+
+If they are orthogonal, it is zero.
+
+### Cosine similarity ignores size
+
+Cosine similarity is:
+
+$$
+\frac{x \cdot y}{\|x\|\|y\|}.
+$$
+
+It asks whether two vectors point the same way, regardless of how long they are.
+
+That is why it is so useful for embeddings and text similarity.
+
+### Linear combinations build structure
+
+Given vectors `v_1, v_2, \dots, v_n`, a linear combination is:
+
+$$
+a_1 v_1 + a_2 v_2 + \cdots + a_n v_n.
+$$
+
+This is the basic move behind spans, subspaces, basis representations, and eventually neural network layers.
+
+### High dimensions change intuition
+
+In high-dimensional spaces, random vectors often end up nearly orthogonal.
+
+That is one reason good embeddings matter so much: useful relationships have to stand out against a background where many unrelated vectors already look geometrically similar.
+
+## Worked Example
+
+Take:
+
+$$
+x = (2,1,4), \qquad y = (1,3,0).
+$$
+
+First compute the difference:
+
+$$
+x-y = (1,-2,4).
+$$
+
+So the distance is:
+
+$$
+d(x,y) = \sqrt{1^2 + (-2)^2 + 4^2} = \sqrt{21}.
+$$
+
+Now compute the dot product:
+
+$$
+x \cdot y = 2\cdot 1 + 1\cdot 3 + 4\cdot 0 = 5.
+$$
+
+Those two numbers tell different stories:
+
+- distance says how far apart the points are;
+
+- dot product says how aligned the directions are.
+
+That distinction is one of the first quiet superpowers in linear algebra.
+
+## Why This Shows Up In ML
+
+Vectors show up everywhere in machine learning:
+
+- inputs to a model are vectors;
+
+- learned embeddings are vectors;
+
+- predictions are often compared with vectors of targets;
+
+- similarities are often measured with dot products or cosine similarity;
+
+- linear layers compute new vectors from old ones.
+
+Once you are comfortable with vector geometry, the rest of the course has a stable base to stand on.
+
+## Exercises
+
+1. Compute the Euclidean distance between `(2, 1, 4)` and `(1, 3, 0)`.
+
+2. Compute the dot product of `(2, -1, 5)` and `(4, 3, -2)`.
+
+3. Explain why orthogonal nonzero vectors have cosine similarity `0`.
+
+4. Explain why `(10, 10, 10)` and `(1, 1, 1)` point in the same direction even though their lengths are different.
+
+5. Determine whether the set of vectors of the form `(a, b, a+b)` is a subspace of `\mathbb{R}^3`.
+
+## Implementation Exercise
+
+Write a small TypeScript module with three helpers:
+
+```ts
+export function dotProduct(a: number[], b: number[]): number
+
+export function euclideanDistance(a: number[], b: number[]): number
+
+export function cosineSimilarity(a: number[], b: number[]): number | null
+```
+
+Make the functions fail clearly if the input vectors have different lengths, and return `null` from `cosineSimilarity` when one of the vectors has length zero.
+
+## Reflection Questions
+
+- What is the difference between distance and similarity?
+
+- When is direction more useful than magnitude?
+
+- Why is a linear combination such a central idea?
+
+- Which symbol in this lesson feels most worth keeping in a local symbol table?
+
