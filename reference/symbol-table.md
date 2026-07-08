@@ -25,6 +25,15 @@ This is the canonical external symbol table for recurring notation. Its job is t
 | \(\nabla L(\theta)\) | Gradient of the loss | Optimization | Lesson 26 | Direction of steepest local increase with respect to parameters. |
 | \(\eta\) | Learning rate | Optimization | Lesson 26 | Positive scalar controlling gradient descent step size. |
 | \(\Delta \theta\) | Parameter update | Optimization | Lesson 26 | Change added to the current parameters during one step. |
+| \(g_t\) | Gradient estimate at step t | Optimization | Lesson 28 | Often a mini-batch gradient in SGD-style optimizers. |
+| \(v_t\) | Optimizer state at step t | Optimization | Lesson 28 | Overloaded: momentum velocity in Lesson 28; Adam second moment estimate in Lesson 29. Define locally. |
+| \(\beta\) | Exponential memory coefficient | Optimization | Lesson 28 | Momentum retention factor; Adam splits this role into \(\beta_1\) and \(\beta_2\). |
+| \(m_t\) | Adam first moment estimate | Optimization | Lesson 29 | Running average of recent gradients. |
+| \(\beta_1\) | Adam first-moment decay | Optimization | Lesson 29 | Controls how much previous gradient average survives. |
+| \(\beta_2\) | Adam second-moment decay | Optimization | Lesson 29 | Controls how much previous squared-gradient average survives. |
+| \(\hat{m}_t\) | Bias-corrected Adam first moment | Optimization | Lesson 29 | Corrects zero-initialization bias in \(m_t\). |
+| \(\hat{v}_t\) | Bias-corrected Adam second moment | Optimization | Lesson 29 | Corrects zero-initialization bias in Adam's \(v_t\). |
+| \(\epsilon\) | Numerical stability constant | Optimization | Lesson 29 | Small positive denominator term in Adam. |
 | \(\ell(\theta)\) | Log-likelihood | MLE, loss functions | Lesson 16 | Turns products into sums and improves numerical handling. |
 | \(\lambda\) | Eigenvalue | Linear algebra, regularization strength | Lesson 6 | Context distinguishes spectral value from penalty weight. |
 | \(v\) | Eigenvector | Linear algebra | Lesson 6 | Usually nonzero and paired with an eigenvalue. |

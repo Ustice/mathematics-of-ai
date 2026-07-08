@@ -227,3 +227,11 @@ Requires: Gradient descent and stochastic gradient descent.
 Introduces: Velocity, momentum coefficient, persistent downhill directions, reduced oscillation, and the distinction between learning rate and momentum.
 
 Used later in: Adam, adaptive optimizers, and optimizer diagnostics.
+
+## Lesson 29 — Adam
+
+Requires: Gradient descent, stochastic gradient descent, and momentum.
+
+Introduces: Adaptive moment estimation, first and second moment estimates, bias correction, per-parameter scaling, and epsilon for numerical stability.
+
+Used later in: Learning rate schedules, AdamW, optimizer diagnostics, neural network training loops, and large-scale optimization.

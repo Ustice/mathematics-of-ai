@@ -2,7 +2,7 @@ course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
 last_updated: 2026-07-08
 current_phase: Optimization and Calculus for Machine Learning
-next_topic: Adam
+next_topic: Learning Rate Schedules
 
 completed_lessons:
   - number: 1
@@ -61,6 +61,8 @@ completed_lessons:
     title: Stochastic Gradient Descent
   - number: 28
     title: Momentum
+  - number: 29
+    title: Adam
 
 teaching_preferences:
   intuition_first: true

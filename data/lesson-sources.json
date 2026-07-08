@@ -252,6 +252,14 @@
       "transcript": null,
       "dynamic_page": "src/content/lessons/lesson-028-momentum.mdx",
       "status": "draft"
+    },
+    {
+      "lesson": 29,
+      "title": "Adam",
+      "chat": "Lesson 29 draft",
+      "transcript": null,
+      "dynamic_page": "src/content/lessons/lesson-029-adam.mdx",
+      "status": "draft"
     }
   ]
 }
