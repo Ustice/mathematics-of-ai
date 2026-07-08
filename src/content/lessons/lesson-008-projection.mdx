@@ -1,0 +1,284 @@
+---
+description: "Projection onto a line or subspace, with the residual orthogonal to the target space."
+lesson: 8
+objectives:
+  - Explain projection as finding the closest point in a line or subspace.
+  - Use the projection formula onto a single vector.
+  - Interpret the residual as orthogonal to the target space.
+  - Recognize projection as the geometric core of least squares.
+  - Connect projection to regression and PCA-style coordinate reduction.
+phase: "Linear Algebra for Machine Learning"
+prerequisites:
+  - lesson: 1
+    title: "Vectors"
+  - lesson: 2
+    title: "Matrices as Linear Transformations"
+  - lesson: 3
+    title: "Matrix Multiplication"
+  - lesson: 5
+    title: "Inverse Matrices"
+  - lesson: 7
+    title: "Change of Basis"
+slug: "lesson-008-projection"
+status: "reviewed"
+symbols:
+  - symbol: "u"
+    meaning: "The vector defining the line or direction being projected onto."
+  - symbol: "v"
+    meaning: "The vector being projected."
+  - symbol: "proj_u(v)"
+    meaning: "The projection of v onto the span of u."
+  - symbol: "e"
+    meaning: "The residual or error vector, v minus its projection."
+  - symbol: "A"
+    meaning: "A matrix whose columns span the target subspace."
+  - symbol: "col(A)"
+    meaning: "The column space of A, the subspace reached by A x."
+title: "Projection"
+widgets: []
+---
+
+## Goal
+
+Understand projection as the closest-point problem for a line or subspace, and learn why the residual lands perpendicular to the space you project onto.
+
+Projection is the geometric move that turns noisy, off-subspace data into the best available approximation.
+
+## Motivation
+
+Suppose a point does not lie on a line, or a data vector does not lie in the model space.
+
+What is the nearest point that does?
+
+That question appears everywhere in machine learning. Linear regression, least squares, and PCA all ask some version of it.
+
+Projection is the clean answer.
+
+## Prerequisites
+
+- Lesson 1: Vectors.
+- Lesson 2: Matrices as Linear Transformations.
+- Lesson 3: Matrix Multiplication.
+- Lesson 5: Inverse Matrices.
+- Lesson 7: Change of Basis.
+- The dot product and the meaning of orthogonality.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| $u$ | direction vector | The vector whose span we project onto. |
+| $v$ | target vector | The vector being projected. |
+| $\operatorname{proj}_u(v)$ | projection | The closest point to $v$ on the line through $u$. |
+| $e$ | residual | The difference $v - \operatorname{proj}_u(v)$. |
+| $A$ | matrix | A matrix whose columns span a subspace. |
+| $\mathrm{col}(A)$ | column space | The subspace reached by all vectors of the form $Ax$. |
+
+## Core Ideas
+
+### Projection onto a line
+
+If $u$ is a direction vector, then the projection of $v$ onto the line spanned by $u$ is
+
+$$
+\operatorname{proj}_u(v) = \frac{v \cdot u}{u \cdot u}u.
+$$
+
+This formula says:
+
+1. Measure how much of $v$ points along $u$.
+2. Scale $u$ by that amount.
+3. Use that scaled vector as the closest point on the line.
+
+### Why the residual is orthogonal
+
+Let
+
+$$
+e = v - \operatorname{proj}_u(v).
+$$
+
+The shortest segment from a point to a line or plane hits the target at a right angle.
+
+That is not an accident. If the residual had any component along the target space, you could move a little further in that direction and reduce the distance.
+
+So the residual is perpendicular to the line or subspace you projected onto.
+
+### Projection onto a subspace
+
+For a subspace spanned by several columns of a matrix $A$, the same idea holds.
+
+We want the point in $\mathrm{col}(A)$ closest to $b$.
+
+That closest point is the projection of $b$ onto $\mathrm{col}(A)$.
+
+The residual must be orthogonal to every column of $A$.
+
+That geometric condition becomes the algebraic condition used in least squares.
+
+### The preview of the matrix formula
+
+If the columns of $A$ are independent, the projection onto the column space can be written as
+
+$$
+P = A(A^TA)^{-1}A^T.
+$$
+
+You do not need to memorize that yet.
+
+The important idea is that projection is the mechanism behind that formula, not the other way around.
+
+## Worked Example
+
+Let
+
+$$
+u =
+\begin{bmatrix}
+2 \\
+1
+\end{bmatrix},
+\qquad
+v =
+\begin{bmatrix}
+3 \\
+4
+\end{bmatrix}.
+$$
+
+Compute the projection:
+
+$$
+v \cdot u = 3(2) + 4(1) = 10,
+$$
+
+$$
+u \cdot u = 2^2 + 1^2 = 5.
+$$
+
+So
+
+$$
+\operatorname{proj}_u(v) = \frac{10}{5}u = 2u =
+\begin{bmatrix}
+4 \\
+2
+\end{bmatrix}.
+$$
+
+The residual is
+
+$$
+e =
+\begin{bmatrix}
+3 \\
+4
+\end{bmatrix}
+-
+\begin{bmatrix}
+4 \\
+2
+\end{bmatrix}
+=
+\begin{bmatrix}
+-1 \\
+2
+\end{bmatrix}.
+$$
+
+Check orthogonality:
+
+$$
+e \cdot u = (-1)(2) + 2(1) = 0.
+$$
+
+That zero dot product is the signature of a correct projection.
+
+## Why This Shows Up In ML
+
+Projection is the geometry behind:
+
+- least squares,
+- linear regression,
+- PCA,
+- low-rank approximation,
+- feature compression.
+
+Whenever a model cannot match the data exactly, we usually ask for the closest match instead.
+
+Projection is the mathematical word for "closest match in a subspace."
+
+## Common Confusions
+
+- Projection is not always vertical. It depends on the target line or subspace.
+- The residual is not the projection itself; it is the leftover error.
+- If the vector already lies in the subspace, projection changes nothing.
+- Orthogonality is the condition that makes the closest point special.
+- Projection onto a subspace uses the same logic as projection onto a line, just with more directions.
+
+## Exercises
+
+1. Let
+
+   $$
+   u =
+   \begin{bmatrix}
+   1 \\
+   2
+   \end{bmatrix},
+   \qquad
+   v =
+   \begin{bmatrix}
+   4 \\
+   1
+   \end{bmatrix}.
+   $$
+
+   Compute $\operatorname{proj}_u(v)$.
+
+2. Using your answer from Exercise 1, compute the residual $e$ and verify that $e \cdot u = 0$.
+
+3. Explain, in your own words, why the shortest path from a point to a plane must meet the plane at a right angle.
+
+4. Why is minimizing squared error a better goal than demanding zero error when the data is noisy?
+
+5. If $u = \begin{bmatrix}3 \\ 4\end{bmatrix}$, what is $\operatorname{proj}_u(u)$?
+
+## Implementation Exercise
+
+Write a TypeScript helper that projects one 2D vector onto another and returns both the projection and the residual.
+
+An outline could look like this:
+
+```ts
+type Vector2 = [number, number];
+
+type ProjectionResult = {
+  projection: Vector2;
+  residual: Vector2;
+};
+
+function dot(a: Vector2, b: Vector2): number;
+function projectOntoVector(v: Vector2, u: Vector2): ProjectionResult;
+```
+
+The helper should:
+
+- compute the dot products,
+- scale the direction vector correctly,
+- subtract to get the residual,
+- make it easy to check orthogonality.
+
+## Reflection Questions
+
+- What makes a projection the "closest" point rather than just some point on the line?
+- Why does orthogonality show up in the residual?
+- Where in machine learning would projection replace an exact solve?
+- Which step in the formula most needs a local reminder?
+- What changed when the problem moved from a line to a subspace?
+
+## Next Lesson
+
+Next: **Least Squares**.
+
+The bridge is immediate: least squares is projection when the target space is the column space of a matrix.

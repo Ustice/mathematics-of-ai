@@ -27,32 +27,32 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 ### Linear Algebra for ML
 
-- [ ] Vectors and vector spaces.
-- [ ] Bases and change of basis.
-- [ ] Linear maps as transformations.
-- [ ] Matrix multiplication.
-- [ ] Determinants.
-- [ ] Inverse matrices.
-- [ ] Eigenvalues and eigenvectors.
-- [ ] Projections.
-- [ ] Least squares.
-- [ ] SVD.
-- [ ] PCA.
-- [ ] Covariance geometry.
+- [x] Vectors and vector spaces.
+- [x] Bases and change of basis.
+- [x] Linear maps as transformations.
+- [x] Matrix multiplication.
+- [x] Determinants.
+- [x] Inverse matrices.
+- [x] Eigenvalues and eigenvectors.
+- [x] Projections.
+- [x] Least squares.
+- [x] SVD.
+- [x] PCA.
+- [x] Covariance geometry.
 - [ ] Matrix calculus.
 
 ### Probability and Statistics
 
-- [ ] Random variables.
-- [ ] Expectation.
-- [ ] Variance and covariance.
-- [ ] Gaussian distributions.
-- [ ] Multivariate Gaussian.
-- [ ] Likelihood.
-- [ ] MLE.
-- [ ] MAP.
-- [ ] Bayesian estimation.
-- [ ] Predictive distributions.
+- [x] Random variables.
+- [x] Expectation.
+- [x] Variance and covariance.
+- [x] Gaussian distributions.
+- [x] Multivariate Gaussian.
+- [x] Likelihood.
+- [x] MLE.
+- [x] MAP.
+- [x] Bayesian estimation.
+- [x] Predictive distributions.
 
 ### Optimization
 
@@ -64,7 +64,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] SGD.
 - [x] Momentum.
 - [ ] Adam.
-- [ ] Regularization.
+- [x] Regularization.
 
 ### Information Theory
 
@@ -145,33 +145,33 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 ## Existing Source Material
 
-The following lesson transcripts exist under [../lessons/transcripts](../lessons/transcripts/). They are raw source material awaiting polishing.
+The following lesson transcripts exist under [../lessons/transcripts](../lessons/transcripts/) and now have corresponding MDX lesson pages under [../src/content/lessons](../src/content/lessons/). Transcripts remain preserved source material.
 
-- [ ] Lesson 1: Vectors - raw transcript available.
-- [ ] Lesson 2: Matrices as Linear Transformations - raw transcript available.
-- [ ] Lesson 3: Matrix Multiplication and Composition - raw transcript available.
-- [ ] Lesson 4: Determinant - raw transcript available.
-- [ ] Lesson 5: Inverse Matrices - raw transcript available.
-- [ ] Lesson 6: Eigenvectors and Eigenvalues - raw transcript available.
-- [ ] Lesson 7: Change of Basis - raw transcript available.
-- [ ] Lesson 8: Projection - raw transcript available.
-- [ ] Lesson 9: Least Squares - raw transcript available.
-- [ ] Lesson 10: Singular Value Decomposition - raw transcript available.
-- [ ] Lesson 11: Principal Component Analysis - raw transcript available.
-- [ ] Lesson 12: Covariance - raw transcript available.
-- [ ] Lesson 13: Probability as Linear Algebra - raw transcript available.
-- [ ] Lesson 14: Covariance Geometry - raw transcript available.
-- [ ] Lesson 15: Multivariate Gaussian - raw transcript available.
-- [ ] Lesson 16: Maximum Likelihood Estimation - raw transcript available.
-- [ ] Lesson 17: Loss Functions - raw transcript available.
-- [ ] Lesson 18: MAP Estimation - raw transcript available.
-- [ ] Lesson 19: Bayesian Estimation Introduction - raw transcript available.
-- [ ] Lesson 20: Bayesian Estimation Update - raw transcript available.
-- [ ] Lesson 21: Bayesian Predictive Distributions - raw transcript available.
-- [ ] Lesson 22: Model Complexity - raw transcript available.
-- [ ] Lesson 23: Regularization - raw transcript available.
-- [ ] Lesson 24: Early Stopping - raw transcript available.
-- [ ] Lesson 25: Dropout - raw transcript available.
+- [x] Lesson 1: Vectors - reviewed lesson page available.
+- [x] Lesson 2: Matrices as Linear Transformations - reviewed lesson page available.
+- [x] Lesson 3: Matrix Multiplication and Composition - reviewed lesson page available.
+- [x] Lesson 4: Determinants - reviewed lesson page available.
+- [x] Lesson 5: Inverse Matrices - reviewed lesson page available.
+- [x] Lesson 6: Eigenvectors and Eigenvalues - reviewed lesson page available.
+- [x] Lesson 7: Change of Basis - reviewed lesson page available.
+- [x] Lesson 8: Projection - reviewed lesson page available.
+- [x] Lesson 9: Least Squares - reviewed lesson page available.
+- [x] Lesson 10: Singular Value Decomposition - reviewed lesson page available.
+- [x] Lesson 11: Principal Component Analysis - reviewed lesson page available.
+- [x] Lesson 12: Covariance - reviewed lesson page available.
+- [x] Lesson 13: Probability as Linear Algebra - reviewed lesson page available.
+- [x] Lesson 14: Covariance Geometry - reviewed lesson page available.
+- [x] Lesson 15: Multivariate Gaussian - reviewed lesson page available.
+- [x] Lesson 16: Maximum Likelihood Estimation - draft lesson page available.
+- [x] Lesson 17: Loss Functions - draft lesson page available.
+- [x] Lesson 18: MAP Estimation - draft lesson page available.
+- [x] Lesson 19: Bayesian Estimation Introduction - draft lesson page available.
+- [x] Lesson 20: Bayesian Estimation Update - draft lesson page available.
+- [x] Lesson 21: Bayesian Predictive Distributions - draft lesson page available.
+- [x] Lesson 22: Model Complexity - draft lesson page available.
+- [x] Lesson 23: Regularization - draft lesson page available.
+- [x] Lesson 24: Early Stopping - draft lesson page available.
+- [x] Lesson 25: Dropout - draft lesson page available.
 - [x] Lesson 26: Gradient Descent - published lesson available.
 - [x] Lesson 27: Stochastic Gradient Descent - draft lesson available.
 - [x] Lesson 28: Momentum - draft lesson available.

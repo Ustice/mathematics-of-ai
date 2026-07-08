@@ -5,7 +5,8 @@
       "title": "Vectors",
       "chat": "Syllabus / first lesson setup",
       "transcript": "lessons/transcripts/lesson-01-vectors.md",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-001-vectors.mdx"
     },
     {
       "lesson": 2,
@@ -13,7 +14,8 @@
       "chat": "Lesson 2",
       "transcript": "lessons/transcripts/lesson-02-matrices-as-linear-transformations.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-002-matrices-as-linear-transformations.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-002-matrices-as-linear-transformations.mdx"
     },
     {
       "lesson": 3,
@@ -21,7 +23,8 @@
       "chat": "Lesson 3 Matrix Multiplication Concepts",
       "transcript": "lessons/transcripts/lesson-03-matrix-multiplication-and-composition.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-003-matrix-multiplication-and-composition.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-003-matrix-multiplication-and-composition.mdx"
     },
     {
       "lesson": 4,
@@ -29,7 +32,8 @@
       "chat": "Lesson 4 Determinant",
       "transcript": "lessons/transcripts/lesson-04-determinant.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-004-determinant.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-004-determinants.mdx"
     },
     {
       "lesson": 5,
@@ -37,7 +41,8 @@
       "chat": "Lesson 5 Inverse Matrices",
       "transcript": "lessons/transcripts/lesson-05-inverse-matrices.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-005-inverse-matrices.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-005-inverse-matrices.mdx"
     },
     {
       "lesson": 6,
@@ -45,7 +50,8 @@
       "chat": "Lesson 6 Eigenvectors and Eigenvalues",
       "transcript": "lessons/transcripts/lesson-06-eigenvectors-and-eigenvalues.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-006-eigenvectors-and-eigenvalues.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-006-eigenvectors-and-eigenvalues.mdx"
     },
     {
       "lesson": 7,
@@ -53,7 +59,8 @@
       "chat": "Lesson 7 Change of Basis",
       "transcript": "lessons/transcripts/lesson-07-change-of-basis.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-007-change-of-basis.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-007-change-of-basis.mdx"
     },
     {
       "lesson": 8,
@@ -61,7 +68,8 @@
       "chat": "Lesson 8 Projection",
       "transcript": "lessons/transcripts/lesson-08-projection.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-008-projection.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-008-projection.mdx"
     },
     {
       "lesson": 9,
@@ -69,7 +77,8 @@
       "chat": "Lesson 9 Least Squares",
       "transcript": "lessons/transcripts/lesson-09-least-squares.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-009-least-squares.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-009-least-squares.mdx"
     },
     {
       "lesson": 10,
@@ -77,7 +86,8 @@
       "chat": "Lesson 10 Singular Value Decomposition",
       "transcript": "lessons/transcripts/lesson-10-singular-value-decomposition.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-010-singular-value-decomposition.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-010-singular-value-decomposition.mdx"
     },
     {
       "lesson": 11,
@@ -85,7 +95,8 @@
       "chat": "Lesson 11 Principal Component Analysis",
       "transcript": "lessons/transcripts/lesson-11-principal-component-analysis.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-011-principal-component-analysis.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-011-principal-component-analysis.mdx"
     },
     {
       "lesson": 12,
@@ -93,7 +104,8 @@
       "chat": "Lesson 12 Covariance",
       "transcript": "lessons/transcripts/lesson-12-covariance.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-012-covariance.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-012-covariance.mdx"
     },
     {
       "lesson": 13,
@@ -101,7 +113,8 @@
       "chat": "Lesson 13 Probability as Linear Algebra",
       "transcript": "lessons/transcripts/lesson-13-probability-as-linear-algebra.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-013-probability-as-linear-algebra.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-013-probability-as-linear-algebra.mdx"
     },
     {
       "lesson": 14,
@@ -113,7 +126,8 @@
         "artifacts/notability-pdfs/lesson-014-covariance-geometry-practice-1.pdf",
         "artifacts/notability-pdfs/lesson-014-covariance-geometry-practice-2.pdf"
       ],
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-014-covariance-geometry.mdx"
     },
     {
       "lesson": 15,
@@ -121,7 +135,8 @@
       "chat": "Lesson 15 Multivariate Gaussian",
       "transcript": "lessons/transcripts/lesson-15-multivariate-gaussian.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-015-multivariate-gaussian.pdf",
-      "status": "raw_export"
+      "status": "reviewed",
+      "dynamic_page": "src/content/lessons/lesson-015-multivariate-gaussian.mdx"
     },
     {
       "lesson": 16,
@@ -129,7 +144,8 @@
       "chat": "Lesson 16 MLE Intro",
       "transcript": "lessons/transcripts/lesson-16-mle-intro.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-016-maximum-likelihood-estimation.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-016-maximum-likelihood-estimation.mdx"
     },
     {
       "lesson": 17,
@@ -137,7 +153,8 @@
       "chat": "Lesson 17 Loss Functions",
       "transcript": "lessons/transcripts/lesson-17-loss-functions.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-017-loss-functions.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-017-loss-functions.mdx"
     },
     {
       "lesson": 18,
@@ -145,7 +162,8 @@
       "chat": "Lesson 18 MAP Estimation",
       "transcript": "lessons/transcripts/lesson-18-map-estimation.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-018-map-estimation.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-018-map-estimation.mdx"
     },
     {
       "lesson": 19,
@@ -153,7 +171,8 @@
       "chat": "Lesson 19 Bayesian Estimation Intro",
       "transcript": "lessons/transcripts/lesson-19-bayesian-estimation-intro.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-019-bayesian-estimation-intro.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-019-bayesian-estimation-introduction.mdx"
     },
     {
       "lesson": 20,
@@ -161,7 +180,8 @@
       "chat": "Lesson 20 Bayesian Estimation Update",
       "transcript": "lessons/transcripts/lesson-20-bayesian-estimation-update.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-020-bayesian-estimation-update.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-020-bayesian-estimation-update.mdx"
     },
     {
       "lesson": 21,
@@ -169,7 +189,8 @@
       "chat": "Lesson 21 Bayesian Predictive Distributions",
       "transcript": "lessons/transcripts/lesson-21-bayesian-predictive-distributions.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-021-bayesian-predictive-distributions.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-021-bayesian-predictive-distributions.mdx"
     },
     {
       "lesson": 22,
@@ -177,7 +198,8 @@
       "chat": "Lesson 22 Model Complexity",
       "transcript": "lessons/transcripts/lesson-22-model-complexity.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-022-model-complexity.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-022-model-complexity.mdx"
     },
     {
       "lesson": 23,
@@ -185,7 +207,8 @@
       "chat": "Lesson 23 Regularization",
       "transcript": "lessons/transcripts/lesson-23-regularization.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-023-regularization.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-023-regularization.mdx"
     },
     {
       "lesson": 24,
@@ -193,7 +216,8 @@
       "chat": "Lesson 24 Early Stopping",
       "transcript": "lessons/transcripts/lesson-24-early-stopping.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-024-early-stopping.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-024-early-stopping.mdx"
     },
     {
       "lesson": 25,
@@ -201,7 +225,8 @@
       "chat": "Lesson 25 Dropout",
       "transcript": "lessons/transcripts/lesson-25-dropout.md",
       "notability_pdf": "artifacts/notability-pdfs/lesson-025-dropout.pdf",
-      "status": "raw_export"
+      "status": "draft",
+      "dynamic_page": "src/content/lessons/lesson-025-dropout.mdx"
     },
     {
       "lesson": 26,

@@ -29,7 +29,9 @@ Polished lessons should include:
 
 ## Raw Source Material
 
-Exported ChatGPT lesson transcripts currently live in [transcripts](transcripts/). Treat them as source material, not final lessons.
+Exported ChatGPT lesson transcripts currently live in [transcripts](transcripts/). Treat them as preserved source material for audit and revision, not as the user-facing lesson path.
+
+Lessons 1-25 have corresponding MDX pages under [../src/content/lessons](../src/content/lessons/). The source map records the relationship between raw transcript, Notability PDF, and dynamic page.
 
 The historical source index is [index.html](index.html). The forward MDX lesson index is generated from [../src/pages/lessons/index.astro](../src/pages/lessons/index.astro). The machine-readable source map is [../data/lesson-sources.json](../data/lesson-sources.json).
 
