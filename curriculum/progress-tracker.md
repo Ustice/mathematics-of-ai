@@ -48,9 +48,9 @@ This tracker records progress through the polished learning program. Existing tr
 - [ ] Hessians.
 - [ ] Convexity.
 - [ ] Constrained optimization.
-- [ ] Gradient descent.
-- [ ] SGD.
-- [ ] Momentum.
+- [x] Gradient descent.
+- [x] SGD.
+- [x] Momentum.
 - [ ] Adam.
 - [ ] Regularization.
 
@@ -160,6 +160,8 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [ ] Lesson 23: Regularization - raw transcript available.
 - [ ] Lesson 24: Early Stopping - raw transcript available.
 - [ ] Lesson 25: Dropout - raw transcript available.
-- [ ] Lesson 26: Gradient Descent - draft lesson available.
+- [x] Lesson 26: Gradient Descent - draft lesson available.
+- [x] Lesson 27: Stochastic Gradient Descent - draft lesson available.
+- [x] Lesson 28: Momentum - draft lesson available.
 
 Exercise PDFs are indexed in [../exercises/index.md](../exercises/index.md).
