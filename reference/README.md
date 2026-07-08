@@ -2,12 +2,14 @@
 
 This directory contains reusable reference material for the course.
 
-## Core References
+## Source of Truth
 
-- [Notation](notation.md) — Starter notation organized by mathematical area.
-- [Glossary](glossary.md) — Concise learner-friendly definitions.
-- [Symbol table](symbol-table.md) — Existing recurring symbol table from prior lessons.
-- [Mathematical vocabulary](mathematical-vocabulary.md) — Vocabulary backfill.
+Use these files as the current reference authority:
+
+- [Notation](notation.md) — Canonical compact notation by mathematical area.
+- [Symbol table](symbol-table.md) — Canonical recurring-symbol registry with context, first lesson, and overload notes.
+- [Glossary](glossary.md) — Canonical short learner-friendly definitions.
+- [Mathematical vocabulary](mathematical-vocabulary.md) — Expanded concept cards and vocabulary backfill; promote durable short definitions to `glossary.md`.
 - [Learning model](learning-model.md) — Teaching and learning preferences.
 - [Teaching playbook](teaching-playbook.md) — Guidance for future lesson construction.
 - [Mental models](mental-models.md) — Reusable mental models.
@@ -16,6 +18,8 @@ This directory contains reusable reference material for the course.
 - [Derivation index](derivation-index.md) — Derivations to preserve or rebuild.
 - [Lesson dependencies](lesson-dependencies.md) — Lesson dependency notes.
 - [Big picture roadmap](big-picture.md) — Prior high-level roadmap notes.
+
+Top-level [../notation.md](../notation.md) and [../glossary.md](../glossary.md) are historical snapshots retained for continuity. Do not add new canonical entries there.
 
 ## Usage
 

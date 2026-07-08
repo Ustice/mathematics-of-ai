@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is an external symbol table for recurring notation. Its job is to reduce working-memory load: symbol lookup should be mechanical, not part of the mathematical problem.
+This is the canonical external symbol table for recurring notation. Its job is to reduce working-memory load: symbol lookup should be mechanical, not part of the mathematical problem.
 
 ## Recurring Symbols
 

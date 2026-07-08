@@ -22,9 +22,11 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-25 are complete as raw exported lesson transcripts.
+Lessons 1-25 are complete as raw exported lesson transcripts. Lessons 26-28 are draft MDX lessons in `src/content/lessons/`.
 
-The next major topic is **Gradient Descent**, beginning the optimization sequence after the initial generalization and regularization unit.
+The next major topic is **Adam**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, and Momentum.
+
+Status labels below describe historical curriculum coverage. They do not mark polished lesson artifacts complete; use `curriculum/progress-tracker.md` and `data/lesson-sources.json` for that.
 
 ## Phase I — Linear Algebra Foundations
 
@@ -205,7 +207,7 @@ This phase explains why fitting the training data is not enough and introduces t
 
 ## Phase IV — Optimization
 
-**Status:** Next
+**Status:** In progress through Lesson 28
 
 This phase turns loss functions into training procedures. The emphasis is on understanding optimization geometrically and computationally.
 

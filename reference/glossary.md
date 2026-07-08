@@ -1,6 +1,6 @@
 # Glossary
 
-Short definitions for recurring course vocabulary. Keep entries concise and learner-friendly.
+This is the canonical short glossary for recurring course vocabulary. Keep entries concise and learner-friendly; expanded concept cards belong in [mathematical-vocabulary.md](mathematical-vocabulary.md).
 
 ## Terms
 

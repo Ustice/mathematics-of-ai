@@ -4,9 +4,9 @@ This historical importer was used to bring Notability PDF exports from Google Dr
 
 The committed PDFs in `artifacts/notability-pdfs/` are now the source artifacts for the course. Do not treat Google Drive as an ongoing synchronization source unless the course process explicitly changes.
 
-## Source
+## Archived Drive Source
 
-The source folder is recorded in `data/drive-pdf-manifest.json`. The manifest stores stable Drive file IDs and normalized output filenames.
+The archived Drive folder is recorded in `data/drive-pdf-manifest.json`. The manifest stores stable Drive file IDs and normalized output filenames for the historical bootstrap import.
 
 ## Setup
 
@@ -39,7 +39,7 @@ Optional overrides:
 ## Current Lesson Scope
 
 The Drive manifest stores the file IDs that were needed for the original bootstrap import, currently Lessons 2 through 10.
-The repository already contains normalized Notability PDF artifacts for Lessons 2 through 25.
+The repository already contains normalized Notability PDF artifacts for Lessons 2 through 26.
 Markdown lesson transcripts for Lessons 1-25 are stored separately under `lessons/transcripts/`.
 
 Before importing, run:

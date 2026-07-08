@@ -18,6 +18,7 @@ type LessonSources = {
     notability_pdfs?: string[];
     title: string;
     transcript: string | null;
+    dynamic_page?: string;
     status: string;
   }>;
 };
@@ -174,10 +175,22 @@ describe('first-use readiness', () => {
       )
       .filter(({ artifactPath }) => !existsSync(path.join(repoRoot, artifactPath)))
       .map(({ lesson, artifactPath }) => `lesson ${lesson}: ${artifactPath}`);
+    const missingDynamicPages = lessonSources.lessons
+      .filter(({ dynamic_page }) => Boolean(dynamic_page))
+      .filter(({ dynamic_page }) => !existsSync(path.join(repoRoot, dynamic_page as string)))
+      .map(({ lesson, dynamic_page }) => `lesson ${lesson}: ${dynamic_page}`);
+    const dynamicPagesInSourceMap = new Set(
+      lessonSources.lessons.flatMap(({ dynamic_page }) => (dynamic_page ? [dynamic_page] : [])),
+    );
+    const missingSourceMapEntriesForMdx = gitFiles(['src/content/lessons/*.mdx'])
+      .filter((lessonPage) => !dynamicPagesInSourceMap.has(lessonPage))
+      .map((lessonPage) => `${lessonPage} is missing from data/lesson-sources.json`);
 
     expect(missingTranscripts).toEqual([]);
     expect(skippedOrNullLessonsInIndex).toEqual([]);
     expect(missingNotabilityArtifacts).toEqual([]);
+    expect(missingDynamicPages).toEqual([]);
+    expect(missingSourceMapEntriesForMdx).toEqual([]);
   });
 
   test('raw transcripts do not contain private Notability share links', () => {

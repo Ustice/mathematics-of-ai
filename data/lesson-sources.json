@@ -211,6 +211,22 @@
       "notability_pdf": "artifacts/notability-pdfs/lesson-026-gradient-descent.pdf",
       "dynamic_page": "src/content/lessons/lesson-026-gradient-descent.mdx",
       "status": "draft"
+    },
+    {
+      "lesson": 27,
+      "title": "Stochastic Gradient Descent",
+      "chat": "Lesson 27 draft",
+      "transcript": null,
+      "dynamic_page": "src/content/lessons/lesson-027-stochastic-gradient-descent.mdx",
+      "status": "draft"
+    },
+    {
+      "lesson": 28,
+      "title": "Momentum",
+      "chat": "Lesson 28 draft",
+      "transcript": null,
+      "dynamic_page": "src/content/lessons/lesson-028-momentum.mdx",
+      "status": "draft"
     }
   ]
 }

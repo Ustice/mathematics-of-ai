@@ -1,5 +1,7 @@
 # Notation Guide
 
+Historical snapshot: current notation authority lives in [reference/notation.md](reference/notation.md) and [reference/symbol-table.md](reference/symbol-table.md). Do not add new canonical entries here.
+
 This file records notation conventions used across the course.
 
 ## General Conventions

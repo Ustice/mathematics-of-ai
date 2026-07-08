@@ -1,6 +1,6 @@
 # Notation
 
-This reference starts the canonical notation guide for the course. Lessons should still define symbols locally when formulas are introduced.
+This reference is the canonical compact notation guide for the course. Lessons should still define symbols locally when formulas are introduced, and overloaded recurring symbols should be tracked in [symbol-table.md](symbol-table.md).
 
 ## Linear Algebra
 

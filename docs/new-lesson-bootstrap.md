@@ -5,12 +5,12 @@ Use this prompt at the start of a fresh ChatGPT session when asking for the next
 ```text
 Read Ustice/mathematics-of-ai first.
 Start with course-state.yaml.
-Then read README.md, curriculum/roadmap.md, and the latest lesson in src/content/lessons.
+Then read README.md, curriculum/roadmap.md, curriculum/progress-tracker.md, data/lesson-sources.json, and the latest lesson in src/content/lessons.
 
 Generate the next lesson from course-state.yaml and the curriculum.
 Do not ask for a lesson PDF unless I explicitly ask you to review handwritten exercises.
 Do not treat prior lesson PDFs as the source of truth for what comes next.
-The source of truth is the repo state, especially course-state.yaml.
+The source of truth is the repo state, especially course-state.yaml and data/lesson-sources.json.
 
 Follow the established teaching style:
 - intuition first,
@@ -22,22 +22,34 @@ Follow the established teaching style:
 - group theory or category theory connections only when they clarify the concept.
 ```
 
-## Agent Workflow
+## First Read The Repo State
 
-1. Read `course-state.yaml`.
-2. Identify the next topic.
-3. Read `curriculum/roadmap.md` to place that topic in the larger sequence.
-4. Read the latest polished lesson in `src/content/lessons/`.
-5. Generate the next lesson using the current MDX lesson structure.
-6. After the lesson is accepted, update continuity files:
-   - `course-state.yaml`
-   - `data/lesson-sources.json`
-   - relevant notation/glossary/journal files when durable concepts changed
+1. Read `AGENTS.md`, `README.md`, `lessons/README.md`, `course-state.yaml`, `curriculum/README.md`, `curriculum/roadmap.md`, `curriculum/progress-tracker.md`, and `data/lesson-sources.json`.
 
-## Common Failure To Avoid
+2. Check the current draft and polished lesson files under `src/content/lessons/`, the lesson routes under `src/pages/lessons/`, and the exercise index under `exercises/index.md`.
 
-Do not respond with:
+3. Treat `data/lesson-sources.json` as the machine-readable map for transcript paths, local Notability PDF paths, draft lesson pages, and per-lesson status.
 
-> Please upload the previous lesson PDF.
+## Choose The Next Lesson
 
-The PDFs are handwritten exercise artifacts. They are useful for reviewing completed work, not for deciding the next lesson.
+1. Use `course-state.yaml` to identify the next topic.
+
+2. If the source map already has a draft or dynamic page for that topic, continue that draft instead of asking for a new PDF or transcript.
+
+3. If there is no draft for the requested lesson, generate the next lesson from the curriculum state.
+
+   - Use `curriculum/roadmap.md` for topic order.
+   - Use `curriculum/progress-tracker.md` for current status.
+   - Use nearby lessons, reference docs, and source-map entries for continuity.
+
+4. If prose docs disagree with the source map or actual files, call out the disagreement and prefer the checked repo state.
+
+## PDF Rule
+
+Do not ask Jason to upload a PDF to start, draft, or continue a lesson.
+
+Use local PDFs only when the task is exercise review, handwritten-work review, or source verification. Ask Jason for a PDF only after checking `data/lesson-sources.json`, `exercises/index.md`, and `artifacts/notability-pdfs/` and confirming the needed local artifact is missing.
+
+## Normal Lesson Output
+
+A coherent lesson pass should update or create the lesson page, exercise scaffold, source metadata, and continuity notes when those are naturally part of the task. Stop only when the next pedagogical decision is genuinely ambiguous or requires Jason's original thinking.
