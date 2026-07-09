@@ -133,7 +133,7 @@ Preserved historical and source material:
 
 ## Current Course State
 
-The canonical state is [course-state.yaml](course-state.yaml). As of the latest update, Lessons 1-29 are complete and the next topic is Learning Rate Schedules.
+The canonical state is [course-state.yaml](course-state.yaml). As of the latest update, Lessons 1-30 are complete and the next topic is Curvature and the Hessian.
 
 Forward polished and draft lessons live under [src/content/lessons](src/content/lessons/). Lessons 1-25 now have MDX lesson pages generated from the raw exported Markdown transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved as source artifacts.
 
