@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-08
+last_updated: 2026-07-09
 current_phase: Optimization and Calculus for Machine Learning
-next_topic: Learning Rate Schedules
+next_topic: Hessians and Curvature
 
 completed_lessons:
   - number: 1
@@ -63,6 +63,8 @@ completed_lessons:
     title: Momentum
   - number: 29
     title: Adam
+  - number: 30
+    title: Learning Rate Schedules
 
 teaching_preferences:
   intuition_first: true
@@ -80,6 +82,7 @@ known_learning_notes:
   - Symbol tables are important because reconstructing notation while learning concepts is costly.
   - Abstraction and invariants help reduce working-memory load.
   - Vocabulary is often harder than the underlying concept.
+  - Step schedules need explicit boundary conventions; floor preserves the initial learning rate during the first interval.
 
 artifacts:
   notability_pdfs: lessons_2_to_26_available_under_artifacts_notability_pdfs
