@@ -161,3 +161,97 @@ Expected checkpoints:
 - Bias correction should be tied to `m_0 = 0` and `v_0 = 0`.
 - Per-parameter scaling should be explained coordinate by coordinate.
 - The implementation prompt should update optimizer state before applying the parameter update.
+
+## Reviewed Student Work - 2026-07-09
+
+Source: uploaded `Lesson 29.pdf`.
+
+### Overall
+
+Strong conceptual pass. The answers show the important Adam model: two optimizer memories, one for direction and one for scale. The scalar calculation for `g_1 = 5` is correct:
+
+```math
+m_1 = 1
+```
+
+```math
+v_1 = 2.5
+```
+
+```math
+\hat{m}_1 = 5
+```
+
+```math
+\hat{v}_1 = 25
+```
+
+```math
+\theta_1 \approx \theta_0 - 0.1
+```
+
+### Keep
+
+- The distinction between direction memory and scale memory is clear.
+- The explanation of why `sqrt(v_t)` is needed is right: `v_t` stores squared-gradient scale, so the square root returns to gradient units.
+- The note that `ε` prevents denominator failure is right.
+- The Adam-easier-than-SGD example is good: parameter coordinates with very different gradient scales.
+
+### Corrections / Refinements
+
+1. **Adam's adaptive scaling does change the final update direction.**
+
+   The answer says that if we only adjusted scale independently, the direction would get distorted, so Adam also tracks direction. That is mostly right as an intuition, but there is a subtlety: Adam's coordinatewise division by `sqrt(v_t)` can itself change the direction relative to the raw gradient vector.
+
+   More precise wording:
+
+   > Adam separates two questions: what direction has recent gradient evidence supported, and how large are gradients usually in each coordinate? The final update is a coordinatewise normalized direction, not necessarily the same geometric direction as the raw gradient.
+
+2. **Bias correction is not mainly about preventing infinity.**
+
+   `ε` handles the literal divide-by-zero case. Bias correction handles a different problem: because `m_0 = 0` and `v_0 = 0`, the early running averages are artificially too small.
+
+   Better wording:
+
+   > Bias correction matters most early because `1 - β^t` is small near `t = 1`, and the zero initialization strongly shrinks `m_t` and `v_t`. As `t` grows, `β^t` approaches zero, so `1 - β^t` approaches one and the correction becomes negligible.
+
+3. **The implementation sketch has the right state-shape intuition, but the bias correction needs `step` exponents.**
+
+   The pseudocode divides by `1 - beta1` and `1 - beta2`. That is correct only on step 1. In general it should be:
+
+   ```ts
+   const firstHat = firstMoment[i] / (1 - beta1 ** step);
+   const secondHat = secondMoment[i] / (1 - beta2 ** step);
+   ```
+
+   Also, `firstMoment` and `secondMoment` should be arrays updated per parameter index, not single scalar variables shared across the whole parameter array.
+
+### Suggested Clean Pseudocode
+
+```ts
+function adamStep(
+  theta: number[],
+  gradient: number[],
+  firstMoment: number[],
+  secondMoment: number[],
+  step: number,
+  learningRate: number,
+  beta1: number,
+  beta2: number,
+  epsilon: number,
+): void {
+  for (let i = 0; i < theta.length; i++) {
+    firstMoment[i] = beta1 * firstMoment[i] + (1 - beta1) * gradient[i];
+    secondMoment[i] = beta2 * secondMoment[i] + (1 - beta2) * gradient[i] ** 2;
+
+    const firstHat = firstMoment[i] / (1 - beta1 ** step);
+    const secondHat = secondMoment[i] / (1 - beta2 ** step);
+
+    theta[i] = theta[i] - learningRate * firstHat / (Math.sqrt(secondHat) + epsilon);
+  }
+}
+```
+
+### Review Result
+
+Lesson 29 is complete. Reinforce before Lesson 30: bias correction versus `ε`, and the distinction between raw gradient direction and Adam's coordinatewise normalized update direction.
