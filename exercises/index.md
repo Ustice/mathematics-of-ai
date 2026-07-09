@@ -38,6 +38,7 @@ This index reflects the handwritten Notability PDFs committed under `artifacts/n
 | 26 | Gradient Descent | [`lesson-026-gradient-descent.md`](lesson-026-gradient-descent.md) | [`lesson-026-gradient-descent.pdf`](../artifacts/notability-pdfs/lesson-026-gradient-descent.pdf) |
 | 28 | Momentum | [`lesson-028-momentum.md`](lesson-028-momentum.md) | Uploaded Notability PDF reviewed 2026-07-08 |
 | 29 | Adam | [`lesson-029-adam.md`](lesson-029-adam.md) | Uploaded Notability PDF reviewed 2026-07-09 |
+| 30 | Learning Rate Schedules | [`lesson-030-learning-rate-schedules.md`](lesson-030-learning-rate-schedules.md) | Uploaded Notability PDF reviewed 2026-07-09 |
 
 ## Notes
 
