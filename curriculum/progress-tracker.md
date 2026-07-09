@@ -64,7 +64,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] SGD.
 - [x] Momentum.
 - [x] Adam.
-- [ ] Learning rate schedules.
+- [x] Learning rate schedules.
 - [x] Regularization.
 
 ### Information Theory
@@ -177,6 +177,7 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 27: Stochastic Gradient Descent - draft lesson available.
 - [x] Lesson 28: Momentum - draft lesson available.
 - [x] Lesson 29: Adam - draft lesson and reviewed exercise notes available.
-- [ ] Lesson 30: Learning Rate Schedules - draft lesson available.
+- [x] Lesson 30: Learning Rate Schedules - draft lesson and reviewed exercise notes available.
+- [ ] Lesson 31: Hessians and Curvature - draft lesson available.
 
 Exercise PDFs are indexed in [../exercises/index.md](../exercises/index.md).
