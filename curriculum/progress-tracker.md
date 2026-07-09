@@ -178,6 +178,6 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 28: Momentum - draft lesson available.
 - [x] Lesson 29: Adam - draft lesson and reviewed exercise notes available.
 - [x] Lesson 30: Learning Rate Schedules - draft lesson and reviewed exercise notes available.
-- [ ] Lesson 31: Hessians and Curvature - draft lesson available.
+- [x] Lesson 31: Curvature and the Hessian - draft lesson available.
 
 Exercise PDFs are indexed in [../exercises/index.md](../exercises/index.md).
