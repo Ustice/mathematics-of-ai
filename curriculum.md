@@ -22,9 +22,9 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-25 are complete as raw exported lesson transcripts. Lesson 26 is published as an MDX lesson in `src/content/lessons/`, and Lessons 27-29 are draft MDX lessons.
+Lessons 1-25 are complete as raw exported lesson transcripts. Lesson 26 is published as an MDX lesson in `src/content/lessons/`, and Lessons 27-31 are draft MDX lessons.
 
-The next major topic is **Learning Rate Schedules**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, Momentum, and Adam.
+The next active topic is **Hessians and Curvature**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, Momentum, Adam, and Learning Rate Schedules.
 
 Status labels below describe historical curriculum coverage. They do not mark polished lesson artifacts complete; use `curriculum/progress-tracker.md` and `data/lesson-sources.json` for that.
 
@@ -207,7 +207,7 @@ This phase explains why fitting the training data is not enough and introduces t
 
 ## Phase IV — Optimization
 
-**Status:** In progress through Lesson 29
+**Status:** In progress through Lesson 31
 
 This phase turns loss functions into training procedures. The emphasis is on understanding optimization geometrically and computationally.
 
@@ -242,13 +242,19 @@ This phase turns loss functions into training procedures. The emphasis is on und
     - Cosine schedules
     - Why learning rates change during training
 
-31. **Convexity and Nonconvexity**
+31. **Hessians and Curvature**
+    - Second derivatives
+    - Hessian matrices
+    - Curvature directions
+    - Why curvature affects optimizer behavior
+
+32. **Convexity and Nonconvexity**
     - Convex functions
     - Local versus global minima
     - Saddle points
     - Why neural network optimization is hard but often works
 
-32. **Constrained Optimization**
+33. **Constrained Optimization**
     - Constraints
     - Lagrange multipliers
     - Penalty methods
@@ -260,26 +266,20 @@ This phase turns loss functions into training procedures. The emphasis is on und
 
 This phase formalizes the calculus needed for backpropagation, optimization, and reading papers with vectorized derivatives.
 
-33. **Partial Derivatives**
+34. **Partial Derivatives**
     - Functions of multiple variables
     - Holding variables constant
     - Local sensitivity
 
-34. **Gradients**
+35. **Gradients**
     - Gradient vectors
     - Directional derivatives
     - Gradients as covectors / local linear approximations
 
-35. **Jacobians**
+36. **Jacobians**
     - Derivatives of vector-valued functions
     - Local linear maps
     - Shape discipline
-
-36. **Hessians**
-    - Second derivatives
-    - Curvature
-    - Positive and negative definiteness
-    - Relation to optimization
 
 37. **Chain Rule for Computation Graphs**
     - Composed functions
