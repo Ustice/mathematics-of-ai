@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-09
+last_updated: 2026-07-10
 current_phase: Optimization and Calculus for Machine Learning
-next_topic: Hessians and Curvature
+next_topic: Convexity
 
 completed_lessons:
   - number: 1
@@ -65,6 +65,8 @@ completed_lessons:
     title: Adam
   - number: 30
     title: Learning Rate Schedules
+  - number: 31
+    title: Hessians and Curvature
 
 teaching_preferences:
   intuition_first: true
@@ -83,6 +85,8 @@ known_learning_notes:
   - Abstraction and invariants help reduce working-memory load.
   - Vocabulary is often harder than the underlying concept.
   - Step schedules need explicit boundary conventions; floor preserves the initial learning rate during the first interval.
+  - For directional curvature, v^T H v equals curvature itself when v is normalized; otherwise vector length scales the result.
+  - Coordinate coefficients identify steep directions directly only for diagonal Hessians; in general use Hessian eigenvectors.
 
 artifacts:
   notability_pdfs: lessons_2_to_26_available_under_artifacts_notability_pdfs
