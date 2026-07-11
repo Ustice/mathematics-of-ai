@@ -8,8 +8,8 @@ Start with course-state.yaml.
 Then read README.md, curriculum/roadmap.md, curriculum/progress-tracker.md, data/lesson-sources.json, and the latest lesson in src/content/lessons.
 
 Generate the next lesson from course-state.yaml and the curriculum.
-Do not ask for a lesson PDF unless I explicitly ask you to review handwritten exercises.
-Do not treat prior lesson PDFs as the source of truth for what comes next.
+Do not ask for a lesson artifact unless I explicitly ask you to review handwritten exercises.
+Do not treat prior exercise images as the source of truth for what comes next.
 The source of truth is the repo state, especially course-state.yaml and data/lesson-sources.json.
 
 Follow the established teaching style:
@@ -26,17 +26,17 @@ Follow the established teaching style:
 
 1. Read `AGENTS.md`, `README.md`, `lessons/README.md`, `course-state.yaml`, `curriculum/README.md`, `curriculum/roadmap.md`, `curriculum/progress-tracker.md`, and `data/lesson-sources.json`.
 
-2. Check the current draft and polished lesson files under `src/content/lessons/`, the lesson routes under `src/pages/lessons/`, and the exercise index under `exercises/index.md`.
+2. Check the lesson files under `src/content/lessons/`, the lesson routes under `src/pages/lessons/`, and the exercise index under `exercises/index.md`.
 
-3. Treat `data/lesson-sources.json` as the machine-readable map for transcript paths, local Notability PDF paths, draft lesson pages, and per-lesson status.
+3. Treat `data/lesson-sources.json` as the machine-readable map for transcript paths, exercise image paths, and lesson pages.
 
 ## Choose The Next Lesson
 
 1. Use `course-state.yaml` to identify the next topic.
 
-2. If the source map already has a draft or dynamic page for that topic, continue that draft instead of asking for a new PDF or transcript.
+2. If the source map already has a dynamic page for that topic, continue that page instead of asking for a new source artifact.
 
-3. If there is no draft for the requested lesson, generate the next lesson from the curriculum state.
+3. If there is no page for the requested lesson, generate the next lesson from the curriculum state.
 
    - Use `curriculum/roadmap.md` for topic order.
    - Use `curriculum/progress-tracker.md` for current status.
@@ -44,11 +44,11 @@ Follow the established teaching style:
 
 4. If prose docs disagree with the source map or actual files, call out the disagreement and prefer the checked repo state.
 
-## PDF Rule
+## Exercise Image Rule
 
-Do not ask Jason to upload a PDF to start, draft, or continue a lesson.
+Do not ask Jason to upload an artifact to start, draft, or continue a lesson.
 
-Use local PDFs only when the task is exercise review, handwritten-work review, or source verification. Ask Jason for a PDF only after checking `data/lesson-sources.json`, `exercises/index.md`, and `exercises/notability-pdfs/` and confirming the needed local artifact is missing.
+Use submitted images for exercise or handwritten-work review. Store nonblank pages under `exercises/lesson-NNN-slug/` and index them with `exercise_images`.
 
 ## Normal Lesson Output
 

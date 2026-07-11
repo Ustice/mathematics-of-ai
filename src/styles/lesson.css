@@ -306,6 +306,43 @@ h1 {
   margin-top: 10px;
 }
 
+.exercise-gallery {
+  border-top: 1px solid var(--line);
+  margin-top: 54px;
+  padding-top: 34px;
+}
+
+.exercise-gallery-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.exercise-gallery figure {
+  margin: 0;
+}
+
+.exercise-gallery a {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: block;
+  overflow: hidden;
+}
+
+.exercise-gallery img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.exercise-gallery figcaption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
 .diagram-surface {
   fill: #fffaf0;
   stroke: var(--line);
@@ -796,6 +833,7 @@ h1 {
   }
 
   .dashboard-grid,
+  .exercise-gallery-grid,
   .resource-table-header,
   .resource-row,
   .topic-row {

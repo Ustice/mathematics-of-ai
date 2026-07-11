@@ -1,6 +1,8 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ExerciseGallery from '../../components/ExerciseGallery.astro';
 import LessonLayout from '../../layouts/LessonLayout.astro';
+import { exerciseImagePaths, readLessonSources } from '../../lib/lesson-sources';
 
 type Props = {
   lesson: CollectionEntry<'lessons'>;
@@ -17,8 +19,11 @@ export const getStaticPaths = async () => {
 
 const { lesson } = Astro.props;
 const { Content, headings } = await render(lesson);
+const lessonSource = readLessonSources().find(({ lesson: lessonNumber }) => lessonNumber === lesson.data.lesson);
+const exerciseImages = lessonSource ? exerciseImagePaths(lessonSource) : [];
 ---
 
 <LessonLayout headings={headings} lesson={lesson.data}>
   <Content />
+  <ExerciseGallery images={exerciseImages} />
 </LessonLayout>

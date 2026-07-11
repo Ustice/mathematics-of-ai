@@ -17,7 +17,6 @@ type LessonMeta = {
     lesson: number;
     title: string;
   }>;
-  status: string;
   symbols: Array<{
     meaning: string;
     symbol: string;
@@ -54,10 +53,6 @@ const lessonsPath = `${basePath}lessons/`;
         <div>
           <dt>Lesson</dt>
           <dd>{lesson.lesson}</dd>
-        </div>
-        <div>
-          <dt>Status</dt>
-          <dd>{lesson.status}</dd>
         </div>
       </dl>
     </header>

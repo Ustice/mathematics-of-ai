@@ -28,7 +28,6 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
       { lesson: 25, title: 'Dropout' },
     ],
     slug: 'lesson-026-gradient-descent',
-    status: 'published',
     title: 'Gradient Descent',
   },
   {
@@ -39,7 +38,6 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
       { lesson: 26, title: 'Gradient Descent' },
     ],
     slug: 'lesson-027-stochastic-gradient-descent',
-    status: 'draft',
     title: 'Stochastic Gradient Descent',
   },
   {
@@ -50,7 +48,6 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
       { lesson: 27, title: 'Stochastic Gradient Descent' },
     ],
     slug: 'lesson-028-momentum',
-    status: 'draft',
     title: 'Momentum',
   },
   {
@@ -62,7 +59,6 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
       { lesson: 28, title: 'Momentum' },
     ],
     slug: 'lesson-029-adam',
-    status: 'draft',
     title: 'Adam',
   },
 ];
@@ -70,14 +66,14 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
 describe('lesson dependency graph', () => {
   test('builds prerequisite edges from lesson frontmatter-shaped input', () => {
     const sourceLessons: LessonSourceInput[] = [
-      { lesson: 17, status: 'raw_export', title: 'Loss Functions' },
-      { lesson: 23, status: 'raw_export', title: 'Regularization' },
-      { lesson: 24, status: 'raw_export', title: 'Early Stopping' },
-      { lesson: 25, status: 'raw_export', title: 'Dropout' },
-      { lesson: 26, status: 'published', title: 'Gradient Descent' },
-      { lesson: 27, status: 'draft', title: 'Stochastic Gradient Descent' },
-      { lesson: 28, status: 'draft', title: 'Momentum' },
-      { lesson: 29, status: 'draft', title: 'Adam' },
+      { lesson: 17, title: 'Loss Functions' },
+      { lesson: 23, title: 'Regularization' },
+      { lesson: 24, title: 'Early Stopping' },
+      { lesson: 25, title: 'Dropout' },
+      { lesson: 26, title: 'Gradient Descent' },
+      { lesson: 27, title: 'Stochastic Gradient Descent' },
+      { lesson: 28, title: 'Momentum' },
+      { lesson: 29, title: 'Adam' },
     ];
 
     const graph = buildLessonDependencyGraph(currentOptimizationLessons, sourceLessons);
@@ -88,7 +84,6 @@ describe('lesson dependency graph', () => {
       from: 26,
       mdxExists: true,
       sourceExists: true,
-      sourceStatus: 'published',
       sourceTitle: 'Gradient Descent',
       title: 'Gradient Descent',
       to: 27,
@@ -102,7 +97,6 @@ describe('lesson dependency graph', () => {
         phase: 'Foundations',
         prerequisites: [],
         slug: 'lesson-001-vectors',
-        status: 'published',
         title: 'Vectors',
       },
       {
@@ -110,20 +104,18 @@ describe('lesson dependency graph', () => {
         phase: 'Foundations',
         prerequisites: [{ lesson: 1, title: 'Vectors' }],
         slug: 'lesson-002-matrices-as-transformations',
-        status: 'draft',
         title: 'Matrices as Transformations',
       },
     ];
 
     expect(
-      buildLessonDependencyGraph(lessons, [{ lesson: 1, status: 'published', title: 'Vectors' }])
+      buildLessonDependencyGraph(lessons, [{ lesson: 1, title: 'Vectors' }])
         .edges,
     ).toEqual([
       {
         from: 1,
         mdxExists: true,
         sourceExists: true,
-        sourceStatus: 'published',
         sourceTitle: 'Vectors',
         title: 'Vectors',
         to: 2,

@@ -15,7 +15,7 @@ Use a balanced ladder for most lessons.
 3. Mechanical fluency
    - Use small numbers.
    - Show dimensions.
-   - Keep the computation short enough to fit on one Notability page.
+   - Keep the computation short enough to fit comfortably on one handwritten page.
 
 4. Derivation
    - Ask for the important step, not every algebraic expansion.
@@ -30,6 +30,6 @@ Use a balanced ladder for most lessons.
 
 ## Medium Choice
 
-- Use Notability for derivations, sketches, proofs, and multi-step explanations.
+- Use handwritten work for derivations, sketches, proofs, and multi-step explanations.
 - Use HTML for prompts, hints, solutions, indexes, and small self-checks.
 - Use widgets for concepts where changing a parameter teaches the idea faster than static text.

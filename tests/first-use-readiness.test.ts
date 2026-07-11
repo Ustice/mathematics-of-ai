@@ -6,12 +6,10 @@ import path from 'node:path';
 type LessonSources = {
   lessons: Array<{
     lesson: number;
-    notability_pdf?: string;
-    notability_pdfs?: string[];
+    exercise_images?: string[];
     title: string;
     transcript: string | null;
     dynamic_page?: string;
-    status: string;
   }>;
 };
 
@@ -106,7 +104,7 @@ describe('first-use readiness', () => {
     expect(missingLinks).toEqual([]);
   });
 
-  test('lesson source entries are concrete and generated index omits skipped/null lessons', () => {
+  test('lesson source entries are concrete and generated index omits lessons without transcripts', () => {
     const lessonSources = readJson<LessonSources>('data/lesson-sources.json');
     const lessonIndex = readText('lessons/index.html');
 
@@ -115,16 +113,14 @@ describe('first-use readiness', () => {
       .filter(({ transcript }) => !existsSync(path.join(repoRoot, transcript as string)))
       .map(({ lesson, transcript }) => `lesson ${lesson}: ${transcript}`);
 
-    const skippedOrNullLessonsInIndex = lessonSources.lessons
-      .filter(({ status, transcript }) => status === 'skipped' || transcript === null)
+    const nullLessonsInIndex = lessonSources.lessons
+      .filter(({ transcript }) => transcript === null)
       .filter(({ lesson, title }) => lessonIndex.includes(`<td>${lesson}</td>`) || lessonIndex.includes(title))
       .map(({ lesson, title }) => `lesson ${lesson}: ${title}`);
 
-    const missingNotabilityArtifacts = lessonSources.lessons
-      .flatMap(({ lesson, notability_pdf, notability_pdfs }) =>
-        [notability_pdf, ...(notability_pdfs ?? [])]
-          .filter((artifactPath): artifactPath is string => Boolean(artifactPath))
-          .map((artifactPath) => ({ artifactPath, lesson })),
+    const missingExerciseImages = lessonSources.lessons
+      .flatMap(({ lesson, exercise_images }) =>
+        (exercise_images ?? []).map((artifactPath) => ({ artifactPath, lesson })),
       )
       .filter(({ artifactPath }) => !existsSync(path.join(repoRoot, artifactPath)))
       .map(({ lesson, artifactPath }) => `lesson ${lesson}: ${artifactPath}`);
@@ -140,8 +136,8 @@ describe('first-use readiness', () => {
       .map((lessonPage) => `${lessonPage} is missing from data/lesson-sources.json`);
 
     expect(missingTranscripts).toEqual([]);
-    expect(skippedOrNullLessonsInIndex).toEqual([]);
-    expect(missingNotabilityArtifacts).toEqual([]);
+    expect(nullLessonsInIndex).toEqual([]);
+    expect(missingExerciseImages).toEqual([]);
     expect(missingDynamicPages).toEqual([]);
     expect(missingSourceMapEntriesForMdx).toEqual([]);
   });

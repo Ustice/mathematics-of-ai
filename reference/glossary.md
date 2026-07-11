@@ -86,6 +86,12 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Gradient:** A vector of partial derivatives pointing in the direction of steepest local increase of a scalar function.
 
+**Hessian:** A matrix of second partial derivatives that describes how a multivariable function's gradient changes locally.
+
+**Directional curvature:** The quadratic form $v^T H v$ for a unit direction $v$, measuring local curvature along that direction.
+
+**Saddle point:** A stationary point where the function curves upward in some directions and downward in others.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.

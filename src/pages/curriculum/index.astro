@@ -8,7 +8,6 @@ type CurriculumLesson = {
   bullets: string[];
   lesson: number;
   slug: string | null;
-  status: string | null;
   title: string;
 };
 
@@ -28,7 +27,6 @@ const lessonMetaByNumber = new Map(
     lesson.data.lesson,
     {
       slug: lesson.data.slug,
-      status: lesson.data.status,
     },
   ]),
 );
@@ -58,7 +56,6 @@ const phases: CurriculumPhase[] = curriculumText
             .map((bullet) => bullet.replace(/^    - /, '')) ?? [],
         lesson,
         slug: meta?.slug ?? null,
-        status: meta?.status ?? null,
         title: match.groups?.title ?? '',
       };
     });
@@ -124,7 +121,6 @@ const phases: CurriculumPhase[] = curriculumText
                             lesson.title
                           )}
                         </h3>
-                        {lesson.status ? <span class="status-pill">{lesson.status}</span> : null}
                       </div>
                       <ul>
                         {lesson.bullets.map((bullet) => <li>{bullet}</li>)}

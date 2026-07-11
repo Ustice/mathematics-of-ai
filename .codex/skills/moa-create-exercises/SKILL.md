@@ -1,14 +1,15 @@
 ---
 name: moa-create-exercises
-description: Create Mathematics of AI exercises, Notability-first practice prompts, web companion exercise sections, hints, checks, and artifact wiring. Use when Jason asks for exercises for a lesson, wants Notability prompts, wants HTML exercise pages, wants practice sets with hints/solutions, or needs exercise artifacts connected to lesson metadata.
+description: Review Mathematics of AI exercise images, organize them by lesson, and use the review to decide whether the learner is ready for the next lesson. Use when Jason submits handwritten work, asks for exercise review, or needs exercise artifacts connected to lesson metadata.
 ---
 
 # MOA Create Exercises
 
 ## Overview
 
-Design exercises around handwritten reasoning first, with lightweight web support for prompts, hints, and mechanical checks.
-Keep Notability as the main surface for derivations, diagrams, and reflective problem solving.
+Treat exported images of handwritten work as the canonical exercise artifacts. Review them for conceptual readiness, store them in a lesson-specific directory, and do not create new exercise Markdown files.
+
+When Jason identifies an upload as backfill or says the work was already evaluated, treat it as archival import: store and index the images without re-evaluating the answers, changing readiness, or adding review commentary.
 
 ## Workflow
 
@@ -19,28 +20,26 @@ Keep Notability as the main surface for derivations, diagrams, and reflective pr
    - Read `reference/notation.md`, `reference/glossary.md`, and existing learning notes when exercises depend on notation, vocabulary, or known friction points.
    - Identify which concepts need intuition, mechanics, derivation, and transfer practice.
 
-2. Create the exercise ladder.
-   - Start with meaning checks.
-   - Add one or two mechanical drills only where fluency matters.
-   - Add a derivation or proof-shaped prompt.
-   - Add an application prompt connected to machine learning.
-   - End with a reflection prompt that catches vocabulary or notation confusion.
+2. Review the submitted work.
+   - Skip this step for explicitly identified archival backfill.
+   - Check conceptual understanding, mechanics, derivation, and transfer to machine learning.
+   - Distinguish real blockers from small wording or notation refinements.
+   - Decide explicitly whether the work demonstrates readiness for the next lesson.
 
-3. Produce Notability-friendly prompts.
-   - Use generous whitespace and clear numbering.
-   - Ask for diagrams whenever geometry is the point.
-   - Avoid tiny arithmetic unless it reveals structure.
-   - Include explicit symbols and dimensions near the question.
+3. Store the images.
+   - Use `exercises/lesson-NNN-slug/exercise-NN.jpg` in reading order.
+   - Omit accidentally exported blank pages.
+   - Keep all artifacts for one lesson in that lesson's directory.
+   - Add the ordered paths to `exercise_images` in `data/lesson-sources.json`.
 
-4. Add web companion material when useful.
-   - Include collapsible hints and final answers for self-study.
-   - Use dynamic checks for small computations, not long-form proof grading.
-   - Link an exported Notability PDF using the location and naming convention established by existing `notability_pdf` and `notability_pdfs` source-map entries.
+4. Continue the course when ready.
+   - If the review passes, use the lesson and continuity skills to finish the existing next-lesson draft or create the next lesson from repo state.
+   - If the review exposes a prerequisite gap, explain the smallest correction needed before advancing.
 
 5. Validate.
    - Ensure every linked artifact exists.
    - Run `bun run validate`.
-   - If exercise pages or widgets changed, run the relevant page tests and inspect rendering.
+   - Verify that every image opens and has nonzero dimensions.
 
 ## References
 
@@ -48,7 +47,6 @@ Read `references/exercise-patterns.md` when designing a new practice set or deci
 
 ## Guardrails
 
-- Do not replace Notability unless the user asks for a different medium.
-- Do not make every exercise interactive.
-- Do not hide the main learning work behind multiple-choice answers.
-- Keep solutions separate from prompts unless the user asks for a single combined page.
+- Do not create new exercise Markdown files.
+- Do not retain blank image exports.
+- Do not advance merely because files were submitted; base readiness on the mathematical work.

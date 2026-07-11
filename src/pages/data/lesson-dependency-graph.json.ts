@@ -10,12 +10,10 @@ export const GET = async () => {
       phase: data.phase,
       prerequisites: data.prerequisites,
       slug: data.slug,
-      status: data.status,
       title: data.title,
     })),
-    lessonSources.lessons.map(({ lesson, status, title }) => ({
+    lessonSources.lessons.map(({ lesson, title }) => ({
       lesson,
-      status,
       title,
     })),
   );

@@ -4,11 +4,9 @@ import path from 'node:path';
 export type LessonSource = {
   chat?: string;
   dynamic_page?: string;
+  exercise_images?: string[];
   exercise_set?: string;
   lesson: number;
-  notability_pdf?: string;
-  notability_pdfs?: string[];
-  status: string;
   title: string;
   transcript: string | null;
 };
@@ -23,12 +21,9 @@ export const readLessonSources = () =>
   (JSON.parse(readFileSync(repoPath('data/lesson-sources.json'), 'utf8')) as LessonSourcesFile)
     .lessons;
 
-export const notabilityPdfPaths = (source: LessonSource) =>
-  [source.notability_pdf, ...(source.notability_pdfs ?? [])].filter(
-    (artifactPath): artifactPath is string => Boolean(artifactPath),
-  );
+export const exerciseImagePaths = (source: LessonSource) => source.exercise_images ?? [];
 
-export const allNotabilityPdfPaths = () => readLessonSources().flatMap(notabilityPdfPaths);
+export const allExerciseImagePaths = () => readLessonSources().flatMap(exerciseImagePaths);
 
 export const artifactFileName = (artifactPath: string) => path.basename(artifactPath);
 
