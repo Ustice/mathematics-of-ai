@@ -47,6 +47,8 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(L(\theta)\) | loss function | A function measuring model error or objective badness |
 | \(\ell(\theta)\) | log-likelihood | Log of the likelihood, often optimized instead of the raw likelihood |
 | \(\nabla L(\theta)\) | gradient of the loss | Direction of steepest increase of the loss with respect to parameters |
+| \(H_L(\theta)\) | Hessian of the loss | Matrix of second partial derivatives describing local curvature |
+| \(v^T H_L(\theta)v\) | directional quadratic form | Curvature along direction \(v\) when \(v\) is a unit vector; otherwise scaled by \(\lVert v\rVert^2\) |
 | \(\eta\) | learning rate | Step size used by an optimizer |
 | \(\Delta \theta\) | parameter update | Change applied to parameters during one optimization step |
 | \(g_t\) | gradient estimate at step t | Mini-batch gradient used by stochastic optimizers |

@@ -2,8 +2,7 @@ import fs from 'node:fs/promises';
 
 type LessonSource = {
   lesson: number;
-  notability_pdf?: string;
-  notability_pdfs?: string[];
+  exercise_images?: string[];
   title: string;
 };
 
@@ -14,7 +13,7 @@ type LessonSources = {
 const sourceMapPath = process.env.LESSON_SOURCES ?? 'data/lesson-sources.json';
 
 const artifactPaths = (source: LessonSource) =>
-  [source.notability_pdf, ...(source.notability_pdfs ?? [])].filter(
+  (source.exercise_images ?? []).filter(
     (artifactPath): artifactPath is string => Boolean(artifactPath),
   );
 

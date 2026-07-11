@@ -2,7 +2,7 @@
 
 This roadmap organizes the Mathematics for Machine Intelligence program. It is meant to guide study, implementation, paper reading, and reference-building.
 
-The roadmap is a topic map, not a completion ledger. Use [progress-tracker.md](progress-tracker.md) for milestone evidence, [../course-state.yaml](../course-state.yaml) for the compact course checkpoint, and [../data/lesson-sources.json](../data/lesson-sources.json) for per-lesson artifact status.
+The roadmap is a topic map, not a completion ledger. Use [progress-tracker.md](progress-tracker.md) for milestone evidence, [../course-state.yaml](../course-state.yaml) for the compact course checkpoint, and [../data/lesson-sources.json](../data/lesson-sources.json) for artifact paths.
 
 ## Capability Arc
 

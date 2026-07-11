@@ -1,4 +1,4 @@
 interface:
   display_name: "MOA Create Exercises"
-  short_description: "Design Notability-first exercises"
-  default_prompt: "Use $moa-create-exercises to create exercises and Notability prompts for the current lesson."
+  short_description: "Review lesson exercise images"
+  default_prompt: "Use $moa-create-exercises to review submitted exercise images, organize them by lesson, and decide readiness for the next lesson."

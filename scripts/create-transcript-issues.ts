@@ -3,7 +3,6 @@ import fs from 'node:fs/promises';
 type LessonSource = {
   chat: string;
   lesson: number;
-  status: string;
   title: string;
   transcript: string | null;
 };
@@ -24,7 +23,7 @@ function issueForLesson(lesson: LessonSource): string {
     '',
     'Sources:',
     `- Chat: ${lesson.chat}`,
-    `- Exercise PDFs: exercises/notability-pdfs/lesson-${padded}-*.pdf when available`,
+    `- Exercise images: exercises/lesson-${padded}-*/exercise-*.jpg when available`,
     '',
     'Acceptance criteria:',
     '- preserve key teaching explanations',
@@ -38,7 +37,7 @@ function issueForLesson(lesson: LessonSource): string {
 async function main(): Promise<void> {
   const data = JSON.parse(await fs.readFile(sourcePath, 'utf8')) as LessonSources;
   const output = data.lessons
-    .filter((lesson) => lesson.status !== 'skipped' && lesson.transcript)
+    .filter((lesson) => lesson.transcript)
     .map(issueForLesson)
     .join('\n\n');
 

@@ -1,13 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import '../styles/lesson.css';
-import { allNotabilityPdfPaths, readLessonSources } from '../lib/lesson-sources';
+import { allExerciseImagePaths, readLessonSources } from '../lib/lesson-sources';
 
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
 const lessons = await getCollection('lessons');
 const sourceLessons = readLessonSources();
-const pdfCount = allNotabilityPdfPaths().length;
+const exerciseImageCount = allExerciseImagePaths().length;
 const latestLesson = lessons
   .sort((left, right) => right.data.lesson - left.data.lesson)
   .at(0);
@@ -45,8 +45,8 @@ const latestLesson = lessons
             <dd>{sourceLessons.length}</dd>
           </div>
           <div>
-            <dt>Exercise PDFs</dt>
-            <dd>{pdfCount}</dd>
+            <dt>Exercise Images</dt>
+            <dd>{exerciseImageCount}</dd>
           </div>
         </dl>
       </header>
@@ -60,12 +60,12 @@ const latestLesson = lessons
         <a class="dashboard-card" href={withBase('/exercises/')}>
           <p class="eyebrow">Practice</p>
           <h2>Exercises</h2>
-          <p>Handwritten Notability PDFs and companion exercise sets in one indexed place.</p>
+          <p>Handwritten exercise images organized by lesson, plus historical review notes.</p>
         </a>
         <a class="dashboard-card" href={withBase('/curriculum/')}>
           <p class="eyebrow">Plan</p>
           <h2>Curriculum</h2>
-          <p>The current phase sequence, lesson order, statuses, and upcoming topics.</p>
+          <p>The current phase sequence, lesson order, completion checkpoint, and upcoming topics.</p>
         </a>
       </section>
     </main>

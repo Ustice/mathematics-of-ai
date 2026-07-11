@@ -1,6 +1,6 @@
 ---
 name: moa-create-lesson
-description: Create or update forward-facing Mathematics of AI lesson pages, especially new dynamic HTML/MDX lessons, lesson metadata, source-map entries, and transcript-to-polished-lesson workflows. Use when Jason asks to create the next lesson, convert a raw transcript into a lesson page, add lesson metadata, wire a Notability PDF into a lesson, or prepare a lesson for review/publishing.
+description: Create or update forward-facing Mathematics of AI lesson pages, especially new dynamic HTML/MDX lessons, lesson metadata, source-map entries, and transcript-to-polished-lesson workflows. Use when Jason asks to create the next lesson, convert a raw transcript into a lesson page, connect exercise images, or prepare a lesson for review/publishing.
 ---
 
 # MOA Create Lesson
@@ -15,7 +15,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
 1. Confirm scope.
    - Default to the next new lesson or the named forward lesson.
    - Backfill an older lesson only when explicitly requested or needed as a prerequisite link.
-   - Keep Notability PDFs as source artifacts, not final polished lesson pages.
+   - Keep exported exercise images as reviewed learning artifacts, not lesson source pages.
    - If the lesson topic, audience, and source context are clear, finish the lesson to a coherent draft or review-ready stopping point instead of waiting for another prompt.
 
 2. Read project state.
@@ -27,7 +27,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - `curriculum/roadmap.md`
    - `data/lesson-sources.json`
    - `reference/notation.md`, `reference/glossary.md`, and existing learning notes when the lesson introduces notation, vocabulary, or durable learning observations.
-   - Derive the active lesson and established paths from this live state. Do not treat lesson numbers, titles, statuses, or paths written in this skill or its examples as current repository facts.
+   - Derive the active lesson and established paths from this live state. Do not treat lesson numbers, titles, or paths written in this skill or its examples as current repository facts.
 
 3. Use the forward lesson shape.
    - If `data/lesson-sources.json` already has a `dynamic_page` for the active or requested lesson, continue that page instead of asking for a PDF or transcript.
@@ -43,12 +43,11 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - Mark opportunities for widgets instead of forcing every concept to be interactive.
 
 5. Wire artifacts.
-   - Discover the current Notability PDF convention from existing `notability_pdf` and `notability_pdfs` entries in `data/lesson-sources.json`; use repository docs only when no entry establishes it.
-   - Follow the established naming and location convention rather than copying a path literal from this skill.
-   - Use `notability_pdf` for one artifact and `notability_pdfs` for several in `data/lesson-sources.json`.
+   - Discover the current exercise image convention from existing `exercise_images` entries in `data/lesson-sources.json`.
+   - Follow the established naming and lesson-directory convention rather than copying a path literal from this skill.
    - Use `transcript: null` when no raw transcript exists yet.
    - Use `dynamic_page: src/content/lessons/lesson-NNN-slug.mdx` for the forward MDX page.
-   - Use `status: draft`, `raw_export`, `reviewed`, or `published` consistently.
+   - Do not add page lifecycle statuses. Lesson completion lives in `course-state.yaml`; artifact presence lives in the source map.
 
 6. Validate.
    - Run `bun run build`.
@@ -58,13 +57,13 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
 
 ## References
 
-Read `references/lesson-schema.md` when adding frontmatter, `data/lesson-sources.json` fields, or a new lesson status.
+Read `references/lesson-schema.md` when adding frontmatter or `data/lesson-sources.json` fields.
 
 ## Guardrails
 
 - Do not spend effort polishing the whole historical archive unless the user asks.
 - Do not publish raw transcripts as polished lessons.
-- Do not ask Jason for a PDF to start or continue a lesson; use local PDFs only for exercise review, handwritten-work review, or source verification after checking the repo.
+- Do not ask Jason for lesson source artifacts to start or continue a lesson; use submitted images only for exercise and handwritten-work review.
 - Redact private app links and private-ish chatter from polished pages.
 - Keep the lesson page useful without the widget; widgets enhance, they do not carry the explanation.
 - Do not stop at an outline when enough information exists to create the actual lesson artifact.

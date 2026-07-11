@@ -1,22 +1,23 @@
 # Exercises
 
-This directory contains exercise sets and existing exported exercise PDFs.
+This directory contains exported handwritten exercise images organized by lesson.
 
-## Current Artifacts
+## Artifact Convention
 
-Committed PDFs live under [notability-pdfs](notability-pdfs/) and are indexed in [index.md](index.md).
+Store each lesson under `lesson-NNN-slug/`, with content pages named `exercise-01.jpg`, `exercise-02.jpg`, and so on in reading order. Omit blank export pages.
 
-## New Exercise Sets
+The ordered file paths live in `exercise_images` in [lesson-sources.json](../data/lesson-sources.json).
 
-New Markdown exercise sets should use [exercise-template.md](exercise-template.md).
+## Review Workflow
 
-Exercise sets should:
+After Jason submits exercise images:
 
-- Name the concepts practiced.
-- Keep notation visible.
-- Include conceptual, computational, and implementation problems when useful.
-- Separate learner-facing problems from instructor notes or review notes.
+- Review the mathematical work.
+- Explain corrections or useful refinements.
+- Decide whether the work demonstrates readiness for the next lesson.
+- Add the nonblank images to the lesson directory and source map.
+- Continue or create the next lesson when the review passes.
 
-## Status Rule
+## Format Rule
 
-An exercise PDF can be valuable historical material even if it has not yet been converted into a polished Markdown exercise set.
+Do not create new exercise Markdown files. Existing Markdown files are retained as historical review notes only.

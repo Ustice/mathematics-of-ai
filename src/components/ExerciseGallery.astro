@@ -1,0 +1,34 @@
+---
+type Props = {
+  images: string[];
+};
+
+const { images } = Astro.props;
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (artifactPath: string) => `${basePath}${artifactPath.replace(/^\/+/, '')}`;
+---
+
+{
+  images.length > 0 ? (
+    <section class="exercise-gallery" aria-labelledby="completed-exercises">
+      <h2 id="completed-exercises">Completed Exercises</h2>
+      <p>Handwritten work submitted after completing this lesson.</p>
+      <div class="exercise-gallery-grid">
+        {images.map((imagePath, index) => (
+          <figure>
+            <a href={withBase(imagePath)}>
+              <img
+                alt={`Completed exercise page ${index + 1}`}
+                loading="lazy"
+                src={withBase(imagePath)}
+              />
+            </a>
+            <figcaption>{`Page ${index + 1}`}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  ) : null
+}

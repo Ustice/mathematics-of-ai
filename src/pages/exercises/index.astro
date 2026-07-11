@@ -4,7 +4,7 @@ import path from 'node:path';
 import '../../styles/lesson.css';
 import {
   artifactFileName,
-  notabilityPdfPaths,
+  exerciseImagePaths,
   readLessonSources,
   sourceArtifactUrl,
 } from '../../lib/lesson-sources';
@@ -27,10 +27,10 @@ const exerciseFiles = readdirSync(path.join(process.cwd(), 'exercises'))
 const exerciseSetByLesson = new Map(exerciseFiles.map((entry) => [entry.lesson, entry.path]));
 const lessons = readLessonSources().map((source) => ({
   exerciseSet: source.exercise_set ?? exerciseSetByLesson.get(source.lesson) ?? null,
-  pdfs: notabilityPdfPaths(source),
+  images: exerciseImagePaths(source),
   source,
 }));
-const pdfCount = lessons.reduce((count, lesson) => count + lesson.pdfs.length, 0);
+const imageCount = lessons.reduce((count, lesson) => count + lesson.images.length, 0);
 const exerciseSetCount = lessons.filter(({ exerciseSet }) => exerciseSet !== null).length;
 const fileExists = (relativePath: string) => existsSync(path.join(process.cwd(), relativePath));
 const exerciseSetUrl = (exerciseSet: string) =>
@@ -42,7 +42,7 @@ const exerciseSetUrl = (exerciseSet: string) =>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Exercise PDFs and companion practice sets for the Mathematics of AI course." />
+    <meta name="description" content="Handwritten exercise images and historical review notes for the Mathematics of AI course." />
     <title>Exercises | Mathematics of AI</title>
   </head>
   <body>
@@ -57,12 +57,12 @@ const exerciseSetUrl = (exerciseSet: string) =>
         <p class="eyebrow">Mathematics of AI</p>
         <h1>Exercises</h1>
         <p class="dek">
-          Handwritten Notability PDFs and companion exercise sets, gathered into one course page.
+          Handwritten work organized by lesson, with each exported page available in reading order.
         </p>
         <dl class="metric-grid">
           <div>
-            <dt>PDFs</dt>
-            <dd>{pdfCount}</dd>
+            <dt>Images</dt>
+            <dd>{imageCount}</dd>
           </div>
           <div>
             <dt>Exercise Sets</dt>
@@ -77,7 +77,7 @@ const exerciseSetUrl = (exerciseSet: string) =>
           <span>Artifacts</span>
         </div>
         {
-          lessons.map(({ exerciseSet, pdfs, source }) => (
+          lessons.map(({ exerciseSet, images, source }) => (
             <article class="resource-row">
               <div>
                 <p class="lesson-number">{`Lesson ${source.lesson}`}</p>
@@ -85,14 +85,14 @@ const exerciseSetUrl = (exerciseSet: string) =>
               </div>
               <div class="resource-links">
                 {
-                  pdfs.length > 0 ? (
-                    pdfs.map((artifactPath) => (
+                  images.length > 0 ? (
+                    images.map((artifactPath, index) => (
                       <a href={withBase(sourceArtifactUrl(artifactPath))}>
-                        {artifactFileName(artifactPath)}
+                        {`Page ${index + 1}: ${artifactFileName(artifactPath)}`}
                       </a>
                     ))
                   ) : (
-                    <span>No PDF committed</span>
+                    <span>No exercise images committed</span>
                   )
                 }
                 {

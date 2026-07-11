@@ -15,7 +15,6 @@ const lessons = defineCollection({
       }),
     ),
     slug: z.string(),
-    status: z.enum(['draft', 'raw_export', 'reviewed', 'published']),
     symbols: z.array(
       z.object({
         meaning: z.string(),

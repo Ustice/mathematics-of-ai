@@ -15,7 +15,7 @@ const projectSkills: ProjectSkill[] = [
     name: 'moa-create-lesson',
   },
   {
-    descriptionNeedle: 'Notability-first',
+    descriptionNeedle: 'exercise images',
     name: 'moa-create-exercises',
   },
   {
@@ -117,7 +117,7 @@ describe('project skills', () => {
   });
 
   test('skill instructions discover live course content instead of snapshotting it', () => {
-    const markdownFiles = readdirSync(skillsDir, { recursive: true })
+    const markdownFiles = readdirSync(skillsDir, { encoding: 'utf8', recursive: true })
       .filter((relativePath) => relativePath.endsWith('.md'))
       .map((relativePath) => path.join(skillsDir, relativePath));
     const snapshotPatterns = [
@@ -141,7 +141,6 @@ describe('project skills', () => {
       'README.md',
       'implementation/README.md',
       'implementation/project-plan.md',
-      'exercises/exercise-template.md',
       'lessons/lesson-template.md',
     ];
     const wordingIssues = docsToCheck

@@ -6,13 +6,11 @@ export type LessonDependencyInput = {
     title: string;
   }>;
   slug: string;
-  status: string;
   title: string;
 };
 
 export type LessonSourceInput = {
   lesson: number;
-  status: string;
   title: string;
 };
 
@@ -20,7 +18,6 @@ export type LessonDependencyEdge = {
   from: number;
   mdxExists: boolean;
   sourceExists: boolean;
-  sourceStatus: string | null;
   sourceTitle: string | null;
   title: string;
   to: number;
@@ -32,7 +29,6 @@ export type LessonDependencyGraph = {
     lesson: number;
     phase: string;
     slug: string;
-    status: string;
     title: string;
   }>;
   missingSourcePrerequisites: number[];
@@ -65,7 +61,6 @@ export const buildLessonDependencyGraph = (
           from: prerequisite.lesson,
           mdxExists: lessonNumbers.has(prerequisite.lesson),
           sourceExists: sourceEntry !== undefined,
-          sourceStatus: sourceEntry?.status ?? null,
           sourceTitle: sourceEntry?.title ?? null,
           title: prerequisite.title,
           to: lesson,
@@ -82,11 +77,10 @@ export const buildLessonDependencyGraph = (
 
   return {
     edges,
-    lessons: sortedLessons.map(({ lesson, phase, slug, status, title }) => ({
+    lessons: sortedLessons.map(({ lesson, phase, slug, title }) => ({
       lesson,
       phase,
       slug,
-      status,
       title,
     })),
     missingSourcePrerequisites,
