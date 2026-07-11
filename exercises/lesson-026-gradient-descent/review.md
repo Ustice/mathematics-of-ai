@@ -2,9 +2,9 @@
 
 Companion lesson: Lesson 26 - Gradient Descent.
 
-Source artifact: [Lesson 26 exercise images](lesson-026-gradient-descent/exercise-1.jpg).
+Source artifact: [Lesson 26 exercise images](exercise-1.jpg).
 
-Implementation script: [`implementation.ts`](lesson-26-gradient-descent/implementation.ts).
+Implementation script: [`implementation.ts`](implementation.ts).
 
 ## Concepts Practiced
 

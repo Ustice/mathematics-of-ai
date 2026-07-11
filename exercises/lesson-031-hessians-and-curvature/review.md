@@ -10,7 +10,7 @@
 
 ## Reviewed Student Work - 2026-07-10
 
-Source: uploaded images stored under [lesson-031-hessians-and-curvature](lesson-031-hessians-and-curvature/).
+Source: uploaded images stored in this [Exercise Artifact Module](.).
 
 ## Overall
 

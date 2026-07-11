@@ -19,9 +19,9 @@ Preserve the teaching preferences that make the course work: intuition first, lo
    - `reference/notation.md`
    - `reference/glossary.md`
    - `learning-journal/README.md`
-   - Existing preserved learning notes in `learning-journal.md` and `journal/learning-journal.md`.
+   - Existing lesson-specific entries under `learning-journal/` and the current learning model under `reference/`.
    - The lesson page or transcript just completed.
-   - Resolve the active/completed lesson and all content paths from the live state and `data/lesson-sources.json`; do not infer them from examples or prior skill runs.
+   - Resolve the active/completed lesson from the Course Checkpoint and Lesson Catalog; do not infer it from examples or prior skill runs.
    - If the lesson is clearly complete, finish all routine continuity updates in the same pass instead of waiting for a separate request.
 
 2. Update the minimum necessary files.
@@ -29,7 +29,7 @@ Preserve the teaching preferences that make the course work: intuition first, lo
    - Add durable notation to `reference/notation.md`.
    - Add durable vocabulary to `reference/glossary.md`.
    - Add durable learning observations as a new entry under `learning-journal/`, using `learning-journal/journal-template.md` when a lesson-specific record is useful.
-   - Update `learning-journal.md` or `journal/learning-journal.md` only when a new observation changes the course-level learning model.
+   - Update `reference/learning-model.md` when a new observation changes the course-level learning model.
    - Adjust `curriculum.md` only when the roadmap changes.
    - Preserve repository-derived path conventions. Never add a lesson number, title, artifact count, or content path to this skill merely because course content advanced.
 

@@ -15,7 +15,7 @@ When Jason identifies an upload as backfill or says the work was already evaluat
 
 1. Anchor on the lesson goal.
    - Read the lesson page or raw transcript.
-   - Resolve the requested or active lesson from `course-state.yaml` and `data/lesson-sources.json`; discover content and artifact paths from those files and existing neighboring entries.
+   - Resolve the requested or active lesson from the Course Checkpoint, Lesson Pages, and `data/lesson-artifacts.json`.
    - Do not treat lesson numbers, titles, artifact coverage, or paths written in this skill or its examples as current repository facts.
    - Read `reference/notation.md`, `reference/glossary.md`, and existing learning notes when exercises depend on notation, vocabulary, or known friction points.
    - Identify which concepts need intuition, mechanics, derivation, and transfer practice.
@@ -30,7 +30,7 @@ When Jason identifies an upload as backfill or says the work was already evaluat
    - Use `exercises/lesson-NNN-slug/exercise-NN.jpg` in reading order.
    - Omit accidentally exported blank pages.
    - Keep all artifacts for one lesson in that lesson's directory.
-   - Add the ordered paths to `exercise_images` in `data/lesson-sources.json`.
+   - Register the lesson directory as `exercise_module` in `data/lesson-artifacts.json`; numeric filenames define image order.
 
 4. Continue the course when ready.
    - If the review passes, use the lesson and continuity skills to finish the existing next-lesson draft or create the next lesson from repo state.

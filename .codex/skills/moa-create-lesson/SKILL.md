@@ -25,15 +25,15 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - `docs/new-lesson-bootstrap.md`
    - `curriculum.md`
    - `curriculum/roadmap.md`
-   - `data/lesson-sources.json`
+   - `data/lesson-artifacts.json`
    - `reference/notation.md`, `reference/glossary.md`, and existing learning notes when the lesson introduces notation, vocabulary, or durable learning observations.
    - Derive the active lesson and established paths from this live state. Do not treat lesson numbers, titles, or paths written in this skill or its examples as current repository facts.
 
 3. Use the forward lesson shape.
-   - If `data/lesson-sources.json` already has a `dynamic_page` for the active or requested lesson, continue that page instead of asking for a PDF or transcript.
+   - If the Lesson Catalog already has the active or requested Lesson Page, continue that page instead of asking for a source artifact.
    - If the dynamic lesson platform exists, create or edit `src/content/lessons/lesson-NNN-slug.mdx`.
    - If the platform does not exist and the task requires a dynamic page, scaffold the smallest Astro/MDX vertical slice first.
-   - Keep lesson metadata close to the page and mirror it in `data/lesson-sources.json` only for cross-repo indexing.
+   - Keep lesson identity and pedagogical metadata in MDX frontmatter; keep source and learner artifact relationships in `data/lesson-artifacts.json`.
 
 4. Write the lesson as a learning path.
    - Start with intuition, then vocabulary, then notation, then computation.
@@ -43,11 +43,11 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - Mark opportunities for widgets instead of forcing every concept to be interactive.
 
 5. Wire artifacts.
-   - Discover the current exercise image convention from existing `exercise_images` entries in `data/lesson-sources.json`.
+   - Discover the current Exercise Artifact Module convention from existing `exercise_module` entries in `data/lesson-artifacts.json`.
    - Follow the established naming and lesson-directory convention rather than copying a path literal from this skill.
    - Use `transcript: null` when no raw transcript exists yet.
-   - Use `dynamic_page: src/content/lessons/lesson-NNN-slug.mdx` for the forward MDX page.
-   - Do not add page lifecycle statuses. Lesson completion lives in `course-state.yaml`; artifact presence lives in the source map.
+   - Register the lesson number, Source Transcript, and Exercise Artifact Module in the Artifact Record without duplicating Lesson Page identity.
+   - Do not add page lifecycle statuses. Lesson completion lives in the Course Checkpoint; artifact presence lives in the Artifact Record.
 
 6. Validate.
    - Run `bun run build`.
@@ -57,7 +57,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
 
 ## References
 
-Read `references/lesson-schema.md` when adding frontmatter or `data/lesson-sources.json` fields.
+Read `references/lesson-schema.md` when adding frontmatter or Artifact Record fields.
 
 ## Guardrails
 

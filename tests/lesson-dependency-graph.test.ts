@@ -3,18 +3,18 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import {
   buildLessonDependencyGraph,
+  type ArtifactRecordInput,
   type LessonDependencyInput,
-  type LessonSourceInput,
 } from '../src/lib/lesson-dependency-graph.js';
 
-type LessonSources = {
-  lessons: LessonSourceInput[];
+type ArtifactManifest = {
+  lessons: ArtifactRecordInput[];
 };
 
 const repoRoot = path.resolve(import.meta.dir, '..');
 
-const readSourceLessons = () =>
-  (JSON.parse(readFileSync(path.join(repoRoot, 'data/lesson-sources.json'), 'utf8')) as LessonSources)
+const readArtifactRecords = () =>
+  (JSON.parse(readFileSync(path.join(repoRoot, 'data/lesson-artifacts.json'), 'utf8')) as ArtifactManifest)
     .lessons;
 
 const currentOptimizationLessons: LessonDependencyInput[] = [
@@ -65,18 +65,18 @@ const currentOptimizationLessons: LessonDependencyInput[] = [
 
 describe('lesson dependency graph', () => {
   test('builds prerequisite edges from lesson frontmatter-shaped input', () => {
-    const sourceLessons: LessonSourceInput[] = [
-      { lesson: 17, title: 'Loss Functions' },
-      { lesson: 23, title: 'Regularization' },
-      { lesson: 24, title: 'Early Stopping' },
-      { lesson: 25, title: 'Dropout' },
-      { lesson: 26, title: 'Gradient Descent' },
-      { lesson: 27, title: 'Stochastic Gradient Descent' },
-      { lesson: 28, title: 'Momentum' },
-      { lesson: 29, title: 'Adam' },
+    const artifactRecords: ArtifactRecordInput[] = [
+      { lesson: 17 },
+      { lesson: 23 },
+      { lesson: 24 },
+      { lesson: 25 },
+      { lesson: 26 },
+      { lesson: 27 },
+      { lesson: 28 },
+      { lesson: 29 },
     ];
 
-    const graph = buildLessonDependencyGraph(currentOptimizationLessons, sourceLessons);
+    const graph = buildLessonDependencyGraph(currentOptimizationLessons, artifactRecords);
 
     expect(graph.missingSourcePrerequisites).toEqual([]);
     expect(graph.unresolvedMdxPrerequisites).toEqual([17, 23, 24, 25]);
@@ -84,7 +84,6 @@ describe('lesson dependency graph', () => {
       from: 26,
       mdxExists: true,
       sourceExists: true,
-      sourceTitle: 'Gradient Descent',
       title: 'Gradient Descent',
       to: 27,
     });
@@ -109,14 +108,13 @@ describe('lesson dependency graph', () => {
     ];
 
     expect(
-      buildLessonDependencyGraph(lessons, [{ lesson: 1, title: 'Vectors' }])
+      buildLessonDependencyGraph(lessons, [{ lesson: 1 }])
         .edges,
     ).toEqual([
       {
         from: 1,
         mdxExists: true,
         sourceExists: true,
-        sourceTitle: 'Vectors',
         title: 'Vectors',
         to: 2,
       },
@@ -124,8 +122,8 @@ describe('lesson dependency graph', () => {
     expect(buildLessonDependencyGraph(lessons).unresolvedMdxPrerequisites).toEqual([]);
   });
 
-  test('current MDX lesson prerequisites exist in the source map', () => {
-    const graph = buildLessonDependencyGraph(currentOptimizationLessons, readSourceLessons());
+  test('current Lesson Page prerequisites have Artifact Records', () => {
+    const graph = buildLessonDependencyGraph(currentOptimizationLessons, readArtifactRecords());
 
     expect(graph.missingSourcePrerequisites).toEqual([]);
     expect(graph.edges.every(({ sourceExists }) => sourceExists)).toBe(true);

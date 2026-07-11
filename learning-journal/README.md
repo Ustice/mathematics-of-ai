@@ -16,4 +16,4 @@ Use the journal to record:
 
 Use [journal-template.md](journal-template.md) for new entries.
 
-Existing notes are preserved in [../learning-journal.md](../learning-journal.md) and [../journal/learning-journal.md](../journal/learning-journal.md).
+Superseded course-level journals are preserved under [../archive/learning-journal](../archive/learning-journal/).

@@ -7,7 +7,7 @@ Use this checklist after each real lesson.
 - Current phase still accurate?
 - Completed lesson list updated?
 - Next topic named without inventing a fake lesson artifact?
-- Artifact paths match `data/lesson-sources.json`?
+- Artifact relationships match `data/lesson-artifacts.json`?
 
 ## Notation
 

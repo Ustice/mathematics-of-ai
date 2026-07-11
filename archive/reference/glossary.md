@@ -1,6 +1,6 @@
 # Glossary
 
-Historical snapshot: current vocabulary authority lives in [reference/glossary.md](reference/glossary.md) and [reference/mathematical-vocabulary.md](reference/mathematical-vocabulary.md). Do not add new canonical entries here.
+Historical snapshot: current vocabulary authority lives in [reference/glossary.md](../../reference/glossary.md) and [reference/mathematical-vocabulary.md](../../reference/mathematical-vocabulary.md). Do not add new canonical entries here.
 
 This historical glossary starts as a backfill from project context. Definitions should be refined in the current reference files as individual lessons are rebuilt.
 

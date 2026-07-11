@@ -104,7 +104,7 @@ Expected checkpoints:
 
 ## Reviewed Student Work - 2026-07-09
 
-Source: uploaded images stored under [lesson-030-learning-rate-schedules](lesson-030-learning-rate-schedules/).
+Source: uploaded images stored in this [Exercise Artifact Module](.).
 
 ### Overall
 

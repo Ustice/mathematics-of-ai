@@ -1,15 +1,26 @@
+import { getCollection } from 'astro:content';
 import type { APIRoute, GetStaticPaths } from 'astro';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { allExerciseImagePaths, artifactFileName } from '../../../lib/lesson-sources';
+import {
+  artifactFileName,
+  buildLessonCatalog,
+  readArtifactRecords,
+} from '../../../lib/lesson-catalog';
 
 type ImageRouteProps = {
   artifactPath: string;
   fileName: string;
 };
 
-export const getStaticPaths: GetStaticPaths = () =>
-  allExerciseImagePaths().map((artifactPath) => ({
+export const getStaticPaths: GetStaticPaths = async () => {
+  const lessons = await getCollection('lessons');
+  const exerciseImages = buildLessonCatalog(
+    lessons.map(({ data }) => data),
+    readArtifactRecords(),
+  ).flatMap(({ exerciseImages: images }) => images);
+
+  return exerciseImages.map((artifactPath) => ({
     params: {
       file: artifactFileName(artifactPath),
       lesson: path.basename(path.dirname(artifactPath)),
@@ -19,6 +30,7 @@ export const getStaticPaths: GetStaticPaths = () =>
       fileName: artifactFileName(artifactPath),
     } satisfies ImageRouteProps,
   }));
+};
 
 export const GET: APIRoute = async ({ props }) => {
   const { artifactPath, fileName } = props as ImageRouteProps;

@@ -22,14 +22,14 @@ widgets:
   - <widget-id>
 ```
 
-Do not put transcript or exercise-image paths in page frontmatter. Keep those in `data/lesson-sources.json`.
+Do not put Source Transcript or Exercise Artifact Module paths in page frontmatter. Keep those in `data/lesson-artifacts.json`.
 Resolve current values and path conventions from the repository; this template is schematic, not a content snapshot.
 
-## Source Map Fields
+## Artifact Record Fields
 
 - `lesson`: numeric lesson identifier when the lesson is real and exported.
-- `title`: display title.
 - `chat`: source conversation label, if any.
 - `transcript`: raw transcript path, or `null` when no transcript exists.
-- `dynamic_page`: forward MDX page path when available.
-- `exercise_images`: ordered paths to handwritten exercise images.
+- `exercise_module`: lesson-numbered directory containing ordered exercise images and any lesson-specific review or implementation artifacts.
+
+Within an Exercise Artifact Module, use `review.md` and `implementation.ts` when those optional artifacts exist. The Lesson Catalog discovers them by convention.
