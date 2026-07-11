@@ -1,0 +1,142 @@
+---
+import { getCollection } from 'astro:content';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import '../../styles/lesson.css';
+
+type CurriculumLesson = {
+  bullets: string[];
+  lesson: number;
+  slug: string | null;
+  status: string | null;
+  title: string;
+};
+
+type CurriculumPhase = {
+  description: string;
+  lessons: CurriculumLesson[];
+  status: string;
+  title: string;
+};
+
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
+const curriculumText = readFileSync(path.join(process.cwd(), 'curriculum.md'), 'utf8');
+const lessons = await getCollection('lessons');
+const lessonMetaByNumber = new Map(
+  lessons.map((lesson) => [
+    lesson.data.lesson,
+    {
+      slug: lesson.data.slug,
+      status: lesson.data.status,
+    },
+  ]),
+);
+const currentStatus = curriculumText
+  .match(/## Current Status\n\n(?<statusText>[\s\S]*?)\n\nStatus labels below/)?.groups
+  ?.statusText.trim()
+  .split(/\n\n+/)
+  .filter(Boolean) ?? [];
+const phases: CurriculumPhase[] = curriculumText
+  .split(/\n## Phase /)
+  .slice(1)
+  .map((chunk) => {
+    const [phaseTitle = '', ...phaseLines] = chunk.split('\n');
+    const phaseText = phaseLines.join('\n');
+    const status = phaseText.match(/\*\*Status:\*\* (?<status>[^\n]+)/)?.groups?.status ?? 'Planned';
+    const lessonsInPhase = Array.from(
+      phaseText.matchAll(/^(?<lesson>\d+)\. \*\*(?<title>.+?)\*\*\n(?<bullets>(?:    - .+(?:\n|$))+)/gm),
+    ).map((match) => {
+      const lesson = Number(match.groups?.lesson);
+      const meta = lessonMetaByNumber.get(lesson);
+
+      return {
+        bullets:
+          match.groups?.bullets
+            .trim()
+            .split('\n')
+            .map((bullet) => bullet.replace(/^    - /, '')) ?? [],
+        lesson,
+        slug: meta?.slug ?? null,
+        status: meta?.status ?? null,
+        title: match.groups?.title ?? '',
+      };
+    });
+    const description =
+      phaseText
+        .replace(/\*\*Status:\*\* [^\n]+\n\n/, '')
+        .split(/\n\n\d+\. \*\*/)[0]
+        ?.trim() ?? '';
+
+    return {
+      description,
+      lessons: lessonsInPhase,
+      status,
+      title: `Phase ${phaseTitle.trim()}`,
+    };
+  })
+  .filter((phase) => phase.lessons.length > 0);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Curriculum sequence for the Mathematics of AI course." />
+    <title>Curriculum | Mathematics of AI</title>
+  </head>
+  <body>
+    <main class="index-page">
+      <nav class="site-nav" aria-label="Course sections">
+        <a href={withBase('/')}>Course</a>
+        <a href={withBase('/lessons/')}>Lessons</a>
+        <a href={withBase('/exercises/')}>Exercises</a>
+        <a aria-current="page" href={withBase('/curriculum/')}>Curriculum</a>
+      </nav>
+      <header class="index-header">
+        <p class="eyebrow">Mathematics of AI</p>
+        <h1>Curriculum</h1>
+        <div class="status-copy">
+          {currentStatus.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </header>
+
+      <section class="phase-list" aria-label="Curriculum phases">
+        {
+          phases.map((phase) => (
+            <article class="phase-section">
+              <header>
+                <p class="eyebrow">{phase.status}</p>
+                <h2>{phase.title}</h2>
+                <p>{phase.description}</p>
+              </header>
+              <div class="topic-list">
+                {
+                  phase.lessons.map((lesson) => (
+                    <section class="topic-row">
+                      <div>
+                        <p class="lesson-number">{`Lesson ${lesson.lesson}`}</p>
+                        <h3>
+                          {lesson.slug ? (
+                            <a href={withBase(`/lessons/${lesson.slug}/`)}>{lesson.title}</a>
+                          ) : (
+                            lesson.title
+                          )}
+                        </h3>
+                        {lesson.status ? <span class="status-pill">{lesson.status}</span> : null}
+                      </div>
+                      <ul>
+                        {lesson.bullets.map((bullet) => <li>{bullet}</li>)}
+                      </ul>
+                    </section>
+                  ))
+                }
+              </div>
+            </article>
+          ))
+        }
+      </section>
+    </main>
+  </body>
+</html>

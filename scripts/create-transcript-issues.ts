@@ -24,7 +24,7 @@ function issueForLesson(lesson: LessonSource): string {
     '',
     'Sources:',
     `- Chat: ${lesson.chat}`,
-    `- Exercise PDFs: artifacts/notability-pdfs/lesson-${padded}-*.pdf when available`,
+    `- Exercise PDFs: exercises/notability-pdfs/lesson-${padded}-*.pdf when available`,
     '',
     'Acceptance criteria:',
     '- preserve key teaching explanations',

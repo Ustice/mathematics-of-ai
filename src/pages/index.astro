@@ -1,17 +1,73 @@
 ---
+import { getCollection } from 'astro:content';
+import '../styles/lesson.css';
+import { allNotabilityPdfPaths, readLessonSources } from '../lib/lesson-sources';
+
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const lessonsPath = `${basePath}lessons/`;
+const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
+const lessons = await getCollection('lessons');
+const sourceLessons = readLessonSources();
+const pdfCount = allNotabilityPdfPaths().length;
+const latestLesson = lessons
+  .sort((left, right) => right.data.lesson - left.data.lesson)
+  .at(0);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0; url=${lessonsPath}`} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Course dashboard for Mathematics of AI lessons, exercises, and curriculum." />
     <title>Mathematics of AI</title>
   </head>
   <body>
-    <a href={lessonsPath}>Lessons</a>
+    <main class="index-page">
+      <nav class="site-nav" aria-label="Course sections">
+        <a aria-current="page" href={withBase('/')}>Course</a>
+        <a href={withBase('/lessons/')}>Lessons</a>
+        <a href={withBase('/exercises/')}>Exercises</a>
+        <a href={withBase('/curriculum/')}>Curriculum</a>
+      </nav>
+      <header class="index-header">
+        <p class="eyebrow">Mathematics of AI</p>
+        <h1>Mathematics for Machine Intelligence</h1>
+        <p class="dek">
+          A living course workspace for the math behind modern machine learning.
+        </p>
+        <dl class="metric-grid">
+          <div>
+            <dt>Lessons</dt>
+            <dd>{lessons.length}</dd>
+          </div>
+          <div>
+            <dt>Source Entries</dt>
+            <dd>{sourceLessons.length}</dd>
+          </div>
+          <div>
+            <dt>Exercise PDFs</dt>
+            <dd>{pdfCount}</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="dashboard-grid" aria-label="Course sections">
+        <a class="dashboard-card" href={withBase('/lessons/')}>
+          <p class="eyebrow">Read</p>
+          <h2>Lessons</h2>
+          <p>Forward MDX lessons, including the latest draft: {latestLesson?.data.title ?? 'none yet'}.</p>
+        </a>
+        <a class="dashboard-card" href={withBase('/exercises/')}>
+          <p class="eyebrow">Practice</p>
+          <h2>Exercises</h2>
+          <p>Handwritten Notability PDFs and companion exercise sets in one indexed place.</p>
+        </a>
+        <a class="dashboard-card" href={withBase('/curriculum/')}>
+          <p class="eyebrow">Plan</p>
+          <h2>Curriculum</h2>
+          <p>The current phase sequence, lesson order, statuses, and upcoming topics.</p>
+        </a>
+      </section>
+    </main>
   </body>
 </html>

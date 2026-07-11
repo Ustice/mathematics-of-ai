@@ -42,7 +42,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - Mark opportunities for widgets instead of forcing every concept to be interactive.
 
 5. Wire artifacts.
-   - Link Notability PDFs under `artifacts/notability-pdfs/lesson-NNN-slug.pdf`.
+   - Link Notability PDFs under `exercises/notability-pdfs/lesson-NNN-slug.pdf`.
    - Use `notability_pdf` for one artifact and `notability_pdfs` for several in `data/lesson-sources.json`.
    - Use `transcript: null` when no raw transcript exists yet.
    - Use `dynamic_page: src/content/lessons/lesson-NNN-slug.mdx` for the forward MDX page.

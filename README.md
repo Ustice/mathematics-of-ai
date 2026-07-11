@@ -109,7 +109,7 @@ Preserved historical and source material:
 - [lessons/transcripts](lessons/transcripts/) — Raw exported ChatGPT lesson transcripts for Lessons 1-25.
 - [exercises/index.md](exercises/index.md) — Exercise index and future polished exercise sets.
 - [transcripts/README.md](transcripts/README.md) — Transcript review policy and historical planning notes.
-- [artifacts/notability-pdfs](artifacts/notability-pdfs/) — Exported handwritten Notability PDFs for Lessons 2-26.
+- [exercises/notability-pdfs](exercises/notability-pdfs/) — Exported handwritten Notability PDFs for Lessons 2-26.
 - [data/lesson-sources.json](data/lesson-sources.json) — Lesson transcript/source index.
 - [journal/learning-journal.md](journal/learning-journal.md) — Existing structured learning notes.
 - [learning-journal.md](learning-journal.md) — Earlier flat learning journal preserved for continuity.
@@ -126,7 +126,7 @@ Preserved historical and source material:
 | Lesson dependencies | Generated as an MDX prerequisite graph by [src/pages/data/lesson-dependency-graph.json.ts](src/pages/data/lesson-dependency-graph.json.ts), enriched with source-map existence from [data/lesson-sources.json](data/lesson-sources.json); human notes live in [reference/lesson-dependencies.md](reference/lesson-dependencies.md). |
 | Polished lessons | MDX files under [src/content/lessons](src/content/lessons/) rendered by [src/pages/lessons](src/pages/lessons/). |
 | Raw transcripts | [lessons/transcripts](lessons/transcripts/) for Lessons 1-25. Preserve as source artifacts for audit and future revision. |
-| Notability PDFs | [artifacts/notability-pdfs](artifacts/notability-pdfs/) for Lessons 2-26. Treat as handwritten source artifacts, especially for exercise review. |
+| Notability PDFs | [exercises/notability-pdfs](exercises/notability-pdfs/) for Lessons 2-26. Treat as handwritten source artifacts, especially for exercise review. |
 | Notation | Local lesson symbol tables first; recurring notation in [reference/symbol-table.md](reference/symbol-table.md) and [reference/notation.md](reference/notation.md). |
 | Glossary and reference | Short definitions in [reference/glossary.md](reference/glossary.md); expanded concept cards in [reference/mathematical-vocabulary.md](reference/mathematical-vocabulary.md). |
 | Learning observations | New durable entries under [learning-journal](learning-journal/); older preserved notes in [learning-journal.md](learning-journal.md) and [journal/learning-journal.md](journal/learning-journal.md). |
@@ -137,7 +137,7 @@ The canonical state is [course-state.yaml](course-state.yaml). As of the latest 
 
 Forward polished and draft lessons live under [src/content/lessons](src/content/lessons/). Lessons 1-25 now have MDX lesson pages generated from the raw exported Markdown transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved as source artifacts.
 
-Handwritten Notability PDFs for Lessons 2-26 live under [artifacts/notability-pdfs](artifacts/notability-pdfs/). The PDFs are source artifacts, not proof that a polished lesson is complete.
+Handwritten Notability PDFs for Lessons 2-26 live under [exercises/notability-pdfs](exercises/notability-pdfs/). The PDFs are source artifacts, not proof that a polished lesson is complete.
 
 ## Development Commands
 

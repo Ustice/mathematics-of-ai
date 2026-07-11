@@ -33,7 +33,7 @@ Keep Notability as the main surface for derivations, diagrams, and reflective pr
 4. Add web companion material when useful.
    - Include collapsible hints and final answers for self-study.
    - Use dynamic checks for small computations, not long-form proof grading.
-   - Link the exported Notability PDF once it exists under `artifacts/notability-pdfs/`.
+   - Link the exported Notability PDF once it exists under `exercises/notability-pdfs/`.
 
 5. Validate.
    - Ensure every linked artifact exists.

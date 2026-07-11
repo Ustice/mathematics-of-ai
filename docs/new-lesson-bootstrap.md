@@ -48,7 +48,7 @@ Follow the established teaching style:
 
 Do not ask Jason to upload a PDF to start, draft, or continue a lesson.
 
-Use local PDFs only when the task is exercise review, handwritten-work review, or source verification. Ask Jason for a PDF only after checking `data/lesson-sources.json`, `exercises/index.md`, and `artifacts/notability-pdfs/` and confirming the needed local artifact is missing.
+Use local PDFs only when the task is exercise review, handwritten-work review, or source verification. Ask Jason for a PDF only after checking `data/lesson-sources.json`, `exercises/index.md`, and `exercises/notability-pdfs/` and confirming the needed local artifact is missing.
 
 ## Normal Lesson Output
 

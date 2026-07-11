@@ -1,0 +1,64 @@
+---
+import type { MarkdownInstance } from 'astro';
+import path from 'node:path';
+import '../../styles/lesson.css';
+
+type ExerciseModule = MarkdownInstance<Record<string, unknown>>;
+
+type Props = {
+  Content: ExerciseModule['Content'];
+  slug: string;
+  title: string;
+};
+
+export const getStaticPaths = async () => {
+  const exerciseModules = import.meta.glob<ExerciseModule>('../../../exercises/lesson-*.md');
+
+  return Promise.all(
+    Object.entries(exerciseModules).map(async ([modulePath, loadModule]) => {
+      const exerciseModule = await loadModule();
+      const slug = path.basename(modulePath, '.md');
+      const title = slug
+        .replace(/^lesson-\d+-/, '')
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      return {
+        params: { slug },
+        props: {
+          Content: exerciseModule.Content,
+          slug,
+          title,
+        } satisfies Props,
+      };
+    }),
+  );
+};
+
+const { Content, title } = Astro.props;
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={`${title} exercise set for the Mathematics of AI course.`} />
+    <title>{`${title} Exercises | Mathematics of AI`}</title>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <a class="back-link" href={withBase('/exercises/')}>Exercises</a>
+      <p class="eyebrow">Practice</p>
+      <h1>{title}</h1>
+    </header>
+    <main class="single-column-shell">
+      <article class="lesson-content">
+        <Content />
+      </article>
+    </main>
+  </body>
+</html>

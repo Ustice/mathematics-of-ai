@@ -24,11 +24,11 @@ Read these before asking Jason for source material:
 - `src/content/lessons/` is the forward path for polished or draft MDX lessons.
 - `src/pages/data/lesson-dependency-graph.json.ts` generates the MDX prerequisite graph from frontmatter and enriches it with source-map existence.
 - `lessons/transcripts/` preserves raw transcript source material for Lessons 1-25; corresponding MDX pages live under `src/content/lessons/`.
-- `artifacts/notability-pdfs/` preserves local handwritten PDF source artifacts for Lessons 2-26.
+- `exercises/notability-pdfs/` preserves local handwritten PDF source artifacts for Lessons 2-26.
 - `reference/` is the current authority for notation, glossary, symbol tables, vocabulary, dependency notes, and teaching references.
 
 ## Lesson Rule
 
 Generate or continue the next lesson from repo state first. Do not ask Jason for a PDF to start a lesson.
 
-Use PDFs only for exercise review, handwritten-work review, or source verification after checking `data/lesson-sources.json`, `exercises/index.md`, and `artifacts/notability-pdfs/`.
+Use PDFs only for exercise review, handwritten-work review, or source verification after checking `data/lesson-sources.json`, `exercises/index.md`, and `exercises/notability-pdfs/`.

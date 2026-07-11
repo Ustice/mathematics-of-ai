@@ -2,7 +2,7 @@
 
 Companion lesson: Lesson 26 - Gradient Descent.
 
-Source artifact: [Lesson 26 Notability PDF](../artifacts/notability-pdfs/lesson-026-gradient-descent.pdf).
+Source artifact: [Lesson 26 Notability PDF](notability-pdfs/lesson-026-gradient-descent.pdf).
 
 Implementation script: [`implementation.ts`](lesson-26-gradient-descent/implementation.ts).
 

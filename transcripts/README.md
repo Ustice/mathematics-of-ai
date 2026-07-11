@@ -13,7 +13,7 @@ See:
 
 Treat transcripts as source material, not polished lessons.
 
-A cleanup pass should preserve mathematical explanations, corrections, user questions that changed the lesson, symbol-table decisions, and links to handwritten PDFs under `artifacts/notability-pdfs/`. It should remove irrelevant setup chatter, private-ish source context, and any non-course setup notes before publishing a polished lesson.
+A cleanup pass should preserve mathematical explanations, corrections, user questions that changed the lesson, symbol-table decisions, and links to handwritten PDFs under `exercises/notability-pdfs/`. It should remove irrelevant setup chatter, private-ish source context, and any non-course setup notes before publishing a polished lesson.
 
 ## Paths
 

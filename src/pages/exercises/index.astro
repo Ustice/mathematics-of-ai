@@ -1,0 +1,110 @@
+---
+import { existsSync, readdirSync } from 'node:fs';
+import path from 'node:path';
+import '../../styles/lesson.css';
+import {
+  artifactFileName,
+  notabilityPdfPaths,
+  readLessonSources,
+  sourceArtifactUrl,
+} from '../../lib/lesson-sources';
+
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
+const exerciseFiles = readdirSync(path.join(process.cwd(), 'exercises'))
+  .filter((fileName) => /^lesson-\d+-.*\.md$/.test(fileName))
+  .map((fileName) => {
+    const lessonMatch = fileName.match(/^lesson-(\d+)-/);
+
+    return lessonMatch
+      ? {
+          lesson: Number(lessonMatch[1]),
+          path: `exercises/${fileName}`,
+        }
+      : null;
+  })
+  .filter((entry): entry is { lesson: number; path: string } => entry !== null);
+const exerciseSetByLesson = new Map(exerciseFiles.map((entry) => [entry.lesson, entry.path]));
+const lessons = readLessonSources().map((source) => ({
+  exerciseSet: source.exercise_set ?? exerciseSetByLesson.get(source.lesson) ?? null,
+  pdfs: notabilityPdfPaths(source),
+  source,
+}));
+const pdfCount = lessons.reduce((count, lesson) => count + lesson.pdfs.length, 0);
+const exerciseSetCount = lessons.filter(({ exerciseSet }) => exerciseSet !== null).length;
+const fileExists = (relativePath: string) => existsSync(path.join(process.cwd(), relativePath));
+const exerciseSetUrl = (exerciseSet: string) =>
+  `/${exerciseSet.replace(/^exercises\/(.+)\.md$/, 'exercises/$1/')}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Exercise PDFs and companion practice sets for the Mathematics of AI course." />
+    <title>Exercises | Mathematics of AI</title>
+  </head>
+  <body>
+    <main class="index-page">
+      <nav class="site-nav" aria-label="Course sections">
+        <a href={withBase('/')}>Course</a>
+        <a href={withBase('/lessons/')}>Lessons</a>
+        <a aria-current="page" href={withBase('/exercises/')}>Exercises</a>
+        <a href={withBase('/curriculum/')}>Curriculum</a>
+      </nav>
+      <header class="index-header">
+        <p class="eyebrow">Mathematics of AI</p>
+        <h1>Exercises</h1>
+        <p class="dek">
+          Handwritten Notability PDFs and companion exercise sets, gathered into one course page.
+        </p>
+        <dl class="metric-grid">
+          <div>
+            <dt>PDFs</dt>
+            <dd>{pdfCount}</dd>
+          </div>
+          <div>
+            <dt>Exercise Sets</dt>
+            <dd>{exerciseSetCount}</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="resource-table" aria-label="Exercise artifacts">
+        <div class="resource-table-header">
+          <span>Lesson</span>
+          <span>Artifacts</span>
+        </div>
+        {
+          lessons.map(({ exerciseSet, pdfs, source }) => (
+            <article class="resource-row">
+              <div>
+                <p class="lesson-number">{`Lesson ${source.lesson}`}</p>
+                <h2>{source.title}</h2>
+              </div>
+              <div class="resource-links">
+                {
+                  pdfs.length > 0 ? (
+                    pdfs.map((artifactPath) => (
+                      <a href={withBase(sourceArtifactUrl(artifactPath))}>
+                        {artifactFileName(artifactPath)}
+                      </a>
+                    ))
+                  ) : (
+                    <span>No PDF committed</span>
+                  )
+                }
+                {
+                  exerciseSet && fileExists(exerciseSet) ? (
+                    <a href={withBase(exerciseSetUrl(exerciseSet))}>Companion set</a>
+                  ) : null
+                }
+              </div>
+            </article>
+          ))
+        }
+      </section>
+    </main>
+  </body>
+</html>

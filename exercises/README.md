@@ -4,7 +4,7 @@ This directory contains exercise sets and existing exported exercise PDFs.
 
 ## Current Artifacts
 
-Committed PDFs are indexed in [index.md](index.md). Some filenames preserve their original Notability export names, including typos and spacing.
+Committed PDFs live under [notability-pdfs](notability-pdfs/) and are indexed in [index.md](index.md).
 
 ## New Exercise Sets
 
