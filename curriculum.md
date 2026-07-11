@@ -1,6 +1,6 @@
 # Curriculum
 
-This top-level file is retained as a stable entry point for older links. The canonical roadmap now lives in [curriculum/roadmap.md](curriculum/roadmap.md).
+This file provides the curriculum prose rendered by the website. The canonical topic roadmap lives in [curriculum/roadmap.md](curriculum/roadmap.md), while the Course Checkpoint owns completion.
 
 ## Current Curriculum Documents
 
@@ -22,11 +22,11 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-25 are complete as raw exported lesson transcripts. Lesson 26 is published as an MDX lesson in `src/content/lessons/`, and Lessons 27-31 are draft MDX lessons.
+Lessons 1-32 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-32. Lesson 33 is the active Lesson Page.
 
-The next active topic is **Hessians and Curvature**, continuing the optimization sequence after Gradient Descent, Stochastic Gradient Descent, Momentum, Adam, and Learning Rate Schedules.
+The next active topic is **Constrained Optimization**, continuing the optimization sequence after Convexity.
 
-Status labels below describe historical curriculum coverage. They do not mark polished lesson artifacts complete; use `curriculum/progress-tracker.md` and `data/lesson-sources.json` for that.
+Status labels below describe historical curriculum coverage. They do not mark Lesson Pages complete; use the Course Checkpoint for completion and `data/lesson-artifacts.json` for artifact relationships.
 
 ## Phase I — Linear Algebra Foundations
 
@@ -207,7 +207,7 @@ This phase explains why fitting the training data is not enough and introduces t
 
 ## Phase IV — Optimization
 
-**Status:** In progress through Lesson 31
+**Status:** In progress through Lesson 32
 
 This phase turns loss functions into training procedures. The emphasis is on understanding optimization geometrically and computationally.
 

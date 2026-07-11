@@ -1,29 +1,16 @@
-import fs from 'node:fs/promises';
+import { readArtifactRecords, type ArtifactRecord } from '../src/lib/lesson-catalog.js';
 
-type LessonSource = {
-  chat: string;
-  lesson: number;
-  title: string;
-  transcript: string | null;
-};
-
-type LessonSources = {
-  lessons: LessonSource[];
-};
-
-const sourcePath = process.env.LESSON_SOURCES ?? 'data/lesson-sources.json';
-
-function issueForLesson(lesson: LessonSource): string {
-  const padded = String(lesson.lesson).padStart(3, '0');
+function issueForLesson(record: ArtifactRecord): string {
+  const padded = String(record.lesson).padStart(3, '0');
 
   return [
-    `## Lesson ${padded}: ${lesson.title}`,
+    `## Lesson ${padded}`,
     '',
-    `Create or reconstruct ${lesson.transcript}.`,
+    `Create or reconstruct ${record.transcript}.`,
     '',
     'Sources:',
-    `- Chat: ${lesson.chat}`,
-    `- Exercise images: exercises/lesson-${padded}-*/exercise-*.jpg when available`,
+    `- Chat: ${record.chat ?? 'not recorded'}`,
+    `- Exercise Artifact Module: ${record.exercise_module ?? 'none'}`,
     '',
     'Acceptance criteria:',
     '- preserve key teaching explanations',
@@ -34,17 +21,18 @@ function issueForLesson(lesson: LessonSource): string {
   ].join('\n');
 }
 
-async function main(): Promise<void> {
-  const data = JSON.parse(await fs.readFile(sourcePath, 'utf8')) as LessonSources;
-  const output = data.lessons
-    .filter((lesson) => lesson.transcript)
+function main(): void {
+  const output = readArtifactRecords()
+    .filter((record) => record.transcript)
     .map(issueForLesson)
     .join('\n\n');
 
   console.log(output);
 }
 
-main().catch((error: unknown) => {
+try {
+  main();
+} catch (error: unknown) {
   console.error(error);
   process.exitCode = 1;
-});
+}

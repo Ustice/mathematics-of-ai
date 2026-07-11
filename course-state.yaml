@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-10
+last_updated: 2026-07-11
 current_phase: Optimization and Calculus for Machine Learning
-next_topic: Convexity
+next_topic: Constrained Optimization
 
 completed_lessons:
   - number: 1
@@ -67,6 +67,8 @@ completed_lessons:
     title: Learning Rate Schedules
   - number: 31
     title: Hessians and Curvature
+  - number: 32
+    title: Convexity
 
 teaching_preferences:
   intuition_first: true
@@ -89,6 +91,6 @@ known_learning_notes:
   - Coordinate coefficients identify steep directions directly only for diagonal Hessians; in general use Hessian eigenvectors.
 
 artifacts:
-  exercise_images: lessons_2_to_31_available_under_lesson_organized_exercise_directories
+  exercise_artifacts: lessons_2_to_32_available_under_lesson_organized_modules
   raw_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
   transcript_policy: source_material_until_reviewed

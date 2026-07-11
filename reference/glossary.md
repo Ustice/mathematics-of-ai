@@ -92,6 +92,20 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Saddle point:** A stationary point where the function curves upward in some directions and downward in others.
 
+**Convex set:** A set containing the full line segment between every pair of its points.
+
+**Convex function:** A function whose value at a convex combination of inputs is no greater than the same convex combination of endpoint values.
+
+**Feasible set:** The set of all points satisfying every constraint in an optimization problem.
+
+**Lagrangian:** A function combining an objective with multiplier-weighted constraints so their gradient balance can be studied together.
+
+**Lagrange multiplier:** A scalar that balances a constraint gradient against the objective gradient and can measure sensitivity to a constraint boundary.
+
+**Active constraint:** An inequality constraint that holds at equality at the candidate solution.
+
+**Complementary slackness:** The KKT condition requiring an inequality multiplier times its constraint value to equal zero.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.

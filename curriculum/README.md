@@ -13,4 +13,4 @@ This directory contains the planning documents for the **Mathematics for Machine
 
 Do not mark a lesson or milestone complete unless the repo contains clear evidence for it. Exported transcripts count as source material, not as polished lessons.
 
-Raw source material currently lives in [../lessons/transcripts](../lessons/transcripts/) and committed exercise PDFs are indexed in [../exercises/index.md](../exercises/index.md).
+Source transcripts live in [../lessons/transcripts](../lessons/transcripts/), and exercise images are organized in lesson-specific modules under [../exercises](../exercises/).

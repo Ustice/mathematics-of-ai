@@ -19,7 +19,7 @@ Use these files as the current reference authority:
 - [Lesson dependencies](lesson-dependencies.md) — Lesson dependency notes.
 - [Big picture roadmap](big-picture.md) — Prior high-level roadmap notes.
 
-Top-level [../notation.md](../notation.md) and [../glossary.md](../glossary.md) are historical snapshots retained for continuity. Do not add new canonical entries there.
+Earlier notation and glossary snapshots live under [../archive/reference](../archive/reference/). Do not add new canonical entries there.
 
 ## Usage
 

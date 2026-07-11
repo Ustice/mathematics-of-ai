@@ -13,7 +13,7 @@ Keep the mathematical model pure and testable, and keep the lesson understandabl
 ## Workflow
 
 1. Define the teaching job.
-   - Resolve the target lesson and its source path from `data/lesson-sources.json` and the live content collection rather than assuming a lesson number or location.
+   - Resolve the target Lesson Page through the live content collection and Lesson Catalog rather than assuming a lesson number or location.
    - Name the misconception or intuition the widget should reveal.
    - Identify the input controls and the observed output.
    - Prefer one clear interaction over a dashboard of controls.

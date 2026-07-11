@@ -6,8 +6,8 @@ Lessons 1-25 have raw exported Markdown transcripts. They are source material fo
 
 See:
 
-- `lessons/index.html` for the source lesson index.
-- `data/lesson-sources.json` for the machine-readable source map.
+- `archive/lesson-source-index/index.html` for the superseded static source index.
+- `data/lesson-artifacts.json` for machine-readable artifact relationships.
 
 ## Policy
 

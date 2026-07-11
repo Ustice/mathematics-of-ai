@@ -28,8 +28,8 @@ Use this repo as the course workspace:
 - Start with [course-state.yaml](course-state.yaml) to recover the current lesson state.
 - Read the [curriculum roadmap](curriculum/roadmap.md) for the long-term sequence.
 - Track module and milestone status in the [progress tracker](curriculum/progress-tracker.md).
-- Draft polished lessons from the [lesson template](lessons/lesson-template.md).
-- Keep exercise sets in [exercises](exercises/).
+- Create Lesson Pages using the [lesson template](lessons/lesson-template.md) and MDX schema.
+- Keep submitted work in lesson-numbered Exercise Artifact Modules under [exercises](exercises/).
 - Plan implementation work in [implementation](implementation/).
 - Read and critique papers in [papers](papers/).
 - Keep reusable notation and definitions in [reference](reference/).
@@ -88,7 +88,7 @@ Current canonical course documents:
 - [curriculum/milestones.md](curriculum/milestones.md) — Evidence criteria for milestones.
 - [lessons/README.md](lessons/README.md) — Lesson workspace guide.
 - [lessons/lesson-template.md](lessons/lesson-template.md) — Standard polished lesson template.
-- [src/content/lessons](src/content/lessons/) — Forward polished lesson pages.
+- [src/content/lessons](src/content/lessons/) — Canonical MDX Lesson Pages.
 - [exercises/README.md](exercises/README.md) — Exercise workspace guide.
 - [implementation/README.md](implementation/README.md) — Implementation workspace guide.
 - [implementation/project-plan.md](implementation/project-plan.md) — Companion implementation project plan.
@@ -106,14 +106,11 @@ Preserved historical and source material:
 
 - [curriculum.md](curriculum.md) — Top-level curriculum entry point retained for continuity.
 - [lessons/transcripts](lessons/transcripts/) — Raw exported ChatGPT lesson transcripts for Lessons 1-25.
-- [exercises/index.md](exercises/index.md) — Exercise index and future polished exercise sets.
+- [exercises/index.md](exercises/index.md) — Exercise Artifact Module convention and coverage index.
 - [transcripts/README.md](transcripts/README.md) — Transcript review policy and historical planning notes.
 - [exercises](exercises/) — Lesson-organized directories of exported handwritten exercise images.
-- [data/lesson-sources.json](data/lesson-sources.json) — Lesson transcript/source index.
-- [journal/learning-journal.md](journal/learning-journal.md) — Existing structured learning notes.
-- [learning-journal.md](learning-journal.md) — Earlier flat learning journal preserved for continuity.
-- [notation.md](notation.md) — Historical top-level notation guide retained for continuity; current notation authority lives in `reference/`.
-- [glossary.md](glossary.md) — Historical top-level glossary retained for continuity; current vocabulary authority lives in `reference/`.
+- [data/lesson-artifacts.json](data/lesson-artifacts.json) — Source Transcript and Exercise Artifact Module registry.
+- [archive](archive/) — Superseded reference snapshots, journals, reconstruction notes, and the static lesson-source index.
 - [scripts](scripts/) — Course maintenance scripts.
 
 ## Sources of Truth
@@ -122,19 +119,20 @@ Preserved historical and source material:
 | --- | --- |
 | Current course state | [course-state.yaml](course-state.yaml) for the compact machine-readable checkpoint. |
 | Lesson sequence and completion | [course-state.yaml](course-state.yaml), corroborated by [curriculum/roadmap.md](curriculum/roadmap.md) and [curriculum/progress-tracker.md](curriculum/progress-tracker.md). |
-| Lesson dependencies | Generated as an MDX prerequisite graph by [src/pages/data/lesson-dependency-graph.json.ts](src/pages/data/lesson-dependency-graph.json.ts), enriched with source-map existence from [data/lesson-sources.json](data/lesson-sources.json); human notes live in [reference/lesson-dependencies.md](reference/lesson-dependencies.md). |
+| Lesson catalog | MDX Lesson Pages composed with [data/lesson-artifacts.json](data/lesson-artifacts.json) by [src/lib/lesson-catalog.ts](src/lib/lesson-catalog.ts). |
+| Lesson dependencies | Generated from MDX prerequisites and Artifact Record existence by [src/pages/data/lesson-dependency-graph.json.ts](src/pages/data/lesson-dependency-graph.json.ts); human notes live in [reference/lesson-dependencies.md](reference/lesson-dependencies.md). |
 | Polished lessons | MDX files under [src/content/lessons](src/content/lessons/) rendered by [src/pages/lessons](src/pages/lessons/). |
 | Raw transcripts | [lessons/transcripts](lessons/transcripts/) for Lessons 1-25. Preserve as source artifacts for audit and future revision. |
-| Exercise work | Ordered images under `exercises/lesson-NNN-slug/`, indexed by `exercise_images` in [data/lesson-sources.json](data/lesson-sources.json). |
+| Exercise work | Exercise Artifact Modules under `exercises/lesson-NNN-slug/`, registered in [data/lesson-artifacts.json](data/lesson-artifacts.json). |
 | Notation | Local lesson symbol tables first; recurring notation in [reference/symbol-table.md](reference/symbol-table.md) and [reference/notation.md](reference/notation.md). |
 | Glossary and reference | Short definitions in [reference/glossary.md](reference/glossary.md); expanded concept cards in [reference/mathematical-vocabulary.md](reference/mathematical-vocabulary.md). |
-| Learning observations | New durable entries under [learning-journal](learning-journal/); older preserved notes in [learning-journal.md](learning-journal.md) and [journal/learning-journal.md](journal/learning-journal.md). |
+| Learning observations | New durable entries under [learning-journal](learning-journal/) and the current learning model under [reference](reference/); superseded journals live in [archive/learning-journal](archive/learning-journal/). |
 
 ## Current Course State
 
-The canonical state is [course-state.yaml](course-state.yaml). As of the latest update, Lessons 1-30 are complete and the next topic is Hessians and Curvature.
+The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-31 are complete and the next topic is Convexity.
 
-Forward polished and draft lessons live under [src/content/lessons](src/content/lessons/). Lessons 1-25 now have MDX lesson pages generated from the raw exported Markdown transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved as source artifacts.
+Lesson Pages live under [src/content/lessons](src/content/lessons/). Lessons 1-25 were reconstructed from the raw exported Markdown Source Transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved for audit and revision.
 
 Handwritten exercise images are organized by lesson under `exercises/lesson-NNN-slug/`. An image export is evidence for review, not proof that a lesson is complete.
 

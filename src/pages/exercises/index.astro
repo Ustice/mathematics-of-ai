@@ -1,40 +1,26 @@
 ---
-import { existsSync, readdirSync } from 'node:fs';
+import { getCollection } from 'astro:content';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import '../../styles/lesson.css';
 import {
   artifactFileName,
-  exerciseImagePaths,
-  readLessonSources,
+  buildLessonCatalog,
+  readArtifactRecords,
   sourceArtifactUrl,
-} from '../../lib/lesson-sources';
+} from '../../lib/lesson-catalog';
 
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
-const exerciseFiles = readdirSync(path.join(process.cwd(), 'exercises'))
-  .filter((fileName) => /^lesson-\d+-.*\.md$/.test(fileName))
-  .map((fileName) => {
-    const lessonMatch = fileName.match(/^lesson-(\d+)-/);
-
-    return lessonMatch
-      ? {
-          lesson: Number(lessonMatch[1]),
-          path: `exercises/${fileName}`,
-        }
-      : null;
-  })
-  .filter((entry): entry is { lesson: number; path: string } => entry !== null);
-const exerciseSetByLesson = new Map(exerciseFiles.map((entry) => [entry.lesson, entry.path]));
-const lessons = readLessonSources().map((source) => ({
-  exerciseSet: source.exercise_set ?? exerciseSetByLesson.get(source.lesson) ?? null,
-  images: exerciseImagePaths(source),
-  source,
-}));
-const imageCount = lessons.reduce((count, lesson) => count + lesson.images.length, 0);
-const exerciseSetCount = lessons.filter(({ exerciseSet }) => exerciseSet !== null).length;
+const lessonPages = await getCollection('lessons');
+const lessons = buildLessonCatalog(
+  lessonPages.map(({ data }) => data),
+  readArtifactRecords(),
+);
+const imageCount = lessons.reduce((count, lesson) => count + lesson.exerciseImages.length, 0);
+const reviewCount = lessons.filter(({ review }) => review !== null).length;
 const fileExists = (relativePath: string) => existsSync(path.join(process.cwd(), relativePath));
-const exerciseSetUrl = (exerciseSet: string) =>
-  `/${exerciseSet.replace(/^exercises\/(.+)\.md$/, 'exercises/$1/')}`;
+const reviewUrl = (exerciseModule: string) => `/${exerciseModule}/`;
 ---
 
 <!doctype html>
@@ -65,8 +51,8 @@ const exerciseSetUrl = (exerciseSet: string) =>
             <dd>{imageCount}</dd>
           </div>
           <div>
-            <dt>Exercise Sets</dt>
-            <dd>{exerciseSetCount}</dd>
+            <dt>Historical Reviews</dt>
+            <dd>{reviewCount}</dd>
           </div>
         </dl>
       </header>
@@ -77,16 +63,16 @@ const exerciseSetUrl = (exerciseSet: string) =>
           <span>Artifacts</span>
         </div>
         {
-          lessons.map(({ exerciseSet, images, source }) => (
+          lessons.map(({ artifacts, exerciseImages, lesson, review, title }) => (
             <article class="resource-row">
               <div>
-                <p class="lesson-number">{`Lesson ${source.lesson}`}</p>
-                <h2>{source.title}</h2>
+                <p class="lesson-number">{`Lesson ${lesson}`}</p>
+                <h2>{title}</h2>
               </div>
               <div class="resource-links">
                 {
-                  images.length > 0 ? (
-                    images.map((artifactPath, index) => (
+                  exerciseImages.length > 0 ? (
+                    exerciseImages.map((artifactPath, index) => (
                       <a href={withBase(sourceArtifactUrl(artifactPath))}>
                         {`Page ${index + 1}: ${artifactFileName(artifactPath)}`}
                       </a>
@@ -96,8 +82,8 @@ const exerciseSetUrl = (exerciseSet: string) =>
                   )
                 }
                 {
-                  exerciseSet && fileExists(exerciseSet) ? (
-                    <a href={withBase(exerciseSetUrl(exerciseSet))}>Companion set</a>
+                  review && artifacts.exercise_module && fileExists(review) ? (
+                    <a href={withBase(reviewUrl(artifacts.exercise_module))}>Historical review</a>
                   ) : null
                 }
               </div>

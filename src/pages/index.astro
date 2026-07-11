@@ -1,13 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import '../styles/lesson.css';
-import { allExerciseImagePaths, readLessonSources } from '../lib/lesson-sources';
+import { buildLessonCatalog, readArtifactRecords } from '../lib/lesson-catalog';
 
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
 const lessons = await getCollection('lessons');
-const sourceLessons = readLessonSources();
-const exerciseImageCount = allExerciseImagePaths().length;
+const catalog = buildLessonCatalog(
+  lessons.map(({ data }) => data),
+  readArtifactRecords(),
+);
+const exerciseImageCount = catalog.reduce(
+  (count, lesson) => count + lesson.exerciseImages.length,
+  0,
+);
 const latestLesson = lessons
   .sort((left, right) => right.data.lesson - left.data.lesson)
   .at(0);
@@ -41,8 +47,8 @@ const latestLesson = lessons
             <dd>{lessons.length}</dd>
           </div>
           <div>
-            <dt>Source Entries</dt>
-            <dd>{sourceLessons.length}</dd>
+            <dt>Catalog Entries</dt>
+            <dd>{catalog.length}</dd>
           </div>
           <div>
             <dt>Exercise Images</dt>
@@ -55,7 +61,7 @@ const latestLesson = lessons
         <a class="dashboard-card" href={withBase('/lessons/')}>
           <p class="eyebrow">Read</p>
           <h2>Lessons</h2>
-          <p>Forward MDX lessons, including the latest draft: {latestLesson?.data.title ?? 'none yet'}.</p>
+          <p>Canonical MDX Lesson Pages, including the latest: {latestLesson?.data.title ?? 'none yet'}.</p>
         </a>
         <a class="dashboard-card" href={withBase('/exercises/')}>
           <p class="eyebrow">Practice</p>

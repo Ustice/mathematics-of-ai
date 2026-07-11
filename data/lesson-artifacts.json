@@ -1,0 +1,200 @@
+{
+  "lessons": [
+    {
+      "lesson": 1,
+      "chat": "Syllabus / first lesson setup",
+      "transcript": "lessons/transcripts/lesson-01-vectors.md"
+    },
+    {
+      "lesson": 2,
+      "chat": "Lesson 2",
+      "transcript": "lessons/transcripts/lesson-02-matrices-as-linear-transformations.md",
+      "exercise_module": "exercises/lesson-002-matrices-as-linear-transformations"
+    },
+    {
+      "lesson": 3,
+      "chat": "Lesson 3 Matrix Multiplication Concepts",
+      "transcript": "lessons/transcripts/lesson-03-matrix-multiplication-and-composition.md",
+      "exercise_module": "exercises/lesson-003-matrix-multiplication-and-composition"
+    },
+    {
+      "lesson": 4,
+      "chat": "Lesson 4 Determinant",
+      "transcript": "lessons/transcripts/lesson-04-determinant.md",
+      "exercise_module": "exercises/lesson-004-determinant"
+    },
+    {
+      "lesson": 5,
+      "chat": "Lesson 5 Inverse Matrices",
+      "transcript": "lessons/transcripts/lesson-05-inverse-matrices.md",
+      "exercise_module": "exercises/lesson-005-inverse-matrices"
+    },
+    {
+      "lesson": 6,
+      "chat": "Lesson 6 Eigenvectors and Eigenvalues",
+      "transcript": "lessons/transcripts/lesson-06-eigenvectors-and-eigenvalues.md",
+      "exercise_module": "exercises/lesson-006-eigenvectors-and-eigenvalues"
+    },
+    {
+      "lesson": 7,
+      "chat": "Lesson 7 Change of Basis",
+      "transcript": "lessons/transcripts/lesson-07-change-of-basis.md",
+      "exercise_module": "exercises/lesson-007-change-of-basis"
+    },
+    {
+      "lesson": 8,
+      "chat": "Lesson 8 Projection",
+      "transcript": "lessons/transcripts/lesson-08-projection.md",
+      "exercise_module": "exercises/lesson-008-projection"
+    },
+    {
+      "lesson": 9,
+      "chat": "Lesson 9 Least Squares",
+      "transcript": "lessons/transcripts/lesson-09-least-squares.md",
+      "exercise_module": "exercises/lesson-009-least-squares"
+    },
+    {
+      "lesson": 10,
+      "chat": "Lesson 10 Singular Value Decomposition",
+      "transcript": "lessons/transcripts/lesson-10-singular-value-decomposition.md",
+      "exercise_module": "exercises/lesson-010-singular-value-decomposition"
+    },
+    {
+      "lesson": 11,
+      "chat": "Lesson 11 Principal Component Analysis",
+      "transcript": "lessons/transcripts/lesson-11-principal-component-analysis.md",
+      "exercise_module": "exercises/lesson-011-principal-component-analysis"
+    },
+    {
+      "lesson": 12,
+      "chat": "Lesson 12 Covariance",
+      "transcript": "lessons/transcripts/lesson-12-covariance.md",
+      "exercise_module": "exercises/lesson-012-covariance"
+    },
+    {
+      "lesson": 13,
+      "chat": "Lesson 13 Probability as Linear Algebra",
+      "transcript": "lessons/transcripts/lesson-13-probability-as-linear-algebra.md",
+      "exercise_module": "exercises/lesson-013-probability-as-linear-algebra"
+    },
+    {
+      "lesson": 14,
+      "chat": "Lesson 14 Covariance Geometry",
+      "transcript": "lessons/transcripts/lesson-14-covariance-geometry.md",
+      "exercise_module": "exercises/lesson-014-covariance-geometry"
+    },
+    {
+      "lesson": 15,
+      "chat": "Lesson 15 Multivariate Gaussian",
+      "transcript": "lessons/transcripts/lesson-15-multivariate-gaussian.md",
+      "exercise_module": "exercises/lesson-015-multivariate-gaussian"
+    },
+    {
+      "lesson": 16,
+      "chat": "Lesson 16 MLE Intro",
+      "transcript": "lessons/transcripts/lesson-16-mle-intro.md",
+      "exercise_module": "exercises/lesson-016-maximum-likelihood-estimation"
+    },
+    {
+      "lesson": 17,
+      "chat": "Lesson 17 Loss Functions",
+      "transcript": "lessons/transcripts/lesson-17-loss-functions.md",
+      "exercise_module": "exercises/lesson-017-loss-functions"
+    },
+    {
+      "lesson": 18,
+      "chat": "Lesson 18 MAP Estimation",
+      "transcript": "lessons/transcripts/lesson-18-map-estimation.md",
+      "exercise_module": "exercises/lesson-018-map-estimation"
+    },
+    {
+      "lesson": 19,
+      "chat": "Lesson 19 Bayesian Estimation Intro",
+      "transcript": "lessons/transcripts/lesson-19-bayesian-estimation-intro.md",
+      "exercise_module": "exercises/lesson-019-bayesian-estimation-intro"
+    },
+    {
+      "lesson": 20,
+      "chat": "Lesson 20 Bayesian Estimation Update",
+      "transcript": "lessons/transcripts/lesson-20-bayesian-estimation-update.md",
+      "exercise_module": "exercises/lesson-020-bayesian-estimation-update"
+    },
+    {
+      "lesson": 21,
+      "chat": "Lesson 21 Bayesian Predictive Distributions",
+      "transcript": "lessons/transcripts/lesson-21-bayesian-predictive-distributions.md",
+      "exercise_module": "exercises/lesson-021-bayesian-predictive-distributions"
+    },
+    {
+      "lesson": 22,
+      "chat": "Lesson 22 Model Complexity",
+      "transcript": "lessons/transcripts/lesson-22-model-complexity.md",
+      "exercise_module": "exercises/lesson-022-model-complexity"
+    },
+    {
+      "lesson": 23,
+      "chat": "Lesson 23 Regularization",
+      "transcript": "lessons/transcripts/lesson-23-regularization.md",
+      "exercise_module": "exercises/lesson-023-regularization"
+    },
+    {
+      "lesson": 24,
+      "chat": "Lesson 24 Early Stopping",
+      "transcript": "lessons/transcripts/lesson-24-early-stopping.md",
+      "exercise_module": "exercises/lesson-024-early-stopping"
+    },
+    {
+      "lesson": 25,
+      "chat": "Lesson 25 Dropout",
+      "transcript": "lessons/transcripts/lesson-25-dropout.md",
+      "exercise_module": "exercises/lesson-025-dropout"
+    },
+    {
+      "lesson": 26,
+      "chat": "Lesson 26",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-026-gradient-descent"
+    },
+    {
+      "lesson": 27,
+      "chat": "Lesson 27",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-027-stochastic-gradient-descent"
+    },
+    {
+      "lesson": 28,
+      "chat": "Lesson 28",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-028-momentum"
+    },
+    {
+      "lesson": 29,
+      "chat": "Lesson 29",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-029-adam"
+    },
+    {
+      "lesson": 30,
+      "chat": "Lesson 30",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-030-learning-rate-schedules"
+    },
+    {
+      "lesson": 31,
+      "chat": "Lesson 31",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-031-hessians-and-curvature"
+    },
+    {
+      "lesson": 32,
+      "chat": "Lesson 32",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-032-convexity"
+    },
+    {
+      "lesson": 33,
+      "chat": "Lesson 33",
+      "transcript": null
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 This map uses the available transcript titles and the high-level course progression. TODO: refine each entry as transcripts are converted into edited canonical lesson notes.
 
-For machine-readable dependency data, generate from MDX frontmatter instead of duplicating prerequisites here. The site endpoint at `src/pages/data/lesson-dependency-graph.json.ts` reads `prerequisites` from `src/content/lessons/*.mdx` and enriches edges with source-map existence from `data/lesson-sources.json`.
+For machine-readable dependency data, generate from MDX frontmatter instead of duplicating prerequisites here. The site endpoint at `src/pages/data/lesson-dependency-graph.json.ts` reads `prerequisites` from Lesson Pages and enriches edges with Artifact Record existence from `data/lesson-artifacts.json`.
 
 ## Lesson 1 — Vectors
 

@@ -9,16 +9,14 @@ export type LessonDependencyInput = {
   title: string;
 };
 
-export type LessonSourceInput = {
+export type ArtifactRecordInput = {
   lesson: number;
-  title: string;
 };
 
 export type LessonDependencyEdge = {
   from: number;
   mdxExists: boolean;
   sourceExists: boolean;
-  sourceTitle: string | null;
   title: string;
   to: number;
 };
@@ -34,7 +32,7 @@ export type LessonDependencyGraph = {
   missingSourcePrerequisites: number[];
   schemaVersion: 1;
   sources: {
-    lessonSources: 'data/lesson-sources.json';
+    artifactRecords: 'data/lesson-artifacts.json';
     mdxLessons: 'src/content/lessons';
   };
   unresolvedMdxPrerequisites: number[];
@@ -45,23 +43,22 @@ const byLessonNumber = <T extends { lesson: number }>(left: T, right: T) =>
 
 export const buildLessonDependencyGraph = (
   lessonEntries: LessonDependencyInput[],
-  sourceEntries: LessonSourceInput[] = [],
+  artifactRecords: ArtifactRecordInput[] = [],
 ): LessonDependencyGraph => {
   const sortedLessons = [...lessonEntries].sort(byLessonNumber);
   const lessonNumbers = new Set(sortedLessons.map(({ lesson }) => lesson));
-  const sourceByLesson = new Map(
-    sourceEntries.map((sourceEntry) => [sourceEntry.lesson, sourceEntry]),
+  const artifactByLesson = new Map(
+    artifactRecords.map((artifactRecord) => [artifactRecord.lesson, artifactRecord]),
   );
   const edges = sortedLessons
     .flatMap(({ lesson, prerequisites }) =>
       prerequisites.map((prerequisite) => {
-        const sourceEntry = sourceByLesson.get(prerequisite.lesson);
+        const artifactRecord = artifactByLesson.get(prerequisite.lesson);
 
         return {
           from: prerequisite.lesson,
           mdxExists: lessonNumbers.has(prerequisite.lesson),
-          sourceExists: sourceEntry !== undefined,
-          sourceTitle: sourceEntry?.title ?? null,
+          sourceExists: artifactRecord !== undefined,
           title: prerequisite.title,
           to: lesson,
         };
@@ -86,7 +83,7 @@ export const buildLessonDependencyGraph = (
     missingSourcePrerequisites,
     schemaVersion: 1,
     sources: {
-      lessonSources: 'data/lesson-sources.json',
+      artifactRecords: 'data/lesson-artifacts.json',
       mdxLessons: 'src/content/lessons',
     },
     unresolvedMdxPrerequisites,

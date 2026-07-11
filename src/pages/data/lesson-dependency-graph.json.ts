@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import lessonSources from '../../../data/lesson-sources.json';
+import { readArtifactRecords } from '../../lib/lesson-catalog.js';
 import { buildLessonDependencyGraph } from '../../lib/lesson-dependency-graph.js';
 
 export const GET = async () => {
@@ -12,10 +12,7 @@ export const GET = async () => {
       slug: data.slug,
       title: data.title,
     })),
-    lessonSources.lessons.map(({ lesson, title }) => ({
-      lesson,
-      title,
-    })),
+    readArtifactRecords().map(({ lesson }) => ({ lesson })),
   );
 
   return new Response(JSON.stringify(graph, null, 2), {

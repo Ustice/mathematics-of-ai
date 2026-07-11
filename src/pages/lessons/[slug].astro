@@ -2,25 +2,33 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import ExerciseGallery from '../../components/ExerciseGallery.astro';
 import LessonLayout from '../../layouts/LessonLayout.astro';
-import { exerciseImagePaths, readLessonSources } from '../../lib/lesson-sources';
+import { buildLessonCatalog, readArtifactRecords } from '../../lib/lesson-catalog';
 
 type Props = {
+  exerciseImages: string[];
   lesson: CollectionEntry<'lessons'>;
 };
 
 export const getStaticPaths = async () => {
   const lessons = await getCollection('lessons');
+  const catalogByLesson = new Map(
+    buildLessonCatalog(
+      lessons.map(({ data }) => data),
+      readArtifactRecords(),
+    ).map((entry) => [entry.lesson, entry]),
+  );
 
   return lessons.map((lesson) => ({
     params: { slug: lesson.data.slug },
-    props: { lesson },
+    props: {
+      exerciseImages: catalogByLesson.get(lesson.data.lesson)?.exerciseImages ?? [],
+      lesson,
+    },
   }));
 };
 
-const { lesson } = Astro.props;
+const { exerciseImages, lesson } = Astro.props;
 const { Content, headings } = await render(lesson);
-const lessonSource = readLessonSources().find(({ lesson: lessonNumber }) => lessonNumber === lesson.data.lesson);
-const exerciseImages = lessonSource ? exerciseImagePaths(lessonSource) : [];
 ---
 
 <LessonLayout headings={headings} lesson={lesson.data}>

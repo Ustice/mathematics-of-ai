@@ -1,6 +1,6 @@
 # Progress Tracker
 
-This tracker records progress through the polished learning program. Existing transcripts and PDFs are valuable source material, but they are not marked complete here unless they have been converted into polished lesson, exercise, implementation, or reference artifacts.
+This tracker records progress through the learning program. Source transcripts and exercise images are supporting artifacts; lesson completion is represented by a Lesson Page and, when exercises exist, an Exercise Artifact Module.
 
 ## Milestones
 
@@ -58,7 +58,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 - [ ] Gradients.
 - [x] Hessians.
-- [ ] Convexity.
+- [x] Convexity.
 - [ ] Constrained optimization.
 - [x] Gradient descent.
 - [x] SGD.
@@ -148,35 +148,36 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 The following lesson transcripts exist under [../lessons/transcripts](../lessons/transcripts/) and now have corresponding MDX lesson pages under [../src/content/lessons](../src/content/lessons/). Transcripts remain preserved source material.
 
-- [x] Lesson 1: Vectors - reviewed lesson page available.
-- [x] Lesson 2: Matrices as Linear Transformations - reviewed lesson page available.
-- [x] Lesson 3: Matrix Multiplication and Composition - reviewed lesson page available.
-- [x] Lesson 4: Determinants - reviewed lesson page available.
-- [x] Lesson 5: Inverse Matrices - reviewed lesson page available.
-- [x] Lesson 6: Eigenvectors and Eigenvalues - reviewed lesson page available.
-- [x] Lesson 7: Change of Basis - reviewed lesson page available.
-- [x] Lesson 8: Projection - reviewed lesson page available.
-- [x] Lesson 9: Least Squares - reviewed lesson page available.
-- [x] Lesson 10: Singular Value Decomposition - reviewed lesson page available.
-- [x] Lesson 11: Principal Component Analysis - reviewed lesson page available.
-- [x] Lesson 12: Covariance - reviewed lesson page available.
-- [x] Lesson 13: Probability as Linear Algebra - reviewed lesson page available.
-- [x] Lesson 14: Covariance Geometry - reviewed lesson page available.
-- [x] Lesson 15: Multivariate Gaussian - reviewed lesson page available.
-- [x] Lesson 16: Maximum Likelihood Estimation - draft lesson page available.
-- [x] Lesson 17: Loss Functions - draft lesson page available.
-- [x] Lesson 18: MAP Estimation - draft lesson page available.
-- [x] Lesson 19: Bayesian Estimation Introduction - draft lesson page available.
-- [x] Lesson 20: Bayesian Estimation Update - draft lesson page available.
-- [x] Lesson 21: Bayesian Predictive Distributions - draft lesson page available.
-- [x] Lesson 22: Model Complexity - draft lesson page available.
-- [x] Lesson 23: Regularization - draft lesson page available.
-- [x] Lesson 24: Early Stopping - draft lesson page available.
-- [x] Lesson 25: Dropout - draft lesson page available.
-- [x] Lesson 26: Gradient Descent - published lesson available.
-- [x] Lesson 27: Stochastic Gradient Descent - draft lesson available.
-- [x] Lesson 28: Momentum - draft lesson available.
-- [x] Lesson 29: Adam - draft lesson and reviewed exercise notes available.
-- [x] Lesson 30: Learning Rate Schedules - draft lesson and reviewed exercise notes available.
-- [x] Lesson 31: Hessians and Curvature - draft lesson and reviewed exercise notes available.
-- [x] Lesson 32: Convexity - draft lesson available.
+- [x] Lesson 1: Vectors - Lesson Page available.
+- [x] Lesson 2: Matrices as Linear Transformations - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 3: Matrix Multiplication and Composition - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 4: Determinants - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 5: Inverse Matrices - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 6: Eigenvectors and Eigenvalues - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 7: Change of Basis - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 8: Projection - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 9: Least Squares - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 10: Singular Value Decomposition - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 11: Principal Component Analysis - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 12: Covariance - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 13: Probability as Linear Algebra - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 14: Covariance Geometry - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 15: Multivariate Gaussian - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 16: Maximum Likelihood Estimation - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 17: Loss Functions - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 18: MAP Estimation - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 19: Bayesian Estimation Introduction - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 20: Bayesian Estimation Update - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 21: Bayesian Predictive Distributions - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 22: Model Complexity - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 23: Regularization - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 24: Early Stopping - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 25: Dropout - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 26: Gradient Descent - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 27: Stochastic Gradient Descent - Lesson Page and Exercise Artifact Module available.
+- [x] Lesson 28: Momentum - Lesson Page and reviewed Exercise Artifact Module available.
+- [x] Lesson 29: Adam - Lesson Page and reviewed Exercise Artifact Module available.
+- [x] Lesson 30: Learning Rate Schedules - Lesson Page and reviewed Exercise Artifact Module available.
+- [x] Lesson 31: Hessians and Curvature - Lesson Page and reviewed Exercise Artifact Module available.
+- [x] Lesson 32: Convexity - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 33: Constrained Optimization - Lesson Page available.

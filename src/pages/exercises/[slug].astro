@@ -12,12 +12,14 @@ type Props = {
 };
 
 export const getStaticPaths = async () => {
-  const exerciseModules = import.meta.glob<ExerciseModule>('../../../exercises/lesson-*.md');
+  const exerciseModules = import.meta.glob<ExerciseModule>(
+    '../../../exercises/lesson-*/review.md',
+  );
 
   return Promise.all(
     Object.entries(exerciseModules).map(async ([modulePath, loadModule]) => {
       const exerciseModule = await loadModule();
-      const slug = path.basename(modulePath, '.md');
+      const slug = path.basename(path.dirname(modulePath));
       const title = slug
         .replace(/^lesson-\d+-/, '')
         .split('-')
@@ -46,7 +48,7 @@ const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={`${title} exercise set for the Mathematics of AI course.`} />
+    <meta name="description" content={`${title} historical exercise review for the Mathematics of AI course.`} />
     <title>{`${title} Exercises | Mathematics of AI`}</title>
   </head>
   <body>

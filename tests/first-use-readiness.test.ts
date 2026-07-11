@@ -2,16 +2,11 @@ import { describe, expect, test } from 'bun:test';
 import { existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
+import {
+  exerciseImagePaths,
+  readArtifactRecords,
+} from '../src/lib/lesson-catalog.js';
 
-type LessonSources = {
-  lessons: Array<{
-    lesson: number;
-    exercise_images?: string[];
-    title: string;
-    transcript: string | null;
-    dynamic_page?: string;
-  }>;
-};
 
 type LinkReference = {
   file: string;
@@ -104,42 +99,28 @@ describe('first-use readiness', () => {
     expect(missingLinks).toEqual([]);
   });
 
-  test('lesson source entries are concrete and generated index omits lessons without transcripts', () => {
-    const lessonSources = readJson<LessonSources>('data/lesson-sources.json');
-    const lessonIndex = readText('lessons/index.html');
+  test('Artifact Records are concrete and align with Lesson Pages', () => {
+    const artifactRecords = readArtifactRecords(repoRoot);
 
-    const missingTranscripts = lessonSources.lessons
+    const missingTranscripts = artifactRecords
       .filter(({ transcript }) => transcript !== null)
       .filter(({ transcript }) => !existsSync(path.join(repoRoot, transcript as string)))
       .map(({ lesson, transcript }) => `lesson ${lesson}: ${transcript}`);
 
-    const nullLessonsInIndex = lessonSources.lessons
-      .filter(({ transcript }) => transcript === null)
-      .filter(({ lesson, title }) => lessonIndex.includes(`<td>${lesson}</td>`) || lessonIndex.includes(title))
-      .map(({ lesson, title }) => `lesson ${lesson}: ${title}`);
-
-    const missingExerciseImages = lessonSources.lessons
-      .flatMap(({ lesson, exercise_images }) =>
-        (exercise_images ?? []).map((artifactPath) => ({ artifactPath, lesson })),
+    const missingExerciseImages = artifactRecords
+      .flatMap((record) =>
+        exerciseImagePaths(record, repoRoot).map((artifactPath) => ({
+          artifactPath,
+          lesson: record.lesson,
+        })),
       )
       .filter(({ artifactPath }) => !existsSync(path.join(repoRoot, artifactPath)))
       .map(({ lesson, artifactPath }) => `lesson ${lesson}: ${artifactPath}`);
-    const missingDynamicPages = lessonSources.lessons
-      .filter(({ dynamic_page }) => Boolean(dynamic_page))
-      .filter(({ dynamic_page }) => !existsSync(path.join(repoRoot, dynamic_page as string)))
-      .map(({ lesson, dynamic_page }) => `lesson ${lesson}: ${dynamic_page}`);
-    const dynamicPagesInSourceMap = new Set(
-      lessonSources.lessons.flatMap(({ dynamic_page }) => (dynamic_page ? [dynamic_page] : [])),
-    );
-    const missingSourceMapEntriesForMdx = gitFiles(['src/content/lessons/*.mdx'])
-      .filter((lessonPage) => !dynamicPagesInSourceMap.has(lessonPage))
-      .map((lessonPage) => `${lessonPage} is missing from data/lesson-sources.json`);
+    const mdxLessonCount = gitFiles(['src/content/lessons/*.mdx']).length;
 
     expect(missingTranscripts).toEqual([]);
-    expect(nullLessonsInIndex).toEqual([]);
     expect(missingExerciseImages).toEqual([]);
-    expect(missingDynamicPages).toEqual([]);
-    expect(missingSourceMapEntriesForMdx).toEqual([]);
+    expect(artifactRecords).toHaveLength(mdxLessonCount);
   });
 
   test('raw transcripts do not contain private Notability share links', () => {
