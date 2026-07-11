@@ -64,6 +64,12 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(L_{\text{train}}(e)\) | training loss at epoch e | Loss measured on the training set during early stopping |
 | \(L_{\text{val}}(e)\) | validation loss at epoch e | Loss measured on held-out validation data |
 | \(p\) | keep probability | Probability of keeping a unit active during dropout |
+| \(C\) | feasible set | Set of parameter values satisfying every constraint in a constrained optimization problem |
+| \(g(x)=0\) | equality constraint | Restriction that must hold exactly |
+| \(h(x)\le 0\) | inequality constraint | Restriction that permits one side of a boundary |
+| \(\mathcal{L}(x,\lambda,\mu)\) | Lagrangian | Objective combined with multiplier-weighted constraint terms |
+| \(\lambda\) | equality-constraint multiplier | Scale balancing an equality-constraint gradient against the objective gradient |
+| \(\mu\) | inequality-constraint multiplier | Nonnegative scale associated with an inequality constraint |
 
 ## Information Theory
 

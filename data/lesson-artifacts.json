@@ -188,6 +188,12 @@
     {
       "lesson": 32,
       "chat": "Lesson 32",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-032-convexity"
+    },
+    {
+      "lesson": 33,
+      "chat": "Lesson 33",
       "transcript": null
     }
   ]

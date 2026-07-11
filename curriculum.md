@@ -22,9 +22,9 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-31 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-31.
+Lessons 1-32 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-32. Lesson 33 is the active Lesson Page.
 
-The next active topic is **Convexity**, continuing the optimization sequence after Hessians and Curvature.
+The next active topic is **Constrained Optimization**, continuing the optimization sequence after Convexity.
 
 Status labels below describe historical curriculum coverage. They do not mark Lesson Pages complete; use the Course Checkpoint for completion and `data/lesson-artifacts.json` for artifact relationships.
 
@@ -207,7 +207,7 @@ This phase explains why fitting the training data is not enough and introduces t
 
 ## Phase IV — Optimization
 
-**Status:** In progress through Lesson 31
+**Status:** In progress through Lesson 32
 
 This phase turns loss functions into training procedures. The emphasis is on understanding optimization geometrically and computationally.
 

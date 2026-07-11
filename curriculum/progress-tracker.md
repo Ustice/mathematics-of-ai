@@ -58,7 +58,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 - [ ] Gradients.
 - [x] Hessians.
-- [ ] Convexity.
+- [x] Convexity.
 - [ ] Constrained optimization.
 - [x] Gradient descent.
 - [x] SGD.
@@ -179,4 +179,5 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 29: Adam - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 30: Learning Rate Schedules - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 31: Hessians and Curvature - Lesson Page and reviewed Exercise Artifact Module available.
-- [x] Lesson 32: Convexity - Lesson Page available.
+- [x] Lesson 32: Convexity - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 33: Constrained Optimization - Lesson Page available.
