@@ -7,7 +7,7 @@ description: Create or update forward-facing Mathematics of AI lesson pages, esp
 
 ## Overview
 
-Create new lessons for the road ahead, not a bulk backfill of Lessons 1-25.
+Create new lessons for the road ahead, not a bulk historical backfill.
 Treat old transcripts as raw reference material and optimize for a repeatable forward production loop.
 
 ## Workflow
@@ -27,6 +27,7 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - `curriculum/roadmap.md`
    - `data/lesson-sources.json`
    - `reference/notation.md`, `reference/glossary.md`, and existing learning notes when the lesson introduces notation, vocabulary, or durable learning observations.
+   - Derive the active lesson and established paths from this live state. Do not treat lesson numbers, titles, statuses, or paths written in this skill or its examples as current repository facts.
 
 3. Use the forward lesson shape.
    - If `data/lesson-sources.json` already has a `dynamic_page` for the active or requested lesson, continue that page instead of asking for a PDF or transcript.
@@ -42,7 +43,8 @@ Treat old transcripts as raw reference material and optimize for a repeatable fo
    - Mark opportunities for widgets instead of forcing every concept to be interactive.
 
 5. Wire artifacts.
-   - Link Notability PDFs under `exercises/notability-pdfs/lesson-NNN-slug.pdf`.
+   - Discover the current Notability PDF convention from existing `notability_pdf` and `notability_pdfs` entries in `data/lesson-sources.json`; use repository docs only when no entry establishes it.
+   - Follow the established naming and location convention rather than copying a path literal from this skill.
    - Use `notability_pdf` for one artifact and `notability_pdfs` for several in `data/lesson-sources.json`.
    - Use `transcript: null` when no raw transcript exists yet.
    - Use `dynamic_page: src/content/lessons/lesson-NNN-slug.mdx` for the forward MDX page.

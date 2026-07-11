@@ -5,25 +5,26 @@ Use these fields for new dynamic lesson pages and source-map entries.
 ## Page Frontmatter
 
 ```yaml
-lesson: 26
-title: Gradient Descent
-slug: lesson-026-gradient-descent
-description: Gradient descent as a local movement rule for minimizing loss functions.
-phase: Optimization and Calculus for Machine Learning
+lesson: <lesson-number>
+title: <lesson-title>
+slug: lesson-<zero-padded-number>-<slug>
+description: <one-sentence-description>
+phase: <curriculum-phase>
 status: draft
 objectives:
-  - Explain the local slope intuition behind gradient descent.
+  - <observable-learning-objective>
 symbols:
-  - symbol: "η"
-    meaning: Learning rate
+  - symbol: <symbol>
+    meaning: <plain-English-meaning>
 prerequisites:
-  - lesson: 17
-    title: Loss Functions
+  - lesson: <prerequisite-number>
+    title: <prerequisite-title>
 widgets:
-  - gradient-descent-path
+  - <widget-id>
 ```
 
 Do not put transcript or PDF paths in page frontmatter. Keep those in `data/lesson-sources.json`.
+Resolve current values and path conventions from the repository; this template is schematic, not a content snapshot.
 
 ## Source Map Fields
 

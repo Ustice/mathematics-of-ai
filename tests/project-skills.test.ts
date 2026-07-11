@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 type ProjectSkill = {
@@ -114,6 +114,26 @@ describe('project skills', () => {
     ].filter((issue): issue is string => issue !== null);
 
     expect(canonicalReferenceIssues).toEqual([]);
+  });
+
+  test('skill instructions discover live course content instead of snapshotting it', () => {
+    const markdownFiles = readdirSync(skillsDir, { recursive: true })
+      .filter((relativePath) => relativePath.endsWith('.md'))
+      .map((relativePath) => path.join(skillsDir, relativePath));
+    const snapshotPatterns = [
+      /\bLessons? \d+/,
+      /\blesson-\d{3}\b/,
+      /\blesson:\s+\d+\b/,
+    ];
+    const snapshotIssues = markdownFiles.flatMap((markdownPath) => {
+      const markdown = readFileSync(markdownPath, 'utf8');
+
+      return snapshotPatterns
+        .filter((pattern) => pattern.test(markdown))
+        .map((pattern) => `${path.relative(repoRoot, markdownPath)}: contains ${pattern.source}`);
+    });
+
+    expect(snapshotIssues).toEqual([]);
   });
 
   test('project docs and templates describe implementation work as TypeScript-first', () => {

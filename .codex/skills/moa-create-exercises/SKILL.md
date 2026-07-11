@@ -14,6 +14,8 @@ Keep Notability as the main surface for derivations, diagrams, and reflective pr
 
 1. Anchor on the lesson goal.
    - Read the lesson page or raw transcript.
+   - Resolve the requested or active lesson from `course-state.yaml` and `data/lesson-sources.json`; discover content and artifact paths from those files and existing neighboring entries.
+   - Do not treat lesson numbers, titles, artifact coverage, or paths written in this skill or its examples as current repository facts.
    - Read `reference/notation.md`, `reference/glossary.md`, and existing learning notes when exercises depend on notation, vocabulary, or known friction points.
    - Identify which concepts need intuition, mechanics, derivation, and transfer practice.
 
@@ -33,7 +35,7 @@ Keep Notability as the main surface for derivations, diagrams, and reflective pr
 4. Add web companion material when useful.
    - Include collapsible hints and final answers for self-study.
    - Use dynamic checks for small computations, not long-form proof grading.
-   - Link the exported Notability PDF once it exists under `exercises/notability-pdfs/`.
+   - Link an exported Notability PDF using the location and naming convention established by existing `notability_pdf` and `notability_pdfs` source-map entries.
 
 5. Validate.
    - Ensure every linked artifact exists.

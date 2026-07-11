@@ -13,6 +13,7 @@ Keep the mathematical model pure and testable, and keep the lesson understandabl
 ## Workflow
 
 1. Define the teaching job.
+   - Resolve the target lesson and its source path from `data/lesson-sources.json` and the live content collection rather than assuming a lesson number or location.
    - Name the misconception or intuition the widget should reveal.
    - Identify the input controls and the observed output.
    - Prefer one clear interaction over a dashboard of controls.
@@ -23,6 +24,7 @@ Keep the mathematical model pure and testable, and keep the lesson understandabl
    - Add tests for math behavior before tuning visuals when the model is nontrivial.
 
 3. Use lesson-native UI.
+   - Discover the current component, style, and test locations from neighboring widgets and repository configuration; do not encode a content snapshot in the skill.
    - Use TypeScript and Bun.
    - Use Astro/MDX islands when the platform exists.
    - Use SVG or Canvas for 2D math visuals; use Three.js only when the concept is truly 3D.
