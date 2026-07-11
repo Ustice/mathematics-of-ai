@@ -1,0 +1,726 @@
+---
+description: "Convex sets and convex functions as the geometry that makes local optimization globally reliable."
+lesson: 32
+objectives:
+  - Explain convexity geometrically using line segments and bowls.
+  - Distinguish convex sets from convex functions.
+  - Use the chord inequality to test simple functions.
+  - Connect first- and second-derivative tests to convexity.
+  - Explain why local minima of convex functions are global minima.
+  - Identify what convexity does and does not guarantee in machine learning.
+phase: "Optimization and Calculus for Machine Learning"
+prerequisites:
+  - lesson: 26
+    title: "Gradient Descent"
+  - lesson: 31
+    title: "Hessians and Curvature"
+slug: "lesson-032-convexity"
+status: "draft"
+symbols:
+  - symbol: "C"
+    meaning: "A set, often the allowed parameter region."
+  - symbol: "f"
+    meaning: "A scalar-valued function."
+  - symbol: "x, y"
+    meaning: "Two points in a set or in the domain of a function."
+  - symbol: "t"
+    meaning: "Interpolation weight between 0 and 1."
+  - symbol: "tx + (1-t)y"
+    meaning: "A point on the line segment from y to x."
+  - symbol: "∇f(x)"
+    meaning: "Gradient of f at x."
+  - symbol: "H_f(x)"
+    meaning: "Hessian of f at x."
+widgets: []
+title: "Convexity"
+---
+
+## Goal
+
+Understand the geometric property that turns local downhill information into a global guarantee.
+
+Convexity is the reason some optimization problems are unusually well behaved:
+
+> In a convex problem, a local minimum cannot secretly be worse than another distant minimum.
+
+That does not mean optimization is always fast or numerically easy. It means the landscape has no deceptive local valleys.
+
+## Motivation
+
+Gradient descent only sees local information.
+
+At the current point, it asks:
+
+```math
+\text{Which direction decreases the loss most rapidly right now?}
+```
+
+For an arbitrary nonconvex function, following local downhill directions can lead to:
+
+- a poor local minimum;
+- a saddle point;
+- a flat plateau;
+- a complicated region with many valleys.
+
+Convexity removes one major source of ambiguity.
+
+For a convex function:
+
+- every local minimum is global;
+- every stationary point is a global minimum;
+- chords lie above the graph;
+- curvature is never negative.
+
+These statements are different views of the same underlying shape.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| $C$ | set | A collection of allowed points. |
+| $f$ | function | A scalar-valued objective or loss. |
+| $x,y$ | points | Two points in the domain. |
+| $t$ | interpolation weight | A number satisfying $0\le t\le 1$. |
+| $tx+(1-t)y$ | convex combination | A point on the line segment joining $x$ and $y$. |
+| $\nabla f(x)$ | gradient | Local first-order change at $x$. |
+| $H_f(x)$ | Hessian | Local second-order curvature at $x$. |
+
+## First Idea: A Convex Set Contains Its Chords
+
+A set $C$ is convex when the straight line segment between any two points in the set remains entirely inside the set.
+
+Formally, for every $x,y\in C$ and every $t\in[0,1]$:
+
+```math
+tx+(1-t)y \in C
+```
+
+The expression
+
+```math
+tx+(1-t)y
+```
+
+interpolates between $y$ and $x$:
+
+- $t=0$ gives $y$;
+- $t=1$ gives $x$;
+- $t=\frac12$ gives the midpoint;
+- intermediate values trace the segment.
+
+### Examples of convex sets
+
+- A line.
+- A filled circle or sphere.
+- A rectangle.
+- A half-plane.
+- All of $\mathbb{R}^n$.
+
+### Examples of nonconvex sets
+
+- A ring with a hole.
+- A crescent.
+- Two disconnected islands.
+- The boundary of a circle without its interior.
+
+The distinction matters in constrained optimization. Even a convex objective can become difficult if the allowed region is nonconvex.
+
+## Convex Combinations
+
+The expression
+
+```math
+tx+(1-t)y
+```
+
+is called a **convex combination** of $x$ and $y$.
+
+The weights are:
+
+```math
+t \quad\text{and}\quad 1-t
+```
+
+They have two properties:
+
+```math
+t\ge 0, \qquad 1-t\ge 0
+```
+
+and:
+
+```math
+t+(1-t)=1
+```
+
+This is a weighted average.
+
+In programming terms, it is linear interpolation:
+
+```ts
+function lerp(a: number, b: number, t: number): number {
+  return t * a + (1 - t) * b;
+}
+```
+
+For vectors, the same operation is applied componentwise.
+
+## Convex Functions: The Graph Lies Below Its Chords
+
+A function $f$ is convex when, for every pair of points $x$ and $y$ and every $t\in[0,1]$:
+
+```math
+f(tx+(1-t)y)
+\le
+ t f(x)+(1-t)f(y)
+```
+
+This is the **convexity inequality**, also called the chord inequality.
+
+Read the two sides as:
+
+- left side: evaluate the function at an interpolated input;
+- right side: interpolate between the two endpoint function values.
+
+For a convex function, the graph lies at or below the straight chord joining any two graph points.
+
+### Programming analogy
+
+There are two possible orders:
+
+```text
+interpolate inputs, then evaluate
+```
+
+versus:
+
+```text
+evaluate endpoints, then interpolate outputs
+```
+
+Convexity says:
+
+```text
+f(interpolate inputs) <= interpolate f(outputs)
+```
+
+This inequality is the formal version of "bowl-shaped."
+
+## Worked Example: $f(x)=x^2$
+
+Choose:
+
+```math
+x=0, \qquad y=2, \qquad t=\frac12
+```
+
+The interpolated input is:
+
+```math
+\frac12(0)+\frac12(2)=1
+```
+
+Evaluate the left side:
+
+```math
+f(1)=1
+```
+
+Evaluate and interpolate the endpoint values:
+
+```math
+\frac12 f(0)+\frac12 f(2)
+=
+\frac12(0)+\frac12(4)
+=2
+```
+
+Therefore:
+
+```math
+1\le 2
+```
+
+The midpoint of the curve lies below the midpoint of the chord.
+
+One numerical example does not prove global convexity, but it illustrates the definition.
+
+## A Nonconvex Example
+
+Consider:
+
+```math
+f(x)=-x^2
+```
+
+Using the same points:
+
+```math
+f(1)=-1
+```
+
+while:
+
+```math
+\frac12 f(0)+\frac12 f(2)
+=
+\frac12(0)+\frac12(-4)
+=-2
+```
+
+Convexity would require:
+
+```math
+-1\le -2
+```
+
+which is false.
+
+The graph lies above its chord, so $-x^2$ is concave rather than convex.
+
+## Convex Versus Strictly Convex
+
+A function is **strictly convex** when the chord inequality is strict for distinct points and interior weights:
+
+```math
+f(tx+(1-t)y)
+<
+ t f(x)+(1-t)f(y)
+```
+
+for $x\ne y$ and $0<t<1$.
+
+Why the distinction matters:
+
+- A convex function may have a flat interval of global minima.
+- A strictly convex function has at most one global minimizer.
+
+Example:
+
+```math
+f(x)=x^2
+```
+
+is strictly convex.
+
+A constant function is convex but not strictly convex.
+
+## First-Derivative View: Tangent Lines Stay Below
+
+For a differentiable convex function:
+
+```math
+f(y) \ge f(x)+\nabla f(x)^T(y-x)
+```
+
+In one dimension:
+
+```math
+f(y) \ge f(x)+f'(x)(y-x)
+```
+
+The right side is the tangent-line approximation at $x$.
+
+Convexity says the tangent line never rises above the function.
+
+This gives another geometric picture:
+
+> Every local linear approximation underestimates a convex function globally.
+
+That is stronger than merely being bowl-shaped near one point.
+
+## Why A Stationary Point Is Global
+
+Suppose $x^*$ is a stationary point:
+
+```math
+\nabla f(x^*)=0
+```
+
+Apply the first-order convexity condition:
+
+```math
+f(y) \ge f(x^*)+\nabla f(x^*)^T(y-x^*)
+```
+
+Since the gradient is zero:
+
+```math
+f(y) \ge f(x^*)
+```
+
+for every $y$.
+
+Therefore $x^*$ is a global minimum.
+
+This is the central optimization guarantee.
+
+No search over distant regions is needed to rule out a lower valley: convexity already rules one out.
+
+## Second-Derivative View: Nonnegative Curvature
+
+For a twice-differentiable one-dimensional function, convexity is equivalent to:
+
+```math
+f''(x)\ge 0
+```
+
+throughout the domain.
+
+Examples:
+
+```math
+f(x)=x^2
+```
+
+has:
+
+```math
+f''(x)=2>0
+```
+
+so it is strictly convex.
+
+```math
+f(x)=x^4
+```
+
+has:
+
+```math
+f''(x)=12x^2\ge 0
+```
+
+so it is convex, even though the second derivative is zero at $x=0$.
+
+This shows an important subtlety:
+
+> Strict convexity does not require $f''(x)>0$ at every point.
+
+## Multivariable View: Positive Semidefinite Hessian
+
+For a twice-differentiable function $f:\mathbb{R}^n\to\mathbb{R}$, convexity is characterized by a positive semidefinite Hessian:
+
+```math
+v^T H_f(x)v \ge 0
+```
+
+for every point $x$ and every direction vector $v$.
+
+Equivalently, every eigenvalue of the Hessian is nonnegative:
+
+```math
+\lambda_i \ge 0
+```
+
+Interpretation:
+
+- no direction bends downward;
+- some directions may be flat;
+- every local cross-section is bowl-shaped or flat.
+
+For strict local curvature, a positive definite Hessian has:
+
+```math
+v^T H_f(x)v>0
+```
+
+for every nonzero $v$.
+
+Then all Hessian eigenvalues are positive.
+
+## Worked Example: A Convex Quadratic
+
+Consider:
+
+```math
+f(x,y)=4x^2+y^2
+```
+
+Its Hessian is:
+
+```math
+H=
+\begin{bmatrix}
+8 & 0\\
+0 & 2
+\end{bmatrix}
+```
+
+The eigenvalues are $8$ and $2$, both positive.
+
+Therefore the function is strictly convex.
+
+The minimum occurs where the gradient is zero:
+
+```math
+\nabla f(x,y)=
+\begin{bmatrix}
+8x\\
+2y
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\
+0
+\end{bmatrix}
+```
+
+which gives:
+
+```math
+x=0, \qquad y=0
+```
+
+Because the function is convex, this stationary point is not merely a local candidate. It is the unique global minimum.
+
+## Worked Example With A Mixed Term
+
+Consider:
+
+```math
+f(x,y)=x^2+2xy+2y^2
+```
+
+The Hessian is:
+
+```math
+H=
+\begin{bmatrix}
+2 & 2\\
+2 & 4
+\end{bmatrix}
+```
+
+For a symmetric $2\times2$ matrix, positive definiteness can be checked using the leading principal minors:
+
+```math
+H_{11}>0
+```
+
+and:
+
+```math
+\det(H)>0
+```
+
+Here:
+
+```math
+H_{11}=2>0
+```
+
+and:
+
+```math
+\det(H)=2\cdot4-2\cdot2=4>0
+```
+
+So the Hessian is positive definite, and the function is strictly convex.
+
+The mixed term rotates the principal curvature directions, but it does not destroy convexity.
+
+## Convexity Is Global, Curvature Is Local
+
+The Hessian at one point tells us local curvature.
+
+Convexity is a statement about the entire domain.
+
+A function can have a positive semidefinite Hessian at one point and still fail to be convex elsewhere.
+
+To establish convexity through the Hessian, the Hessian condition must hold throughout the relevant domain.
+
+This distinction mirrors a recurring pattern:
+
+- derivative information is local;
+- optimization guarantees often require global assumptions.
+
+## Common Convex Losses
+
+Several familiar objectives are convex in their direct prediction or parameter variables under appropriate model choices:
+
+- Mean squared error for linear regression.
+- Binary cross-entropy for logistic regression as a function of linear-model parameters.
+- L1 and L2 regularization penalties.
+- Hinge loss used in support vector machines.
+
+But composition matters.
+
+A convex loss applied to the output of a neural network does not make the training objective convex in the network parameters.
+
+The network's nonlinear parameterization usually creates a nonconvex objective.
+
+## What Convexity Guarantees
+
+For a convex objective over a convex feasible set:
+
+- every local minimum is global;
+- every stationary point is globally minimizing;
+- first-order conditions can certify optimality;
+- averaging points remains inside the feasible region;
+- many optimization algorithms have convergence guarantees.
+
+For a strictly convex objective:
+
+- the global minimizer is unique, when one exists.
+
+## What Convexity Does Not Guarantee
+
+Convexity does not guarantee:
+
+- that a minimum exists;
+- that the minimum is unique unless stronger conditions hold;
+- that optimization is fast;
+- that the problem is well conditioned;
+- that numerical errors are harmless;
+- that the model generalizes well;
+- that the chosen objective represents the real goal.
+
+For example, a very narrow convex valley can still make gradient descent painfully slow.
+
+Convexity removes deceptive local minima, not bad conditioning.
+
+## Connection To Gradient Descent
+
+For a smooth convex function, gradient descent is not wandering among unrelated valleys.
+
+Each step uses local information, but the global geometry makes that information trustworthy.
+
+The update remains:
+
+```math
+x_{t+1}=x_t-\eta\nabla f(x_t)
+```
+
+Convexity tells us what the landscape permits.
+
+Smoothness and curvature bounds tell us which learning rates are safe and how quickly convergence can occur.
+
+These assumptions play different roles:
+
+| Property | What it controls |
+| --- | --- |
+| Convexity | No bad local minima. |
+| Strict convexity | At most one minimizer. |
+| Smoothness | Gradient does not change too abruptly. |
+| Strong convexity | Bowl has a minimum curvature floor. |
+| Condition number | Difficulty caused by unequal curvature directions. |
+
+We will build these distinctions gradually rather than treating "convex" as synonymous with "easy."
+
+## Connection To Programming
+
+A numerical chord test can look like this:
+
+```ts
+type ScalarFunction = (x: number) => number;
+
+function convexityGap(
+  f: ScalarFunction,
+  x: number,
+  y: number,
+  t: number,
+): number {
+  if (t < 0 || t > 1) {
+    throw new RangeError("t must lie in [0, 1]");
+  }
+
+  const interpolatedInput = t * x + (1 - t) * y;
+  const interpolatedOutput = t * f(x) + (1 - t) * f(y);
+
+  return interpolatedOutput - f(interpolatedInput);
+}
+```
+
+For a convex function, the returned gap should be nonnegative, up to floating-point error.
+
+This is useful as an experiment, not as a proof. Testing finitely many points cannot establish an inequality over a continuous domain.
+
+## Why Convexity Shows Up In ML
+
+Convexity gives a clean dividing line between two kinds of optimization reasoning.
+
+For convex models such as linear and logistic regression, we can often prove:
+
+- the optimizer is targeting a global solution;
+- stationary conditions characterize the solution;
+- convergence rates under stated assumptions.
+
+For neural networks, the objective is generally nonconvex. Convex theory still matters because it provides:
+
+- local approximations;
+- baseline guarantees;
+- reusable inequalities;
+- intuition for regularizers and subproblems;
+- a reference point for understanding what nonconvexity removes.
+
+## Summary
+
+A convex set contains the line segment between any two of its points:
+
+```math
+tx+(1-t)y\in C
+```
+
+A convex function lies below every chord:
+
+```math
+f(tx+(1-t)y)
+\le
+ t f(x)+(1-t)f(y)
+```
+
+For differentiable convex functions, tangent planes lie below the graph:
+
+```math
+f(y)\ge f(x)+\nabla f(x)^T(y-x)
+```
+
+For twice-differentiable functions, convexity means nonnegative curvature in every direction:
+
+```math
+v^T H_f(x)v\ge0
+```
+
+The optimization payoff is:
+
+> Every local minimum of a convex function is global.
+
+## Exercises
+
+1. In your own words, distinguish a convex set from a convex function.
+2. Compute $tx+(1-t)y$ for $x=2$, $y=10$, and $t=0.25$. Explain where the result lies on the segment.
+3. Using $x=0$, $y=4$, and $t=\frac12$, check the convexity inequality numerically for $f(x)=x^2$.
+4. Perform the same numerical check for $f(x)=-x^2$. Which side of the inequality fails?
+5. Determine whether each set is convex and explain why:
+   - a filled disk;
+   - a circle containing only its boundary;
+   - a rectangle;
+   - two separated filled disks.
+6. For $f(x)=3x^2-4x+7$, compute $f''(x)$ and use it to classify the function as convex, strictly convex, or neither.
+7. For
+
+   ```math
+   f(x,y)=x^2+4y^2
+   ```
+
+   compute the Hessian and use its eigenvalues to determine whether the function is convex.
+8. Suppose a differentiable convex function has $\nabla f(x^*)=0$. Use the first-order convexity inequality to explain why $x^*$ is a global minimum.
+9. Explain why a convex function can still be difficult for gradient descent when one Hessian eigenvalue is much larger than another.
+10. Write TypeScript-style pseudocode that computes the convexity gap
+
+    ```math
+    t f(x)+(1-t)f(y)-f(tx+(1-t)y)
+    ```
+
+    and state what sign you expect for a convex function.
+
+## Looking Ahead
+
+Convexity tells us that the landscape has no deceptive local minima.
+
+The next question is:
+
+> How can we optimize when parameters must satisfy explicit restrictions?
+
+That leads to constrained optimization, feasible sets, and Lagrange multipliers.
