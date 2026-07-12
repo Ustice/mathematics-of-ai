@@ -15,7 +15,7 @@ Source: uploaded images stored in this [Exercise Artifact Module](.).
 
 ## Overall
 
-Pass. The work demonstrates readiness to continue to partial derivatives. The equality-constrained geometry and algebra are strong, and the projected-gradient implementation has the right high-level composition. The main corrections concern inequality sign conventions and the exact reason projection restores feasibility.
+Pass. The work demonstrates readiness to continue to partial derivatives. The equality-constrained geometry and algebra are strong, and the projected-gradient implementation has the right high-level composition. The main corrections concern copying an inequality sign consistently and stating the exact reason projection restores feasibility.
 
 ## Problem Review
 
@@ -49,13 +49,19 @@ The phrase “stretched version” captures scalar proportionality; “parallel 
 
 ### 5. Active and inactive constraints
 
-The boundary classification at $x=3$ is correct, but $x=2$ is not inactive under the written convention $h(x)=x-3\ge0$. It is infeasible because $h(2)=-1<0$. An inactive feasible point would have $h(x)>0$, such as $x=4$.
+The classifications are correct for the exercise's constraint $h(x)=x-3\le0$: $x=2$ is feasible with strict slack and is therefore inactive, while $x=3$ lies on the boundary and is active.
 
-This is a sign-convention issue: the lesson primarily used $h(x)\le0$, while this problem deliberately wrote the allowed side as $h(x)\ge0$.
+The handwritten prompt changed the original $\le0$ to $\ge0$. Under that copied sign, $x=2$ would be infeasible. The reasoning and labels show that the intended $\le0$ convention was being used; the needed correction is to preserve the original inequality sign.
 
 ### 6. Complementary slackness
 
-The product condition correctly suggests $\mu=0$ when the constraint has strict slack at a feasible point. However, with the written convention $h(x)\ge0$, the premise $h(x)<0$ describes an infeasible point, so the KKT conditions do not apply to it as a candidate solution. Always check primal feasibility before using complementary slackness.
+Correct. Under the lesson's $h(x)\le0$ convention, $h(x)<0$ means the constraint has strict slack. Complementary slackness
+
+```math
+\mu h(x)=0
+```
+
+then forces $\mu=0$.
 
 ### 7. Hard constraint versus finite penalty
 
@@ -90,7 +96,6 @@ Lesson 33 is complete.
 
 Carry forward these distinctions:
 
-- Check primal feasibility before classifying an inequality as active or inactive.
-- State the inequality convention explicitly; changing between $h(x)\le0$ and $h(x)\ge0$ changes the multiplier-sign convention.
+- Copy the inequality convention consistently; changing between $h(x)\le0$ and $h(x)\ge0$ changes feasibility and the multiplier-sign convention.
 - Projection restores feasibility because its output belongs to the feasible set.
 - An objective is scalar-valued, while its gradient is vector-valued.
