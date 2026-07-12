@@ -22,9 +22,9 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-33 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-33. Lesson 34 is the active Lesson Page.
+Lessons 1-34 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-34. Lesson 35 is the active Lesson Page.
 
-The next active topic is **Partial Derivatives**, beginning the calculus and matrix-calculus sequence after Constrained Optimization.
+The next active topic is **Gradients**, assembling the coordinate sensitivities from Partial Derivatives into one local linear object.
 
 Status labels below describe historical curriculum coverage. They do not mark Lesson Pages complete; use the Course Checkpoint for completion and `data/lesson-artifacts.json` for artifact relationships.
 
@@ -262,7 +262,7 @@ This phase turns loss functions into training procedures. The emphasis is on und
 
 ## Phase V — Calculus and Matrix Calculus for ML
 
-**Status:** In progress with Lesson 34
+**Status:** In progress with Lesson 35
 
 This phase formalizes the calculus needed for backpropagation, optimization, and reading papers with vectorized derivatives.
 
