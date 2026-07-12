@@ -194,6 +194,12 @@
     {
       "lesson": 33,
       "chat": "Lesson 33",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-033-constrained-optimization"
+    },
+    {
+      "lesson": 34,
+      "chat": "Lesson 34",
       "transcript": null
     }
   ]

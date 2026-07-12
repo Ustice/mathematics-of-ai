@@ -106,6 +106,10 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Complementary slackness:** The KKT condition requiring an inequality multiplier times its constraint value to equal zero.
 
+**Partial derivative:** The local rate of change of a multivariable function with respect to one input while the other inputs are held fixed.
+
+**Total differential:** A first-order approximation of total output change formed by combining each partial derivative with its corresponding input change.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.

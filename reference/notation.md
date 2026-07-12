@@ -70,6 +70,8 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(\mathcal{L}(x,\lambda,\mu)\) | Lagrangian | Objective combined with multiplier-weighted constraint terms |
 | \(\lambda\) | equality-constraint multiplier | Scale balancing an equality-constraint gradient against the objective gradient |
 | \(\mu\) | inequality-constraint multiplier | Nonnegative scale associated with an inequality constraint |
+| \(\frac{\partial f}{\partial x_i}\) | partial derivative | Local sensitivity of a scalar function to coordinate \(x_i\) while the other coordinates are held fixed |
+| \(df\) | total differential | First-order change assembled from partial derivatives and coordinate changes |
 
 ## Information Theory
 
