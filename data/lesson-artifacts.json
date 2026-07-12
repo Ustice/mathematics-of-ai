@@ -200,6 +200,12 @@
     {
       "lesson": 34,
       "chat": "Lesson 34",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-034-partial-derivatives"
+    },
+    {
+      "lesson": 35,
+      "chat": "Lesson 35",
       "transcript": null
     }
   ]

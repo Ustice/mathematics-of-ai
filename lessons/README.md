@@ -31,7 +31,7 @@ Polished lessons should include:
 
 Exported ChatGPT lesson transcripts currently live in [transcripts](transcripts/). Treat them as preserved source material for audit and revision, not as the user-facing lesson path.
 
-Lessons 1-31 have corresponding MDX Lesson Pages under [../src/content/lessons](../src/content/lessons/). Artifact Records connect them to preserved Source Transcripts and Exercise Artifact Modules.
+Lessons 1-35 have corresponding MDX Lesson Pages under [../src/content/lessons](../src/content/lessons/). Artifact Records connect them to preserved Source Transcripts and Exercise Artifact Modules.
 
 The archived source index is [../archive/lesson-source-index/index.html](../archive/lesson-source-index/index.html). The MDX lesson index is generated from [../src/pages/lessons/index.astro](../src/pages/lessons/index.astro). Machine-readable artifact relationships live in [../data/lesson-artifacts.json](../data/lesson-artifacts.json).
 

@@ -56,7 +56,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 ### Optimization
 
-- [ ] Gradients.
+- [x] Gradients introduced; Lesson 35 exercises pending.
 - [x] Hessians.
 - [x] Convexity.
 - [x] Constrained optimization.
@@ -181,4 +181,5 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 31: Hessians and Curvature - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 32: Convexity - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 33: Constrained Optimization - Lesson Page and reviewed Exercise Artifact Module available.
-- [ ] Lesson 34: Partial Derivatives - Lesson Page available.
+- [x] Lesson 34: Partial Derivatives - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 35: Gradients - Lesson Page available.
