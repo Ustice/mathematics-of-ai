@@ -130,7 +130,7 @@ Preserved historical and source material:
 
 ## Current Course State
 
-The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-34 are complete and the next topic is Gradients.
+The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-35 are complete and the next topic is Jacobians.
 
 Lesson Pages live under [src/content/lessons](src/content/lessons/). Lessons 1-25 were reconstructed from the raw exported Markdown Source Transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved for audit and revision.
 

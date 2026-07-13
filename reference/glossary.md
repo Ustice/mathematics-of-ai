@@ -110,6 +110,8 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Total differential:** A first-order approximation of total output change formed by combining each partial derivative with its corresponding input change.
 
+**Jacobian:** The output-by-input matrix of first partial derivatives that represents a vector-valued function's local linear map.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.

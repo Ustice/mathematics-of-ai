@@ -2,7 +2,7 @@ course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
 last_updated: 2026-07-12
 current_phase: Calculus and Matrix Calculus for ML
-next_topic: Gradients
+next_topic: Jacobians
 
 completed_lessons:
   - number: 1
@@ -73,6 +73,8 @@ completed_lessons:
     title: Constrained Optimization
   - number: 34
     title: Partial Derivatives
+  - number: 35
+    title: Gradients
 
 teaching_preferences:
   intuition_first: true
@@ -95,6 +97,6 @@ known_learning_notes:
   - Coordinate coefficients identify steep directions directly only for diagonal Hessians; in general use Hessian eigenvectors.
 
 artifacts:
-  exercise_artifacts: lessons_2_to_34_available_under_lesson_organized_modules
+  exercise_artifacts: lessons_2_to_35_available_under_lesson_organized_modules
   raw_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
   transcript_policy: source_material_until_reviewed

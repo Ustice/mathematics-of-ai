@@ -72,6 +72,9 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(\mu\) | inequality-constraint multiplier | Nonnegative scale associated with an inequality constraint |
 | \(\frac{\partial f}{\partial x_i}\) | partial derivative | Local sensitivity of a scalar function to coordinate \(x_i\) while the other coordinates are held fixed |
 | \(df\) | total differential | First-order change assembled from partial derivatives and coordinate changes |
+| \(F:\mathbb R^n\to\mathbb R^m\) | vector-valued function | Function with an \(n\)-dimensional input and an \(m\)-dimensional output |
+| \(J_F(x)\) | Jacobian | \(m\times n\) output-by-input matrix representing the local derivative of \(F\) at \(x\) |
+| \(\Delta y\approx J_F(x)\Delta x\) | Jacobian linear approximation | First-order prediction of vector output change from a small input displacement |
 
 ## Information Theory
 
