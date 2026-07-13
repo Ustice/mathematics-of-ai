@@ -23,6 +23,8 @@ This is the canonical external symbol table for recurring notation. Its job is t
 | \(P(\theta \mid D)\) | Posterior | Bayesian inference | Lesson 18 | Updated belief after conditioning on data. |
 | \(L(\theta)\) | Likelihood or loss/objective function | MLE and optimization | Lesson 16 | Overloaded: MLE lessons may use it for likelihood; optimization lessons often use it for loss. Define locally. |
 | \(\nabla L(\theta)\) | Gradient of the loss | Optimization | Lesson 26 | Direction of steepest local increase with respect to parameters. |
+| \(J_F(x)\) | Jacobian of \(F\) at \(x\) | Vector-valued calculus | Lesson 36 | Output-by-input local derivative matrix; define function dimensions locally. |
+| \(\bar v\) | Reverse sensitivity of the loss to \(v\) | Computation graphs | Lesson 37 | Means \(\partial L/\partial v\) locally; the bar does not denote an average here. |
 | \(\eta\) | Learning rate | Optimization | Lesson 26 | Positive scalar controlling gradient descent step size. |
 | \(\Delta \theta\) | Parameter update | Optimization | Lesson 26 | Change added to the current parameters during one step. |
 | \(g_t\) | Gradient estimate at step t | Optimization | Lesson 28 | Often a mini-batch gradient in SGD-style optimizers. |

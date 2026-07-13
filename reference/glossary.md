@@ -112,6 +112,14 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Jacobian:** The output-by-input matrix of first partial derivatives that represents a vector-valued function's local linear map.
 
+**Chain rule:** The rule for differentiating a composition by composing its local derivatives in the order forced by their input and output shapes.
+
+**Computation graph:** A directed graph whose nodes store intermediate values and whose edges record which values are inputs to later operations.
+
+**Forward pass:** Evaluation of a computation graph from inputs toward its final output while storing intermediate values needed later.
+
+**Backward pass:** Propagation of a final output's sensitivity backward through local derivatives, adding contributions when several paths reach the same value.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.

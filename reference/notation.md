@@ -75,6 +75,8 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(F:\mathbb R^n\to\mathbb R^m\) | vector-valued function | Function with an \(n\)-dimensional input and an \(m\)-dimensional output |
 | \(J_F(x)\) | Jacobian | \(m\times n\) output-by-input matrix representing the local derivative of \(F\) at \(x\) |
 | \(\Delta y\approx J_F(x)\Delta x\) | Jacobian linear approximation | First-order prediction of vector output change from a small input displacement |
+| \(J_{G\circ F}(x)=J_G(F(x))J_F(x)\) | Jacobian chain rule | Local derivative of a composition, ordered so the first function's Jacobian acts first on an input displacement |
+| \(\bar v=\frac{\partial L}{\partial v}\) | reverse sensitivity / adjoint | Sensitivity of a final scalar loss \(L\) to an intermediate value \(v\); define locally because bar notation is context-dependent |
 
 ## Information Theory
 

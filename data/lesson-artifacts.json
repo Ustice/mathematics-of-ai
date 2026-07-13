@@ -212,6 +212,12 @@
     {
       "lesson": 36,
       "chat": "Lesson 36",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-036-jacobians"
+    },
+    {
+      "lesson": 37,
+      "chat": "Lesson 37",
       "transcript": null
     }
   ]
