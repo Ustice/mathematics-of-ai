@@ -56,7 +56,8 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 ### Optimization
 
-- [x] Gradients introduced; Lesson 35 exercises pending.
+- [x] Gradients introduced and reviewed in Lesson 35.
+- [x] Jacobians introduced; Lesson 36 exercises pending.
 - [x] Hessians.
 - [x] Convexity.
 - [x] Constrained optimization.
@@ -182,4 +183,5 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 32: Convexity - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 33: Constrained Optimization - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 34: Partial Derivatives - Lesson Page and reviewed Exercise Artifact Module available.
-- [ ] Lesson 35: Gradients - Lesson Page available.
+- [x] Lesson 35: Gradients - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 36: Jacobians - Lesson Page available.

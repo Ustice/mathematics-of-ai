@@ -80,7 +80,7 @@ describe('lesson catalog', () => {
     const records = readArtifactRecords(repoRoot);
 
     expect(records.map(({ lesson }) => lesson)).toEqual(
-      Array.from({ length: 35 }, (_, index) => index + 1),
+      Array.from({ length: 36 }, (_, index) => index + 1),
     );
   });
 });

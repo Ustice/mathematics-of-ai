@@ -206,6 +206,12 @@
     {
       "lesson": 35,
       "chat": "Lesson 35",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-035-gradients"
+    },
+    {
+      "lesson": 36,
+      "chat": "Lesson 36",
       "transcript": null
     }
   ]

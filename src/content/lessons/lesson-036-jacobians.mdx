@@ -1,0 +1,531 @@
+---
+description: "Jacobians as the local linear maps of vector-valued functions, with explicit input-output shape discipline."
+lesson: 36
+objectives:
+  - Distinguish scalar-valued and vector-valued derivatives by their shapes.
+  - Assemble output-by-input partial derivatives into a Jacobian matrix.
+  - Use a Jacobian to predict the local change of every output.
+  - Interpret Jacobian columns as responses to input-coordinate motion and rows as output gradients.
+  - Recognize gradients and ordinary derivatives as special Jacobian shapes.
+  - Connect Jacobians to linear layers, computation graphs, and the chain rule.
+phase: "Calculus and Matrix Calculus for ML"
+prerequisites:
+  - lesson: 35
+    title: "Gradients"
+  - lesson: 34
+    title: "Partial Derivatives"
+  - lesson: 2
+    title: "Matrices as Transformations"
+slug: "lesson-036-jacobians"
+symbols:
+  - symbol: "F:\\mathbb R^n\\to\\mathbb R^m"
+    meaning: "A vector-valued function with n inputs and m outputs."
+  - symbol: "J_F(x)"
+    meaning: "The m by n Jacobian matrix of F at x."
+  - symbol: "F_i(x)"
+    meaning: "The ith scalar output component of F."
+  - symbol: "\\Delta x"
+    meaning: "A small displacement in the n-dimensional input space."
+  - symbol: "\\Delta y"
+    meaning: "The corresponding first-order displacement in the m-dimensional output space."
+widgets: []
+title: "Jacobians"
+---
+
+## Goal
+
+Generalize the gradient from a function that returns one number to a function that returns a vector.
+
+The result is the **Jacobian**: a matrix that answers
+
+> If the input moves a little, how does every output move?
+
+## Motivation
+
+Lesson 35 studied a scalar field:
+
+```math
+f:\mathbb R^n\to\mathbb R.
+```
+
+Its derivative maps an input displacement to one first-order output change. But most machine-learning systems contain intermediate functions with several outputs:
+
+- a linear layer produces a vector of activations;
+- a feature transform returns many features;
+- a softmax maps a vector of logits to a vector of probabilities;
+- a computation graph passes vector-valued state between operations.
+
+For
+
+```math
+F:\mathbb R^n\to\mathbb R^m,
+```
+
+the local derivative must turn an $n$-dimensional input displacement into an $m$-dimensional output displacement. A matrix has exactly that shape.
+
+## Intuition: A Tiny Linear Machine
+
+A nonlinear function may bend and stretch space differently at different points. Near one chosen point, however, a differentiable function is approximately linear.
+
+The Jacobian is the matrix for that local linear machine:
+
+```math
+\Delta y\approx J_F(x)\Delta x.
+```
+
+Read this from right to left:
+
+1. choose a small input motion $\Delta x$;
+2. apply the local matrix $J_F(x)$;
+3. obtain the predicted output motion $\Delta y$.
+
+The Jacobian can change from point to point even though each individual Jacobian acts linearly on small displacements.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Shape and meaning |
+| --- | --- | --- |
+| $F:\mathbb R^n\to\mathbb R^m$ | vector-valued function | Accepts $n$ inputs and returns $m$ outputs. |
+| $x\in\mathbb R^n$ | input point | Point where the local derivative is evaluated. |
+| $F_i(x)$ | output component | The $i$th scalar output of $F$. |
+| $J_F(x)$ | Jacobian | $m\times n$ matrix of output-by-input partial derivatives. |
+| $\Delta x\in\mathbb R^n$ | input displacement | Small movement in input space. |
+| $\Delta y\in\mathbb R^m$ | output displacement | First-order response in output space. |
+| $e_j$ | input basis vector | Unit motion through input coordinate $j$. |
+
+The course uses the **output-by-input convention**:
+
+```math
+J_F(x)\in\mathbb R^{m\times n}.
+```
+
+Rows correspond to outputs. Columns correspond to inputs.
+
+## Formal Definition
+
+Write the vector-valued function component by component:
+
+```math
+F(x)=
+\begin{bmatrix}
+F_1(x)\\
+F_2(x)\\
+\vdots\\
+F_m(x)
+\end{bmatrix}.
+```
+
+Its Jacobian is:
+
+```math
+J_F(x)=
+\begin{bmatrix}
+\frac{\partial F_1}{\partial x_1} & \frac{\partial F_1}{\partial x_2} & \cdots & \frac{\partial F_1}{\partial x_n}\\
+\frac{\partial F_2}{\partial x_1} & \frac{\partial F_2}{\partial x_2} & \cdots & \frac{\partial F_2}{\partial x_n}\\
+\vdots & \vdots & \ddots & \vdots\\
+\frac{\partial F_m}{\partial x_1} & \frac{\partial F_m}{\partial x_2} & \cdots & \frac{\partial F_m}{\partial x_n}
+\end{bmatrix}.
+```
+
+The entry in row $i$, column $j$ is:
+
+```math
+(J_F(x))_{ij}=\frac{\partial F_i}{\partial x_j}(x).
+```
+
+Use the sentence **output $i$ with respect to input $j$** to recover the order.
+
+## Shape Discipline
+
+Before differentiating, write the function shape:
+
+```math
+F:\mathbb R^n\to\mathbb R^m.
+```
+
+Then the Jacobian shape follows automatically:
+
+```math
+J_F(x):m\times n.
+```
+
+This makes the local approximation type-check:
+
+```math
+\underbrace{\Delta y}_{m\times1}
+\approx
+\underbrace{J_F(x)}_{m\times n}
+\underbrace{\Delta x}_{n\times1}.
+```
+
+If those inner dimensions do not match, either the Jacobian convention or the multiplication order is wrong.
+
+## Worked Example: Two Inputs, Two Outputs
+
+Let:
+
+```math
+F(x,y)=
+\begin{bmatrix}
+x^2+y\\
+xy
+\end{bmatrix}.
+```
+
+There are two outputs and two inputs, so the Jacobian is $2\times2$.
+
+Differentiate the first output:
+
+```math
+\nabla F_1(x,y)=
+\begin{bmatrix}
+2x\\1
+\end{bmatrix}.
+```
+
+Differentiate the second output:
+
+```math
+\nabla F_2(x,y)=
+\begin{bmatrix}
+y\\x
+\end{bmatrix}.
+```
+
+Transpose those output gradients into rows:
+
+```math
+J_F(x,y)=
+\begin{bmatrix}
+2x & 1\\
+y & x
+\end{bmatrix}.
+```
+
+At $(1,2)$:
+
+```math
+J_F(1,2)=
+\begin{bmatrix}
+2 & 1\\
+2 & 1
+\end{bmatrix}.
+```
+
+## Use The Jacobian For A Local Prediction
+
+Suppose the input moves by:
+
+```math
+\Delta x=
+\begin{bmatrix}
+0.01\\
+-0.02
+\end{bmatrix}.
+```
+
+Then:
+
+```math
+\Delta F
+\approx
+J_F(1,2)\Delta x
+=
+\begin{bmatrix}
+2 & 1\\
+2 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0.01\\
+-0.02
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\
+0
+\end{bmatrix}.
+```
+
+Both outputs have zero first-order change in this direction at this point. That does not mean the nonlinear function is exactly constant; second-order terms may remain.
+
+Indeed, the exact new input is $(1.01,1.98)$:
+
+```math
+F(1.01,1.98)-F(1,2)
+=
+\begin{bmatrix}
+0.0001\\
+-0.0002
+\end{bmatrix}.
+```
+
+The small discrepancy is the higher-order error that the first-order Jacobian approximation omits.
+
+## Reading Rows And Columns
+
+The same Jacobian supports two complementary readings.
+
+### A Row Is One Output's Gradient
+
+Row $i$ contains the sensitivity of output $F_i$ to every input:
+
+```math
+\text{row}_i(J_F)=\nabla F_i(x)^T.
+```
+
+This is the output-centered view: choose one output and ask which inputs influence it.
+
+### A Column Is One Input Direction's Effect
+
+Column $j$ records how every output changes when only input $x_j$ moves:
+
+```math
+J_F(x)e_j=
+\text{column}_j(J_F(x)).
+```
+
+This is the input-centered view: choose one coordinate motion and observe the complete output response.
+
+Rows organize scalar sensitivities by output. Columns organize vector responses by input.
+
+## Gradients And Ordinary Derivatives Are Special Cases
+
+The Jacobian unifies earlier derivative objects.
+
+### Scalar Output
+
+For
+
+```math
+f:\mathbb R^n\to\mathbb R,
+```
+
+the Jacobian has shape $1\times n$:
+
+```math
+J_f(x)=\nabla f(x)^T.
+```
+
+The course stores the gradient itself as an $n\times1$ column vector, so its transpose is the scalar function's Jacobian under the output-by-input convention.
+
+### Scalar Input
+
+For
+
+```math
+F:\mathbb R\to\mathbb R^m,
+```
+
+the Jacobian has shape $m\times1$. It is the column of ordinary derivatives of every output with respect to the one input.
+
+### Scalar Input And Scalar Output
+
+For
+
+```math
+f:\mathbb R\to\mathbb R,
+```
+
+the Jacobian is $1\times1$: the familiar derivative $f'(x)$.
+
+## Linear Maps Have Constant Jacobians
+
+Consider an affine function:
+
+```math
+F(x)=Ax+b,
+```
+
+where $A\in\mathbb R^{m\times n}$.
+
+Its Jacobian is:
+
+```math
+J_F(x)=A.
+```
+
+The bias disappears because a constant does not change with the input. The Jacobian is the same everywhere because the linear part does not bend.
+
+For a nonlinear function, $J_F(x)$ depends on $x$. The Jacobian is the point-dependent matrix that locally plays the role of $A$.
+
+## Connection To The Chain Rule
+
+Suppose:
+
+```math
+F:\mathbb R^n\to\mathbb R^m
+```
+
+and
+
+```math
+G:\mathbb R^m\to\mathbb R^k.
+```
+
+Their composition has shape:
+
+```math
+G\circ F:\mathbb R^n\to\mathbb R^k.
+```
+
+The Jacobian shapes predict the chain rule:
+
+```math
+\underbrace{J_{G\circ F}(x)}_{k\times n}
+=
+\underbrace{J_G(F(x))}_{k\times m}
+\underbrace{J_F(x)}_{m\times n}.
+```
+
+The order matches function composition: $F$ acts first on the input, and $G$ acts second on the intermediate output.
+
+Lesson 37 develops this multiplication rule through computation graphs and backpropagation.
+
+## Connection To Programming
+
+A vector field accepts a vector and returns a vector:
+
+```ts
+type VectorField = (x: readonly number[]) => readonly number[];
+```
+
+A centered finite-difference Jacobian can perturb each input coordinate and measure every output response:
+
+```ts
+function numericalJacobian(
+  f: VectorField,
+  at: readonly number[],
+  h = 1e-5,
+): number[][] {
+  const outputSize = f(at).length;
+  const columns = at.map((_, coordinate) => {
+    const plus = at.map((value, index) =>
+      index === coordinate ? value + h : value,
+    );
+    const minus = at.map((value, index) =>
+      index === coordinate ? value - h : value,
+    );
+    const fPlus = f(plus);
+    const fMinus = f(minus);
+
+    return fPlus.map((value, output) =>
+      (value - fMinus[output]) / (2 * h),
+    );
+  });
+
+  return Array.from({ length: outputSize }, (_, output) =>
+    columns.map((column) => column[output]),
+  );
+}
+```
+
+The perturbation loop naturally produces columns: each input coordinate is changed once, and all output responses are observed. The final transformation arranges those columns into the course's output-by-input matrix convention.
+
+## Common Mistakes
+
+### Swapping Rows And Columns
+
+Write $F:\mathbb R^n\to\mathbb R^m$ first. Under this lesson's convention, the Jacobian is $m\times n$: outputs by inputs.
+
+### Forgetting That Every Output Is Differentiated
+
+A gradient handles one scalar output. A Jacobian contains one transposed output gradient per row.
+
+### Treating The Jacobian As Globally Linear
+
+$J_F(x)$ is a local linear approximation at $x$. For a nonlinear $F$, the matrix changes with the evaluation point.
+
+### Multiplying In The Wrong Order
+
+The local input displacement is a column vector, so use $J_F(x)\Delta x$. Shape checking exposes the reversed order.
+
+### Confusing A Zero First-Order Change With Exact Constancy
+
+If $J_F(x)\Delta x=0$, the chosen direction has no first-order effect at that point. Higher-order changes may still occur.
+
+## Exercises
+
+1. In one sentence, explain why the derivative of $F:\mathbb R^3\to\mathbb R^2$ should be represented by a $2\times3$ matrix.
+
+2. For
+
+   ```math
+   F(x,y)=
+   \begin{bmatrix}
+   x+y^2\\
+   x^2-y
+   \end{bmatrix},
+   ```
+
+   compute $J_F(x,y)$ and evaluate it at $(1,2)$.
+
+3. Use your Jacobian from Problem 2 to predict the first-order output change for
+
+   ```math
+   \Delta x=
+   \begin{bmatrix}
+   0.01\\
+   -0.02
+   \end{bmatrix}.
+   ```
+
+4. For a general $F:\mathbb R^n\to\mathbb R^m$, explain what row $i$ and column $j$ of $J_F(x)$ each mean.
+
+5. Let
+
+   ```math
+   F(x)=Ax+b,
+   \qquad
+   A=
+   \begin{bmatrix}
+   1 & 2\\
+   -3 & 4\\
+   0 & 5
+   \end{bmatrix}.
+   ```
+
+   State the input dimension, output dimension, and Jacobian. Explain why $b$ does not appear in it.
+
+6. If $f:\mathbb R^4\to\mathbb R$, state the shapes of $J_f(x)$ and $\nabla f(x)$ under this course's convention, and write their relationship.
+
+7. Suppose $F:\mathbb R^2\to\mathbb R^3$ and $G:\mathbb R^3\to\mathbb R^4$. Without computing entries, give the shapes of $J_F$, $J_G$, and $J_{G\circ F}$, then write the only multiplication order that type-checks.
+
+8. Find a nonzero displacement $v$ such that
+
+   ```math
+   \begin{bmatrix}
+   1 & 2\\
+   2 & 4
+   \end{bmatrix}v=0.
+   ```
+
+   Explain what this says about the function's first-order change in direction $v$.
+
+9. Write TypeScript that uses `numericalJacobian` to check the analytic Jacobian of
+
+   ```math
+   F(x,y)=
+   \begin{bmatrix}
+   x^2+y\\
+   xy
+   \end{bmatrix}
+   ```
+
+   at `[1, 2]` with a small componentwise tolerance.
+
+10. In your own words, explain how a Jacobian is both a table of partial derivatives and one local linear map. Why are those not two different objects?
+
+## Summary
+
+- The Jacobian is the derivative of a vector-valued function.
+- For $F:\mathbb R^n\to\mathbb R^m$, the course uses $J_F(x)\in\mathbb R^{m\times n}$.
+- Entry $(i,j)$ is the sensitivity of output $F_i$ to input $x_j$.
+- Rows are transposed output gradients; columns are complete responses to input-coordinate motion.
+- The local approximation is $\Delta y\approx J_F(x)\Delta x$.
+- A scalar function's Jacobian is the transpose of its column gradient.
+- Affine maps have constant Jacobians equal to their linear matrices.
+- Jacobian multiplication is the shape-disciplined form of the chain rule.
+
+## Next Lesson
+
+Lesson 37 uses Jacobians to differentiate compositions. Computation graphs make the chain rule operational: local derivative maps multiply in forward composition order, while backpropagation efficiently moves sensitivity information backward.
