@@ -1,0 +1,630 @@
+---
+description: "The chain rule as composition of local derivative maps, made operational through forward and backward passes on computation graphs."
+lesson: 37
+objectives:
+  - Differentiate scalar and vector compositions using shape-checked local derivatives.
+  - Read a computation graph as a factorization of a larger function into small operations.
+  - Separate forward values from backward sensitivities.
+  - Accumulate derivative contributions correctly when a value influences the output along several paths.
+  - Implement a small scalar computation graph and reverse pass in TypeScript.
+  - Explain why reverse accumulation is efficient when many inputs feed one scalar loss.
+phase: "Calculus and Matrix Calculus for ML"
+prerequisites:
+  - lesson: 36
+    title: "Jacobians"
+  - lesson: 35
+    title: "Gradients"
+  - lesson: 3
+    title: "Matrix Multiplication and Composition"
+slug: "lesson-037-chain-rule-for-computation-graphs"
+symbols:
+  - symbol: "G\\circ F"
+    meaning: "The composition that applies F first and G second."
+  - symbol: "J_{G\\circ F}(x)"
+    meaning: "The Jacobian of a composed function at x."
+  - symbol: "L"
+    meaning: "A final scalar loss produced by a computation graph."
+  - symbol: "\\bar v=\\frac{\\partial L}{\\partial v}"
+    meaning: "The sensitivity of the final loss to an intermediate scalar value v."
+  - symbol: "\\frac{\\partial v}{\\partial u}"
+    meaning: "A local derivative attached to the operation mapping u to v."
+widgets: []
+title: "Chain Rule for Computation Graphs"
+---
+
+## Goal
+
+Turn the chain rule from a formula about nested functions into an algorithm for differentiating a program.
+
+The central idea is:
+
+> A large derivative is assembled from small local derivatives, following the same dependency structure as the original computation.
+
+## Why Composition Creates A New Problem
+
+Lesson 36 described one function near one point with one Jacobian:
+
+```math
+\Delta y\approx J_F(x)\Delta x.
+```
+
+Real models are compositions. An input becomes a linear transformation, then an activation, then another transformation, and eventually a scalar loss. Writing the entire model as one expanded formula would hide the reusable structure and create a large bookkeeping problem.
+
+A computation graph keeps that structure explicit:
+
+```text
+input -> intermediate values -> prediction -> loss
+```
+
+Each node performs a small operation. The chain rule explains how their local derivatives combine.
+
+## The Invariant: Derivatives Must Connect Compatible Spaces
+
+Suppose:
+
+```math
+F:\mathbb R^n\to\mathbb R^m
+```
+
+and:
+
+```math
+G:\mathbb R^m\to\mathbb R^k.
+```
+
+The composition is:
+
+```math
+G\circ F:\mathbb R^n\to\mathbb R^k.
+```
+
+Its derivative must map an $n$-dimensional input displacement to a $k$-dimensional output displacement. The Jacobian chain rule is:
+
+```math
+J_{G\circ F}(x)
+=
+J_G(F(x))J_F(x).
+```
+
+The shapes force the order:
+
+```math
+\underbrace{J_{G\circ F}(x)}_{k\times n}
+=
+\underbrace{J_G(F(x))}_{k\times m}
+\underbrace{J_F(x)}_{m\times n}.
+```
+
+This is the same composition rule as matrix transformations. $F$ acts first, so its Jacobian is closest to the input displacement on the right.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| $x$ | graph input | Value supplied to the first operation. |
+| $u,v,z$ | intermediate values | Named results stored by graph nodes. |
+| $L$ | scalar loss | Final scalar output whose sensitivities we want. |
+| $G\circ F$ | composition | Apply $F$ first, then apply $G$. |
+| $J_F(x)$ | local Jacobian of $F$ | Maps a small displacement through the $F$ node. |
+| $\frac{\partial v}{\partial u}$ | local scalar derivative | Sensitivity of child value $v$ to parent value $u$. |
+| $\bar v=\frac{\partial L}{\partial v}$ | reverse sensitivity | Sensitivity of the final loss to intermediate value $v$. |
+| $\bar x=\nabla_x L$ | input sensitivity | Gradient of the final loss with respect to the graph input. |
+
+The bar in $\bar v$ does not mean an average. In this lesson it is compact notation for the derivative of the final scalar loss with respect to $v$.
+
+## First Example: A Scalar Chain
+
+Let:
+
+```math
+u=x^2,
+\qquad
+L=3u+1.
+```
+
+The graph is:
+
+```text
+x --square--> u --scale and shift--> L
+```
+
+The local derivatives are:
+
+```math
+\frac{\partial u}{\partial x}=2x,
+\qquad
+\frac{\partial L}{\partial u}=3.
+```
+
+The chain rule multiplies them:
+
+```math
+\frac{dL}{dx}
+=
+\frac{\partial L}{\partial u}
+\frac{\partial u}{\partial x}
+=3(2x)=6x.
+```
+
+At $x=2$, the forward values are:
+
+```math
+u=4,
+\qquad
+L=13.
+```
+
+The backward sensitivities are:
+
+```math
+\bar L=\frac{\partial L}{\partial L}=1,
+\qquad
+\bar u=\bar L\frac{\partial L}{\partial u}=3,
+\qquad
+\bar x=\bar u\frac{\partial u}{\partial x}=3(4)=12.
+```
+
+The forward pass computes values. The backward pass computes how the final loss depends on those values.
+
+## Why The Backward Pass Starts With One
+
+Every reverse pass begins at the final scalar output with:
+
+```math
+\bar L=\frac{\partial L}{\partial L}=1.
+```
+
+This is not an arbitrary initialization. A quantity changes one-for-one with itself. That unit sensitivity seeds the repeated chain-rule multiplications.
+
+## A Computation Graph Is A Factorization
+
+Consider:
+
+```math
+L(x,y)=(xy+1)^2.
+```
+
+Factor it into named operations:
+
+```math
+u=xy,
+\qquad
+v=u+1,
+\qquad
+L=v^2.
+```
+
+The graph is:
+
+```text
+x --\
+     multiply -> u -> add 1 -> v -> square -> L
+y --/
+```
+
+At $(x,y)=(2,3)$, the forward pass gives:
+
+```math
+u=6,
+\qquad
+v=7,
+\qquad
+L=49.
+```
+
+Now record only the local derivatives:
+
+```math
+\frac{\partial u}{\partial x}=y=3,
+\qquad
+\frac{\partial u}{\partial y}=x=2,
+```
+
+```math
+\frac{\partial v}{\partial u}=1,
+\qquad
+\frac{\partial L}{\partial v}=2v=14.
+```
+
+Propagate backward:
+
+```math
+\bar v=14,
+\qquad
+\bar u=\bar v\frac{\partial v}{\partial u}=14,
+```
+
+```math
+\bar x=\bar u\frac{\partial u}{\partial x}=14(3)=42,
+\qquad
+\bar y=\bar u\frac{\partial u}{\partial y}=14(2)=28.
+```
+
+Therefore:
+
+```math
+\nabla L(2,3)=
+\begin{bmatrix}
+42\\28
+\end{bmatrix}.
+```
+
+The graph avoided expanding the whole expression. Each node needed only its own operation, stored forward values, and incoming sensitivity.
+
+## Branching Means Addition
+
+Multiplication handles consecutive links along one path. Addition handles several paths from the same variable to the output.
+
+Let:
+
+```math
+u=x^2,
+\qquad
+v=3x,
+\qquad
+L=u+v.
+```
+
+The input $x$ influences $L$ along two paths:
+
+```text
+       -> square -> u --\
+x ---->              add -> L
+       -> scale  -> v --/
+```
+
+The total derivative is the sum of both path contributions:
+
+```math
+\frac{dL}{dx}
+=
+\frac{\partial L}{\partial u}\frac{\partial u}{\partial x}
++
+\frac{\partial L}{\partial v}\frac{\partial v}{\partial x}.
+```
+
+Since both addition-node derivatives are $1$:
+
+```math
+\frac{dL}{dx}=1(2x)+1(3)=2x+3.
+```
+
+This yields the operational rule:
+
+> Multiply local derivatives along a path. Add contributions from different paths that meet at the same value.
+
+Failing to add at a branch is one of the most common computation-graph mistakes.
+
+## Vector Composition
+
+The same rule works when intermediate values are vectors.
+
+Let:
+
+```math
+F:\mathbb R^2\to\mathbb R^3,
+\qquad
+G:\mathbb R^3\to\mathbb R.
+```
+
+Then:
+
+```math
+J_F(x)\in\mathbb R^{3\times2},
+\qquad
+J_G(F(x))\in\mathbb R^{1\times3}.
+```
+
+Their product is:
+
+```math
+J_{G\circ F}(x)
+=
+J_G(F(x))J_F(x)
+\in\mathbb R^{1\times2}.
+```
+
+Because $G\circ F$ is scalar-valued, this result is the transpose of its column gradient:
+
+```math
+\nabla_x(G\circ F)(x)
+=
+J_F(x)^T\nabla G(F(x)).
+```
+
+This transposed form is important in machine learning. It says that an output gradient can be pulled backward through $F$ by multiplying with $J_F^T$.
+
+## A Concrete Vector Example
+
+Define:
+
+```math
+F(x,y)=
+\begin{bmatrix}
+x+y\\
+xy
+\end{bmatrix},
+\qquad
+G(u,v)=u^2+v.
+```
+
+The local Jacobians are:
+
+```math
+J_F(x,y)=
+\begin{bmatrix}
+1 & 1\\
+y & x
+\end{bmatrix},
+```
+
+and:
+
+```math
+J_G(u,v)=
+\begin{bmatrix}
+2u & 1
+\end{bmatrix}.
+```
+
+At $(x,y)=(1,2)$, the intermediate value is:
+
+```math
+F(1,2)=
+\begin{bmatrix}
+3\\2
+\end{bmatrix}.
+```
+
+Therefore:
+
+```math
+J_F(1,2)=
+\begin{bmatrix}
+1 & 1\\
+2 & 1
+\end{bmatrix},
+\qquad
+J_G(3,2)=
+\begin{bmatrix}
+6 & 1
+\end{bmatrix}.
+```
+
+Compose them:
+
+```math
+J_{G\circ F}(1,2)
+=
+\begin{bmatrix}
+6 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1\\
+2 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+8 & 7
+\end{bmatrix}.
+```
+
+Thus:
+
+```math
+\nabla(G\circ F)(1,2)=
+\begin{bmatrix}
+8\\7
+\end{bmatrix}.
+```
+
+The shapes are not decoration. They tell us which maps can be composed and in what order.
+
+## Forward Mode And Reverse Mode
+
+There are two natural ways to apply the chain rule without constructing every full derivative matrix.
+
+### Forward Accumulation
+
+Start with an input direction $\Delta x$ and push its effect forward:
+
+```math
+\Delta u=J_F(x)\Delta x,
+\qquad
+\Delta y=J_G(F(x))\Delta u.
+```
+
+This computes a Jacobian-vector product:
+
+```math
+J_{G\circ F}(x)\Delta x.
+```
+
+It efficiently answers: **How does this chosen input direction affect every output?**
+
+### Reverse Accumulation
+
+Start with sensitivity at a scalar loss and pull it backward:
+
+```math
+\nabla_x L=J_F(x)^T\nabla_u L.
+```
+
+This computes a vector-Jacobian product, usually represented with column gradients through the transpose.
+
+It efficiently answers: **How does the one final loss depend on every earlier input or parameter?**
+
+Machine learning commonly has millions of parameters but one scalar loss. That shape makes reverse accumulation especially valuable: one backward sweep can produce sensitivities for every parameter.
+
+## This Is The Foundation Of Backpropagation
+
+Backpropagation is not a different derivative rule. It is reverse-mode chain-rule accumulation specialized to layered models and scalar losses.
+
+This lesson focuses on the calculus and graph bookkeeping. Lesson 43 will apply the same mechanism to neural-network parameters, activations, and layers.
+
+## Connection To Programming
+
+Here is the earlier branching example encoded as an explicit forward pass and backward pass:
+
+```ts
+type ForwardState = Readonly<{
+  loss: number;
+  scaled: number;
+  squared: number;
+  x: number;
+}>;
+
+function forward(x: number): ForwardState {
+  const squared = x * x;
+  const scaled = 3 * x;
+  const loss = squared + scaled;
+
+  return { loss, scaled, squared, x };
+}
+
+function backward(state: ForwardState): number {
+  const lossSensitivity = 1;
+  const squaredSensitivity = lossSensitivity * 1;
+  const scaledSensitivity = lossSensitivity * 1;
+
+  const fromSquared = squaredSensitivity * (2 * state.x);
+  const fromScaled = scaledSensitivity * 3;
+
+  return fromSquared + fromScaled;
+}
+
+const state = forward(2);
+const derivative = backward(state);
+
+console.assert(state.loss === 10);
+console.assert(derivative === 7);
+```
+
+Notice the software structure:
+
+1. The forward pass stores values needed by local derivative formulas.
+2. The backward pass receives a sensitivity from each child.
+3. Each edge multiplies by one local derivative.
+4. Contributions are added when they reach a shared parent.
+
+A full automatic-differentiation engine generalizes this pattern by storing operations and their local backward rules dynamically.
+
+## Common Mistakes
+
+### Reversing The Jacobian Product
+
+For $G\circ F$, write the displacement flow:
+
+```math
+\Delta x
+\xrightarrow{J_F}
+\Delta u
+\xrightarrow{J_G}
+\Delta y.
+```
+
+Therefore $J_F$ is closest to $\Delta x$ on the right:
+
+```math
+J_{G\circ F}=J_GJ_F.
+```
+
+### Evaluating A Local Derivative At The Wrong Value
+
+$J_G$ must be evaluated at the intermediate value $F(x)$, not at the original input $x$ unless those happen to be the same type and value.
+
+### Multiplying Across Branches Instead Of Adding
+
+Consecutive edges multiply. Alternative paths add. A reused value can receive several valid sensitivity contributions.
+
+### Mixing Forward Values With Backward Sensitivities
+
+$v$ is an intermediate value. $\bar v=\partial L/\partial v$ is a sensitivity. They may have compatible shapes, but they represent different things.
+
+### Materializing A Full Jacobian Unnecessarily
+
+If the goal is only a directional effect or scalar-loss gradient, Jacobian-vector and vector-Jacobian products can apply the local map without storing every entry of a large Jacobian.
+
+## Exercises
+
+1. In one sentence, explain why the chain rule for $G\circ F$ has the order $J_G(F(x))J_F(x)$ rather than $J_F(x)J_G(F(x))$.
+
+2. Let:
+
+   ```math
+   u=2x-1,
+   \qquad
+   L=u^3.
+   ```
+
+   Draw the two-operation computation graph, compute the forward values at $x=2$, and use local derivatives to find $dL/dx$.
+
+3. For:
+
+   ```math
+   u=xy,
+   \qquad
+   v=u+2,
+   \qquad
+   L=v^2,
+   ```
+
+   run a forward and backward pass at $(x,y)=(3,-1)$ and report $\partial L/\partial x$ and $\partial L/\partial y$.
+
+4. Let $F:\mathbb R^4\to\mathbb R^3$ and $G:\mathbb R^3\to\mathbb R^2$. State the shapes of $J_F$, $J_G$, and $J_{G\circ F}$. Explain how the dimensions type-check.
+
+5. A scalar $x$ is used in both:
+
+   ```math
+   u=x^2,
+   \qquad
+   v=\sin x,
+   \qquad
+   L=u+v.
+   ```
+
+   Explain why the backward contributions to $x$ must be added, then compute $dL/dx$.
+
+6. For the vector composition:
+
+   ```math
+   F(x,y)=
+   \begin{bmatrix}
+   x-y\\
+   x+y
+   \end{bmatrix},
+   \qquad
+   G(u,v)=u^2+3v,
+   ```
+
+   compute $J_F$, $J_G$, and $\nabla(G\circ F)$ at $(x,y)=(2,1)$ using Jacobian multiplication.
+
+7. Suppose an intermediate scalar $v$ feeds two children $a(v)$ and $b(v)$, and $L=a+b$. Write $\bar v$ in terms of $\bar a$, $\bar b$, $da/dv$, and $db/dv$. State the general branch-accumulation rule in words.
+
+8. Compare forward and reverse accumulation for a function $F:\mathbb R^{1000}\to\mathbb R$. Which direction is naturally efficient for computing the full gradient of the scalar output, and why?
+
+9. Write TypeScript `forward` and `backward` functions for:
+
+   ```math
+   L(x,y)=(xy+1)^2.
+   ```
+
+   Store only the intermediate values needed by the backward pass. Check the result at $(2,3)$ against the analytic gradient $[42,28]$.
+
+10. In your own words, explain why a computation graph does not change the function being differentiated. What does the graph add that the single expanded expression does not?
+
+## Summary
+
+- A computation graph factors a function into small operations and explicit dependencies.
+- The chain rule composes local derivative maps.
+- For $G\circ F$, the Jacobian is $J_G(F(x))J_F(x)$.
+- The forward pass computes and stores values.
+- The backward pass propagates final-output sensitivities through local derivatives.
+- Local derivatives multiply along one path and contributions add across multiple paths.
+- Forward accumulation pushes a chosen input direction toward outputs.
+- Reverse accumulation pulls a scalar loss sensitivity back toward every input and parameter.
+- Backpropagation is reverse chain-rule accumulation applied to neural networks.
+
+## Next Lesson
+
+Lesson 38 makes matrix-calculus layout conventions explicit. We will use shape checking to distinguish gradients with respect to vectors and matrices, translate between common notation conventions, and derive reusable identities without relying on memorized formula tables.

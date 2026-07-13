@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-12
+last_updated: 2026-07-13
 current_phase: Calculus and Matrix Calculus for ML
-next_topic: Jacobians
+next_topic: Chain Rule for Computation Graphs
 
 completed_lessons:
   - number: 1
@@ -75,6 +75,8 @@ completed_lessons:
     title: Partial Derivatives
   - number: 35
     title: Gradients
+  - number: 36
+    title: Jacobians
 
 teaching_preferences:
   intuition_first: true
@@ -95,8 +97,10 @@ known_learning_notes:
   - Step schedules need explicit boundary conventions; floor preserves the initial learning rate during the first interval.
   - For directional curvature, v^T H v equals curvature itself when v is normalized; otherwise vector length scales the result.
   - Coordinate coefficients identify steep directions directly only for diagonal Hessians; in general use Hessian eigenvectors.
+  - Jacobian shape discipline is secure: rows organize output gradients, columns organize each input coordinate's full output response, and null-space directions have zero first-order effect.
+  - Numerical derivative checks are conceptually clear; reinforce consistent row/output and column/input names in implementations.
 
 artifacts:
-  exercise_artifacts: lessons_2_to_35_available_under_lesson_organized_modules
+  exercise_artifacts: lessons_2_to_36_available_under_lesson_organized_modules
   raw_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
   transcript_policy: source_material_until_reviewed
