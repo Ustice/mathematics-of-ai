@@ -130,7 +130,7 @@ Preserved historical and source material:
 
 ## Current Course State
 
-The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-36 are complete, Lesson 37 is at a targeted correction checkpoint, and the Lesson 38 Matrix Calculus Notation page is available for the next step.
+The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-36 are complete, and Lesson 37 is at a targeted correction checkpoint with Practice 37.1 available on its Lesson Page.
 
 Lesson Pages live under [src/content/lessons](src/content/lessons/). Lessons 1-25 were reconstructed from the raw exported Markdown Source Transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved for audit and revision.
 

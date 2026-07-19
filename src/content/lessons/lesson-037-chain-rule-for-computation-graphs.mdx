@@ -613,6 +613,124 @@ If the goal is only a directional effect or scalar-loss gradient, Jacobian-vecto
 
 10. In your own words, explain why a computation graph does not change the function being differentiated. What does the graph add that the single expanded expression does not?
 
+## Practice 37.1: Local Derivatives And Branch Accumulation
+
+This is a short correction checkpoint, not a new lesson. Work it on paper without expanding the full functions first. For every computation, write the forward values separately from the backward sensitivities.
+
+### 1. Local Values Stay Local
+
+Let:
+
+```math
+u=3x-2,
+\qquad
+L=u^2.
+```
+
+At $x=-1$:
+
+1. Compute the forward values $u$ and $L$.
+2. Write the local derivatives $\partial L/\partial u$ and $\partial u/\partial x$.
+3. Compute $dL/dx$ using the stored value of $u$.
+4. In one sentence, explain why replacing $u^2$ with $x^2$ would change the computation.
+
+### 2. Follow The Actual Operations
+
+For:
+
+```math
+F(x,y)=
+\begin{bmatrix}
+2x-y\\
+x+3y
+\end{bmatrix},
+```
+
+write $J_F(x,y)$ by differentiating one output component at a time. Label rows by outputs and columns by inputs before filling in the entries.
+
+Then compute:
+
+```math
+J_F(1,2)
+\begin{bmatrix}
+1\\-1
+\end{bmatrix}
+```
+
+and explain what the resulting vector means.
+
+### 3. Addition At A Branch
+
+Let:
+
+```math
+u=x^2,
+\qquad
+v=\cos x,
+\qquad
+L=u+v.
+```
+
+1. Draw the two branches from $x$ to $L$.
+2. Write the local derivatives at the final addition node.
+3. Compute $dL/dx$ symbolically.
+4. Evaluate it at $x=1$.
+5. Explain why neither branch's forward value multiplies the other branch's derivative.
+
+### 4. Accumulate Child Contributions
+
+An intermediate value $z$ feeds two children:
+
+```math
+a=z^2,
+\qquad
+b=4z,
+\qquad
+L=a+b.
+```
+
+At $z=3$, run the backward pass from $\bar L=1$. Show $\bar a$, $\bar b$, the contribution from each child to $\bar z$, and their accumulated total.
+
+Then write the general rule:
+
+```math
+\bar z=	ext{contribution through }a+	ext{contribution through }b.
+```
+
+using $\bar a$, $\bar b$, $da/dz$, and $db/dz$.
+
+### 5. One Complete Composition
+
+Define:
+
+```math
+F(x,y)=
+\begin{bmatrix}
+x-y\\
+x+2y
+\end{bmatrix},
+\qquad
+G(u,v)=u^2+v.
+```
+
+At $(x,y)=(2,1)$:
+
+1. Compute the forward value $F(2,1)$.
+2. Write $J_F(x,y)$ and $J_G(u,v)$ with shapes.
+3. Evaluate both Jacobians at the correct local values.
+4. Compute $J_{G\circ F}(2,1)=J_G(F(2,1))J_F(2,1)$.
+5. Convert the resulting scalar-output Jacobian into a column gradient.
+6. Check the result by expanding $G(F(x,y))$ only after completing the graph-based calculation.
+
+### Readiness Check
+
+Lesson 37 is ready to close when the work consistently shows all four habits:
+
+- Local derivatives are evaluated using the stored value at their own node.
+- The derivative matches the operation actually written in each node or component.
+- Derivatives multiply along one path.
+- Contributions add when several paths return to the same parent.
+
 ## Summary
 
 - A computation graph factors a function into small operations and explicit dependencies.
@@ -627,4 +745,4 @@ If the goal is only a directional effect or scalar-loss gradient, Jacobian-vecto
 
 ## Next Lesson
 
-Lesson 38 makes matrix-calculus layout conventions explicit. We will use shape checking to distinguish gradients with respect to vectors and matrices, translate between common notation conventions, and derive reusable identities without relying on memorized formula tables.
+After Practice 37.1 is secure, Lesson 38 will make matrix-calculus layout conventions explicit. We will use shape checking to distinguish gradients with respect to vectors and matrices, translate between common notation conventions, and derive reusable identities without relying on memorized formula tables.

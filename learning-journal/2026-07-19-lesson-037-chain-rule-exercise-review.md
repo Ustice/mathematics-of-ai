@@ -36,4 +36,4 @@
 ## Next Actions
 
 - Correct Exercises 2, 3, 5, 6, and 7 before marking Lesson 37 complete.
-- Use the opening bridge in Lesson 38 to rehearse local-value substitution, operation-specific derivatives, and branch addition.
+- Complete Practice 37.1 on the Lesson 37 page before advancing to Lesson 38.

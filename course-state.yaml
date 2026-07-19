@@ -2,7 +2,7 @@ course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
 last_updated: 2026-07-19
 current_phase: Calculus and Matrix Calculus for ML
-next_topic: Chain Rule Corrections, then Matrix Calculus Notation
+next_topic: Practice 37.1 - Local Derivatives and Branch Accumulation
 
 completed_lessons:
   - number: 1
