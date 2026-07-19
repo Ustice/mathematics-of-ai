@@ -5,6 +5,25 @@ import '../../styles/lesson.css';
 const lessons = (await getCollection('lessons')).sort((left, right) => left.data.lesson - right.data.lesson);
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${basePath}${path.replace(/^\/+/, '')}`;
+const sectionId = (phase: string) =>
+  phase
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+const lessonSections = lessons.reduce<Array<{ phase: string; lessons: typeof lessons }>>(
+  (sections, lesson) => {
+    const sectionIndex = sections.findIndex(({ phase }) => phase === lesson.data.phase);
+
+    return sectionIndex === -1
+      ? [...sections, { lessons: [lesson], phase: lesson.data.phase }]
+      : sections.map((section, index) =>
+          index === sectionIndex
+            ? { ...section, lessons: [...section.lessons, lesson] }
+            : section,
+        );
+  },
+  [],
+);
 ---
 
 <!doctype html>
@@ -25,23 +44,41 @@ const withBase = (path: string) => `${basePath}${path.replace(/^\/+/, '')}`;
       <header class="index-header">
         <p class="eyebrow">Mathematics of AI</p>
         <h1>Lessons</h1>
-        <p class="dek">Forward MDX lessons rendered to static HTML.</p>
+        <p class="dek">Forward MDX lessons rendered to static HTML, grouped by course phase.</p>
       </header>
-      <section class="lesson-list" aria-label="Lessons">
+      <nav class="section-jump-nav" aria-label="Jump to lesson section">
         {
-          lessons.map((lesson) => (
-            <article class="lesson-row">
-              <div>
-                <p class="lesson-number">{`Lesson ${lesson.data.lesson}`}</p>
-                <h2>
-                  <a href={withBase(`/lessons/${lesson.data.slug}/`)}>{lesson.data.title}</a>
-                </h2>
-                <p>{lesson.data.description}</p>
-              </div>
-            </article>
+          lessonSections.map(({ phase }) => (
+            <a href={`#${sectionId(phase)}`}>{phase}</a>
           ))
         }
-      </section>
+      </nav>
+      <div class="lesson-sections">
+        {
+          lessonSections.map(({ lessons: sectionLessons, phase }) => (
+            <section class="lesson-group" id={sectionId(phase)}>
+              <header class="lesson-group-header">
+                <p class="eyebrow">Course section</p>
+                <h2>{phase}</h2>
+                <p>{`${sectionLessons.length} ${sectionLessons.length === 1 ? 'lesson' : 'lessons'}`}</p>
+              </header>
+              <div class="lesson-list" aria-label={`${phase} lessons`}>
+                {sectionLessons.map((lesson) => (
+                  <article class="lesson-row">
+                    <div>
+                      <p class="lesson-number">{`Lesson ${lesson.data.lesson}`}</p>
+                      <h3>
+                        <a href={withBase(`/lessons/${lesson.data.slug}/`)}>{lesson.data.title}</a>
+                      </h3>
+                      <p>{lesson.data.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
     </main>
   </body>
 </html>

@@ -130,11 +130,11 @@ Preserved historical and source material:
 
 ## Current Course State
 
-The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-36 are complete and the next topic is Chain Rule for Computation Graphs.
+The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-36 are complete, Lesson 37 is at a targeted correction checkpoint, and the Lesson 38 Matrix Calculus Notation page is available for the next step.
 
 Lesson Pages live under [src/content/lessons](src/content/lessons/). Lessons 1-25 were reconstructed from the raw exported Markdown Source Transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved for audit and revision.
 
-Handwritten exercise images are organized by lesson under `exercises/lesson-NNN-slug/`. An image export is evidence for review, not proof that a lesson is complete.
+Handwritten exercise images are organized by lesson under `exercises/lesson-NNN-slug/`. Reviewed modules currently extend through Lesson 37. An image export is evidence for review, not proof that a lesson is complete.
 
 ## Development Commands
 

@@ -22,9 +22,9 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-36 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-36. Lesson 37 is the active Lesson Page.
+Lessons 1-36 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-37. Lesson 37 remains the active correction checkpoint, and the Lesson 38 page is available for the next step.
 
-The next active topic is **Chain Rule for Computation Graphs**, using local derivatives and Jacobians to differentiate composed programs.
+The next active topic is **Chain Rule Corrections**, followed by **Matrix Calculus Notation**. The correction checkpoint reinforces local-value substitution, operation-specific derivatives, and branch accumulation before the new notation is treated as complete.
 
 Status labels below describe historical curriculum coverage. They do not mark Lesson Pages complete; use the Course Checkpoint for completion and `data/lesson-artifacts.json` for artifact relationships.
 
@@ -262,7 +262,7 @@ This phase turns loss functions into training procedures. The emphasis is on und
 
 ## Phase V — Calculus and Matrix Calculus for ML
 
-**Status:** In progress with Lesson 37
+**Status:** Lesson 37 correction checkpoint; Lesson 38 page available
 
 This phase formalizes the calculus needed for backpropagation, optimization, and reading papers with vectorized derivatives.
 

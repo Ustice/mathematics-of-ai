@@ -218,6 +218,12 @@
     {
       "lesson": 37,
       "chat": "Lesson 37",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-037-chain-rule-for-computation-graphs"
+    },
+    {
+      "lesson": 38,
+      "chat": "Lesson 38",
       "transcript": null
     }
   ]

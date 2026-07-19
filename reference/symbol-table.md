@@ -25,6 +25,9 @@ This is the canonical external symbol table for recurring notation. Its job is t
 | \(\nabla L(\theta)\) | Gradient of the loss | Optimization | Lesson 26 | Direction of steepest local increase with respect to parameters. |
 | \(J_F(x)\) | Jacobian of \(F\) at \(x\) | Vector-valued calculus | Lesson 36 | Output-by-input local derivative matrix; define function dimensions locally. |
 | \(\bar v\) | Reverse sensitivity of the loss to \(v\) | Computation graphs | Lesson 37 | Means \(\partial L/\partial v\) locally; the bar does not denote an average here. |
+| \(df\) | First-order scalar change in \(f\) | Matrix calculus | Lesson 38 | Pair with a vector or matrix displacement to identify the corresponding gradient. |
+| \(\nabla_X f\) | Gradient of scalar \(f\) with respect to matrix \(X\) | Matrix calculus | Lesson 38 | Has the same shape as \(X\) under the course convention. |
+| \(\operatorname{tr}(A)\) | Trace of a square matrix | Matrix calculus | Lesson 38 | Sum of diagonal entries; also supports compact Frobenius-inner-product notation. |
 | \(\eta\) | Learning rate | Optimization | Lesson 26 | Positive scalar controlling gradient descent step size. |
 | \(\Delta \theta\) | Parameter update | Optimization | Lesson 26 | Change added to the current parameters during one step. |
 | \(g_t\) | Gradient estimate at step t | Optimization | Lesson 28 | Often a mini-batch gradient in SGD-style optimizers. |
