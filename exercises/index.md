@@ -6,6 +6,6 @@ Handwritten exercise work is stored as ordered images under one directory per le
 exercises/lesson-NNN-slug/exercise-NN.jpg
 ```
 
-The authoritative per-lesson index is the Exercise Artifact Module registered in [lesson-artifacts.json](../data/lesson-artifacts.json). Image order is derived from numeric filenames, and reviewed work currently covers Lessons 2-35.
+The authoritative per-lesson index is the Exercise Artifact Module registered in [lesson-artifacts.json](../data/lesson-artifacts.json). Image order is derived from numeric filenames.
 
-Blank export pages are omitted. Reviewed work currently covers Lessons 2-36. Existing lesson-level Markdown files are historical review notes; do not create new exercise Markdown files.
+Blank export pages are omitted. Reviewed work currently covers Lessons 2-37. Existing lesson-level Markdown files are historical review notes; do not create new exercise Markdown files.

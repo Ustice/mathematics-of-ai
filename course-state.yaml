@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-13
+last_updated: 2026-07-19
 current_phase: Calculus and Matrix Calculus for ML
-next_topic: Chain Rule for Computation Graphs
+next_topic: Practice 37.1 - Local Derivatives and Branch Accumulation
 
 completed_lessons:
   - number: 1
@@ -99,8 +99,10 @@ known_learning_notes:
   - Coordinate coefficients identify steep directions directly only for diagonal Hessians; in general use Hessian eigenvectors.
   - Jacobian shape discipline is secure: rows organize output gradients, columns organize each input coordinate's full output response, and null-space directions have zero first-order effect.
   - Numerical derivative checks are conceptually clear; reinforce consistent row/output and column/input names in implementations.
+  - Computation-graph implementation structure is secure, including stored forward values and a correct reverse pass for a scalar loss.
+  - Reinforce evaluating local derivatives at stored intermediate values, differentiating the operation actually present, and adding rather than multiplying branch contributions.
 
 artifacts:
-  exercise_artifacts: lessons_2_to_36_available_under_lesson_organized_modules
+  exercise_artifacts: lessons_2_to_37_available_under_lesson_organized_modules
   raw_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
   transcript_policy: source_material_until_reviewed
