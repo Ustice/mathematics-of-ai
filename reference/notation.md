@@ -77,6 +77,9 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(\Delta y\approx J_F(x)\Delta x\) | Jacobian linear approximation | First-order prediction of vector output change from a small input displacement |
 | \(J_{G\circ F}(x)=J_G(F(x))J_F(x)\) | Jacobian chain rule | Local derivative of a composition, ordered so the first function's Jacobian acts first on an input displacement |
 | \(\bar v=\frac{\partial L}{\partial v}\) | reverse sensitivity / adjoint | Sensitivity of a final scalar loss \(L\) to an intermediate value \(v\); define locally because bar notation is context-dependent |
+| \(df=(\nabla_x f)^Tdx\) | vector differential convention | Pairs a column gradient with a column displacement to produce the first-order scalar change |
+| \(df=\operatorname{tr}((\nabla_X f)^TdX)\) | matrix differential convention | Pairs a matrix gradient with a same-shaped matrix displacement through the Frobenius inner product |
+| \(\nabla_x(x^TAx)=(A+A^T)x\) | quadratic-form gradient | General gradient for constant \(A\); simplifies to \(2Ax\) when \(A\) is symmetric |
 
 ## Information Theory
 
