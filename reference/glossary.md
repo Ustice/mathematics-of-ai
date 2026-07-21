@@ -120,6 +120,16 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Backward pass:** Propagation of a final output's sensitivity backward through local derivatives, adding contributions when several paths reach the same value.
 
+**Numerator layout:** A derivative-array convention that places output coordinates in rows and input coordinates in columns, giving an output-by-input Jacobian.
+
+**Denominator layout:** A derivative-array convention that transposes the output-by-input arrangement; for a scalar function of a column vector, it produces a column-shaped derivative.
+
+**Differential:** The first-order change in a function written in terms of small input displacements; matching its standard form can expose a gradient without memorizing a formula.
+
+**Matrix gradient:** The same-shaped matrix that pairs with a matrix displacement through the Frobenius inner product to produce a scalar differential.
+
+**Frobenius inner product:** The entrywise inner product of two same-shaped matrices, equal to $\operatorname{tr}(A^TB)$.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.

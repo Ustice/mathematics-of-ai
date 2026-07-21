@@ -58,7 +58,8 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 
 - [x] Gradients introduced and reviewed in Lesson 35.
 - [x] Jacobians introduced and reviewed in Lesson 36.
-- [ ] Chain rule for computation graphs introduced; Practice 37.1 targets the corrections still needed after exercise review.
+- [x] Chain rule for computation graphs introduced and reviewed in Lesson 37, including Practice 37.1.
+- [ ] Matrix calculus notation introduced in the Lesson 38 page; exercises pending.
 - [x] Hessians.
 - [x] Convexity.
 - [x] Constrained optimization.
@@ -186,4 +187,5 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 34: Partial Derivatives - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 35: Gradients - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 36: Jacobians - Lesson Page and reviewed Exercise Artifact Module available.
-- [ ] Lesson 37: Chain Rule for Computation Graphs - Lesson Page and reviewed Exercise Artifact Module available; targeted corrections pending.
+- [x] Lesson 37: Chain Rule for Computation Graphs - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 38: Matrix Calculus Notation - Lesson Page available.

@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-19
+last_updated: 2026-07-21
 current_phase: Calculus and Matrix Calculus for ML
-next_topic: Practice 37.1 - Local Derivatives and Branch Accumulation
+next_topic: Matrix Calculus Notation
 
 completed_lessons:
   - number: 1
@@ -77,6 +77,8 @@ completed_lessons:
     title: Gradients
   - number: 36
     title: Jacobians
+  - number: 37
+    title: Chain Rule for Computation Graphs
 
 teaching_preferences:
   intuition_first: true
@@ -101,6 +103,7 @@ known_learning_notes:
   - Numerical derivative checks are conceptually clear; reinforce consistent row/output and column/input names in implementations.
   - Computation-graph implementation structure is secure, including stored forward values and a correct reverse pass for a scalar loss.
   - Reinforce evaluating local derivatives at stored intermediate values, differentiating the operation actually present, and adding rather than multiplying branch contributions.
+  - Practice 37.1 demonstrated secure local-value substitution, operation-specific derivatives, path multiplication, and branch accumulation; minor wording and independent-check refinements are not conceptual blockers.
 
 artifacts:
   exercise_artifacts: lessons_2_to_37_available_under_lesson_organized_modules
