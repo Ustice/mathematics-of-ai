@@ -136,6 +136,20 @@ describe('first-use readiness', () => {
     expect(notabilityLinks).toEqual([]);
   });
 
+  test('MDX tables do not split inline math on unescaped absolute-value bars', () => {
+    const malformedTableMath = gitFiles(['src/content/lessons/*.mdx'])
+      .flatMap((file) =>
+        readText(file)
+          .split('\n')
+          .map((line, index) => ({ file, line, lineNumber: index + 1 })),
+      )
+      .filter(({ line }) => line.trimStart().startsWith('|'))
+      .filter(({ line }) => /\$\|/.test(line))
+      .map(({ file, line, lineNumber }) => `${file}:${lineNumber}: ${line}`);
+
+    expect(malformedTableMath).toEqual([]);
+  });
+
   test('package scripts use Bun', () => {
     const packageJson = readJson<{ scripts?: Record<string, string> }>('package.json');
 
