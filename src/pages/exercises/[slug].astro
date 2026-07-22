@@ -1,6 +1,7 @@
 ---
 import type { MarkdownInstance } from 'astro';
 import path from 'node:path';
+import SiteNav from '../../components/SiteNav.astro';
 import '../../styles/lesson.css';
 
 type ExerciseModule = MarkdownInstance<Record<string, unknown>>;
@@ -39,8 +40,6 @@ export const getStaticPaths = async () => {
 };
 
 const { Content, title } = Astro.props;
-const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
 ---
 
 <!doctype html>
@@ -53,7 +52,7 @@ const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, 
   </head>
   <body>
     <header class="lesson-header">
-      <a class="back-link" href={withBase('/exercises/')}>Exercises</a>
+      <SiteNav current="exercises" />
       <p class="eyebrow">Practice</p>
       <h1>{title}</h1>
     </header>

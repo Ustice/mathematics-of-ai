@@ -41,13 +41,6 @@ a {
   padding: 40px 28px 18px;
 }
 
-.back-link {
-  display: inline-flex;
-  font-size: 0.92rem;
-  font-weight: 700;
-  margin-bottom: 28px;
-}
-
 .eyebrow,
 .lesson-number {
   color: var(--rust);
@@ -696,24 +689,33 @@ h1 {
 }
 
 .section-jump-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
   margin: 0 0 48px;
+  padding: 18px 0 20px;
+}
+
+.section-jump-nav .eyebrow {
+  margin-bottom: 12px;
+}
+
+.section-jump-nav ul {
+  display: grid;
+  gap: 8px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .section-jump-nav a {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 999px;
   color: var(--teal);
-  font-size: 0.88rem;
-  font-weight: 800;
-  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .section-jump-nav a:hover {
-  border-color: var(--teal);
+  color: var(--ink);
 }
 
 .lesson-sections {

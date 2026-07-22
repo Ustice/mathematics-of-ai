@@ -1,0 +1,29 @@
+---
+type Section = 'course' | 'curriculum' | 'exercises' | 'lessons';
+
+type Props = {
+  current: Section;
+};
+
+const { current } = Astro.props;
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (routePath: string) => `${basePath}${routePath.replace(/^\/+/, '')}`;
+const sections = [
+  { label: 'Course', route: '/', section: 'course' },
+  { label: 'Lessons', route: '/lessons/', section: 'lessons' },
+  { label: 'Exercises', route: '/exercises/', section: 'exercises' },
+  { label: 'Curriculum', route: '/curriculum/', section: 'curriculum' },
+] as const satisfies ReadonlyArray<{ label: string; route: string; section: Section }>;
+---
+
+<nav class="site-nav" aria-label="Course sections">
+  {
+    sections.map(({ label, route, section }) => (
+      <a aria-current={current === section ? 'page' : undefined} href={withBase(route)}>
+        {label}
+      </a>
+    ))
+  }
+</nav>

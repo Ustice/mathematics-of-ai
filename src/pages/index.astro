@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import SiteNav from '../components/SiteNav.astro';
 import '../styles/lesson.css';
 import { buildLessonCatalog, readArtifactRecords } from '../lib/lesson-catalog';
 
@@ -29,12 +30,7 @@ const latestLesson = lessons
   </head>
   <body>
     <main class="index-page">
-      <nav class="site-nav" aria-label="Course sections">
-        <a aria-current="page" href={withBase('/')}>Course</a>
-        <a href={withBase('/lessons/')}>Lessons</a>
-        <a href={withBase('/exercises/')}>Exercises</a>
-        <a href={withBase('/curriculum/')}>Curriculum</a>
-      </nav>
+      <SiteNav current="course" />
       <header class="index-header">
         <p class="eyebrow">Mathematics of AI</p>
         <h1>Mathematics for Machine Intelligence</h1>

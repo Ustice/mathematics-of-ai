@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import SiteNav from '../../components/SiteNav.astro';
 import '../../styles/lesson.css';
 
 type CurriculumLesson = {
@@ -85,12 +86,7 @@ const phases: CurriculumPhase[] = curriculumText
   </head>
   <body>
     <main class="index-page">
-      <nav class="site-nav" aria-label="Course sections">
-        <a href={withBase('/')}>Course</a>
-        <a href={withBase('/lessons/')}>Lessons</a>
-        <a href={withBase('/exercises/')}>Exercises</a>
-        <a aria-current="page" href={withBase('/curriculum/')}>Curriculum</a>
-      </nav>
+      <SiteNav current="curriculum" />
       <header class="index-header">
         <p class="eyebrow">Mathematics of AI</p>
         <h1>Curriculum</h1>
