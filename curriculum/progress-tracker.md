@@ -39,7 +39,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] SVD.
 - [x] PCA.
 - [x] Covariance geometry.
-- [ ] Matrix calculus.
+- [x] Matrix calculus notation introduced and reviewed through Lesson 38.
 
 ### Probability and Statistics
 
@@ -59,7 +59,8 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] Gradients introduced and reviewed in Lesson 35.
 - [x] Jacobians introduced and reviewed in Lesson 36.
 - [x] Chain rule for computation graphs introduced and reviewed in Lesson 37, including Practice 37.1.
-- [ ] Matrix calculus notation introduced in the Lesson 38 page; exercises pending.
+- [x] Matrix calculus notation introduced and reviewed in Lesson 38.
+- [ ] Taylor series and local approximation introduced in the Lesson 39 page; exercises pending.
 - [x] Hessians.
 - [x] Convexity.
 - [x] Constrained optimization.
@@ -188,4 +189,5 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 35: Gradients - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 36: Jacobians - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 37: Chain Rule for Computation Graphs - Lesson Page and reviewed Exercise Artifact Module available.
-- [ ] Lesson 38: Matrix Calculus Notation - Lesson Page available.
+- [x] Lesson 38: Matrix Calculus Notation - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 39: Taylor Series and Local Approximation - Lesson Page available; exercises pending.

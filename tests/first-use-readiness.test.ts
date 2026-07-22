@@ -23,10 +23,14 @@ const readJson = <T>(relativePath: string): T =>
   JSON.parse(readText(relativePath)) as T;
 
 const gitFiles = (patterns: string[]) =>
-  execFileSync('git', ['ls-files', '-z', '--', ...patterns], {
-    cwd: repoRoot,
-    encoding: 'utf8',
-  })
+  execFileSync(
+    'git',
+    ['ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', ...patterns],
+    {
+      cwd: repoRoot,
+      encoding: 'utf8',
+    },
+  )
     .split('\0')
     .filter(Boolean)
     .sort();

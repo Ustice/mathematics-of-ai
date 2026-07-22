@@ -1,8 +1,8 @@
 course: Mathematics of AI
 repository: Ustice/mathematics-of-ai
-last_updated: 2026-07-21
+last_updated: 2026-07-22
 current_phase: Calculus and Matrix Calculus for ML
-next_topic: Matrix Calculus Notation
+next_topic: Taylor Series and Local Approximation
 
 completed_lessons:
   - number: 1
@@ -79,6 +79,8 @@ completed_lessons:
     title: Jacobians
   - number: 37
     title: Chain Rule for Computation Graphs
+  - number: 38
+    title: Matrix Calculus Notation
 
 teaching_preferences:
   intuition_first: true
@@ -104,8 +106,9 @@ known_learning_notes:
   - Computation-graph implementation structure is secure, including stored forward values and a correct reverse pass for a scalar loss.
   - Reinforce evaluating local derivatives at stored intermediate values, differentiating the operation actually present, and adding rather than multiplying branch contributions.
   - Practice 37.1 demonstrated secure local-value substitution, operation-specific derivatives, path multiplication, and branch accumulation; minor wording and independent-check refinements are not conceptual blockers.
+  - Matrix-calculus conventions and differential derivations are secure; reinforce forward-versus-reverse shape labels and complete requested concrete counterexamples even when a general proof is available.
 
 artifacts:
-  exercise_artifacts: lessons_2_to_37_available_under_lesson_organized_modules
+  exercise_artifacts: lessons_2_to_38_available_under_lesson_organized_modules
   raw_chatgpt_transcripts: lessons_1_to_25_available_under_lessons_transcripts
   transcript_policy: source_material_until_reviewed

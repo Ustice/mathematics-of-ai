@@ -130,6 +130,16 @@ This is the canonical short glossary for recurring course vocabulary. Keep entri
 
 **Frobenius inner product:** The entrywise inner product of two same-shaped matrices, equal to $\operatorname{tr}(A^TB)$.
 
+**Taylor approximation:** A local polynomial model whose coefficients are determined by a function's derivatives at a fixed anchor point.
+
+**Anchor point:** The fixed point where a Taylor model evaluates the function and its derivatives.
+
+**Remainder:** The difference between a function's actual value and the value predicted by a chosen Taylor polynomial.
+
+**First-order approximation:** A local affine model using the function value and gradient at an anchor point.
+
+**Second-order approximation:** A local quadratic model that adds a Hessian-based curvature correction to the first-order model.
+
 **Gradient descent:** An iterative optimization method that moves parameters opposite the gradient to reduce a loss.
 
 **Learning rate:** A positive step-size parameter controlling how far gradient descent moves at each update.
