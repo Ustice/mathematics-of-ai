@@ -224,6 +224,12 @@
     {
       "lesson": 38,
       "chat": "Lesson 38",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-038-matrix-calculus-notation"
+    },
+    {
+      "lesson": 39,
+      "chat": "Lesson 39",
       "transcript": null
     }
   ]

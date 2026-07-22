@@ -28,6 +28,9 @@ This is the canonical external symbol table for recurring notation. Its job is t
 | \(df\) | First-order scalar change in \(f\) | Matrix calculus | Lesson 38 | Pair with a vector or matrix displacement to identify the corresponding gradient. |
 | \(\nabla_X f\) | Gradient of scalar \(f\) with respect to matrix \(X\) | Matrix calculus | Lesson 38 | Has the same shape as \(X\) under the course convention. |
 | \(\operatorname{tr}(A)\) | Trace of a square matrix | Matrix calculus | Lesson 38 | Sum of diagonal entries; also supports compact Frobenius-inner-product notation. |
+| \(h=x-a\) | Displacement from a Taylor anchor | Local approximation | Lesson 39 | Keep the anchor \(a\) fixed while the nearby target \(x\) varies. |
+| \(T_k(x;a)\) | Degree-k Taylor model of \(f\) near \(a\) | Local approximation | Lesson 39 | The semicolon separates the predicted point from the fixed anchor. |
+| \(R_k(x;a)\) | Taylor remainder | Local approximation | Lesson 39 | Difference \(f(x)-T_k(x;a)\); its local scaling depends on omitted derivatives. |
 | \(\eta\) | Learning rate | Optimization | Lesson 26 | Positive scalar controlling gradient descent step size. |
 | \(\Delta \theta\) | Parameter update | Optimization | Lesson 26 | Change added to the current parameters during one step. |
 | \(g_t\) | Gradient estimate at step t | Optimization | Lesson 28 | Often a mini-batch gradient in SGD-style optimizers. |

@@ -80,6 +80,9 @@ This reference is the canonical compact notation guide for the course. Lessons s
 | \(df=(\nabla_x f)^Tdx\) | vector differential convention | Pairs a column gradient with a column displacement to produce the first-order scalar change |
 | \(df=\operatorname{tr}((\nabla_X f)^TdX)\) | matrix differential convention | Pairs a matrix gradient with a same-shaped matrix displacement through the Frobenius inner product |
 | \(\nabla_x(x^TAx)=(A+A^T)x\) | quadratic-form gradient | General gradient for constant \(A\); simplifies to \(2Ax\) when \(A\) is symmetric |
+| \(h=x-a\) | Taylor displacement | Offset from the fixed anchor \(a\) to the nearby point \(x\) being approximated |
+| \(T_1(a+h;a)=f(a)+\nabla f(a)^Th\) | first-order Taylor model | Local affine approximation built from the value and gradient at \(a\) |
+| \(T_2(a+h;a)=f(a)+\nabla f(a)^Th+\frac12h^TH_f(a)h\) | second-order Taylor model | Local quadratic approximation adding curvature from the Hessian at \(a\) |
 
 ## Information Theory
 

@@ -22,9 +22,9 @@ The course is built around a few principles:
 
 ## Current Status
 
-Lessons 1-37 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-37. Lesson 38 is the active Lesson Page.
+Lessons 1-38 are complete and have canonical MDX Lesson Pages. Source Transcripts remain preserved for Lessons 1-25, and Exercise Artifact Modules exist for Lessons 2-38. Lesson 39 is the active Lesson Page.
 
-The next active topic is **Matrix Calculus Notation**, using shape discipline, differentials, and trace notation to derive vector and matrix gradients without relying on disconnected formula tables.
+The next active topic is **Taylor Series and Local Approximation**, connecting function values, gradients, and Hessians to increasingly accurate local models.
 
 Status labels below describe historical curriculum coverage. They do not mark Lesson Pages complete; use the Course Checkpoint for completion and `data/lesson-artifacts.json` for artifact relationships.
 
@@ -262,7 +262,7 @@ This phase turns loss functions into training procedures. The emphasis is on und
 
 ## Phase V — Calculus and Matrix Calculus for ML
 
-**Status:** Lesson 37 complete; Lesson 38 active
+**Status:** Lesson 38 complete; Lesson 39 active
 
 This phase formalizes the calculus needed for backpropagation, optimization, and reading papers with vectorized derivatives.
 
