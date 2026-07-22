@@ -1,5 +1,6 @@
 ---
 import 'katex/dist/katex.min.css';
+import katex from 'katex';
 import '../styles/lesson.css';
 
 type Heading = {
@@ -33,6 +34,12 @@ const { headings, lesson } = Astro.props;
 const tocItems = headings.filter(({ depth }) => depth === 2 || depth === 3);
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const lessonsPath = `${basePath}lessons/`;
+const renderSymbol = (symbol: string) =>
+  katex.renderToString(symbol, {
+    output: 'htmlAndMathml',
+    strict: 'error',
+    throwOnError: true,
+  });
 ---
 
 <!doctype html>
@@ -95,7 +102,7 @@ const lessonsPath = `${basePath}lessons/`;
             {
               lesson.symbols.map((entry) => (
                 <div>
-                  <dt>{entry.symbol}</dt>
+                  <dt set:html={renderSymbol(entry.symbol)} />
                   <dd>{entry.meaning}</dd>
                 </div>
               ))
