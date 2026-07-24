@@ -230,6 +230,12 @@
     {
       "lesson": 39,
       "chat": "Lesson 39",
+      "transcript": null,
+      "exercise_module": "exercises/lesson-039-taylor-series-and-local-approximation"
+    },
+    {
+      "lesson": 40,
+      "chat": "Lesson 40",
       "transcript": null
     }
   ]

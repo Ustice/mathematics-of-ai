@@ -60,7 +60,7 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] Jacobians introduced and reviewed in Lesson 36.
 - [x] Chain rule for computation graphs introduced and reviewed in Lesson 37, including Practice 37.1.
 - [x] Matrix calculus notation introduced and reviewed in Lesson 38.
-- [ ] Taylor series and local approximation introduced in the Lesson 39 page; exercises pending.
+- [x] Taylor series and local approximation introduced and reviewed in Lesson 39.
 - [x] Hessians.
 - [x] Convexity.
 - [x] Constrained optimization.
@@ -70,6 +70,13 @@ Milestones are evidence gates, not lesson-order instructions. A milestone should
 - [x] Adam.
 - [x] Learning rate schedules.
 - [x] Regularization.
+
+### Neural Networks
+
+- [ ] Perceptrons and linear layers introduced in the Lesson 40 page; exercises pending.
+- [ ] Activation functions.
+- [ ] Multilayer networks.
+- [ ] Training a small neural network from scratch.
 
 ### Information Theory
 
@@ -190,4 +197,5 @@ The following lesson transcripts exist under [../lessons/transcripts](../lessons
 - [x] Lesson 36: Jacobians - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 37: Chain Rule for Computation Graphs - Lesson Page and reviewed Exercise Artifact Module available.
 - [x] Lesson 38: Matrix Calculus Notation - Lesson Page and reviewed Exercise Artifact Module available.
-- [ ] Lesson 39: Taylor Series and Local Approximation - Lesson Page available; exercises pending.
+- [x] Lesson 39: Taylor Series and Local Approximation - Lesson Page and reviewed Exercise Artifact Module available.
+- [ ] Lesson 40: Perceptrons and Linear Layers - Lesson Page available; exercises pending.
