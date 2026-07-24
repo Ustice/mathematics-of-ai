@@ -25,7 +25,7 @@ symbols:
     meaning: "Scalar bias that shifts a decision boundary."
   - symbol: "z=w^Tx+b"
     meaning: "Pre-activation score produced by an affine map."
-  - symbol: "a=\phi(z)"
+  - symbol: "a=phi(z)"
     meaning: "Activation obtained by applying a nonlinear function to the score."
   - symbol: "W"
     meaning: "Weight matrix for a layer with several output units."
@@ -630,18 +630,11 @@ The threshold's derivative does not provide useful gradients. Smooth or piecewis
 
    compute \(z=Wx+b\) and annotate every object's shape.
 
-5. Let \(z=w^Tx+b\) and \(a=\sigma(z)\). Derive \(
-abla_w a\), \(
-abla_x a\), and \(
-partial a/
-partial b\) using the chain rule.
+5. Let \(z=w^Tx+b\) and \(a=\sigma(z)\). Derive \(\nabla_w a\), \(\nabla_x a\), and \(\partial a/\partial b\) using the chain rule.
 
 6. Prove that two affine layers without an intervening nonlinearity can be represented by one affine layer. Identify the combined weight matrix and bias vector.
 
-7. For \(z=Wx+b\), derive \(
-abla_xL\), \(
-abla_WL\), and \(
-abla_bL\) from the differential:
+7. For \(z=Wx+b\), derive \(\nabla_xL\), \(\nabla_WL\), and \(\nabla_bL\) from the differential:
 
    ```math
    dz=dW\,x+W\,dx+db.
@@ -677,7 +670,7 @@ You are ready for the next lesson when you can:
 - The weight vector is normal to the decision boundary; the bias translates that boundary.
 - A linear layer stacks several units into \(z=Wx+b\).
 - Several affine layers without nonlinearities collapse into one affine map.
-- For a scalar loss, the linear-layer gradients are \(W^T\bar z\), \(ar z x^T\), and \(ar z\).
+- For a scalar loss, the linear-layer gradients are \(W^T\bar z\), \(\bar z x^T\), and \(\bar z\).
 - Linear layers are the reusable trainable maps from which larger neural networks are assembled.
 
 ## Next Lesson
