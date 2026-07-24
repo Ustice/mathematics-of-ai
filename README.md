@@ -130,11 +130,11 @@ Preserved historical and source material:
 
 ## Current Course State
 
-The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-38 are complete, and Lesson 39 introduces Taylor Series and Local Approximation.
+The canonical state is [course-state.yaml](course-state.yaml). Lessons 1-39 are complete, and Lesson 40 begins the neural-network phase with perceptrons and linear layers.
 
 Lesson Pages live under [src/content/lessons](src/content/lessons/). Lessons 1-25 were reconstructed from the raw exported Markdown Source Transcripts under [lessons/transcripts](lessons/transcripts/), which remain preserved for audit and revision.
 
-Handwritten exercise images are organized by lesson under `exercises/lesson-NNN-slug/`. Reviewed modules currently extend through Lesson 38. An image export is evidence for review, not proof that a lesson is complete.
+Handwritten exercise images are organized by lesson under `exercises/lesson-NNN-slug/`. Reviewed modules currently extend through Lesson 39. An image export is evidence for review, not proof that a lesson is complete.
 
 ## Development Commands
 
