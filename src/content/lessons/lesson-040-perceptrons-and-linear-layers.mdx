@@ -1,0 +1,685 @@
+---
+description: "A shape-aware introduction to perceptrons and linear layers, connecting affine maps, decision boundaries, activations, and trainable parameters."
+lesson: 40
+objectives:
+  - Explain a perceptron as an affine score followed by a decision rule.
+  - Interpret weights as the normal vector of a decision boundary and bias as its offset.
+  - Generalize a single perceptron to a linear layer with multiple outputs.
+  - Track vector and matrix shapes through forward evaluation.
+  - Connect gradients of weights and biases to the local derivative machinery from Lessons 35-39.
+phase: "Neural Networks"
+prerequisites:
+  - lesson: 39
+    title: "Taylor Series and Local Approximation"
+  - lesson: 38
+    title: "Matrix Calculus Notation"
+  - lesson: 3
+    title: "Matrix Multiplication Concepts"
+slug: "lesson-040-perceptrons-and-linear-layers"
+symbols:
+  - symbol: "x"
+    meaning: "Input feature vector."
+  - symbol: "w"
+    meaning: "Weight vector for a single output unit."
+  - symbol: "b"
+    meaning: "Scalar bias that shifts a decision boundary."
+  - symbol: "z=w^Tx+b"
+    meaning: "Pre-activation score produced by an affine map."
+  - symbol: "a=\phi(z)"
+    meaning: "Activation obtained by applying a nonlinear function to the score."
+  - symbol: "W"
+    meaning: "Weight matrix for a layer with several output units."
+widgets: []
+title: "Perceptrons and Linear Layers"
+---
+
+## Goal
+
+Turn the affine maps you already know into trainable units.
+
+A perceptron or linear layer does not introduce new linear algebra. It assigns machine-learning roles to familiar objects:
+
+```text
+input vector
+→ weighted sum
+→ bias shift
+→ optional activation
+→ output
+```
+
+The core computation is an affine map:
+
+```math
+z=w^Tx+b.
+```
+
+A neural network is built by composing many such maps with nonlinear functions between them.
+
+## Why Start Here
+
+Suppose an input has two features:
+
+```math
+x=
+\begin{bmatrix}
+x_1\\x_2
+\end{bmatrix}.
+```
+
+We want a model that produces a score saying which side of a boundary the point lies on. Choose weights:
+
+```math
+w=
+\begin{bmatrix}
+w_1\\w_2
+\end{bmatrix}
+```
+
+and a bias \(b\). The score is:
+
+```math
+z=w^Tx+b=w_1x_1+w_2x_2+b.
+```
+
+The model may classify using the sign:
+
+```math
+\hat y=
+\begin{cases}
+1,&z\ge 0,\\
+0,&z<0.
+\end{cases}
+```
+
+The boundary itself is where the model is undecided:
+
+```math
+w^Tx+b=0.
+```
+
+That equation defines a line in two dimensions, a plane in three dimensions, and a hyperplane in higher dimensions.
+
+## Notation / Symbol Table
+
+| Symbol | Plain-English name | Meaning |
+| --- | --- | --- |
+| \(x\in\mathbb R^n\) | input vector | The \(n\) features supplied to one unit. |
+| \(w\in\mathbb R^n\) | weight vector | Coefficients controlling how each input feature affects the score. |
+| \(b\in\mathbb R\) | bias | A scalar offset that moves the boundary without rotating it. |
+| \(z=w^Tx+b\) | pre-activation | The affine score before applying a nonlinear function. |
+| \(\phi\) | activation function | A scalar function applied to the pre-activation. |
+| \(a=\phi(z)\) | activation | The unit's output after the activation function. |
+| \(W\in\mathbb R^{m\times n}\) | weight matrix | Stacks \(m\) output-unit weight vectors as rows. |
+| \(b\in\mathbb R^m\) | bias vector | One bias for each of the \(m\) output units. |
+| \(z=Wx+b\) | layer pre-activation | The vector of all unit scores in a linear layer. |
+
+## A Perceptron Is An Affine Map Plus A Decision Rule
+
+The word **linear** is used loosely in neural-network programming. The map:
+
+```math
+x\mapsto w^Tx+b
+```
+
+is technically affine because it includes the constant term \(b\). It is linear only when \(b=0\).
+
+The distinction matters geometrically:
+
+- \(w^Tx=0\) must pass through the origin.
+- \(w^Tx+b=0\) may be shifted away from the origin.
+
+The original perceptron used a hard threshold. Modern neural networks more often use differentiable or piecewise-differentiable activations, but the affine core is the same.
+
+## The Weight Vector Is Normal To The Boundary
+
+Consider the decision boundary:
+
+```math
+w^Tx+b=0.
+```
+
+Let \(x_1\) and \(x_2\) be any two points on that boundary. Then:
+
+```math
+w^Tx_1+b=0
+```
+
+and:
+
+```math
+w^Tx_2+b=0.
+```
+
+Subtract the equations:
+
+```math
+w^T(x_1-x_2)=0.
+```
+
+So every displacement lying along the boundary is orthogonal to \(w\). Therefore \(w\) points straight across the boundary.
+
+This gives the weights two simultaneous interpretations:
+
+1. As coefficients in a weighted sum.
+2. As the normal direction of the decision boundary.
+
+The score changes most rapidly when moving parallel to \(w\).
+
+## What The Bias Does
+
+Holding \(w\) fixed preserves the boundary's orientation. Changing \(b\) translates the boundary.
+
+For a one-dimensional input:
+
+```math
+wx+b=0
+```
+
+has boundary location:
+
+```math
+x=-\frac{b}{w},
+```
+
+provided \(w\ne0\).
+
+In higher dimensions, the signed score scaled by the weight norm gives signed distance from the boundary:
+
+```math
+\frac{w^Tx+b}{\lVert w\rVert}.
+```
+
+The sign tells which side of the boundary contains \(x\). The magnitude tells how far away it is in the normal direction.
+
+## Worked Example: A Two-Feature Perceptron
+
+Let:
+
+```math
+w=
+\begin{bmatrix}
+2\\-1
+\end{bmatrix},
+\qquad
+b=-1.
+```
+
+For input:
+
+```math
+x=
+\begin{bmatrix}
+3\\2
+\end{bmatrix},
+```
+
+compute:
+
+```math
+z=w^Tx+b
+=
+\begin{bmatrix}
+2&-1
+\end{bmatrix}
+\begin{bmatrix}
+3\\2
+\end{bmatrix}
+-1
+=6-2-1
+=3.
+```
+
+A hard threshold would classify this point as positive because \(z>0\).
+
+The boundary is:
+
+```math
+2x_1-x_2-1=0,
+```
+
+or:
+
+```math
+x_2=2x_1-1.
+```
+
+The vector \(w=(2,-1)^T\) is perpendicular to this line.
+
+## From One Unit To A Linear Layer
+
+A single unit produces one scalar. A layer with \(m\) units produces \(m\) scores.
+
+Let each unit have its own weight vector \(w_i\in\mathbb R^n\). Stack their transposes as rows:
+
+```math
+W=
+\begin{bmatrix}
+w_1^T\\
+w_2^T\\
+\vdots\\
+w_m^T
+\end{bmatrix}
+\in\mathbb R^{m\times n}.
+```
+
+Stack the biases into:
+
+```math
+b=
+\begin{bmatrix}
+b_1\\b_2\\\vdots\\b_m
+\end{bmatrix}
+\in\mathbb R^m.
+```
+
+Then every unit can be evaluated at once:
+
+```math
+z=Wx+b.
+```
+
+The shape check is:
+
+```math
+\underbrace{z}_{m\times1}
+=
+\underbrace{W}_{m\times n}
+\underbrace{x}_{n\times1}
++
+\underbrace{b}_{m\times1}.
+```
+
+Each row of \(W\) asks a different linear question about the same input.
+
+## Worked Example: A Three-Output Layer
+
+Let:
+
+```math
+W=
+\begin{bmatrix}
+1&2\\
+-1&1\\
+3&0
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+0\\1\\-2
+\end{bmatrix},
+\qquad
+x=
+\begin{bmatrix}
+2\\-1
+\end{bmatrix}.
+```
+
+Then:
+
+```math
+Wx=
+\begin{bmatrix}
+1(2)+2(-1)\\
+-1(2)+1(-1)\\
+3(2)+0(-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\-3\\6
+\end{bmatrix}.
+```
+
+Adding the bias gives:
+
+```math
+z=Wx+b
+=
+\begin{bmatrix}
+0\\-2\\4
+\end{bmatrix}.
+```
+
+The layer has transformed a two-dimensional input into a three-dimensional representation.
+
+## Why Activations Are Needed
+
+Composing affine maps without nonlinear activations does not create a more expressive class of functions.
+
+Suppose:
+
+```math
+z_1=W_1x+b_1
+```
+
+and:
+
+```math
+z_2=W_2z_1+b_2.
+```
+
+Substitute the first into the second:
+
+```math
+z_2
+=W_2(W_1x+b_1)+b_2
+=(W_2W_1)x+(W_2b_1+b_2).
+```
+
+The composition is still one affine map.
+
+A nonlinear activation prevents this collapse:
+
+```math
+z_2=W_2\phi(W_1x+b_1)+b_2.
+```
+
+The nonlinearity is what lets depth create genuinely new functions.
+
+## Common Activation Examples
+
+### Hard Threshold
+
+```math
+\phi(z)=
+\begin{cases}
+1,&z\ge0,\\
+0,&z<0.
+\end{cases}
+```
+
+Useful for understanding the historical perceptron, but unsuitable for ordinary gradient-based training because its derivative is zero almost everywhere and undefined at zero.
+
+### Sigmoid
+
+```math
+\sigma(z)=\frac{1}{1+e^{-z}}.
+```
+
+Maps scores into \((0,1)\). It is useful for probabilities and binary outputs, though deep networks often avoid it in hidden layers because large positive or negative inputs produce small gradients.
+
+### ReLU
+
+```math
+\operatorname{ReLU}(z)=\max(0,z).
+```
+
+Piecewise linear and inexpensive. Its derivative is:
+
+```math
+\operatorname{ReLU}'(z)=
+\begin{cases}
+1,&z>0,\\
+0,&z<0.
+\end{cases}
+```
+
+At \(z=0\), software chooses a convention, commonly zero.
+
+## The Local Derivatives Of A Single Unit
+
+Let:
+
+```math
+z=w^Tx+b.
+```
+
+Treat \(x\), \(w\), and \(b\) as separate inputs to this computation.
+
+The derivative with respect to the input is:
+
+```math
+\nabla_x z=w.
+```
+
+The derivative with respect to the weights is:
+
+```math
+\nabla_w z=x.
+```
+
+The derivative with respect to the bias is:
+
+```math
+\frac{\partial z}{\partial b}=1.
+```
+
+These formulas are symmetric for a reason. The scalar score is the dot product pairing between \(w\) and \(x\). Holding either side fixed makes the other side's gradient equal to the fixed vector.
+
+For:
+
+```math
+a=\phi(z),
+```
+
+the chain rule gives:
+
+```math
+\nabla_w a=\phi'(z)x,
+```
+
+```math
+\nabla_x a=\phi'(z)w,
+```
+
+and:
+
+```math
+\frac{\partial a}{\partial b}=\phi'(z).
+```
+
+The forward pass stores \(x\), \(w\), \(b\), and \(z\). The backward pass multiplies the incoming sensitivity by these local derivatives.
+
+## Gradients For A Linear Layer
+
+For:
+
+```math
+z=Wx+b,
+```
+
+suppose a scalar loss \(L\) produces an incoming sensitivity:
+
+```math
+\bar z=\nabla_zL\in\mathbb R^m.
+```
+
+Then:
+
+```math
+\nabla_xL=W^T\bar z,
+```
+
+```math
+\nabla_WL=\bar z x^T,
+```
+
+and:
+
+```math
+\nabla_bL=\bar z.
+```
+
+Check the shapes:
+
+```math
+\underbrace{W^T}_{n\times m}
+\underbrace{\bar z}_{m\times1}
+=
+\underbrace{\nabla_xL}_{n\times1},
+```
+
+and:
+
+```math
+\underbrace{\bar z}_{m\times1}
+\underbrace{x^T}_{1\times n}
+=
+\underbrace{\nabla_WL}_{m\times n}.
+```
+
+The weight gradient is an outer product. Each output sensitivity scales the input vector to produce one row of the matrix gradient.
+
+## A Useful Programming View
+
+A linear layer can keep forward data and backward behavior together:
+
+```ts
+type Vector = readonly number[];
+type Matrix = readonly (readonly number[])[];
+
+type LinearCache = Readonly<{
+  input: Vector;
+}>;
+
+type LinearLayer = Readonly<{
+  weights: Matrix;
+  bias: Vector;
+}>;
+
+type LinearBackward = Readonly<{
+  inputGradient: Vector;
+  weightGradient: Matrix;
+  biasGradient: Vector;
+}>;
+```
+
+The layer's forward pass computes \(Wx+b\) and stores the input. Its backward pass receives \(ar z\), then computes the three gradients above.
+
+This is the first reusable trainable operation in the neural-network implementation path.
+
+## Connection To Category Theory
+
+The useful connection is composition, not terminology.
+
+A linear layer is a morphism-like computational component with a typed input and output:
+
+```text
+R^n → R^m
+```
+
+Layers compose only when adjacent shapes match. The forward maps compose in the ordinary direction. Reverse-mode sensitivities travel backward through the transposed local linear maps.
+
+The nonlinear activation is crucial because a category containing only affine maps remains closed under composition: composing more arrows does not escape the same family of functions.
+
+## Why This Matters For Machine Learning
+
+Linear layers appear throughout modern models:
+
+- Feature classifiers use \(w^Tx+b\).
+- Multiclass classifiers use one row of \(W\) per class.
+- Hidden neural-network layers learn new feature coordinates.
+- Convolution can be understood as a structured linear map with shared weights.
+- Attention uses learned linear projections to create queries, keys, and values.
+- Transformer feed-forward blocks are pairs of linear layers separated by a nonlinearity.
+
+Understanding this layer precisely means much of neural-network architecture becomes repeated composition rather than new mathematics each time.
+
+## Common Mistakes
+
+### Calling The Bias Part Of The Weight Vector Without Saying So
+
+It is possible to append a constant feature \(1\) to \(x\) and absorb \(b\) into an enlarged weight vector. That representation is valid, but it hides the distinct role of the bias unless stated explicitly.
+
+### Stacking Weight Vectors In The Wrong Orientation
+
+For \(z=Wx+b\), each output unit's weights are a row of \(W\). Columns correspond to input features.
+
+### Treating \(Wx+b\) As Nonlinear
+
+The bias makes the map affine, not nonlinear. Nonlinearity comes from \(\phi\).
+
+### Assuming Several Linear Layers Automatically Add Expressiveness
+
+Without nonlinear activations between them, they collapse into one affine map.
+
+### Forgetting That Parameters Are Inputs To Differentiation
+
+During inference, \(W\) and \(b\) are fixed. During training, they are variables whose gradients must be computed.
+
+### Using A Hard Threshold During Gradient-Based Training
+
+The threshold's derivative does not provide useful gradients. Smooth or piecewise-linear surrogate activations are used instead.
+
+## Exercises
+
+1. In plain language, explain the separate roles of \(w\), \(x\), and \(b\) in \(z=w^Tx+b\). Which quantities are data, and which are trainable parameters?
+
+2. Let \(w=(3,-2)^T\) and \(b=4\). Write the decision boundary in slope-intercept form. State a normal vector and give one point on each side of the boundary.
+
+3. Show algebraically that changing \(b\) while holding \(w\) fixed translates a decision boundary without changing its orientation.
+
+4. For:
+
+   ```math
+   W=
+   \begin{bmatrix}
+   1&-1&2\\
+   0&3&1
+   \end{bmatrix},
+   \qquad
+   b=
+   \begin{bmatrix}
+   2\\-1
+   \end{bmatrix},
+   \qquad
+   x=
+   \begin{bmatrix}
+   2\\1\\-1
+   \end{bmatrix},
+   ```
+
+   compute \(z=Wx+b\) and annotate every object's shape.
+
+5. Let \(z=w^Tx+b\) and \(a=\sigma(z)\). Derive \(
+abla_w a\), \(
+abla_x a\), and \(
+partial a/
+partial b\) using the chain rule.
+
+6. Prove that two affine layers without an intervening nonlinearity can be represented by one affine layer. Identify the combined weight matrix and bias vector.
+
+7. For \(z=Wx+b\), derive \(
+abla_xL\), \(
+abla_WL\), and \(
+abla_bL\) from the differential:
+
+   ```math
+   dz=dW\,x+W\,dx+db.
+   ```
+
+   Use the Frobenius inner product to identify the matrix gradient.
+
+8. A ReLU unit receives \(z=-0.4\). What output and local derivative does it produce? What practical training problem can occur if a unit remains in this region for every example?
+
+9. Diagnose the claim: “The bias controls how important the input features are.” Explain what the bias actually controls and which object controls feature coefficients.
+
+10. Implement a TypeScript linear layer with:
+
+    - dimension checks,
+    - a forward pass returning both output and cache,
+    - a backward pass returning input, weight, and bias gradients,
+    - tests using finite differences for every parameter and input coordinate.
+
+## Readiness Check
+
+You are ready for the next lesson when you can:
+
+- read \(w^Tx+b\) both algebraically and geometrically,
+- identify the decision boundary and its normal vector,
+- generalize one unit to \(z=Wx+b\),
+- track every shape in the forward and backward passes,
+- explain why nonlinear activations are required between layers,
+- and derive the linear layer's gradients rather than memorize them.
+
+## Summary
+
+- A perceptron computes an affine score and applies a decision or activation rule.
+- The weight vector is normal to the decision boundary; the bias translates that boundary.
+- A linear layer stacks several units into \(z=Wx+b\).
+- Several affine layers without nonlinearities collapse into one affine map.
+- For a scalar loss, the linear-layer gradients are \(W^T\bar z\), \(ar z x^T\), and \(ar z\).
+- Linear layers are the reusable trainable maps from which larger neural networks are assembled.
+
+## Next Lesson
+
+Lesson 41 introduces activation functions as geometric gates. It will compare sigmoid, tanh, and ReLU, study their derivatives and saturation behavior, and show how nonlinearities change the functions a network can represent.
