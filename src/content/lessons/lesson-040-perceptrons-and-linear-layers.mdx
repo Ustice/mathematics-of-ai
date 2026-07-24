@@ -543,7 +543,7 @@ type LinearBackward = Readonly<{
 }>;
 ```
 
-The layer's forward pass computes \(Wx+b\) and stores the input. Its backward pass receives \(ar z\), then computes the three gradients above.
+The layer's forward pass computes \(Wx+b\) and stores the input. Its backward pass receives \(\bar z\), then computes the three gradients above.
 
 This is the first reusable trainable operation in the neural-network implementation path.
 
